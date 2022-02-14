@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- PAGES -->
+  <url>
+    <loc>https://joshd.xyz</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://joshd.xyz/categories.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://joshd.xyz/tags.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <!-- POSTS -->
+  {% for post in posts %}
+  <url>
+    <loc>https://joshd.xyz/{{ post.path.split('/')[-1] }}.html</loc>
+  </url>
+  {% endfor %}
+  
+  <!-- CATEGORIES -->
+  {% for category in categories %}
+  <url>
+    <loc>https://joshd.xyz/category/{{ category }}.html</loc>
+  </url>
+  {% endfor %}
+  
+  <!-- TAGS -->
+  {% for tag in tags %}
+  <url>
+    <loc>https://joshd.xyz/tag/{{ tag }}.html</loc>
+  </url>
+  {% endfor %}
+
+</urlset>

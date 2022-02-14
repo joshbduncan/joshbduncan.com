@@ -1,0 +1,9 @@
+black==21.12b0
+flake8==4.0.1
+Flask==2.0.2
+Flask-FlatPages==0.8.1
+Frozen-Flask==0.18
+isort==5.10.1
+Markdown==3.3.6
+Pygments==2.11.2
+python-dotenv==0.19.2

@@ -1,0 +1,35 @@
+name: build-static-site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2.3.2
+        with:
+          # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+          python-version: 3.9
+
+      - name: Install Python Packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-github.txt
+
+      - name: Freeze Blog
+        run: python blog.py --build
+
+      - uses: EndBug/add-and-commit@v8
+        with:
+          message: "github build action"

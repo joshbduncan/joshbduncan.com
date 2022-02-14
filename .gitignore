@@ -1,0 +1,21 @@
+# Folder Crap
+.DS_Store
+._*
+Thumbs.db
+
+# Private Stuff
+.env
+.private
+.gitconfig
+.vscode
+scratchpad.txt
+cursor.txt
+*.code-workspace
+building/
+tmp/
+venv/
+content/drafts
+content/deleted
+build/drafts
+build/deleted
+__pycache__

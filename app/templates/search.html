@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+<div class="gsearch text-align-center">
+  <h1>whatcha looking for...</h1>
+  <form action="https://www.google.com/search" method="GET">
+    <div>
+      <input type="text" class="form-control" id="searchQuery" autocomplete="off" />
+      <input type="hidden" class="form-control" id="q" name="q" />
+      <button type="submit">Search</button>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript">
+  var form = document.querySelector("form");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var search = form.querySelector("input[type=text]");
+    var q = form.querySelector("input[name=q]");
+    q.value = "site:joshd.xyz " + search.value;
+    form.submit();
+  });
+</script>
+{% endblock content %}
