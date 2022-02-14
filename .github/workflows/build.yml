@@ -33,3 +33,9 @@ jobs:
       - uses: EndBug/add-and-commit@v8
         with:
           message: "github build action"
+
+      - name: Send Webhook to Render
+        uses: joelwmale/webhook-action@2.1.0
+        with:
+          url: ${{ secrets.WEBHOOK_URL }}
+          body: "deploy"
