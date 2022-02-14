@@ -47,6 +47,7 @@
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
+        <li><a href="/categories.html">Categories</a></li>
         <li><a href="/tags.html">Tags</a></li>
         <li><a href="/search.html">Search</a></li>
         <li><a href="/rss.xml">RSS</a></li>
@@ -66,7 +67,14 @@
       
 <article>
   <h1>Javascript Search Token Highlighter</h1>
-  <p>While building a full-text search engine for a <a href="https://flask.palletsprojects.com/">Flask</a> project I'm working on, I wanted a way to highlight all of the search terms on the search results page. After dabbling in Javascript for a bit, here's what I come up with.</p>
+  <div id="post-meta">
+    By Josh Duncan •
+    
+    <b>Published</b> May 2021 •
+    <a href="/category/development.html"><b>development</b></a>
+  </div>
+  <div id="post-body">
+    <p>While building a full-text search engine for a <a href="https://flask.palletsprojects.com/">Flask</a> project I'm working on, I wanted a way to highlight all of the search terms on the search results page. After dabbling in Javascript for a bit, here's what I come up with.</p>
 <blockquote>
 <p>Just to be clear, I'm not a Javascript programmer. This is something I was able to hack together for my purposes and it seems to work well. Your milage may vary...</p>
 </blockquote>
@@ -220,28 +228,11 @@ $ &quot;this|is|a|query&quot;
 
 <p>If you would like to give this a try, you can download the script and accompanying files at the gist below.</p>
 <p><a href="https://gist.github.com/joshbduncan/fc230670837c91dad41683d73cc67d09">View the full script here</a></p>
-  <div id="post-date">
-    <span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
-        <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-      </svg>
-    </span>
-    Published: May 2021
   </div>
   <div id="post-tags">
     
     <ul id="tags">
-      <li>
-        <span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z" />
-            <path fill-rule="evenodd" d="M5.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-            <path d="M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z" />
-          </svg>
-          Tags:
-        </span>
-      </li>
+      <li><b>Tags:</b></li>
       
       <li><a href="/tag/flask.html">flask</a>, </li>
       

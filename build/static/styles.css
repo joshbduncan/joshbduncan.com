@@ -21,7 +21,7 @@ html {
   font-family: var(--ff-primary);
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
 }
 
@@ -226,6 +226,11 @@ footer li {
 
 /* ########## OBJECTS ########## */
 
+#post-meta {
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
 logo img {
   display: inline-block;
   margin: 1.5rem 0 0 0;
@@ -255,55 +260,6 @@ logo img {
 
 #tags li {
   display: inline-block;
-}
-
-.tag-button {
-  background-color: var(--clr-primary);
-  border-radius: 0.5rem;
-  border: none;
-  color: var(--clr-neutral);
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: 800;
-  height: 32px;
-  line-height: 32px;
-  margin: 0.5rem 0.25rem;
-  padding: 1px 24px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-}
-
-.tag-button::before {
-  background-color: var(--clr-neutral);
-  border-radius: 12px;
-  content: "";
-  height: 6px;
-  left: 9px;
-  position: absolute;
-  top: 13px;
-  width: 6px;
-}
-
-.tag-button::after {
-  background: var(--clr-neutral);
-  border-bottom: 16px solid transparent;
-  border-left: 12px solid var(--clr-primary);
-  border-top: 16px solid transparent;
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.tag-button:hover {
-  background-color: var(--clr-primary-hover);
-  color: var(--clr-neutral);
-  text-decoration: none;
-}
-
-.tag-button:hover::after {
-  border-left-color: var(--clr-primary-hover);
 }
 
 button {

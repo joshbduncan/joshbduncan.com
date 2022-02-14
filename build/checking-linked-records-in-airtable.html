@@ -47,6 +47,7 @@
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
+        <li><a href="/categories.html">Categories</a></li>
         <li><a href="/tags.html">Tags</a></li>
         <li><a href="/search.html">Search</a></li>
         <li><a href="/rss.xml">RSS</a></li>
@@ -66,7 +67,14 @@
       
 <article>
   <h1>Checking off Linked Records in an Airtable Script</h1>
-  <p>A few years back I built a custom job tracker in <a href="https://www.airtable.com/">Airtable</a> that helps me keep up with all of my freelance projects. The base is pretty simple and only consists of three tables, "Jobs", "Clients", and "Contacts". As you would expect, each "Job" has a "Client", which in-turn has a "Contact" (some of my clients have multiple contacts).</p>
+  <div id="post-meta">
+    By Josh Duncan •
+    
+    <b>Published</b> August 2021 •
+    <a href="/category/development.html"><b>development</b></a>
+  </div>
+  <div id="post-body">
+    <p>A few years back I built a custom job tracker in <a href="https://www.airtable.com/">Airtable</a> that helps me keep up with all of my freelance projects. The base is pretty simple and only consists of three tables, "Jobs", "Clients", and "Contacts". As you would expect, each "Job" has a "Client", which in-turn has a "Contact" (some of my clients have multiple contacts).</p>
 <h2>Backstory</h2>
 <p>Previously, I tracked overall time for each project in a "duration" field that I would manually update every time I did any work. And, up until recently non of my time-tracked projects lasted more than week so this method worked just fine... Well, until last month.</p>
 <p>See, I bill my clients monthly and some their projects started spanning more than one month, making it hard to determine what I time had already billed when the next month comes around.</p>
@@ -109,10 +117,10 @@
 <p>Now that I have each linked time entry, I can loop through them and make sure I'm getting the correct info.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// loop over all time entries for record</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mf">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nx">record</span> <span class="o">=</span> <span class="nx">timeEntriesQuery</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">(</span><span class="nx">linkedTimeEntries</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span><span class="p">);</span>
-        <span class="nx">output</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">));</span>
-    <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">record</span> <span class="o">=</span> <span class="nx">timeEntriesQuery</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">(</span><span class="nx">linkedTimeEntries</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span><span class="p">);</span>
+    <span class="nx">output</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">));</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -120,20 +128,20 @@
 <p>While looping, I'll need to make sure that each time entry hasn't already been invoiced, If the boolean value of the "Invoiced" field is <code>false</code> then I'll output the date of the entry as a check.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// loop over all time entries for record</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mf">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nx">record</span> <span class="o">=</span> <span class="nx">timeEntriesQuery</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">(</span><span class="nx">linkedTimeEntries</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span><span class="p">);</span>
-        <span class="c1">// if time entry not invoiced</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Invoiced&quot;</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nx">output</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; not invoiced&quot;</span><span class="p">);</span>
-        <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">record</span> <span class="o">=</span> <span class="nx">timeEntriesQuery</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">(</span><span class="nx">linkedTimeEntries</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span><span class="p">);</span>
+    <span class="c1">// if time entry not invoiced</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Invoiced&quot;</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">output</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; not invoiced&quot;</span><span class="p">);</span>
     <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <h3>4. Mark it as invoiced</h3>
 <p>If a time entry hasn't been "invoiced", I will check it off using the <a href="https://www.airtable.com/developers/scripting/api/table#update-record-async"><code>updateRecordAsync()</code></a> function.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">await</span> <span class="nx">timeEntriesTable</span><span class="p">.</span><span class="nx">updateRecordAsync</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">Invoiced</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nx">Invoiced</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
 <span class="p">});</span>
 </code></pre></div>
 
@@ -151,17 +159,17 @@
 <span class="nx">output</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;Found &quot;</span> <span class="o">+</span> <span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s2">&quot; total time entries&quot;</span><span class="p">);</span>
 <span class="c1">// loop over all time entries for record</span>
 <span class="k">if</span> <span class="p">(</span><span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mf">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">let</span> <span class="nx">record</span> <span class="o">=</span> <span class="nx">timeEntriesQuery</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">(</span><span class="nx">linkedTimeEntries</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span><span class="p">);</span>
-        <span class="c1">// if time entry not invoiced</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Invoiced&quot;</span><span class="p">))</span> <span class="p">{</span>
-            <span class="c1">// check &quot;Invoiced&quot;</span>
-            <span class="k">await</span> <span class="nx">timeEntriesTable</span><span class="p">.</span><span class="nx">updateRecordAsync</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="p">{</span>
-                <span class="nx">Invoiced</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="p">});</span>
-            <span class="nx">output</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;✅ &quot;</span> <span class="o">+</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">));</span>
-        <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">linkedTimeEntries</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">record</span> <span class="o">=</span> <span class="nx">timeEntriesQuery</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">(</span><span class="nx">linkedTimeEntries</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">id</span><span class="p">);</span>
+    <span class="c1">// if time entry not invoiced</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Invoiced&quot;</span><span class="p">))</span> <span class="p">{</span>
+      <span class="c1">// check &quot;Invoiced&quot;</span>
+      <span class="k">await</span> <span class="nx">timeEntriesTable</span><span class="p">.</span><span class="nx">updateRecordAsync</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">Invoiced</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="p">});</span>
+      <span class="nx">output</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;✅ &quot;</span> <span class="o">+</span> <span class="nx">record</span><span class="p">.</span><span class="nx">getCellValue</span><span class="p">(</span><span class="s2">&quot;Date&quot;</span><span class="p">));</span>
     <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -170,28 +178,11 @@
 <p><img alt="Airtable Checkbox Script in Action" loading="lazy" src="/static/images/airtable-checkbox-script.gif" /></p>
 <p>As you can see, when I want to mark all time entries for a job as "invoiced" I just click the big blue button and the script goes to work. #satisfied</p>
 <p><a href="https://gist.github.com/joshbduncan/10b7f448e984e238fdbfa3fc95ebc1e6">View the full script here</a></p>
-  <div id="post-date">
-    <span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
-        <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-      </svg>
-    </span>
-    Published: August 2021
   </div>
   <div id="post-tags">
     
     <ul id="tags">
-      <li>
-        <span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z" />
-            <path fill-rule="evenodd" d="M5.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-            <path d="M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z" />
-          </svg>
-          Tags:
-        </span>
-      </li>
+      <li><b>Tags:</b></li>
       
       <li><a href="/tag/airtable.html">airtable</a>, </li>
       
