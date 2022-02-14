@@ -16,14 +16,17 @@
   box-sizing: border-box;
 }
 
-body {
+html {
   color: var(--clr-dark);
   font-family: var(--ff-primary);
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 1.5;
   text-rendering: optimizeLegibility;
-  word-wrap: break-word;
+}
+
+body {
+  font-size: 1.25rem;
 }
 
 body,
@@ -35,23 +38,16 @@ p {
 }
 
 header,
-footer,
-section {
-  padding: 1rem 0;
-}
-
-header {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  width: 100%;
-}
-
 footer {
   margin: 0;
   padding: 0;
   text-align: center;
   width: 100%;
+}
+
+section {
+  margin: 0;
+  padding: 1rem 0;
 }
 
 .container {
@@ -72,19 +68,18 @@ h3 {
 }
 
 h1 {
-  font-size: 175%;
+  font-size: 2rem;
 }
 
 h2 {
-  font-size: 150%;
+  font-size: 1.5rem;
 }
 
 h3 {
-  font-size: 100%;
+  font-size: 1.25rem;
 }
 
 p {
-  font-weight: 400;
   margin: 1rem 0;
 }
 
@@ -98,8 +93,8 @@ a:hover {
 
 img {
   display: block;
-  justify-content: center;
-  margin: 2rem auto;
+  margin: 0;
+  padding: 0;
   max-width: 100%;
 }
 
@@ -135,13 +130,6 @@ pre {
   overflow-wrap: normal;
   overflow: auto;
   padding: 1rem;
-}
-
-/* ########## HEADER ########## */
-
-logo img {
-  display: inline-block;
-  margin: 1.5rem 0 0 0;
 }
 
 /* ########## NAVIGATION ########## */
@@ -237,6 +225,18 @@ footer li {
 }
 
 /* ########## OBJECTS ########## */
+
+logo img {
+  display: inline-block;
+  margin: 1.5rem 0 0 0;
+}
+
+.container img {
+  display: block;
+  justify-content: center;
+  margin: 2rem auto;
+  max-width: 100%;
+}
 
 .alert {
   background-color: #fff3cd;
@@ -336,7 +336,7 @@ button:hover {
 /* ########## UTILITY ########## */
 
 .text-align-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .text-decoration-none {

@@ -6,6 +6,11 @@
 
 [Template Designer Documentation — Jinja Documentation (3.0.x)](https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-filters)
 
+# 2022-02-14
+
+- html formatting cleanup
+- small css updates
+
 # 2022-02-10
 
 - got rid of the git worktree workflow and moved to github actions
