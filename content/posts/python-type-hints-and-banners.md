@@ -2,6 +2,7 @@
 title: Python Type Hints and Fancy Banners
 date: 2021-01-22
 description: While leaning about Python Type Hints, I wrote a nifty little function to display cool banners and help remind me about the concepts of type hinting.
+author: Josh Duncan
 category: development
 tags: python, type-hints
 ---

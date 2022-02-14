@@ -2,6 +2,7 @@
 title: Javascript Search Token Highlighter
 date: 2021-05-04
 description: Building a search results page? Thinking about highlighting the search terms so they standout? Here's how I did it using vanilla Javascript.
+author: Josh Duncan
 category: development
 tags: javascript, python, flask, jinja
 ---

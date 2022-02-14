@@ -2,6 +2,7 @@
 title: Generating a Sitemap with Flask and Flask-FlatPages
 date: 2020-10-31
 description: If you're using Flask-FlatPages, it's really simple to generate a sitemap that plays nice with search engines and helps your website get noticed.
+author: Josh Duncan
 category: development
 tags: python, flask, jinja, flask-flatpages
 ---

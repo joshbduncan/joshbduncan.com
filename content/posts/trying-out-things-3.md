@@ -2,6 +2,7 @@
 title: Trying Out Things 3
 date: 2021-02-01
 description: I decided to switch my to-do list to Things 3 and needed to move a lot of to-dos over from Todoist. Seemed like a great project to explore their API and save myself a bunch of copying and pasting.
+author: Josh Duncan
 category: development
 tags: python, mac, productivity, automation
 ---

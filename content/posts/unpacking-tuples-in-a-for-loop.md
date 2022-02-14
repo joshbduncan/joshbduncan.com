@@ -2,6 +2,7 @@
 title: Unpacking Tuples in a For Loop
 date: 2020-09-28
 description: Have you ever noticed as you learn more and more of a programming language, you often forgo the basics for a more complex solution? Well, today I was reminded of the KISS principle when I needed to unpack a bunch of tuples.
+author: Josh Duncan
 category: development
 tags: python, automation
 ---

@@ -4,7 +4,7 @@
 <div class="text-align-center">
   <ul id="tags">
     {% for tag in tags %}
-    <li><a class="tag-button" href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a></li>
+    <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}</li>
     {% endfor %}
   </ul>
 </div>

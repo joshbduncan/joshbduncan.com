@@ -1,7 +1,9 @@
 ---
 title: Autofilling Two Factor Authentication (2FA) Codes in macOS Chrome
 date: 2021-11-02
+updated: 2022-01-15
 description: If you use Chrome on macOS and are jealous of Safari's ability to autofill Two Factor Authentication (2FA) security codes checkout this sweet Keyboard Maestro macro.
+author: Josh Duncan
 category: productivity
 tags: keyboard maestro, productivity, macos, chrome
 ---

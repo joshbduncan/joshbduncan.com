@@ -2,6 +2,7 @@
 title: Checking off Linked Records in an Airtable Script
 date: 2021-08-03
 description: I needed a quick way to check off a bunch of linked records in Airtable so I worked up this little script to do it from an Airtable button.
+author: Josh Duncan
 category: development
 tags: airtable, automation, javascript
 ---
@@ -75,10 +76,10 @@ Now that I have each linked time entry, I can loop through them and make sure I'
 ```javascript
 // loop over all time entries for record
 if (linkedTimeEntries.length > 0) {
-    for (let i = 0; i < linkedTimeEntries.length; i++) {
-        let record = timeEntriesQuery.getRecord(linkedTimeEntries[i].id);
-        output.text(record.getCellValue("Date"));
-    }
+  for (let i = 0; i < linkedTimeEntries.length; i++) {
+    let record = timeEntriesQuery.getRecord(linkedTimeEntries[i].id);
+    output.text(record.getCellValue("Date"));
+  }
 }
 ```
 
@@ -89,13 +90,13 @@ While looping, I'll need to make sure that each time entry hasn't already been i
 ```javascript
 // loop over all time entries for record
 if (linkedTimeEntries.length > 0) {
-    for (let i = 0; i < linkedTimeEntries.length; i++) {
-        let record = timeEntriesQuery.getRecord(linkedTimeEntries[i].id);
-        // if time entry not invoiced
-        if (!record.getCellValue("Invoiced")) {
-            output.text(record.getCellValue("Date") + " not invoiced");
-        }
+  for (let i = 0; i < linkedTimeEntries.length; i++) {
+    let record = timeEntriesQuery.getRecord(linkedTimeEntries[i].id);
+    // if time entry not invoiced
+    if (!record.getCellValue("Invoiced")) {
+      output.text(record.getCellValue("Date") + " not invoiced");
     }
+  }
 }
 ```
 
@@ -105,7 +106,7 @@ If a time entry hasn't been "invoiced", I will check it off using the [`updateRe
 
 ```javascript
 await timeEntriesTable.updateRecordAsync(record.id, {
-    Invoiced: true,
+  Invoiced: true,
 });
 ```
 
@@ -126,17 +127,17 @@ let linkedTimeEntries = record.getCellValue("Time Entries") || [];
 output.text("Found " + linkedTimeEntries.length + " total time entries");
 // loop over all time entries for record
 if (linkedTimeEntries.length > 0) {
-    for (let i = 0; i < linkedTimeEntries.length; i++) {
-        let record = timeEntriesQuery.getRecord(linkedTimeEntries[i].id);
-        // if time entry not invoiced
-        if (!record.getCellValue("Invoiced")) {
-            // check "Invoiced"
-            await timeEntriesTable.updateRecordAsync(record.id, {
-                Invoiced: true,
-            });
-            output.text("✅ " + record.getCellValue("Date"));
-        }
+  for (let i = 0; i < linkedTimeEntries.length; i++) {
+    let record = timeEntriesQuery.getRecord(linkedTimeEntries[i].id);
+    // if time entry not invoiced
+    if (!record.getCellValue("Invoiced")) {
+      // check "Invoiced"
+      await timeEntriesTable.updateRecordAsync(record.id, {
+        Invoiced: true,
+      });
+      output.text("✅ " + record.getCellValue("Date"));
     }
+  }
 }
 ```
 

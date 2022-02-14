@@ -2,6 +2,7 @@
 title: RSS Feeds Using Flask-FlatPages
 date: 2020-11-11
 description: Need to generate a valid RSS feed for your Flask website? Using Flask-FlatPages? Well, it's really quite simple.
+author: Josh Duncan
 category: development
 tags: python, flask, jinja, flask-flatpages
 ---

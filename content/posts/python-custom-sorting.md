@@ -2,6 +2,7 @@
 title: Custom Sorting in Python
 date: 2021-08-17
 description: I recently found myself needing to sort a list by cardinal directions. Here's a super simple solution to do custom sorting in Python.
+author: Josh Duncan
 category: development
 tags: python, sort, sorting
 ---

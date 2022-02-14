@@ -10,6 +10,12 @@
 
 - html formatting cleanup
 - small css updates
+- byline on each post
+    - will show "Updated" if updated in post meta else "Published"
+    - will show post category
+- simplified tags on post and tag/categories pages
+- added categories to menu
+- added author to post meta
 
 # 2022-02-10
 
@@ -69,7 +75,7 @@ $ git worktree add ../build build
 ## 2022-01-19
 
 - added nav menu
-  - add dev specific menu items
+    - add dev specific menu items
 - cleaned up css more
 - switch classes to ids where possible
 - fixed hamburger menu clickable area
