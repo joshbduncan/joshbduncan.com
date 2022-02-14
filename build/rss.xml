@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>joshd.xyz</title>
+  <atom:link href="https://joshd.xyz/rss.xml" rel="self" type="application/rss+xml" />
+  <link>https://joshd.xyz</link>
+  <description>just some random thoughts published on the internet...</description>
+  <lastBuildDate>Mon, 14 Feb 2022 05:45:40 EST</lastBuildDate>
+  <language>en-US</language>
+
+  
+  <item>
+    <title>Autofilling Two Factor Authentication (2FA) Codes in macOS Chrome</title>
+    <link>https://joshd.xyz/macos_chrome_autofill_security_codes.html</link>
+    <description>If you use Chrome on macOS and are jealous of Safari&#39;s ability to autofill Two Factor Authentication (2FA) security codes checkout this sweet Keyboard Maestro macro.</description>
+    <pubDate>Tue, 02 Nov 2021 00:00:00 EST</pubDate>
+  </item>
+  
+  <item>
+    <title>Custom Sorting in Python</title>
+    <link>https://joshd.xyz/python-custom-sorting.html</link>
+    <description>I recently found myself needing to sort a list by cardinal directions. Here&#39;s a super simple solution to do custom sorting in Python.</description>
+    <pubDate>Tue, 17 Aug 2021 00:00:00 EST</pubDate>
+  </item>
+  
+  <item>
+    <title>Checking off Linked Records in an Airtable Script</title>
+    <link>https://joshd.xyz/checking-linked-records-in-airtable.html</link>
+    <description>I needed a quick way to check off a bunch of linked records in Airtable so I worked up this little script to do it from an Airtable button.</description>
+    <pubDate>Tue, 03 Aug 2021 00:00:00 EST</pubDate>
+  </item>
+  
+  <item>
+    <title>Javascript Search Token Highlighter</title>
+    <link>https://joshd.xyz/javascript-search-token-highlighter.html</link>
+    <description>Building a search results page? Thinking about highlighting the search terms so they standout? Here&#39;s how I did it using vanilla Javascript.</description>
+    <pubDate>Tue, 04 May 2021 00:00:00 EST</pubDate>
+  </item>
+  
+  <item>
+    <title>Trying Out Things 3</title>
+    <link>https://joshd.xyz/trying-out-things-3.html</link>
+    <description>I decided to switch my to-do list to Things 3 and needed to move a lot of to-dos over from Todoist. Seemed like a great project to explore their API and save myself a bunch of copying and pasting.</description>
+    <pubDate>Mon, 01 Feb 2021 00:00:00 EST</pubDate>
+  </item>
+  
+  <item>
+    <title>Python Type Hints and Fancy Banners</title>
+    <link>https://joshd.xyz/python-type-hints-and-banners.html</link>
+    <description>While leaning about Python Type Hints, I wrote a nifty little function to display cool banners and help remind me about the concepts of type hinting.</description>
+    <pubDate>Fri, 22 Jan 2021 00:00:00 EST</pubDate>
+  </item>
+  
+  <item>
+    <title>RSS Feeds Using Flask-FlatPages</title>
+    <link>https://joshd.xyz/flask-flatpages-rss.html</link>
+    <description>Need to generate a valid RSS feed for your Flask website? Using Flask-FlatPages? Well, it&#39;s really quite simple.</description>
+    <pubDate>Wed, 11 Nov 2020 00:00:00 EST</pubDate>
+  </item>
+  
+  <item>
+    <title>Generating a Sitemap with Flask and Flask-FlatPages</title>
+    <link>https://joshd.xyz/flask-flatpages-sitemap.html</link>
+    <description>If you&#39;re using Flask-FlatPages, it&#39;s really simple to generate a sitemap that plays nice with search engines and helps your website get noticed.</description>
+    <pubDate>Sat, 31 Oct 2020 00:00:00 EST</pubDate>
+  </item>
+  
+  <item>
+    <title>Unpacking Tuples in a For Loop</title>
+    <link>https://joshd.xyz/unpacking-tuples-in-a-for-loop.html</link>
+    <description>Have you ever noticed as you learn more and more of a programming language, you often forgo the basics for a more complex solution? Well, today I was reminded of the KISS principle when I needed to unpack a bunch of tuples.</description>
+    <pubDate>Mon, 28 Sep 2020 00:00:00 EST</pubDate>
+  </item>
+  
+
+</channel>
+</rss>
