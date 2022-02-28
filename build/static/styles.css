@@ -5,7 +5,8 @@
   --clr-dark: #333;
   --clr-grey-lt: #e8e8e8;
 
-  --ff-primary: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande" !important;
+  --ff-primary: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande" !important;
   --ff-accent: Futura, Trebuchet MS, Arial Black, Arial Bold, Arial, sans-serif;
   --ff-code: "Lucida Console", Monaco, monospace;
 }
@@ -227,7 +228,7 @@ footer li {
 /* ########## OBJECTS ########## */
 
 #post-meta {
-  font-size: 1rem;
+  font-size: 0.875rem;
   padding: 0.5rem 0;
 }
 
