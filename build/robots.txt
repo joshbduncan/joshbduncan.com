@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /drafts/
-Disallow: /search.html
-
-Sitemap: https://www.joshd.xyz/sitemap.xml
