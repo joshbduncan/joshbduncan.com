@@ -142,7 +142,9 @@
 </code></pre></div>
 
 <p>As you can see, the first section is my website and feed information. All of this is hardcoded except for the lastBuildDate which is the current date and time that I passed in my Flask route.</p>
-<div class="alert alert-info" role="alert">The dates and times in your RSS feed need to match the <a href="https://www.w3.org/Protocols/rfc822/#z28">RFC822 standard</a>. I have Jinja format the date and time information from Python into the correct format using the <a href="https://jinja.palletsprojects.com/en/2.11.x/api/">strftime</a> (string from time) function.</div>
+<div class="callout" role="comment">
+<p>The dates and times in your RSS feed need to match the <a href="https://www.w3.org/Protocols/rfc822/#z28">RFC822 standard</a>. I have Jinja format the date and time information from Python into the correct format using the <a href="https://jinja.palletsprojects.com/en/2.11.x/api/">strftime</a> (string from time) function.</p>
+</div>
 <p>Next, I have Jinja iterate through all of the page objects that I provided via my route to create each xml item. Each item entry needs to include a title, permalink, description, and publication date.</p>
 <h2>Rendered RSS Feed</h2>
 <p>Once rendered, my rss.xml feed looks like this.</p>

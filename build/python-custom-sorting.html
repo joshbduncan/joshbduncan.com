@@ -111,7 +111,9 @@
 <p>Now, when we I call <code>sorted()</code>, I can provide the <a href="https://docs.python.org/3/howto/sorting.html#key-functions">key parameter</a> that lets Python know how I want the sorting performed. But I can't just provide <code>sort_by</code> as they key. Python requires a "function or other callable".</p>
 <h3>Enter Lambdas</h3>
 <p>The key I'm using to sort by is the <a href="https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions">lambda function</a> <code>key=lambda d: sort_by.index(d)</code>.</p>
-<div class="alert alert-info" role="alert">Lambdas are "small anonymous functions" that run a single expression against a provided argument.</div>
+<div class="callout" role="comment">
+<p>Lambdas are "small anonymous functions" that run a single expression against a provided argument.</p>
+</div>
 <p>My lambda takes each direction from <code>dirs</code> as variable <code>d</code>, looks up its <a href="https://docs.python.org/3/tutorial/datastructures.html#data-structures">index</a> in <code>sort_by</code> and returns that number. Python then uses that number to determine the sorting placement.</p>
 <h2>The Result</h2>
 <p>Finally, if I supply Python's <code>sorted()</code> function with my new <code>key</code> I get exactly what I was looking for.</p>

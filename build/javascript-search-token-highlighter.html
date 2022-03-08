@@ -76,7 +76,9 @@
   </div>
   <div id="post-body">
     <p>While building a full-text search engine for a <a href="https://flask.palletsprojects.com/">Flask</a> project I'm working on, I wanted a way to highlight all of the search terms on the search results page. After dabbling in Javascript for a bit, here's what I come up with.</p>
-<div class="alert alert-info" role="alert">Just to be clear, I'm not a Javascript programmer. This is something I was able to hack together for my purposes and it seems to work well. Your milage may vary...</div>
+<div class="callout" role="comment">
+<p>Just to be clear, I'm not a Javascript programmer. This is something I was able to hack together for my purposes and it seems to work well. Your milage may vary...</p>
+</div>
 <h2>TL;DR</h2>
 <p>If you just want the final script, here it is with all of the specifics of my project removed. Supply a query string however you want and the script will highlight those tokens in each article element on the page.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// the query of tokens to highlight</span>
@@ -131,7 +133,9 @@ $ console.log(tokens)
 $ &quot;this|is|a|query&quot;
 </code></pre></div>
 
-<div class="alert alert-info" role="alert">So, regex is an entire language that I'm definitely not going to even scratch the surface of here. If you want to learn more, I suggest the great website <a href="https://regexr.com/">regexr.com</a>.</div>
+<div class="callout" role="comment">
+<p>So, regex is an entire language that I'm definitely not going to even scratch the surface of here. If you want to learn more, I suggest the great website <a href="https://regexr.com/">regexr.com</a>.</p>
+</div>
 <h2>Cleaning Up The Query</h2>
 <p>The first issue I encountered were HTML encodings in my string that were added when everything was passed to Jinja.</p>
 <p>To remove these, I found a nifty little function from <a href="https://gomakethings.com/decoding-html-entities-with-vanilla-javascript/">Rob Wu on StackOverflow</a> that strips all HTML encoding so I have a raw string to match.</p>
@@ -149,7 +153,9 @@ $ &quot;this|is|a|query&quot;
 <div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">re_quotes</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">tokens</span><span class="p">,</span> <span class="s2">&quot;gi&quot;</span><span class="p">);</span>
 </code></pre></div>
 
-<div class="alert alert-info" role="alert">The "gi" options are for "global" search, and "case-insensitive" search". This ensures I find every instance of the search tokens.</div>
+<div class="callout" role="comment">
+<p>The "gi" options are for "global" search, and "case-insensitive" search". This ensures I find every instance of the search tokens.</p>
+</div>
 <h2>Limit The Highlights</h2>
 <p>To make sure I only highlight the search tokens in the areas I want, I'll select all "article" objects on the page.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">quotes</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;[id=article]&quot;</span><span class="p">);</span>

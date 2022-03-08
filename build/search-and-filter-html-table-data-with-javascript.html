@@ -109,7 +109,9 @@
 <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </code></pre></div>
 
-<div class="alert alert-info" role="alert">Need a refresher on HTML tables? <a href="https://www.w3schools.com/html/html_tables.asp">Check this out</a>.</div>
+<div class="callout" role="comment">
+<p>Need a refresher on HTML tables? <a href="https://www.w3schools.com/html/html_tables.asp">Check this out</a>.</p>
+</div>
 <h3>Setup</h3>
 <p>First, I'll need an input field with the id <code>search-input</code> for the user query. Then I'll add the id <code>search-input</code> to the table I want to filter. These ids make it easy to select the correct elements in my script. </p>
 <div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">input</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-control&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;search-input&quot;</span><span class="p">&gt;</span>
@@ -156,7 +158,9 @@
 <span class="p">});</span>
 </code></pre></div>
 
-<div class="alert alert-info" role="alert">I used the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">Spread operator (<code>...</code>)</a> to convert the NodeList into an array that JavaScript can apply map() to. This was a new trick I learned during this project. You'll see it used again later in the script.</div>
+<div class="callout" role="comment">
+<p>I used the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">Spread operator (<code>...</code>)</a> to convert the NodeList into an array that JavaScript can apply map() to. This was a new trick I learned during this project. You'll see it used again later in the script.</p>
+</div>
 <p>You'll notice I did two extra things that I didn't mention above. First, I converted the entire string to lower case to match what I did on the user input. Second I <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join">joined</a> the resulting array so that I get a single string of all the content separated by the space character.</p>
 <p>Now, I can use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes">includes()</a> method to check whether the user input is found anywhere in the row.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">rows</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">row</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -199,7 +203,9 @@
 <h3>Ignoring Columns</h3>
 <p>Ignoring columns isn't a hard feature addition, I just couldn't decide how I wanted to go about it. I definitely knew I wanted to use <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes">data-attributes</a>...</p>
 <p>So, I decided that <code>data-attribute-search-ignore-cols</code> would be a comma separated list of index ids (<a href="https://en.wikipedia.org/wiki/Zero-based_numbering">zero based</a>) for the columns that should be ignored (e.g. <code>data-attribute-search-ignore-cols="0,2,7"</code>)</p>
-<div class="alert alert-info" role="alert">FYI, Javascript removes the "-" in data-attributes names and coverts the string to camel case <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#javascript_access">read more</a>. So <code>data-attribute-sample-name-with-dashes</code> becomes <code>sampleNameWithDashes</code>.</div>
+<div class="callout" role="comment">
+<p>FYI, Javascript removes the "-" in data-attributes names and coverts the string to camel case <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#javascript_access">read more</a>. So <code>data-attribute-sample-name-with-dashes</code> becomes <code>sampleNameWithDashes</code>.</p>
+</div>
 <div class="codehilite"><pre><span></span><code><span class="kd">const</span> <span class="nx">ignoreCols</span> <span class="o">=</span> <span class="nx">searchTable</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">searchIgnoreCols</span>
   <span class="o">?</span> <span class="nx">searchTable</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">searchIgnoreCols</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nb">Number</span><span class="p">)</span>
   <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
@@ -212,7 +218,9 @@
   <span class="o">:</span> <span class="p">[...</span><span class="nx">cols</span><span class="p">];</span>
 </code></pre></div>
 
-<div class="alert alert-info" role="alert">I mostly program in Python, so maps and filters are a bit new to me but they are very similar to list comprehensions once you get your head around them.</div>
+<div class="callout" role="comment">
+<p>I mostly program in Python, so maps and filters are a bit new to me but they are very similar to list comprehensions once you get your head around them.</p>
+</div>
 <p>This filter says, if data-attribute-search-ignore-cols was specified and if the column id <code>n</code> is in that array, don't include it in the <code>filteredCols</code> array.</p>
 <h3>The Home Stretch</h3>
 <p>With "non-ignored" searchable text now in the array <code>filteredCols</code> we can join everything into a string just as before.</p>

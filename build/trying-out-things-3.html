@@ -80,7 +80,9 @@
 <h2>Enter Things 3</h2>
 <p><a href="https://culturedcode.com/things/">Things 3</a> is gorgeous, and it's a native Mac app, so a few years back, I purchased it from Cultured Code for all of my devices on a whim 🤦‍♂️.</p>
 <p>But after trying it out for a few days I wasn't 100% sold on the to-do entry mechanism or their repeating feature, so I never made the switch from Todoist.</p>
-<div class="alert alert-info" role="alert">If I'm being honest, I've always felt like I wasted my money on the Things 3 purchase and that's why I'm giving the app a real chance this time and I'm hoping it sticks.</div>
+<div class="callout" role="comment">
+<p>If I'm being honest, I've always felt like I wasted my money on the Things 3 purchase and that's why I'm giving the app a real chance this time and I'm hoping it sticks.</p>
+</div>
 <h2>The Problem</h2>
 <p>I often use Todoist as a read-it-later service, so I have a lot of to-dos that need to be moved over to Things 3.</p>
 <p>To move over these to-dos correctly, I've have a hurdles to overcome...</p>
@@ -89,7 +91,7 @@
 [To-do Name](https://website.com)
 </code></pre></div>
 
-<p><img alt="Todoist To-do Item With Clickable Link" loading="lazy" src="/static/images/todoist-link-to-do.png" title="donkey butts" /></p>
+<p><img alt="Todoist To-do Item With Clickable Link" loading="lazy" src="/static/images/todoist-link-to-do.png" /></p>
 <p>This looks nice, and also opens the url when you click the to-do name.</p>
 <p>If I copy and paste this over in Things 3 it looks crappy.</p>
 <p><img alt="Things To-do Item With Link in Title" loading="lazy" src="/static/images/things-link-to-do.png" /></p>
@@ -109,7 +111,9 @@ $ python3 -m venv venv
 <div class="codehilite"><pre><span></span><code>$ source venv/bin/activate
 </code></pre></div>
 
-<div class="alert alert-info" role="alert">If you are new to Python Virtual Environments, you can learn more about them <a href="https://docs.python.org/3/tutorial/venv.html">here</a>.</div>
+<div class="callout" role="comment">
+<p>If you are new to Python Virtual Environments, you can learn more about them <a href="https://docs.python.org/3/tutorial/venv.html">here</a>.</p>
+</div>
 <p>Lastly, I'll create a Python file to hold my code.</p>
 <div class="codehilite"><pre><span></span><code>$ touch app.py
 </code></pre></div>
@@ -246,7 +250,9 @@ $ python3 -m venv venv
 <div class="codehilite"><pre><span></span><code><span class="sa">f</span><span class="s1">&#39;things:///add?title=</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">&amp;notes=</span><span class="si">{</span><span class="n">notes</span><span class="si">}</span><span class="s1">&amp;when=</span><span class="si">{</span><span class="n">when</span><span class="si">}</span><span class="s1">&amp;tags=</span><span class="si">{</span><span class="n">tags</span><span class="si">}</span><span class="s1">&amp;list=</span><span class="si">{</span><span class="n">list_title</span><span class="si">}</span><span class="s1">&amp;creation-date=</span><span class="si">{</span><span class="n">creation_date</span><span class="si">}</span><span class="s1">&#39;</span>
 </code></pre></div>
 
-<div class="alert alert-info" role="alert">You can leave the value for a placeholder variable blank if it's not needed for a specific to-do.</div>
+<div class="callout" role="comment">
+<p>You can leave the value for a placeholder variable blank if it's not needed for a specific to-do.</p>
+</div>
 <h3>Covering my A$$</h3>
 <p>Before I import 100+ to-dos, maybe I should make it easy to find the imported to-dos just in case something goes wrong.</p>
 <p>So, I plan to create a new project in Things 3 to hold all of the imported to-dos, which should make them easier to find.</p>
