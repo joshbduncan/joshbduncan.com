@@ -1,4 +1,9 @@
 import os
+from dotenv import load_dotenv
+from app.md_extensions import MdAlerts
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, ".env"))
 
 
 class Config(object):
@@ -8,7 +13,13 @@ class Config(object):
     FLATPAGES_AUTO_RELOAD = "DEBUG"
     FLATPAGES_EXTENSION = ".md"
     FLATPAGES_ROOT = "../content"
-    FLATPAGES_MARKDOWN_EXTENSIONS = ["codehilite", "fenced_code", "attr_list", "tables"]
+    FLATPAGES_MARKDOWN_EXTENSIONS = [
+        "codehilite",
+        "fenced_code",
+        "attr_list",
+        "tables",
+        MdAlerts(),
+    ]
     FLATPAGES_EXTENSION_CONFIGS = {"codehilite": {"guess_lang": False}}
 
     POST_DIR = "posts"

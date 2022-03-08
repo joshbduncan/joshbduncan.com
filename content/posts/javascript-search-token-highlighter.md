@@ -11,7 +11,9 @@ While building a full-text search engine for a [Flask][flask] project I'm workin
 
 [flask]: https://flask.palletsprojects.com/
 
-> Just to be clear, I'm not a Javascript programmer. This is something I was able to hack together for my purposes and it seems to work well. Your milage may vary...
+!!!
+Just to be clear, I'm not a Javascript programmer. This is something I was able to hack together for my purposes and it seems to work well. Your milage may vary...
+!!!
 
 ## TL;DR
 
@@ -91,7 +93,9 @@ $ console.log(tokens)
 $ "this|is|a|query"
 ```
 
-> So, regex is an entire language that I'm definitely not going to even scratch the surface of here. If you want to learn more, I suggest the great website [regexr.com][regexr].
+!!!
+So, regex is an entire language that I'm definitely not going to even scratch the surface of here. If you want to learn more, I suggest the great website [regexr.com][regexr].
+!!!
 
 [regexr]: https://regexr.com/
 
@@ -121,7 +125,9 @@ Since I'll be using regex to find all matching tokens on the page, I'm going to 
 var re_quotes = new RegExp(tokens, "gi");
 ```
 
-> The "gi" options are for "global" search, and "case-insensitive" search". This ensures I find every instance of the search tokens.
+!!!
+The "gi" options are for "global" search, and "case-insensitive" search". This ensures I find every instance of the search tokens.
+!!!
 
 ## Limit The Highlights
 
@@ -156,7 +162,7 @@ To update the found tokens with the correct html tags, I need to setup a replace
 var re_matches = new RegExp(match + "\\b", "gi");
 ```
 
-> The "\\\b" addition to the token string makes sure I only replace whole word matches.
+The "\\\b" addition to the token string makes sure I only replace whole word matches.
 
 ### Updating The Tokens
 
