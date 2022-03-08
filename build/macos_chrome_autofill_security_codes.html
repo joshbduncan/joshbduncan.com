@@ -70,16 +70,13 @@
   <div id="post-meta">
     By Josh Duncan •
     
-    <b>Updated</b> January 2022
-     •
-    <a href="/category/productivity.html"><b>productivity</b></a>
+    <b>Updated</b> <time datetime="2022-01-15">January 2022</time>
+    
+    • <a href="/category/productivity.html"><b>productivity</b></a>
   </div>
   <div id="post-body">
     <p>Looking to escape the constant battery drain of Chrome I've tried switching to Safari a few times this past year but it never sticks. Multiple times a day I had to open Chrome for (decent) Developer Tools and I'm just not interested in using two browsers.</p>
-<div class="alert">
-Not long after posting this I saw a <a href="https://tyler.io/a-better-way-to-copy-two-factor-codes-on-macos">cleaner solution</a> from Tyler Hall.
-</div>
-
+<div class="alert alert-info" role="alert">Not long after posting this I saw a <a href="https://tyler.io/a-better-way-to-copy-two-factor-codes-on-macos">cleaner solution</a> from Tyler Hall.</div>
 <h2>The Problem</h2>
 <p>One thing I miss from Safari though is autofilling Two Factor Authentication (2FA) codes. If you use Safari or an iPhone you know how awesome this feature is.</p>
 <p>😢 Sadly, Chrome doesn't have this feature...</p>
@@ -87,9 +84,7 @@ Not long after posting this I saw a <a href="https://tyler.io/a-better-way-to-co
 <h2>The Solution</h2>
 <p>If I can work out how to read the notification with <a href="https://en.wikipedia.org/wiki/Optical_character_recognition">OCR</a> (Optical Character Recognition) and extract the code I should be able to recreate 90% of the functionality from Safari.</p>
 <p>Enter <a href="https://www.keyboardmaestro.com/main/">Keyboard Maestro</a>, the Swiss Army Knife of Mac automation.</p>
-<blockquote>
-<p><a href="https://www.stairways.com/press/2021-11-02">Version 10</a> of Keyboard Maestro was just released and it now allows you to OCR an exact area of the screen. Previously, this Macro used a screenshot and cropping but now it's much more simplified.</p>
-</blockquote>
+<div class="alert alert-info" role="alert"><a href="https://www.stairways.com/press/2021-11-02">Version 10</a> of Keyboard Maestro was just released and it now allows you to OCR an exact area of the screen. Previously, this Macro used a screenshot and cropping but now it's much more simplified.</div>
 <h3>Step 1.</h3>
 <p>The first thing I need to do is read the screen using the <a href="https://wiki.keyboardmaestro.com/action/OCR_Image?redirect=1">OCR Screen action</a>. But, I don't want to OCR the entire screen as that's a waste of resources and could potentially introduce errors later in the macro.</p>
 <p>As you can see below, Keyboard Maestro now allows you to define an exact area of the screen to OCR. You'll need to specify how large of an area should be read (Width and Height), and where on the screen Keyboard Maestro should start reading at (Left and Down).</p>
@@ -109,14 +104,10 @@ HELP if you didn&#39;t request it.
 </code></pre></div>
 
 <p>To clean this up I'm using the <a href="https://wiki.keyboardmaestro.com/action/Search_using_Regular_Expression?redirect=1">Search using Regular Expression action</a> on the variable <code>OCR</code>.</p>
-<blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Regular_expression">Regular Expressions (regex)</a> are a deep topic so I won't cover them in detail here but you can learn tons at <a href="https://regexr.com/">RegExr.com</a>.</p>
-</blockquote>
+<div class="alert alert-info" role="alert"><a href="https://en.wikipedia.org/wiki/Regular_expression">Regular Expressions (regex)</a> are a deep topic so I won't cover them in detail here but you can learn tons at <a href="https://regexr.com/">RegExr.com</a>.</div>
 <p><img alt="Search Variable Using Regular Expression" loading="lazy" src="/static/images/keyboard-maestro-2fa-step-2.png" /></p>
 <p>This regex is quite simple. The <code>\d</code> matches any digit character (0-9), and the <code>{5,7}</code> is a quantifier for <code>\d</code> that instructs the search to only match groups of consecutive digits between 5 and 7 digits long. The first match the regex finds will be stored in the variable <code>TwoFactorCode</code>.</p>
-<blockquote>
-<p>To figure out the best regex to capture the 2FA codes, I dumped the last fifteen 2FA codes I had received into (names changed to protect to innocent) RegExr and started experimenting. You can also <a href="https://regexr.com/68lnv">experiment here</a> and see exactly how this regex works on my list of <a href="/static/downloads/sample-2fa-codes.txt">example notifications</a>.</p>
-</blockquote>
+<div class="alert alert-info" role="alert">To figure out the best regex to capture the 2FA codes, I dumped the last fifteen 2FA codes I had received into (names changed to protect to innocent) RegExr and started experimenting. You can also <a href="https://regexr.com/68lnv">experiment here</a> and see exactly how this regex works on my list of <a href="/static/downloads/sample-2fa-codes.txt">example notifications</a>.</div>
 <p>Why 5 and 7? It's a pretty narrow range and that's to try and minimize errors. Lots of 2FA notifications include the sender phone number in one of two formats, ###-###-#### or ##########. So, if the lower bound of the quantifier range is less than 5, it would capture the parts of the segmented phone number, and if the upper bound of the quantifier range greater than 8 it would capture the non-segmented phone number.</p>
 <p>So, why not use 8 for the upper bound then? The quick answer is that I have yet to receive a notification over 7 digits so I'm just trying to eliminate as many potential errors as possible.</p>
 <h3>Step 3.</h3>
@@ -135,9 +126,7 @@ HELP if you didn&#39;t request it.
 <p>Here's the final macro in all its glory 🙌.</p>
 <p><img alt="Final Keyboard Maestro Macro" loading="lazy" src="/static/images/keyboard-maestro-2fa-step-final.png" /></p>
 <p>It's really simple but quite useful. You can <a href="/static/downloads/OCR-macOS-2FA-Notification-Codes.kmmacros">download it here</a> if you think it could help make your life a bit easier. It's set up to be triggered by the <a href="https://brettterpstra.com/2017/06/15/a-hyper-key-with-karabiner-elements-full-instructions/">Hyper Key</a> + 2 (Shift-Control-Option-Command-2). The number 2 is easy to remember for "2FA" and also simple to press quickly with your left hand. ✌️</p>
-<blockquote>
-<p>Pro Tip: If you completely miss the notification you can still OCR it by opening Notification Center and running the macro. The 2FA notification does need to be at the top of the list or it won't be in the capture area Keyboard Maestro is looking at.</p>
-</blockquote>
+<div class="alert alert-info" role="alert">Pro Tip: If you completely miss the notification you can still OCR it by opening Notification Center and running the macro. The 2FA notification does need to be at the top of the list or it won't be in the capture area Keyboard Maestro is looking at.</div>
   </div>
   <div id="post-tags">
     

@@ -70,8 +70,9 @@
   <div id="post-meta">
     By Josh Duncan •
     
-    <b>Published</b> November 2020 •
-    <a href="/category/development.html"><b>development</b></a>
+    <b>Published</b> <time datetime="2020-11-11">November 2020</time>
+    
+    • <a href="/category/development.html"><b>development</b></a>
   </div>
   <div id="post-body">
     <p>After learning how easy it was to <a href="https://joshd.xyz/flask-flatpages-sitemap.html">generate a sitemap</a> with <a href="https://flask.palletsprojects.com/">Flask</a> and <a href="https://pythonhosted.org/Flask-FlatPages/">Flask-FlatPages</a>, I decided to use the same technique to generate a valid RSS feed too.</p>
@@ -141,9 +142,7 @@
 </code></pre></div>
 
 <p>As you can see, the first section is my website and feed information. All of this is hardcoded except for the lastBuildDate which is the current date and time that I passed in my Flask route.</p>
-<blockquote>
-<p>The dates and times in your RSS feed need to match the <a href="https://www.w3.org/Protocols/rfc822/#z28">RFC822 standard</a>. I have Jinja format the date and time information from Python into the correct format using the <a href="https://jinja.palletsprojects.com/en/2.11.x/api/">strftime</a> (string from time) function.</p>
-</blockquote>
+<div class="alert alert-info" role="alert">The dates and times in your RSS feed need to match the <a href="https://www.w3.org/Protocols/rfc822/#z28">RFC822 standard</a>. I have Jinja format the date and time information from Python into the correct format using the <a href="https://jinja.palletsprojects.com/en/2.11.x/api/">strftime</a> (string from time) function.</div>
 <p>Next, I have Jinja iterate through all of the page objects that I provided via my route to create each xml item. Each item entry needs to include a title, permalink, description, and publication date.</p>
 <h2>Rendered RSS Feed</h2>
 <p>Once rendered, my rss.xml feed looks like this.</p>

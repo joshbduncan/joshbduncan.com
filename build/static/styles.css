@@ -244,12 +244,37 @@ logo img {
   max-width: 100%;
 }
 
-.alert {
+/* .alert {
   background-color: #fff3cd;
   border-radius: 0.5rem;
   border: 1px solid #ffecb5;
   color: #664d03;
   padding: 1rem;
+} */
+
+.alert {
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  margin: 1.5rem 0;
+  padding: 1rem;
+}
+
+.alert-info {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
 }
 
 #tags {

@@ -5,22 +5,22 @@
   <atom:link href="https://joshd.xyz/rss.xml" rel="self" type="application/rss+xml" />
   <link>https://joshd.xyz</link>
   <description>just some random thoughts published on the internet...</description>
-  <lastBuildDate>Mon, 07 Mar 2022 17:30:52 EST</lastBuildDate>
+  <lastBuildDate>Tue, 08 Mar 2022 04:39:22 EST</lastBuildDate>
   <language>en-US</language>
 
+  
+  <item>
+    <title>Search &amp; Filter HTML Table Data With JavaScript</title>
+    <link>https://joshd.xyz/search-and-filter-html-table-data-with-javascript.html</link>
+    <description>Searching through HTML tables is super simple using  Vanilla JavaScript, a few query selectors, and some neat methods.</description>
+    <pubDate>Sun, 06 Mar 2022 00:00:00 EST</pubDate>
+  </item>
   
   <item>
     <title>Autofilling Two Factor Authentication (2FA) Codes in macOS Chrome</title>
     <link>https://joshd.xyz/macos_chrome_autofill_security_codes.html</link>
     <description>If you use Chrome on macOS and are jealous of Safari&#39;s ability to autofill Two Factor Authentication (2FA) security codes checkout this sweet Keyboard Maestro macro.</description>
     <pubDate>Tue, 02 Nov 2021 00:00:00 EST</pubDate>
-  </item>
-  
-  <item>
-    <title>Search &amp; Filter HTML Table Date With JavaScript</title>
-    <link>https://joshd.xyz/search-and-filter-html-table-data-with-javascript.html</link>
-    <description>Searching through HTML tables is super simple using  Vanilla JavaScript, a few query selectors, and some neat methods.</description>
-    <pubDate>Tue, 17 Aug 2021 00:00:00 EST</pubDate>
   </item>
   
   <item>

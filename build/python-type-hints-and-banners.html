@@ -70,8 +70,9 @@
   <div id="post-meta">
     By Josh Duncan •
     
-    <b>Published</b> January 2021 •
-    <a href="/category/development.html"><b>development</b></a>
+    <b>Published</b> <time datetime="2021-01-22">January 2021</time>
+    
+    • <a href="/category/development.html"><b>development</b></a>
   </div>
   <div id="post-body">
     <p>When learning new things in Python, I like to write snippets that I can refer to later when I need a quick refresher.</p>
@@ -155,9 +156,7 @@
 
 <h2>Type Hints</h2>
 <p>Next, I'll make this function super extra fancy with Python's newish type hints (<a href="https://www.python.org/dev/peps/pep-0484/">PEP 484</a>).</p>
-<blockquote>
-<p>It is important for the user to be able to define types in a form that can be understood by type checkers. The goal of this PEP is to propose such a systematic way of defining types for type annotations of variables and functions using PEP 3107 syntax. These annotations can be used to avoid many kind of bugs, for documentation purposes, or maybe even to increase speed of program execution.</p>
-</blockquote>
+<div class="alert alert-info" role="alert">It is important for the user to be able to define types in a form that can be understood by type checkers. The goal of this PEP is to propose such a systematic way of defining types for type annotations of variables and functions using PEP 3107 syntax. These annotations can be used to avoid many kind of bugs, for documentation purposes, or maybe even to increase speed of program execution.</div>
 <p>Among many things, type hints allow me to specify the type of object my function is expecting to receive. As noted above, this can help with debugging and act as documentation too.</p>
 <p>I'll start by specifying that the txt argument should be a string.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>

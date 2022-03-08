@@ -70,8 +70,9 @@
   <div id="post-meta">
     By Josh Duncan •
     
-    <b>Published</b> August 2021 •
-    <a href="/category/development.html"><b>development</b></a>
+    <b>Published</b> <time datetime="2021-08-17">August 2021</time>
+    
+    • <a href="/category/development.html"><b>development</b></a>
   </div>
   <div id="post-body">
     <p>While working on my new Python project <a href="https://github.com/joshbduncan/word-search-generator">Word-Search-Generator</a>, I needed a way to do a custom sort based on <a href="https://en.wikipedia.org/wiki/cardinal_direction">cardinal directions</a> (think compass). I knew I could do it with a custom function and some looping but I wanted to use a Python <a href="https://docs.python.org/3/library/functions.html#built-in-functions">built-in function</a> if possible.</p>
@@ -110,9 +111,7 @@
 <p>Now, when we I call <code>sorted()</code>, I can provide the <a href="https://docs.python.org/3/howto/sorting.html#key-functions">key parameter</a> that lets Python know how I want the sorting performed. But I can't just provide <code>sort_by</code> as they key. Python requires a "function or other callable".</p>
 <h3>Enter Lambdas</h3>
 <p>The key I'm using to sort by is the <a href="https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions">lambda function</a> <code>key=lambda d: sort_by.index(d)</code>.</p>
-<blockquote>
-<p>Lambdas are "small anonymous functions" that run a single expression against a provided argument.</p>
-</blockquote>
+<div class="alert alert-info" role="alert">Lambdas are "small anonymous functions" that run a single expression against a provided argument.</div>
 <p>My lambda takes each direction from <code>dirs</code> as variable <code>d</code>, looks up its <a href="https://docs.python.org/3/tutorial/datastructures.html#data-structures">index</a> in <code>sort_by</code> and returns that number. Python then uses that number to determine the sorting placement.</p>
 <h2>The Result</h2>
 <p>Finally, if I supply Python's <code>sorted()</code> function with my new <code>key</code> I get exactly what I was looking for.</p>

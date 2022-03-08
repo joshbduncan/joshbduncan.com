@@ -70,8 +70,9 @@
   <div id="post-meta">
     By Josh Duncan •
     
-    <b>Published</b> October 2020 •
-    <a href="/category/development.html"><b>development</b></a>
+    <b>Published</b> <time datetime="2020-10-31">October 2020</time>
+    
+    • <a href="/category/development.html"><b>development</b></a>
   </div>
   <div id="post-body">
     <p>After creating this <a href="https://flask.palletsprojects.com/">Flask</a> based site, I needed an easy way to generate a sitemap that plays nice with search engines and web crawlers.</p>
@@ -107,9 +108,7 @@
 <span class="nt">&lt;/urlset&gt;</span>
 </code></pre></div>
 
-<blockquote>
-<p>There are many other xml tags you can include in your file. You can view the entire protocol at <a href="https://www.sitemaps.org/protocol.html">sitemaps.org</a>.</p>
-</blockquote>
+<div class="alert alert-info" role="alert">There are many other xml tags you can include in your file. You can view the entire protocol at <a href="https://www.sitemaps.org/protocol.html">sitemaps.org</a>.</div>
 <h2>Sitemap Jinja Template</h2>
 <p>Here's my final sitemap.xml Jinja template.</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
