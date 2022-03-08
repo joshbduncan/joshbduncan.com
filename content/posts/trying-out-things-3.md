@@ -21,9 +21,9 @@ Well, recently I've just grown tired of the look. There is nothing wrong with th
 
 But after trying it out for a few days I wasn't 100% sold on the to-do entry mechanism or their repeating feature, so I never made the switch from Todoist.
 
-!!!
+!!!!
 If I'm being honest, I've always felt like I wasted my money on the Things 3 purchase and that's why I'm giving the app a real chance this time and I'm hoping it sticks.
-!!!
+!!!!
 
 ## The Problem
 
@@ -40,7 +40,7 @@ Todoist To-do Item With Clickable Link:
 [To-do Name](https://website.com)
 ```
 
-![Todoist To-do Item With Clickable Link](/static/images/todoist-link-to-do.png "donkey butts"){: loading="lazy" }
+![Todoist To-do Item With Clickable Link](/static/images/todoist-link-to-do.png){: loading="lazy" }
 
 This looks nice, and also opens the url when you click the to-do name.
 
@@ -78,9 +78,9 @@ Now, I can activate my new virtual environment.
 $ source venv/bin/activate
 ```
 
-!!!
+!!!!
 If you are new to Python Virtual Environments, you can learn more about them [here][venv].
-!!!
+!!!!
 
 [venv]: https://docs.python.org/3/tutorial/venv.html
 
@@ -284,9 +284,9 @@ And with the magic of Python 3's [f-Strings][f-strings] I can easily make a cust
 f'things:///add?title={title}&notes={notes}&when={when}&tags={tags}&list={list_title}&creation-date={creation_date}'
 ```
 
-!!!
+!!!!
 You can leave the value for a placeholder variable blank if it's not needed for a specific to-do.
-!!!
+!!!!
 
 ### Covering my A$$
 

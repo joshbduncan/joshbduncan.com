@@ -6,7 +6,13 @@
 
 [Template Designer Documentation — Jinja Documentation (3.0.x)](https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-filters)
 
-# 2022-02-14
+## 2022-03-08
+
+- css cleanup
+- custom markdown extension for making callouts
+- removed all div alerts from posts and replace with !!!!callout!!!!
+
+## 2022-02-14
 
 - html formatting cleanup
 - small css updates
@@ -17,7 +23,7 @@
 - added categories to menu
 - added author to post meta
 
-# 2022-02-10
+## 2022-02-10
 
 - got rid of the git worktree workflow and moved to github actions
 - disabled drafts endpoints until I can figure out how to [ignore certain endpoints when freezing](https://github.com/Frozen-Flask/Frozen-Flask/pull/111)

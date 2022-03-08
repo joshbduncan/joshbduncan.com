@@ -61,9 +61,9 @@ Now, when we I call `sorted()`, I can provide the [key parameter](https://docs.p
 
 The key I'm using to sort by is the [lambda function](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) `key=lambda d: sort_by.index(d)`.
 
-!!!
+!!!!
 Lambdas are "small anonymous functions" that run a single expression against a provided argument.
-!!!
+!!!!
 
 
 My lambda takes each direction from `dirs` as variable `d`, looks up its [index](https://docs.python.org/3/tutorial/datastructures.html#data-structures) in `sort_by` and returns that number. Python then uses that number to determine the sorting placement.

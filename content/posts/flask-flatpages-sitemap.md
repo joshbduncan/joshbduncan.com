@@ -60,9 +60,9 @@ A basic sitemap.xml is pretty straightforward. I only need the encoding, a urlse
 </urlset>
 ```
 
-!!!
+!!!!
 There are many other xml tags you can include in your file. You can view the entire protocol at [sitemaps.org][sitemaps-protocol].
-!!!
+!!!!
 
 [sitemaps-protocol]: https://www.sitemaps.org/protocol.html
 

@@ -252,28 +252,23 @@ logo img {
   padding: 1rem;
 } */
 
-.alert {
-  border-radius: 0.5rem;
-  border: 1px solid transparent;
-  margin: 1.5rem 0;
-  padding: 1rem;
-}
-
-.alert-info {
+.callout {
+  border-left: 8px solid transparent;
   color: #856404;
   background-color: #fff3cd;
-  border-color: #ffeeba;
+  border-color: #fde396;
+  padding: 0.5rem 1.5rem;
 }
 
-.alert-success {
+.callout-success {
   background-color: #d4edda;
-  border-color: #c3e6cb;
+  border-color: #83b98f;
   color: #155724;
 }
 
-.alert-danger {
+.callout-danger {
   background-color: #f8d7da;
-  border-color: #f5c6cb;
+  border-color: #cc7981;
   color: #721c24;
 }
 
