@@ -30,10 +30,6 @@ jobs:
       - name: Freeze Blog
         run: python blog.py --build
 
-      - uses: EndBug/add-and-commit@v8
-        with:
-          message: "github build action"
-
       - name: Push to Build Branch
         uses: s0/git-publish-subdir-action@develop
         env:
