@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 
-from app.md_callouts import MarkdownCallouts
+from app.md_alerts.extension import MarkdownAlerts
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, ".env"))
@@ -20,7 +20,7 @@ class Config(object):
         "fenced_code",
         "attr_list",
         "tables",
-        MarkdownCallouts(),
+        MarkdownAlerts(),
     ]
     FLATPAGES_EXTENSION_CONFIGS = {"codehilite": {"guess_lang": False}}
 

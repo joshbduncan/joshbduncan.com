@@ -5,14 +5,14 @@ from markdown.blockprocessors import BlockProcessor
 from markdown.extensions import Extension
 
 
-class MarkdownCallouts(Extension):
+class MarkdownAlerts(Extension):
     def extendMarkdown(self, md):
         md.parser.blockprocessors.register(
-            MarkdownCalloutsProcessor(md.parser), "box", 175
+            MarkdownAlertsProcessor(md.parser), "box", 175
         )
 
 
-class MarkdownCalloutsProcessor(BlockProcessor):
+class MarkdownAlertsProcessor(BlockProcessor):
     RE_FENCE_START = r"^!{4}(.*)\n"
     RE_FENCE_END = r"\n!{4}\s*$"
 
@@ -36,7 +36,8 @@ class MarkdownCalloutsProcessor(BlockProcessor):
         classes = ["callout"]
         match = re.match(self.RE_FENCE_START, blocks[0])
         if match.groups()[0]:
-            type = match.groups()[0]
+            # grab the matched type and strip any spaces
+            type = match.groups()[0].replace(" ", "-")
             classes.append(f"callout-{type}")
 
         # replace the fence start
@@ -61,7 +62,3 @@ class MarkdownCalloutsProcessor(BlockProcessor):
         # no closing fence found so reset everything
         blocks[0] = original_block
         return False
-
-
-def makeExtension(**kwargs):
-    return MarkdownCallouts(**kwargs)
