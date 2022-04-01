@@ -227,6 +227,15 @@ footer li {
 
 /* ########## OBJECTS ########## */
 
+.draft {
+  color: red;
+  font-family: var(--ff-accent);
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.25;
+  text-align: center;
+}
+
 #post-meta {
   font-size: 0.875rem;
   padding: 0.5rem 0;

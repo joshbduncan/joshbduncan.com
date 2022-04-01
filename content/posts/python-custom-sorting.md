@@ -117,17 +117,17 @@ Now, using `attrgetter` to sort by a specific object attribute.
 ```pycon
 # setup a Pet class to structure the objects
 >>> class Pet:
->>>     def __init__(self, name, age, weight):
->>>         self.name = name
->>>         self.age = age
->>>         self.weight = weight
->>>     def __repr__(self):
->>>         return repr((self.name, self.age, self.weight))
+...     def __init__(self, name, age, weight):
+...         self.name = name
+...         self.age = age
+...         self.weight = weight
+...     def __repr__(self):
+...         return repr((self.name, self.age, self.weight))
 # create some pets
 >>> pets = [
->>>     Pet("Maddie", 8, 62),
->>>     Pet("Harper", 13, 15),
->>>     Pet("Greta", 10, 9),
+...     Pet("Maddie", 8, 62),
+...     Pet("Harper", 13, 15),
+...     Pet("Greta", 10, 9),
 >>> ]
 # sort the pets by weight
 >>> sorted(pets, key=attrgetter("weight"))

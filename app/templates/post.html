@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <article>
+  {% if draft %}<div class="draft">[DRAFT]</div>{% endif %}
   <h1>{{ post.title }}</h1>
   <div id="post-meta">
     By {{ post.author | default("Josh Duncan", true) }} •

@@ -33,6 +33,20 @@ def post(name):
     return render_template("post.html", post=post)
 
 
+@app.route("/drafts/")
+def drafts():
+    posts = [post for post in flatpages if post.path.startswith(DRAFT_DIR)]
+    posts.sort(key=lambda item: item["date"], reverse=True)
+    return render_template("posts.html", posts=posts, filter="drafts")
+
+
+@app.route("/drafts/<name>.html")
+def draft(name):
+    path = f"{DRAFT_DIR}/{name}"
+    post = flatpages.get_or_404(path)
+    return render_template("post.html", post=post, draft=True)
+
+
 @app.route("/categories.html")
 def categories():
     categories = get_all_categories()
@@ -43,7 +57,9 @@ def categories():
 def category(category):
     posts = [post for post in get_live_posts() if category == post.meta["category"]]
     posts.sort(key=lambda item: item["date"], reverse=True)
-    return render_template("posts.html", posts=posts, filter=category)
+    return render_template(
+        "posts.html", posts=posts, category=category, filter=category
+    )
 
 
 @app.route("/tags.html")

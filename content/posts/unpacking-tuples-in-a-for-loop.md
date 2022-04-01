@@ -49,7 +49,7 @@ I could just unpack the tuple values to proper named variables right inside of m
 
 ```pycon
 >>> for url, name, dept, date in employees:
->>>     print(f'Downloading {name} image...')
+...     print(f'Downloading {name} image...')
 Downloading J. DOE image...
 Downloading D. JONES image...
 Downloading B. SMITH image...
@@ -64,7 +64,7 @@ After re-learning this basic idea, I wondered if this also worked with the [enum
 
 ```pycon
 >>> for i, (url, name, dept, date) in employees:
->>>     print(f'Record {I}: {name} image located @ {url}')
+...     print(f'Record {I}: {name} image located @ {url}')
 Record 0: J. DOE located @ https://www.url.com/1
 Record 1: D. JONES located @ https://www.url.com/2
 Record 2: B. SMITH located @ https://www.url.com/3
