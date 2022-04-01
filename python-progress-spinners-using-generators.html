@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="description" content="design. maker. fun haver." />
+  <title>joshd.xyz</title>
+  <link rel="stylesheet" type="text/css" href="/static/styles.css" />
+  <link rel="stylesheet" type="text/css" href="/static/codehilite.css" />
+  <link rel="shortcut icon" href="/static/favicon.ico" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1WEZ3V8NK7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-1WEZ3V8NK7');
+  </script>
+  <!-- OPEN GRAPH, FACEBOOK, TWITTER META TAGS -->
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="joshd.xyz" />
+  <meta property="og:url" content="https://joshd.xyz/python-progress-spinners-using-generators.html" />
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Progress Spinners Using Python Generators and Context Managers" />
+  <meta property="og:description" content="Making neat little progress spinners that let you know things are working in your cli apps is quite simple using Python generators and context manager." />
+  
+  <meta property="og:image" content="https://joshd.xyz/static/images/jbd-card.png" />
+  <meta name="twitter:site" content="@joshbduncan" />
+  <meta name="twitter:creator" content="@joshbduncan" />
+</head>
+
+<body>
+  <header>
+    <input id="toggle" type="checkbox" autocomplete="off" />
+    <label for="toggle" id="hamburger">
+      <div id="top-bun"></div>
+      <div id="meat"></div>
+      <div id="bottom-bun"></div>
+    </label>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/categories.html">Categories</a></li>
+        <li><a href="/tags.html">Tags</a></li>
+        <li><a href="/search.html">Search</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+    </nav>
+    <logo>
+      <a href="/" title="Home">
+        <img src="/static/images/jbd_avatar_pixel_head.svg" alt="joshd.xyz" width="72" height="72"
+             onmouseover="wink(this, 1)" onmouseout="wink(this, 0)" />
+      </a>
+    </logo>
+  </header>
+
+  <section>
+    <div class="container">
+      <!-- FLASK BLOCK CONTENT -->
+      
+<article>
+  
+  <h1>Progress Spinners Using Python Generators and Context Managers</h1>
+  <div id="post-meta">
+    By Josh Duncan •
+    
+    <b>Published</b> <time datetime="2022-04-01">April 2022</time>
+    
+    • <a href="/category/development.html"><b>development</b></a>
+  </div>
+  <div id="post-body">
+    <p>Often with long running scripts, it's nice to know that everything is working as it should. Now, I could easily just print to stdout...</p>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
+<span class="gp">... </span>   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;processing </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">steps</span><span class="p">)</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+<span class="gp">... </span>   <span class="n">long_running_process</span><span class="p">()</span>
+<span class="go">processing step 1 of 300 steps</span>
+<span class="go">processing step 2 of 300 steps</span>
+<span class="gp">...</span>
+<span class="go">processing step 300 of 300 steps</span>
+</code></pre></div>
+
+<p>But that mucks up my terminal and causes a lot of scrolling.</p>
+<p>So, below are three ways I've found to do this, from simple to over engineered... They all write to <a href="https://docs.python.org/3/library/sys.html#sys.stdout">stdout</a> using the <code>\r</code> carriage return so that they keep updating the same line and keep my terminal clean.</p>
+<h2>Quick and Simple</h2>
+<p>My first attempt at this utilized a basic generator that yields defined "ticks" which simulate a spinning line.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">spinner</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;working...&quot;</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ticks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">tick</span> <span class="o">=</span> <span class="n">ticks</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">ticks</span><span class="p">)]</span>
+        <span class="k">yield</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="si">{</span><span class="n">tick</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+
+<p>And I would setup and invoke the generator like below.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sample job&quot;</span><span class="p">,</span> <span class="s2">&quot;another job&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">spinner</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;processing </span><span class="si">{</span><span class="n">job</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">long_running_iteration</span><span class="p">:</span>
+            <span class="nb">next</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="Simple Python Spinner" loading="lazy" src="/static/images/spinner-simple-1.gif" /></p>
+<p>This works, but I see two problems. First, the second job overwrites the first job, and once a job is done, the spinner just ends at the last yielded "tick" which isn't a good look.</p>
+<h3>Exiting The Generator</h3>
+<p>To fix both issues, I'm going to catch the <a href="https://docs.python.org/3/library/exceptions.html#GeneratorExit">GeneratorExit</a> exception, then place a "✔" before the completed job and jump down a line so that any following output doesn't overwrite the previous output.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">def</span> <span class="nf">spinner</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;working...&quot;</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ticks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">tick</span> <span class="o">=</span> <span class="n">ticks</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">ticks</span><span class="p">)]</span>
+            <span class="k">yield</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="si">{</span><span class="n">tick</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">✔</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="Simple Python Spinner" loading="lazy" src="/static/images/spinner-simple-2.gif" /></p>
+<h3>Catching Errors</h3>
+<p>But what happens when there is an exception?</p>
+<div class="codehilite"><pre><span></span><code><span class="gp">$ </span>python spinner_simple.py
+<span class="go">✔ processing sample job...</span>
+<span class="go">✔ processing another job...</span>
+<span class="go">✔ processing job with an exception...</span>
+<span class="go">Traceback (most recent call last):</span>
+<span class="go">  File &quot;/Users/jbd/Dropbox/DEV/projects/progress-spinner/spinner_simple.py&quot;, line 31, in &lt;module&gt;</span>
+<span class="go">    raise ValueError(&quot;test exception&quot;)</span>
+<span class="go">ValueError: test exception</span>
+</code></pre></div>
+
+<p>As you can see, even though there was an exception while processing the third job, my spinner still put a "✔" and that's not right.</p>
+<p>To fix this, I need to now catch any Exception that is not a GeneratorExit. This allows me to put an "𝘅" at the start of the line for the job that errored and still provide the exception information.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">spinner</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;working...&quot;</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">𝘅</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span>
+    <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">✔</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p><img alt="Simple Python Spinner" loading="lazy" src="/static/images/spinner-simple-3.gif" /></p>
+<p>That looks much better!</p>
+<p>Checkout the full <a href="https://gist.github.com/joshbduncan/a6a01583292cc7564236a3a1898ce173">Simple Spinner</a> script on Github.</p>
+<h2>Context Manager</h2>
+<p>Building on the simple example, I can easily create a <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager">context manager</a> that generates a progress spinner while being used.</p>
+<p>First, I can pull the generator out as a separate function...</p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">spinner_indicator</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="n">ticks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">tick</span> <span class="o">=</span> <span class="n">ticks</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">ticks</span><span class="p">)]</span>
+        <span class="k">yield</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="si">{</span><span class="n">tick</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+
+<p>Then, I can and handle all of the setup, exception catching, and tear down inside of the context manager and only call the generator when I need it.</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">spinner</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;working...&quot;</span><span class="p">):</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">spinner_indicator</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">raise</span>
+    <span class="k">except</span> <span class="ne">GeneratorExit</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">✔</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">𝘅</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">✔</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</code></pre></div>
+
+<p>This version allows me to do something like below.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sample job&quot;</span><span class="p">,</span> <span class="s2">&quot;another job&quot;</span><span class="p">,</span> <span class="s2">&quot;job with an exception&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">spinner</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;processing </span><span class="si">{</span><span class="n">job</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">long_running_iteration</span><span class="p">:</span>
+            <span class="nb">next</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Not necessarily any better than the simple option, just a different solution.</p>
+<p><img alt="Spinner Context Manager" loading="lazy" src="/static/images/spinner-ctx-manager.gif" /></p>
+<p>Checkout the full <a href="https://gist.github.com/joshbduncan/d47726aa351e467d849748e3de607943">Spinner Context Manager </a> script on Github.</p>
+<h2>Over The Top</h2>
+<p>Now, to get extra fancy, I'm going combine what I did above into a Python <a href="https://docs.python.org/3/tutorial/classes.html">Class</a>. The Spinner class will allow me to choose different spinners and also allow me to update the progress message while running.</p>
+<h3>Spinners Galore</h3>
+<p>There are tons of spinners you can come up with but here are the four I'm going to have averrable for use.</p>
+<div class="codehilite"><pre><span></span><code><span class="n">spinners</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;angles&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;◢&quot;</span><span class="p">,</span> <span class="s2">&quot;◣&quot;</span><span class="p">,</span> <span class="s2">&quot;◤&quot;</span><span class="p">,</span> <span class="s2">&quot;◥&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;circle&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;◜&quot;</span><span class="p">,</span> <span class="s2">&quot;◠&quot;</span><span class="p">,</span> <span class="s2">&quot;◝&quot;</span><span class="p">,</span> <span class="s2">&quot;◞&quot;</span><span class="p">,</span> <span class="s2">&quot;◡&quot;</span><span class="p">,</span> <span class="s2">&quot;◟&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;dots&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;⠋&quot;</span><span class="p">,</span> <span class="s2">&quot;⠙&quot;</span><span class="p">,</span> <span class="s2">&quot;⠹&quot;</span><span class="p">,</span> <span class="s2">&quot;⠸&quot;</span><span class="p">,</span> <span class="s2">&quot;⠼&quot;</span><span class="p">,</span> <span class="s2">&quot;⠴&quot;</span><span class="p">,</span> <span class="s2">&quot;⠦&quot;</span><span class="p">,</span> <span class="s2">&quot;⠧&quot;</span><span class="p">,</span> <span class="s2">&quot;⠇&quot;</span><span class="p">,</span> <span class="s2">&quot;⠏&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;ticks&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3>Class Structure</h3>
+<p>I have setup the Spinner class so that it can be used both as a standard generator or a context manager.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">Spinner</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">style</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;ticks&quot;</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Processing...&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">style</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spinner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame_generator</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">exc_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">𝘅</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">✔</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spinner</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cleanup</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">frame_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">frames</span> <span class="o">=</span> <span class="n">spinners</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">frames</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">frames</span><span class="p">)]</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\r</span><span class="si">{</span><span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spinner</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_error</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">𝘅</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_error</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">✔</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spinner</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cleanup</span><span class="p">()</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_cleanup</span><span class="p">():</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</code></pre></div>
+
+<div class="callout callout-callout" role="comment">
+<p>You'll notice a few special dunder methods above, like <code>__enter__</code> and <code>__exit__</code>. These allow the Spinner class to be used as a <a href="https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers">context manager</a></p>
+</div>
+<h4>Using Spinner As A Simple Generator</h4>
+<p>The most basic usage of the Spinner class is to create an instance of it and then update it each iteration. You can specify the spinner style and the spinner text.</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;dots spinner&quot;</span><span class="p">,</span> <span class="s2">&quot;spinner with exception&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="s2">&quot;exception&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">job</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">Spinner</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">job</span><span class="p">)</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s2">&quot;exception&quot;</span> <span class="ow">in</span> <span class="n">job</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;test exception&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="Python Spinner Class" loading="lazy" src="/static/images/spinner-object-3.gif" /></p>
+<p>You could even update the text at a special place in your job progress.</p>
+<div class="codehilite"><pre><span></span><code><span class="o">...</span>
+<span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">steps</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;half way through&quot;</span><span class="p">)</span>
+<span class="o">...</span>
+</code></pre></div>
+
+<h4>Using Spinner As A Context Manager</h4>
+<p>The Spinner class can also be implemented as a context manager using the standard <code>with</code> syntax.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">Spinner</span><span class="p">()</span> <span class="k">as</span> <span class="n">spinner</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">long_running_iteration</span><span class="p">:</span>
+        <span class="n">spinner</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</code></pre></div>
+
+<p><img alt="Python Spinner Class" loading="lazy" src="/static/images/spinner-object-1.gif" /></p>
+<p>And, just as above, you can update the spinner text as you go...</p>
+<div class="codehilite"><pre><span></span><code><span class="n">jobs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;angles spinner&quot;</span><span class="p">,</span> <span class="s2">&quot;circle spinner&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">job</span> <span class="ow">in</span> <span class="n">jobs</span><span class="p">:</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">with</span> <span class="n">Spinner</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span> <span class="k">as</span> <span class="n">spinner</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">long_running_iteration</span><span class="p">:</span>
+            <span class="n">spinner</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;processing </span><span class="si">{</span><span class="n">job</span><span class="si">}</span><span class="s2"> (step </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">long_running_iteration</span><span class="p">)</span><span class="si">}</span><span class="s2">)...&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><img alt="Python Spinner Class" loading="lazy" src="/static/images/spinner-object-2.gif" /></p>
+<p>Checkout the <a href="https://gist.github.com/joshbduncan/0df382217b6ab761f106e45479708b6c">full script</a> on Github.</p>
+<h2>Final Thoughts</h2>
+<p>There are much better solutions to this problem like <a href="https://github.com/tqdm/tqdm">tqdm</a>, but since I'm still learning, I like to try and figure out how to do things myself. I definitely learn something each time I do.</p>
+<p>Cheers 🍻</p>
+  </div>
+  <div id="post-tags">
+    
+    <ul id="tags">
+      <li><b>Tags:</b></li>
+      
+      <li><a href="/tag/cli.html">cli</a>, </li>
+      
+      <li><a href="/tag/generators.html">generators</a>, </li>
+      
+      <li><a href="/tag/python.html">python</a></li>
+      
+    </ul>
+    
+  </div>
+</article>
+
+    </div>
+  </section>
+
+  <footer class="text-align-center">
+    <p>&copy; 2021 Josh Duncan</p>
+    <ul>
+      <li>
+        <a href="https://github.com/joshbduncan" target="_blank" class="text-decoration-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/joshbduncan" target="_blank" class="text-decoration-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/joshbduncan/" target="_blank" class="text-decoration-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </footer>
+
+  <script>
+    // wink wink 😉
+    function wink(e, action) {
+      if (action === 1) { e.src = "/static/images/jbd_avatar_pixel_head_wink.svg"; }
+      else { e.src = "/static/images/jbd_avatar_pixel_head.svg"; }
+    }
+  </script>
+
+</body>
+
+</html>

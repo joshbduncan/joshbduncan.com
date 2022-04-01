@@ -5,9 +5,16 @@
   <atom:link href="https://joshd.xyz/rss.xml" rel="self" type="application/rss+xml" />
   <link>https://joshd.xyz</link>
   <description>just some random thoughts published on the internet...</description>
-  <lastBuildDate>Thu, 10 Mar 2022 04:43:28 EST</lastBuildDate>
+  <lastBuildDate>Fri, 01 Apr 2022 17:35:34 EST</lastBuildDate>
   <language>en-US</language>
 
+  
+  <item>
+    <title>Progress Spinners Using Python Generators and Context Managers</title>
+    <link>https://joshd.xyz/python-progress-spinners-using-generators.html</link>
+    <description>Making neat little progress spinners that let you know things are working in your cli apps is quite simple using Python generators and context manager.</description>
+    <pubDate>Fri, 01 Apr 2022 00:00:00 EST</pubDate>
+  </item>
   
   <item>
     <title>Search &amp; Filter HTML Table Data With JavaScript</title>

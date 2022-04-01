@@ -12,15 +12,13 @@
   <link rel="stylesheet" type="text/css" href="/static/codehilite.css" />
   <link rel="shortcut icon" href="/static/favicon.ico" />
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-200586146-2"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1WEZ3V8NK7"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-    gtag("config", "UA-200586146-2");
+    gtag('config', 'G-1WEZ3V8NK7');
   </script>
   <!-- OPEN GRAPH, FACEBOOK, TWITTER META TAGS -->
   <meta property="og:locale" content="en_US" />
@@ -66,6 +64,7 @@
       <!-- FLASK BLOCK CONTENT -->
       
 <article>
+  
   <h1>Unpacking Tuples in a For Loop</h1>
   <div id="post-meta">
     By Josh Duncan •
@@ -102,7 +101,7 @@
 <p>My first thought was to iterate over the list of tuples and make a dictionary so I could easily access each variable by name... But that's an extra step I didn't need to take.</p>
 <p>I could just unpack the tuple values to proper named variables right inside of my for loop.</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dept</span><span class="p">,</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">employees</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Downloading </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> image...&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Downloading </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> image...&#39;</span><span class="p">)</span>
 <span class="go">Downloading J. DOE image...</span>
 <span class="go">Downloading D. JONES image...</span>
 <span class="go">Downloading B. SMITH image...</span>
@@ -112,7 +111,7 @@
 <p>As you can see, it's quite easy and definitely more Pythonic to have easily identifiable variable names <em>(e.g., url, name, dept, date)</em>.</p>
 <p>After re-learning this basic idea, I wondered if this also worked with the <a href="https://docs.python.org/3/library/functions.html?highlight=enumerate#enumerate">enumerate</a> method. Well, it certainly does.</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dept</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span> <span class="ow">in</span> <span class="n">employees</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Record </span><span class="si">{</span><span class="n">I</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> image located @ </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Record </span><span class="si">{</span><span class="n">I</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> image located @ </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="go">Record 0: J. DOE located @ https://www.url.com/1</span>
 <span class="go">Record 1: D. JONES located @ https://www.url.com/2</span>
 <span class="go">Record 2: B. SMITH located @ https://www.url.com/3</span>
