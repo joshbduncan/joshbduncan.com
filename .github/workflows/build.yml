@@ -30,6 +30,11 @@ jobs:
       - name: Freeze Blog
         run: python blog.py --build
 
+      - name: Remove File
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: build/drafts
+
       - name: Push to Build Branch
         uses: s0/git-publish-subdir-action@develop
         env:
