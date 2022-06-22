@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="description" content="design. maker. fun haver." />
-  <title>joshd.xyz</title>
+  <title>Josh Duncan – Blog</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='codehilite.css') }}" />
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
@@ -22,18 +22,18 @@
   </script>
   <!-- OPEN GRAPH, FACEBOOK, TWITTER META TAGS -->
   <meta property="og:locale" content="en_US" />
-  <meta property="og:site_name" content="joshd.xyz" />
-  <meta property="og:url" content="https://joshd.xyz{{ request.path }}" />
+  <meta property="og:site_name" content="joshbduncan.com" />
+  <meta property="og:url" content="https://joshbduncan.com{{ request.path }}" />
   {% if not post %}
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="joshd.xyz" />
+  <meta property="og:title" content="joshbduncan.com" />
   <meta property="og:description" content="design. maker. fun haver." />
   {% else %}
   <meta property="og:type" content="article" />
   <meta property="og:title" content="{{ post.title }}" />
   <meta property="og:description" content="{{ post.description }}" />
   {% endif %}
-  <meta property="og:image" content="https://joshd.xyz{{ url_for('static', filename='images/jbd-card.png') }}" />
+  <meta property="og:image" content="https://joshbduncan.com{{ url_for('static', filename='images/jbd-card.png') }}" />
   <meta name="twitter:site" content="@joshbduncan" />
   <meta name="twitter:creator" content="@joshbduncan" />
 </head>
@@ -57,7 +57,7 @@
     </nav>
     <logo>
       <a href="{{ url_for('index') }}" title="Home">
-        <img src="{{ url_for('static', filename='images/jbd_avatar_pixel_head.svg') }}" alt="joshd.xyz" width="72" height="72"
+        <img src="{{ url_for('static', filename='images/jbd_avatar_pixel_head.svg') }}" alt="Josh Duncan" width="72" height="72"
              onmouseover="wink(this, 1)" onmouseout="wink(this, 0)" />
       </a>
     </logo>
@@ -71,7 +71,7 @@
   </section>
 
   <footer class="text-align-center">
-    <p>&copy; 2021 Josh Duncan</p>
+    <p>&copy; <span id="year">1982</span> Josh Duncan</p>
     <ul>
       <li>
         <a href="https://github.com/joshbduncan" target="_blank" class="text-decoration-none">
@@ -98,6 +98,8 @@
   </footer>
 
   <script>
+    // update copyright year
+    document.getElementById("year").innerHTML = new Date().getFullYear();
     // wink wink 😉
     function wink(e, action) {
       if (action === 1) { e.src = "{{ url_for('static', filename='images/jbd_avatar_pixel_head_wink.svg') }}"; }

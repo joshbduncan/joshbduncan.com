@@ -119,4 +119,4 @@ Well, that wasn't hard at all! Now off, to submit my sitemap.xml to [Google][goo
 
 [View my actual sitemap.xml here.][sitemap]
 
-[sitemap]: https://joshd.xyz/sitemap.xml
+[sitemap]: https://joshbduncan.com/sitemap.xml

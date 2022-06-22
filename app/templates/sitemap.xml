@@ -3,36 +3,36 @@
   
   <!-- PAGES -->
   <url>
-    <loc>https://joshd.xyz</loc>
+    <loc>https://joshbduncan.com</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://joshd.xyz/categories.html</loc>
+    <loc>https://joshbduncan.com/categories.html</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://joshd.xyz/tags.html</loc>
+    <loc>https://joshbduncan.com/tags.html</loc>
     <changefreq>weekly</changefreq>
   </url>
   
   <!-- POSTS -->
   {% for post in posts %}
   <url>
-    <loc>https://joshd.xyz/{{ post.path.split('/')[-1] }}.html</loc>
+    <loc>https://joshbduncan.com/{{ post.path.split('/')[-1] }}.html</loc>
   </url>
   {% endfor %}
   
   <!-- CATEGORIES -->
   {% for category in categories %}
   <url>
-    <loc>https://joshd.xyz/category/{{ category }}.html</loc>
+    <loc>https://joshbduncan.com/category/{{ category }}.html</loc>
   </url>
   {% endfor %}
   
   <!-- TAGS -->
   {% for tag in tags %}
   <url>
-    <loc>https://joshd.xyz/tag/{{ tag }}.html</loc>
+    <loc>https://joshbduncan.com/tag/{{ tag }}.html</loc>
   </url>
   {% endfor %}
 

@@ -9,7 +9,7 @@ tags: python, flask, jinja, flask-flatpages
 
 After learning how easy it was to [generate a sitemap][sitemap] with [Flask][flask] and [Flask-FlatPages][flatpages], I decided to use the same technique to generate a valid RSS feed too.
 
-[sitemap]: https://joshd.xyz/flask-flatpages-sitemap.html
+[sitemap]: https://joshbduncan.com/flask-flatpages-sitemap.html
 [flask]: https://flask.palletsprojects.com/
 [flatpages]: https://pythonhosted.org/Flask-FlatPages/
 
@@ -82,16 +82,16 @@ To generate the final RSS xml document I needed to create a Jinja template that 
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>joshd.xyz</title>
-  <atom:link href="https://joshd.xyz/rss.xml" rel="self" type="application/rss+xml" />
-  <link>https://joshd.xyz</link>
+  <title>Josh Duncan – Blog</title>
+  <atom:link href="https://joshbduncan.com/rss.xml" rel="self" type="application/rss+xml" />
+  <link>https://joshbduncan.com</link>
   <description>just some random thoughts published on the internet...</description>
   <lastBuildDate>{{ build_date.strftime('%a, %d %b %Y %T') }} EST</lastBuildDate>
   <language>en-US</language>
   {% for post in posts %}
   <item>
   <title>{{ post.meta['title'] }}</title>
-  <link>https://joshd.xyz/{{ post.path.split('/')[-1] }}.html</link>
+  <link>https://joshbduncan.com/{{ post.path.split('/')[-1] }}.html</link>
   <description>{{ post.meta['description'] }}</description>
   <pubDate>{{ post.meta['date'].strftime('%a, %d %b %Y %T') }} EST</pubDate>
   </item>
@@ -119,7 +119,7 @@ Once rendered, my rss.xml feed looks like this.
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>joshd.xyz</title>
+  <title>Josh Duncan – Blog</title>
   <atom:link href="https://www.url.com/rss.xml" rel="self" type="application/rss+xml" />
   <link>https://www.url.com</link>
   <description>just some random thoughts published on the internet...</description>
@@ -159,4 +159,4 @@ Eventually, I may limit the number of posts listed in my RSS feed (thinking mayb
 
 [View my actual RSS feed here.][rss]
 
-[rss]: https://joshd.xyz/rss.xml
+[rss]: https://joshbduncan.com/rss.xml
