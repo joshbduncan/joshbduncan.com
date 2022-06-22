@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="description" content="design. maker. fun haver." />
-  <title>joshd.xyz</title>
+  <title>Josh Duncan – Blog</title>
   <link rel="stylesheet" type="text/css" href="/static/styles.css" />
   <link rel="stylesheet" type="text/css" href="/static/codehilite.css" />
   <link rel="shortcut icon" href="/static/favicon.ico" />
@@ -22,14 +22,14 @@
   </script>
   <!-- OPEN GRAPH, FACEBOOK, TWITTER META TAGS -->
   <meta property="og:locale" content="en_US" />
-  <meta property="og:site_name" content="joshd.xyz" />
-  <meta property="og:url" content="https://joshd.xyz/flask-flatpages-rss.html" />
+  <meta property="og:site_name" content="joshbduncan.com" />
+  <meta property="og:url" content="https://joshbduncan.com/flask-flatpages-rss.html" />
   
   <meta property="og:type" content="article" />
   <meta property="og:title" content="RSS Feeds Using Flask-FlatPages" />
   <meta property="og:description" content="Need to generate a valid RSS feed for your Flask website? Using Flask-FlatPages? Well, it&#39;s really quite simple." />
   
-  <meta property="og:image" content="https://joshd.xyz/static/images/jbd-card.png" />
+  <meta property="og:image" content="https://joshbduncan.com/static/images/jbd-card.png" />
   <meta name="twitter:site" content="@joshbduncan" />
   <meta name="twitter:creator" content="@joshbduncan" />
 </head>
@@ -53,7 +53,7 @@
     </nav>
     <logo>
       <a href="/" title="Home">
-        <img src="/static/images/jbd_avatar_pixel_head.svg" alt="joshd.xyz" width="72" height="72"
+        <img src="/static/images/jbd_avatar_pixel_head.svg" alt="Josh Duncan" width="72" height="72"
              onmouseover="wink(this, 1)" onmouseout="wink(this, 0)" />
       </a>
     </logo>
@@ -74,9 +74,9 @@
     • <a href="/category/development.html"><b>development</b></a>
   </div>
   <div id="post-body">
-    <p>After learning how easy it was to <a href="https://joshd.xyz/flask-flatpages-sitemap.html">generate a sitemap</a> with <a href="https://flask.palletsprojects.com/">Flask</a> and <a href="https://pythonhosted.org/Flask-FlatPages/">Flask-FlatPages</a>, I decided to use the same technique to generate a valid RSS feed too.</p>
+    <p>After learning how easy it was to <a href="https://joshbduncan.com/flask-flatpages-sitemap.html">generate a sitemap</a> with <a href="https://flask.palletsprojects.com/">Flask</a> and <a href="https://pythonhosted.org/Flask-FlatPages/">Flask-FlatPages</a>, I decided to use the same technique to generate a valid RSS feed too.</p>
 <h2>Getting Every Blog Post</h2>
-<p>Just like in the <a href="https://joshd.xyz/flask-flatpages-sitemap.html">sitemap</a> tutorial, I'm grabbing all of my blog posts from Flask-FlatPages using the get_all_posts() function I wrote.</p>
+<p>Just like in the <a href="https://joshbduncan.com/flask-flatpages-sitemap.html">sitemap</a> tutorial, I'm grabbing all of my blog posts from Flask-FlatPages using the get_all_posts() function I wrote.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_all_posts</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">post</span> <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">flatpages</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">POST_DIR</span><span class="p">)]</span>
 </code></pre></div>
@@ -97,7 +97,7 @@
 
 <p>Once I retrieve my blog posts, I sort them newest to oldest, then send them to my rss.xml template along with the current date and time from Python's <a href="https://docs.python.org/3/library/datetime.html">datetime module</a>.</p>
 <h2>RSS Basics</h2>
-<p><a href="https://joshd.xyz/rss.xml">RSS</a> or Really Simple Syndication, is a web feed that allows users and applications to access updates to websites in a standardized, computer-readable format.</p>
+<p><a href="https://joshbduncan.com/rss.xml">RSS</a> or Really Simple Syndication, is a web feed that allows users and applications to access updates to websites in a standardized, computer-readable format.</p>
 <p>As with a sitemap, there's not much to a valid RSS feed. Provide the encoding and rss version, then include your website/feed information, and finally provide your blog posts as xml items.</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
 <span class="nt">&lt;rss</span> <span class="na">version=</span><span class="s">&quot;2.0&quot;</span><span class="nt">&gt;</span>
@@ -122,16 +122,16 @@
 <div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;rss</span> <span class="na">version=</span><span class="s">&quot;2.0&quot;</span> <span class="na">xmlns:atom=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;channel&gt;</span>
-  <span class="nt">&lt;title&gt;</span>joshd.xyz<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;atom:link</span> <span class="na">href=</span><span class="s">&quot;https://joshd.xyz/rss.xml&quot;</span> <span class="na">rel=</span><span class="s">&quot;self&quot;</span> <span class="na">type=</span><span class="s">&quot;application/rss+xml&quot;</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;link&gt;</span>https://joshd.xyz<span class="nt">&lt;/link&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Josh Duncan – Blog<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;atom:link</span> <span class="na">href=</span><span class="s">&quot;https://joshbduncan.com/rss.xml&quot;</span> <span class="na">rel=</span><span class="s">&quot;self&quot;</span> <span class="na">type=</span><span class="s">&quot;application/rss+xml&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;link&gt;</span>https://joshbduncan.com<span class="nt">&lt;/link&gt;</span>
   <span class="nt">&lt;description&gt;</span>just some random thoughts published on the internet...<span class="nt">&lt;/description&gt;</span>
   <span class="nt">&lt;lastBuildDate&gt;</span>{{ build_date.strftime(&#39;%a, %d %b %Y %T&#39;) }} EST<span class="nt">&lt;/lastBuildDate&gt;</span>
   <span class="nt">&lt;language&gt;</span>en-US<span class="nt">&lt;/language&gt;</span>
   {% for post in posts %}
   <span class="nt">&lt;item&gt;</span>
   <span class="nt">&lt;title&gt;</span>{{ post.meta[&#39;title&#39;] }}<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;link&gt;</span>https://joshd.xyz/{{ post.path.split(&#39;/&#39;)[-1] }}.html<span class="nt">&lt;/link&gt;</span>
+  <span class="nt">&lt;link&gt;</span>https://joshbduncan.com/{{ post.path.split(&#39;/&#39;)[-1] }}.html<span class="nt">&lt;/link&gt;</span>
   <span class="nt">&lt;description&gt;</span>{{ post.meta[&#39;description&#39;] }}<span class="nt">&lt;/description&gt;</span>
   <span class="nt">&lt;pubDate&gt;</span>{{ post.meta[&#39;date&#39;].strftime(&#39;%a, %d %b %Y %T&#39;) }} EST<span class="nt">&lt;/pubDate&gt;</span>
   <span class="nt">&lt;/item&gt;</span>
@@ -150,7 +150,7 @@
 <div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;rss</span> <span class="na">version=</span><span class="s">&quot;2.0&quot;</span> <span class="na">xmlns:atom=</span><span class="s">&quot;http://www.w3.org/2005/Atom&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;channel&gt;</span>
-  <span class="nt">&lt;title&gt;</span>joshd.xyz<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;title&gt;</span>Josh Duncan – Blog<span class="nt">&lt;/title&gt;</span>
   <span class="nt">&lt;atom:link</span> <span class="na">href=</span><span class="s">&quot;https://www.url.com/rss.xml&quot;</span> <span class="na">rel=</span><span class="s">&quot;self&quot;</span> <span class="na">type=</span><span class="s">&quot;application/rss+xml&quot;</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;link&gt;</span>https://www.url.com<span class="nt">&lt;/link&gt;</span>
   <span class="nt">&lt;description&gt;</span>just some random thoughts published on the internet...<span class="nt">&lt;/description&gt;</span>
@@ -179,7 +179,7 @@
 <p>Boom, I'm valid! I even got this cute little badge!</p>
 <h2>Final Thoughts</h2>
 <p>Eventually, I may limit the number of posts listed in my RSS feed (thinking maybe 10 or so), but since I'm just starting this website I’m going to leave them all in there for now.</p>
-<p><a href="https://joshd.xyz/rss.xml">View my actual RSS feed here.</a></p>
+<p><a href="https://joshbduncan.com/rss.xml">View my actual RSS feed here.</a></p>
   </div>
   <div id="post-tags">
     
@@ -203,7 +203,7 @@
   </section>
 
   <footer class="text-align-center">
-    <p>&copy; 2021 Josh Duncan</p>
+    <p>&copy; <span id="year">1982</span> Josh Duncan</p>
     <ul>
       <li>
         <a href="https://github.com/joshbduncan" target="_blank" class="text-decoration-none">
@@ -230,6 +230,8 @@
   </footer>
 
   <script>
+    // update copyright year
+    document.getElementById("year").innerHTML = new Date().getFullYear();
     // wink wink 😉
     function wink(e, action) {
       if (action === 1) { e.src = "/static/images/jbd_avatar_pixel_head_wink.svg"; }

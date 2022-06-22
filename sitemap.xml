@@ -3,156 +3,156 @@
   
   <!-- PAGES -->
   <url>
-    <loc>https://joshd.xyz</loc>
+    <loc>https://joshbduncan.com</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://joshd.xyz/categories.html</loc>
+    <loc>https://joshbduncan.com/categories.html</loc>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://joshd.xyz/tags.html</loc>
+    <loc>https://joshbduncan.com/tags.html</loc>
     <changefreq>weekly</changefreq>
   </url>
   
   <!-- POSTS -->
   
   <url>
-    <loc>https://joshd.xyz/unpacking-tuples-in-a-for-loop.html</loc>
+    <loc>https://joshbduncan.com/unpacking-tuples-in-a-for-loop.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/flask-flatpages-sitemap.html</loc>
+    <loc>https://joshbduncan.com/flask-flatpages-sitemap.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/flask-flatpages-rss.html</loc>
+    <loc>https://joshbduncan.com/flask-flatpages-rss.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/python-type-hints-and-banners.html</loc>
+    <loc>https://joshbduncan.com/python-type-hints-and-banners.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/trying-out-things-3.html</loc>
+    <loc>https://joshbduncan.com/trying-out-things-3.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/javascript-search-token-highlighter.html</loc>
+    <loc>https://joshbduncan.com/javascript-search-token-highlighter.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/checking-linked-records-in-airtable.html</loc>
+    <loc>https://joshbduncan.com/checking-linked-records-in-airtable.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/python-custom-sorting.html</loc>
+    <loc>https://joshbduncan.com/python-custom-sorting.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/macos_chrome_autofill_security_codes.html</loc>
+    <loc>https://joshbduncan.com/macos_chrome_autofill_security_codes.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/search-and-filter-html-table-data-with-javascript.html</loc>
+    <loc>https://joshbduncan.com/search-and-filter-html-table-data-with-javascript.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/python-progress-spinners-using-generators.html</loc>
+    <loc>https://joshbduncan.com/python-progress-spinners-using-generators.html</loc>
   </url>
   
   
   <!-- CATEGORIES -->
   
   <url>
-    <loc>https://joshd.xyz/category/development.html</loc>
+    <loc>https://joshbduncan.com/category/development.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/category/productivity.html</loc>
+    <loc>https://joshbduncan.com/category/productivity.html</loc>
   </url>
   
   
   <!-- TAGS -->
   
   <url>
-    <loc>https://joshd.xyz/tag/airtable.html</loc>
+    <loc>https://joshbduncan.com/tag/airtable.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/automation.html</loc>
+    <loc>https://joshbduncan.com/tag/automation.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/chrome.html</loc>
+    <loc>https://joshbduncan.com/tag/chrome.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/cli.html</loc>
+    <loc>https://joshbduncan.com/tag/cli.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/filter.html</loc>
+    <loc>https://joshbduncan.com/tag/filter.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/flask.html</loc>
+    <loc>https://joshbduncan.com/tag/flask.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/flask-flatpages.html</loc>
+    <loc>https://joshbduncan.com/tag/flask-flatpages.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/generators.html</loc>
+    <loc>https://joshbduncan.com/tag/generators.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/html.html</loc>
+    <loc>https://joshbduncan.com/tag/html.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/javascript.html</loc>
+    <loc>https://joshbduncan.com/tag/javascript.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/jinja.html</loc>
+    <loc>https://joshbduncan.com/tag/jinja.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/keyboard maestro.html</loc>
+    <loc>https://joshbduncan.com/tag/keyboard maestro.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/mac.html</loc>
+    <loc>https://joshbduncan.com/tag/mac.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/macos.html</loc>
+    <loc>https://joshbduncan.com/tag/macos.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/productivity.html</loc>
+    <loc>https://joshbduncan.com/tag/productivity.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/python.html</loc>
+    <loc>https://joshbduncan.com/tag/python.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/search.html</loc>
+    <loc>https://joshbduncan.com/tag/search.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/sort.html</loc>
+    <loc>https://joshbduncan.com/tag/sort.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/sorting.html</loc>
+    <loc>https://joshbduncan.com/tag/sorting.html</loc>
   </url>
   
   <url>
-    <loc>https://joshd.xyz/tag/type-hints.html</loc>
+    <loc>https://joshbduncan.com/tag/type-hints.html</loc>
   </url>
   
 

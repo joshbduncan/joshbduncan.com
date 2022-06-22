@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="description" content="design. maker. fun haver." />
-  <title>joshd.xyz</title>
+  <title>Josh Duncan – Blog</title>
   <link rel="stylesheet" type="text/css" href="/static/styles.css" />
   <link rel="stylesheet" type="text/css" href="/static/codehilite.css" />
   <link rel="shortcut icon" href="/static/favicon.ico" />
@@ -22,14 +22,14 @@
   </script>
   <!-- OPEN GRAPH, FACEBOOK, TWITTER META TAGS -->
   <meta property="og:locale" content="en_US" />
-  <meta property="og:site_name" content="joshd.xyz" />
-  <meta property="og:url" content="https://joshd.xyz/python-custom-sorting.html" />
+  <meta property="og:site_name" content="joshbduncan.com" />
+  <meta property="og:url" content="https://joshbduncan.com/python-custom-sorting.html" />
   
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Custom Sorting in Python" />
   <meta property="og:description" content="I recently found myself needing to sort a list by cardinal directions. Here&#39;s a super simple solution to do custom sorting in Python." />
   
-  <meta property="og:image" content="https://joshd.xyz/static/images/jbd-card.png" />
+  <meta property="og:image" content="https://joshbduncan.com/static/images/jbd-card.png" />
   <meta name="twitter:site" content="@joshbduncan" />
   <meta name="twitter:creator" content="@joshbduncan" />
 </head>
@@ -53,7 +53,7 @@
     </nav>
     <logo>
       <a href="/" title="Home">
-        <img src="/static/images/jbd_avatar_pixel_head.svg" alt="joshd.xyz" width="72" height="72"
+        <img src="/static/images/jbd_avatar_pixel_head.svg" alt="Josh Duncan" width="72" height="72"
              onmouseover="wink(this, 1)" onmouseout="wink(this, 0)" />
       </a>
     </logo>
@@ -193,7 +193,7 @@
   </section>
 
   <footer class="text-align-center">
-    <p>&copy; 2021 Josh Duncan</p>
+    <p>&copy; <span id="year">1982</span> Josh Duncan</p>
     <ul>
       <li>
         <a href="https://github.com/joshbduncan" target="_blank" class="text-decoration-none">
@@ -220,6 +220,8 @@
   </footer>
 
   <script>
+    // update copyright year
+    document.getElementById("year").innerHTML = new Date().getFullYear();
     // wink wink 😉
     function wink(e, action) {
       if (action === 1) { e.src = "/static/images/jbd_avatar_pixel_head_wink.svg"; }
