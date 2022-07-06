@@ -317,3 +317,7 @@ span.linenos.special {
 .codehilite .il {
   color: #666666;
 }
+/* fix dark mode for now */
+.codehilite .n {
+  color: #222;
+}
