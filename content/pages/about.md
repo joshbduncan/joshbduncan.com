@@ -1,10 +1,12 @@
 # Designer. Maker. Fun haver.
 
-👋 Hi there, my name is Josh! I'm a designer by trade but love to learn new things. Right now I'm all in on programming 👨‍💻 and automation ⚙️, and some times I write about what I've learned. Maybe you can find something useful. ✌️
+👋 Hi there, my name is Josh! I'm a designer by trade but love tinkering with all sorts of things. Right now I'm all in on programming 👨‍💻 and automation ⚙️, and sometimes I write about what I've learned on this blog. Maybe you can find something useful here. ✌️
 
-## Current Interests
-- [Python](https://www.python.org/)
+## Some Current Interests Of Mine:
 - [Adobe ExtendScript](https://extendscript.docsforadobe.dev/introduction/extendscript-overview.html)
+- [Airtable](https://airtable.com/)
+- [Flask](https://flask.palletsprojects.com/en/2.1.x/)
+- [Python](https://www.python.org/)
 
 ## Wanna Chat?
 
