@@ -58,7 +58,7 @@ def category(category):
     posts = [post for post in get_live_posts() if category == post.meta["category"]]
     posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template(
-        "posts.html", posts=posts, category=category, filter=category
+        "posts.html", posts=posts, filter=category, show_all="categories"
     )
 
 
@@ -72,18 +72,20 @@ def tags():
 def tagged(tag):
     posts = [post for post in get_live_posts() if tag in get_post_tags(post)]
     posts.sort(key=lambda item: item["date"], reverse=True)
-    return render_template("posts.html", posts=posts, filter=tag)
+    return render_template("posts.html", posts=posts, filter=tag, show_all="tags")
 
 
-# @app.route("/about.html")
-# def about():
-#     post = flatpages.get_or_404("pages/about")
-#     return render_template("about.html")
+@app.route("/about.html")
+def about():
+    page = flatpages.get_or_404("pages/about")
+    return render_template("page.html", page=page)
 
 
 @app.route("/search.html")
 def search():
-    return render_template("search.html")
+    categories = get_all_categories()
+    tags = get_all_tags()
+    return render_template("search.html", categories=categories, tags=tags)
 
 
 @app.route("/sitemap.xml")

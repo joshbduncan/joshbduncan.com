@@ -11,6 +11,26 @@
   </form>
 </div>
 
+<hr>
+
+<h2 class="text-align-center">post categories:</h2>
+<div class="text-align-center">
+  <ul id="tags">
+    {% for category in categories %}
+    <li><a href="{{ url_for('category', category=category) }}">{{ category }}</a>{% if not loop.last %}, {% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<h2 class="text-align-center">post tags:</h2>
+<div class="text-align-center">
+  <ul id="tags">
+    {% for tag in tags %}
+    <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>
+
 <script type="text/javascript">
   var form = document.querySelector("form");
   form.addEventListener("submit", function (e) {

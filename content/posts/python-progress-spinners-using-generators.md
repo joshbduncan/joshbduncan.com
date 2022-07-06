@@ -241,7 +241,7 @@ class Spinner:
 ```
 
 !!!!callout
-You'll notice a few special dunder methods above, like `__enter__` and `__exit__`. These allow the Spinner class to be used as a [context manager](https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers)
+You'll notice a few special dunder methods above, like `__enter__` and `__exit__`. These allow the Spinner class to be used as a [context manager](https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers).
 !!!!
 
 #### Using Spinner As A Simple Generator

@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 <article>
-  {% if draft %}<div class="draft">[DRAFT]</div>{% endif %}
-  <h1>{{ post.title }}</h1>
-  <div id="post-meta">
-    By {{ post.author | default("Josh Duncan", true) }} •
-    {% if post.updated %}
-    <b>Updated</b> <time datetime="{{ post.updated.strftime('%Y-%m-%d') }}">{{ post.updated.strftime('%B %Y') }}</time>
-    {% else %}
-    <b>Published</b> <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%B %Y') }}</time>
-    {% endif %}
-    • <a href="{{ url_for('category', category=post.category) }}"><b>{{ post.category }}</b></a>
-  </div>
+  <header>
+    <h1>{{ post.title }}</h1>
+    <div id="post-meta">
+      By {{ post.author | default("Josh Duncan", true) }} •
+      {% if post.updated %}
+      <b>Updated</b> <time datetime="{{ post.updated.strftime('%Y-%m-%d') }}">{{ post.updated.strftime('%B %Y') }}</time>
+      {% else %}
+      <b>Published</b> <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%B %Y') }}</time>
+      {% endif %}
+      • {{ (post.body|wordcount / 200)|round|int}} min read
+      • <a href="{{ url_for('category', category=post.category) }}"><b>{{ post.category }}</b></a>
+    </div>
+  </header>
   <div id="post-body">
     {{ post.html|safe }}
   </div>

@@ -1,0 +1,498 @@
+/* ########## BASE STYLE VARIABLES ########## */
+:root {
+  --content-width: 48rem;
+
+  --rgbCyan: 139, 233, 253;
+  --rgbGreen: 80, 250, 123;
+  --rgbOrange: 255, 184, 108;
+  --rgbPink: 255, 121, 198;
+  --rgbPurple: 189, 147, 249;
+  --rgbRed: 255, 85, 85;
+  --rgbYellow: 241, 250, 140;
+  --rgbBackground: 248, 248, 242;
+  --rgbForeground: 40, 42, 54;
+  --rgbAccent: var(--rgbPurple);
+  --rgbCallout: 68, 71, 90;
+
+  --body: "Helvetica Neue", Helvetica, Arial, "Lucida Grande" !important;
+  --title: Futura, Trebuchet MS, Arial Black, Arial Bold, Arial, sans-serif;
+  --code: "Lucida Console", Monaco, monospace;
+
+  --line-height: 1.6;
+  --line-height-less: 1.25;
+  --line-height-more: 2;
+  --flow: 1.2rem;
+}
+
+.dark:root {
+  --rgbBackground: 56, 58, 89;
+  --rgbForeground: 248, 248, 242;
+  --rgbAccent: var(--rgbPink);
+}
+
+/* ########## CSS RESET ########## */
+/* https://gist.github.com/Asjas/4d84111064a02e2de60efdf3a73c1296 */
+
+/* Box sizing rules */
+html {
+  box-sizing: border-box;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Percentage based heights */
+html,
+body {
+  height: 100%;
+}
+
+/* Set core body defaults */
+body {
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Make images, videos and icons easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+}
+
+/* More sensible line-wrapping */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* React Framework Specific */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ########## CUSTOM CSS STYLES ########## */
+
+html,
+body {
+  color: rgb(var(--rgbForeground));
+  font-family: var(--body);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: var(--line-height);
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: rgb(var(--rgbBackground));
+  display: grid;
+  min-height: 100vh;
+}
+
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* Push footer to the bottom. */
+@supports (display: grid) {
+  body {
+    min-height: 100vh;
+    display: grid;
+    /* grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%; */
+  }
+}
+
+header.nav {
+  color: rgb(248, 248, 242);
+  background-color: rgb(40, 42, 54);
+  border-bottom: 1px solid rgb(var(--rgbAccent));
+  margin: 0 auto;
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+}
+
+nav,
+footer {
+  margin: 0 auto;
+  padding: 0 0.5em;
+  max-width: var(--content-width);
+  width: 100%;
+}
+
+main {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: var(--content-width);
+  width: 100%;
+}
+
+/* ########## ELEMENT STYLING ########## */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--title);
+  font-weight: 700;
+  line-height: var(--line-height-less);
+  padding-bottom: var(--flow);
+  padding-top: var(--flow);
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: var(--flow);
+}
+
+a {
+  color: rgb(var(--rgbAccent));
+  font-weight: 700;
+}
+
+a:hover {
+  color: rgba(var(--rgbAccent), 0.7);
+}
+
+img {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  margin-bottom: var(--flow);
+}
+
+li {
+  list-style-position: inside;
+}
+
+li > ul,
+li > ol {
+  margin-left: 1.5rem;
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid rgba(var(--rgbForeground), 0.1);
+  /* background: rgb(var(--rgbForeground)); */
+  margin-top: 2rem;
+}
+
+blockquote {
+  border-left: solid 6px var(--clr-primary);
+  font-style: italic;
+  /* margin: 2.5rem 1rem; */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+button {
+  background-color: rgb(var(--rgbGreen));
+  border-radius: 0.5rem;
+  border: none;
+  color: rgb(var(--rgbForeground));
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 2rem;
+  margin: 1rem;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+}
+
+button:hover {
+  background-color: rgba(var(--rgbGreen), 0.7);
+  color: rgb(var(--rgbForeground));
+}
+
+pre {
+  font-family: var(--code);
+  font-size: 1rem;
+  line-height: var(--line-height);
+  margin: var(--flow) 0;
+  overflow-wrap: normal;
+  overflow: auto;
+  padding: 1rem;
+}
+
+/* ########## NAVIGATION ########## */
+
+nav {
+  display: flex;
+  font-family: var(--title);
+  font-weight: 700;
+}
+
+nav > *:first-child {
+  flex-grow: 1;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav a,
+nav button {
+  color: rgb(248, 248, 242);
+  display: block;
+  font-size: 1rem;
+  padding: 1em 0.5em;
+  margin: 0;
+  text-align: initial;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  color: rgb(var(--rgbAccent));
+}
+
+nav button:hover {
+  background-color: transparent;
+}
+
+.toggle-theme {
+  background: transparent;
+  background-image: none;
+  border: 0;
+  color: rgb(248, 248, 242);
+  cursor: pointer;
+  position: relative;
+}
+
+.toggle-theme:hover,
+.toggle-theme:focus {
+  color: rgb(var(--rgbAccent));
+}
+
+.toggle-theme .sun {
+  display: none;
+}
+
+.dark .toggle-theme .moon {
+  display: none;
+}
+
+.dark .toggle-theme .sun {
+  display: block;
+}
+
+/* ########## MAIN ########## */
+
+main img {
+  justify-content: center;
+  margin: 2rem auto;
+}
+
+#post-meta {
+  font-size: 1rem;
+  padding-bottom: var(--flow);
+}
+
+#tags {
+  font-weight: 700;
+  padding: 0;
+}
+
+#tags li {
+  display: inline-block;
+}
+
+.form-control {
+  border-radius: 0.5rem;
+  border: 1px solid rgb(var(--rgbAccent));
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 1rem;
+  width: 100%;
+}
+
+#posts {
+  list-style: none;
+}
+
+#posts h2 a {
+  color: rgb(var(--rgbForeground));
+}
+
+#posts h2 a:hover {
+  color: rgb(var(--rgbAccent));
+}
+
+#posts > li:not(:last-child) {
+  padding: 1rem 0;
+}
+
+#posts > li:not(:last-child) {
+  border-bottom: 1px solid rgba(var(--rgbForeground), 0.1);
+}
+
+#posts article header h2 {
+  padding-bottom: 0.5rem;
+}
+
+.callout {
+  border-left: 8px solid transparent;
+  background-color: rgb(var(--rgbCallout));
+  border-color: rgb(var(--rgbAccent));
+  color: rgb(248, 248, 242);
+  /* font-weight: 700; */
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+}
+
+.callout p {
+  margin: 0;
+  padding: 0;
+}
+
+/* ########## FOOTER ########## */
+
+footer {
+  align-items: center;
+  border-top: 1px solid rgb(var(--rgbAccent));
+  display: flex;
+  font-family: var(--title);
+}
+
+footer > *:first-child {
+  flex-grow: 1;
+  margin: 0;
+}
+
+footer ul {
+  display: flex;
+  list-style: none;
+}
+
+footer a {
+  color: rgb(var(--rgbForeground));
+  display: block;
+  font-size: 1rem;
+  padding: 1em 0.5em;
+  text-align: initial;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+footer a:hover {
+  color: rgb(var(--rgbAccent));
+}
+
+/* ########## UTILITY ########## */
+
+.text-align-center {
+  text-align: center !important;
+}
+
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+/* ########## RESPONSIVE VIDEO WRAPPER ########## */
+/* https://css-tricks.com/fluid-width-video/ */
+
+.video-wrapper {
+  height: 0;
+  /* margin-bottom: 1.5rem; */
+  padding-bottom: calc(var(--aspect-ratio, 0.5625) * 100%);
+  position: relative;
+}
+
+.video-wrapper iframe {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
