@@ -5,7 +5,7 @@
   <atom:link href="https://joshbduncan.com/rss.xml" rel="self" type="application/rss+xml" />
   <link>https://joshbduncan.com</link>
   <description>just some random thoughts published on the internet...</description>
-  <lastBuildDate>Thu, 07 Jul 2022 15:27:14 EST</lastBuildDate>
+  <lastBuildDate>Thu, 07 Jul 2022 20:34:29 EST</lastBuildDate>
   <language>en-US</language>
 
   
@@ -45,9 +45,9 @@
   </item>
   
   <item>
-    <title>Javascript Search Token Highlighter</title>
+    <title>JavaScript Search Token Highlighter</title>
     <link>https://joshbduncan.com/javascript-search-token-highlighter.html</link>
-    <description>Building a search results page? Thinking about highlighting the search terms so they standout? Here&#39;s how I did it using vanilla Javascript.</description>
+    <description>Building a search results page? Thinking about highlighting the search terms so they standout? Here&#39;s how I did it using vanilla JavaScript.</description>
     <pubDate>Tue, 04 May 2021 00:00:00 EST</pubDate>
   </item>
   

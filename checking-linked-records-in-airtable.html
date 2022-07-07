@@ -118,7 +118,7 @@
 <p>This new method works well, but I got annoyed today when I had to click off sixty-four linked time entries for one client. I do my invoicing from a custom view in the "Jobs" table so this process takes way too long... You have to click the linked record, scroll down and click the "Invoiced" checkbox, then click out of the linked record pop-up.</p>
 <p>I know I could create a filtered view in the "Time Entries" table that's grouped by customer but that's not ideal for me.</p>
 <h2>The Solution</h2>
-<p>I've recently been learning some Javascript and knew Airtable had scripting capabilities so I figured I could whip up something to help me out.</p>
+<p>I've recently been learning some JavaScript and knew Airtable had scripting capabilities so I figured I could whip up something to help me out.</p>
 <p>Before I started scripting I switched to my custom "Invoicing" view in the "Jobs" table that I mentioned above. This view only shows jobs with "uninvoiced" time entries and has all records grouped by client so things are easier to see.</p>
 <p>To this view, I added a new <a href="https://support.airtable.com/hc/en-us/articles/360048496693-Button-field">button field</a> that will run my script on the current record when clicked.</p>
 <h2>Time to Script</h2>
