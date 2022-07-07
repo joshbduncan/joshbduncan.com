@@ -25,7 +25,7 @@ I know I could create a filtered view in the "Time Entries" table that's grouped
 
 ## The Solution
 
-I've recently been learning some Javascript and knew Airtable had scripting capabilities so I figured I could whip up something to help me out.
+I've recently been learning some JavaScript and knew Airtable had scripting capabilities so I figured I could whip up something to help me out.
 
 Before I started scripting I switched to my custom "Invoicing" view in the "Jobs" table that I mentioned above. This view only shows jobs with "uninvoiced" time entries and has all records grouped by client so things are easier to see.
 

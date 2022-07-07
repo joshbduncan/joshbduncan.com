@@ -1,18 +1,18 @@
 ---
-title: Javascript Search Token Highlighter
+title: JavaScript Search Token Highlighter
 date: 2021-05-04
-description: Building a search results page? Thinking about highlighting the search terms so they standout? Here's how I did it using vanilla Javascript.
+description: Building a search results page? Thinking about highlighting the search terms so they standout? Here's how I did it using vanilla JavaScript.
 author: Josh Duncan
 category: development
 tags: javascript, python, flask, jinja
 ---
 
-While building a full-text search engine for a [Flask][flask] project I'm working on, I wanted a way to highlight all of the search terms on the search results page. After dabbling in Javascript for a bit, here's what I come up with.
+While building a full-text search engine for a [Flask][flask] project I'm working on, I wanted a way to highlight all of the search terms on the search results page. After dabbling in JavaScript for a bit, here's what I come up with.
 
 [flask]: https://flask.palletsprojects.com/
 
 !!!!
-Just to be clear, I'm not a Javascript programmer. This is something I was able to hack together for my purposes and it seems to work well. Your milage may vary...
+Just to be clear, I'm not a JavaScript programmer. This is something I was able to hack together for my purposes and it seems to work well. Your milage may vary...
 !!!!
 
 ## TL;DR
@@ -44,11 +44,11 @@ for (var i = 0; i < articles.length; i++) {
 }
 ```
 
-## From Python To Javascript
+## From Python To JavaScript
 
 After a visitor successfully submits a search query to my Flask app, I'm capturing their input, sanitizing it, and then passing that query to the search results page as the variable `tokens`.
 
-Once, the search results page is rendered, I can access that variable via [Jinja][jinja] inside of my Javascript script.
+Once, the search results page is rendered, I can access that variable via [Jinja][jinja] inside of my JavaScript script.
 
 [jinja]: https://jinja.palletsprojects.com/
 
@@ -69,7 +69,7 @@ var tokens = "{{ tokens|replace(' ', '|') }}"; // add regex '|' "or" character
 
 This filter is just like the built-in Python string.replace function, in where it replaces each occurrence of the first argument with the second argument.
 
-You could also do this with the Javascript [string replace method][stringreplace] if you are not using Jinja templates.
+You could also do this with the JavaScript [string replace method][stringreplace] if you are not using Jinja templates.
 
 [stringreplace]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
 
@@ -182,7 +182,7 @@ quotes[i].innerHTML = content;
 
 ## The Final Script
 
-Once again, I'm no Javascript programmer but here's the final working script. It could be shortened a bit by combining some lines and functions, but I find this easier to read and keep up with exactly what's going on.
+Once again, I'm no JavaScript programmer but here's the final working script. It could be shortened a bit by combining some lines and functions, but I find this easier to read and keep up with exactly what's going on.
 
 ```javascript
 // remove html encoding from the flask search tokens

@@ -182,7 +182,7 @@ Ignoring columns isn't a hard feature addition, I just couldn't decide how I wan
 So, I decided that `data-attribute-search-ignore-cols` would be a comma separated list of index ids ([zero based](https://en.wikipedia.org/wiki/Zero-based_numbering)) for the columns that should be ignored (e.g. `data-attribute-search-ignore-cols="0,2,7"`)
 
 !!!!
-FYI, Javascript removes the "-" in data-attributes names and coverts the string to camel case <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#javascript_access">read more</a>. So `data-attribute-sample-name-with-dashes` becomes `sampleNameWithDashes`.
+FYI, JavaScript removes the "-" in data-attributes names and coverts the string to camel case <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#javascript_access">read more</a>. So `data-attribute-sample-name-with-dashes` becomes `sampleNameWithDashes`.
 !!!!
 
 ```javascript
