@@ -6,29 +6,43 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <meta name="description" content="design. maker. fun haver." />
+  <meta name="description" content="Josh Duncan – Designer. Maker. Fun haver." />
   <title>Josh Duncan – Blog</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/codehilite-dark.css') }}" />
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-  <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <!-- OPEN GRAPH, FACEBOOK, TWITTER META TAGS -->
   <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="joshbduncan.com" />
   <meta property="og:url" content="https://joshbduncan.com{{ request.path }}" />
+  <meta property="og:image" content="https://joshbduncan.com{{ url_for('static', filename='images/jbd-card.png') }}" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Josh Duncan – Designer. Maker. Fun haver." />
   {% if not post %}
   <meta property="og:type" content="website" />
   <meta property="og:title" content="joshbduncan.com" />
-  <meta property="og:description" content="design. maker. fun haver." />
+  <meta property="og:description" content="Josh Duncan – Designer. Maker. Fun haver." />
   {% else %}
   <meta property="og:type" content="article" />
   <meta property="og:title" content="{{ post.title }}" />
   <meta property="og:description" content="{{ post.description }}" />
+  <meta property="og:article:published_time" content="{{ post.date }}" />
+  <meta property="og:article:author" content="Josh Duncan" />
+  {% if post.updated %}
+  <meta property="og:article:modified_time" content="{{ post.updated }}" />
   {% endif %}
-  <meta property="og:image" content="https://joshbduncan.com{{ url_for('static', filename='images/jbd-card.png') }}" />
+  <meta property="og:article:section" content="{{ post.category }}" />
+  {% for tag in post.meta["tags"].split(", ") | sort %}
+  <meta property="og:article:tag" content="{{ tag }}" />
+  {% endfor %}
+  {% endif %}
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@joshbduncan" />
   <meta name="twitter:creator" content="@joshbduncan" />
 
+  <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <script>
     // color theme selector
     (function (window, document) {
