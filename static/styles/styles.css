@@ -189,7 +189,7 @@ footer {
 
 main {
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2.5rem 1rem 1rem 1rem;
   max-width: var(--content-width);
   width: 100%;
 }
