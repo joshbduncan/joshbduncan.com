@@ -61,6 +61,10 @@
     <loc>https://joshbduncan.com/python-progress-spinners-using-generators.html</loc>
   </url>
   
+  <url>
+    <loc>https://joshbduncan.com/saving-preferences-in-adobe-extendscript.html</loc>
+  </url>
+  
   
   <!-- CATEGORIES -->
   
@@ -76,6 +80,10 @@
   <!-- TAGS -->
   
   <url>
+    <loc>https://joshbduncan.com/tag/adobe.html</loc>
+  </url>
+  
+  <url>
     <loc>https://joshbduncan.com/tag/airtable.html</loc>
   </url>
   
@@ -89,6 +97,10 @@
   
   <url>
     <loc>https://joshbduncan.com/tag/cli.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/extendscript.html</loc>
   </url>
   
   <url>

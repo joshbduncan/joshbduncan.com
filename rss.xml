@@ -5,9 +5,16 @@
   <atom:link href="https://joshbduncan.com/rss.xml" rel="self" type="application/rss+xml" />
   <link>https://joshbduncan.com</link>
   <description>just some random thoughts published on the internet...</description>
-  <lastBuildDate>Thu, 07 Jul 2022 20:34:29 EST</lastBuildDate>
+  <lastBuildDate>Thu, 07 Jul 2022 20:40:02 EST</lastBuildDate>
   <language>en-US</language>
 
+  
+  <item>
+    <title>Saving JSON &#34;like&#34; Preferences Files With Adobe ExtendScript</title>
+    <link>https://joshbduncan.com/saving-preferences-in-adobe-extendscript.html</link>
+    <description>Some of my scripts for Adobe products have the ability to save user preferences. Here&#39;s how I save those preferences to a JSON like file on disk using ExtendScript and the Adobe Bridge Messaging API.</description>
+    <pubDate>Thu, 07 Jul 2022 00:00:00 EST</pubDate>
+  </item>
   
   <item>
     <title>Progress Spinners Using Python Generators and Context Managers</title>

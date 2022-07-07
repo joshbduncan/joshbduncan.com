@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="description" content="Josh Duncan – Designer. Maker. Fun haver." />
+  <title>Josh Duncan – Blog</title>
+  <link rel="stylesheet" type="text/css" href="/static/styles/styles.css" />
+  <link rel="stylesheet" type="text/css" href="/static/styles/codehilite-dark.css" />
+  <link rel="shortcut icon" href="/static/favicon.ico" />
+  <!-- OPEN GRAPH, FACEBOOK, TWITTER META TAGS -->
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="joshbduncan.com" />
+  <meta property="og:url" content="https://joshbduncan.com/saving-preferences-in-adobe-extendscript.html" />
+  <meta property="og:image" content="https://joshbduncan.com/static/images/jbd-card.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Josh Duncan – Designer. Maker. Fun haver." />
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Saving JSON &#34;like&#34; Preferences Files With Adobe ExtendScript" />
+  <meta property="og:description" content="Some of my scripts for Adobe products have the ability to save user preferences. Here&#39;s how I save those preferences to a JSON like file on disk using ExtendScript and the Adobe Bridge Messaging API." />
+  <meta property="og:article:published_time" content="2022-07-07" />
+  <meta property="og:article:author" content="Josh Duncan" />
+  
+  <meta property="og:article:section" content="development" />
+  
+  <meta property="og:article:tag" content="adobe" />
+  
+  <meta property="og:article:tag" content="extendscript" />
+  
+  <meta property="og:article:tag" content="javascript" />
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@joshbduncan" />
+  <meta name="twitter:creator" content="@joshbduncan" />
+
+  <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script>
+    // color theme selector
+    (function (window, document) {
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const selectedTheme = window.localStorage.getItem('theme');
+      if (selectedTheme === "dark" || (!selectedTheme && prefersDark)) {
+        document.documentElement.classList.add("dark")
+      };
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleButton = document.querySelector(".toggle-theme");
+        toggleButton.addEventListener("click", () => {
+          const wasLight = document.documentElement.classList.toggle('dark');
+          const theme = wasLight ? 'dark' : 'light';
+          window.localStorage.setItem('theme', theme);
+          console.log("color theme switched to " + theme + ".");
+        });
+      });
+    })(window, document);
+  </script>
+
+</head>
+
+<body>
+  <header class="nav">
+    <nav>
+      <logo>
+        <a href="/" title="Home">Josh Duncan</a>
+      </logo>
+      <ul>
+        <li><a href="/about.html" title="About">About</a></li>
+        <li><a href="/rss.xml" title="RSS" target="_blank">RSS</a></li>
+      </ul>
+      <button title="Switch Color Theme" aria-label="Switch Color Theme" class="toggle-theme">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="moon">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun">
+          <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </nav>
+  </header class="nav">
+
+  <main>
+    <!-- FLASK BLOCK CONTENT -->
+    
+<article>
+  <header>
+    <h1>Saving JSON &#34;like&#34; Preferences Files With Adobe ExtendScript</h1>
+    <div id="post-meta">
+      By Josh Duncan •
+      
+      <b>Published</b> <time datetime="2022-07-07">July 2022</time>
+      
+      • 7 min read
+      • <a href="/category/development.html"><b>development</b></a>
+    </div>
+  </header>
+  <div id="post-body">
+    <p>Anytime I'm writing an <a href="https://extendscript.docsforadobe.dev/introduction/extendscript-overview.html">Adobe ExtendScript</a> that includes a dialog box with more than a few options, I like to give the user the ability to save their dialog selections to a preference file. That way, when they run the script again their defaults (or last used settings) are preloaded, saving them time.</p>
+<p>I hope to go deeper into this subject in a later post, but for now I'll show you how I write the users last used settings out to a JSON "like" file on their hard disk.</p>
+<h2>What is JSON "like"?</h2>
+<p>Adobe ExtendScript doesn't include a JSON library, so to easily read and write JSON I'll be using the <a href="https://extendscript.docsforadobe.dev/interapplication-communication/communicating-through-messages.html">Adobe Bridge Messaging API</a>. This API provides two key functions.</p>
+<ul>
+<li><code>toSource()</code> to serialize/encode JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects">objects</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a></li>
+<li><code>eval()</code> to reconstitute/decode JavaScript objects and arrays</li>
+</ul>
+<p>The reason I say JSON "like" is because the <code>toSource()</code> function doesn't encode valid JSON, it serializes objects or arrays into a special string. There are a few funky aspects of this serialized string that make it invalid JSON, but since I'll be reconstituting it using the <code>eval()</code> function, it works perfect for my purposes.</p>
+<div class="codehilite"><pre><span></span><code><span class="err">\\</span> <span class="nx">valid</span> <span class="nx">json</span>
+<span class="p">{</span>
+    <span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mf">1</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span><span class="o">:</span> <span class="mf">2</span>
+<span class="p">}</span>
+
+<span class="err">\\</span> <span class="nx">invalid</span> <span class="sb">`toSource()`</span> <span class="nx">serialized</span> <span class="nb">JSON</span> <span class="nx">string</span>
+<span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mf">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="o">:</span> <span class="mf">2</span><span class="p">})</span>
+</code></pre></div>
+
+<p><em>Going forward, I'll use just use the term JSON.</em></p>
+<h2>Script Setup</h2>
+<p>First, I'll setup some option variables that will be used to create the dialog window, and I'll also set defaults to be used on the first run (or when a preferences file isn't found).</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">locations</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Location 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Location 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Location 3&quot;</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">products</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Product 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Product 2&quot;</span><span class="p">,</span> <span class="s2">&quot;Product 3&quot;</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">defaults</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">location</span><span class="o">:</span> <span class="s2">&quot;Location 1&quot;</span><span class="p">,</span> <span class="nx">product</span><span class="o">:</span> <span class="s2">&quot;Product 3&quot;</span> <span class="p">};</span>
+</code></pre></div>
+
+<p>Next, I'll check to see if a preferences file already exists. To do this, I make a new <a href="https://extendscript.docsforadobe.dev/file-system-access/file-object.html">File object</a> pointing at the user’s default document folder path provided by ExtendScript's <a href="https://extendscript.docsforadobe.dev/file-system-access/folder-object.html?highlight=folder#folder-class-properties">Folder object</a> class properties <code>Folder.myDocuments</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">prefsFile</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">File</span><span class="p">(</span><span class="nx">Folder</span><span class="p">.</span><span class="nx">myDocuments</span> <span class="o">+</span> <span class="s2">&quot;/prefs.json&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">prefsData</span> <span class="o">=</span> <span class="nx">prefsFile</span><span class="p">.</span><span class="nx">exists</span> <span class="o">?</span> <span class="nx">readJSONData</span><span class="p">(</span><span class="nx">prefsFile</span><span class="p">)</span> <span class="o">:</span> <span class="nx">defaults</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Using a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator">Conditional (ternary) operator</a> I'll set <code>prefsData</code> to the data read from <code>prefsFile</code> (if it exists) using the <code>readJSONData()</code> function below, or to the defaults I set above.</p>
+<h2>Reading JSON Files With ExtendScript</h2>
+<p>Reading the JSON data from the preferences file is pretty straight forward. First, I try opening the file and reading its data to the variable <code>json</code>. If all is successful, I'll reconstitute/decode that data back into a JavaScript object (using the <a href="https://extendscript.docsforadobe.dev/interapplication-communication/communicating-through-messages.html?highlight=toSource#passing-an-object-with-tosource-and-eval"><code>eval()</code></a> function mentioned above) and return it for use in the dialog window.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span> <span class="nx">readJSONData</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">obj</span><span class="p">,</span> <span class="nx">json</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">file</span><span class="p">.</span><span class="nx">encoding</span> <span class="o">=</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">;</span>
+    <span class="nx">file</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">);</span>
+    <span class="nx">json</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">read</span><span class="p">();</span>
+    <span class="nx">file</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Error loading &quot;</span> <span class="o">+</span> <span class="nx">file</span> <span class="o">+</span> <span class="s2">&quot; file!&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">obj</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Presenting The Dialog</h2>
+<p>I won't go into too much detail in this post on the dialog creation code, but basically I create a simple dialog full of radio buttons determined by the <code>locations</code> and <code>products</code> arrays from above.</p>
+<p>Now, the reason for all of this work is that while creating the radio buttons (or most any UI element), I can check to see if a particular element (radio button) is set in the <code>prefsData</code> object (be it either loaded from a file or the defaults), and if so, preselect if for the user. As you can see, this can be a huge timesaver if a dialog has lots of options or if the user needs the ability to save multiple presets for different uses.</p>
+<p><img alt="Save Preferences From Dialog Example" loading="lazy" src="/static/images/save-preferences-adobe-extendscript-dialog.png" /></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// show the settings dialog</span>
+<span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">settingsWin</span><span class="p">(</span><span class="nx">prefsData</span><span class="p">);</span>
+<span class="c1">// parse the dialog settings</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span>
+    <span class="s2">&quot;User Settings Saved!\nSelected Location: &quot;</span> <span class="o">+</span>
+      <span class="nx">settings</span><span class="p">.</span><span class="nx">location</span> <span class="o">+</span>
+      <span class="s2">&quot;\nSelected Product: &quot;</span> <span class="o">+</span>
+      <span class="nx">settings</span><span class="p">.</span><span class="nx">product</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// get selected radio button from array</span>
+<span class="kd">function</span> <span class="nx">captureRBSelection</span><span class="p">(</span><span class="nx">rbs</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">selection</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">rbs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">rbs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">value</span><span class="p">)</span> <span class="nx">selection</span> <span class="o">=</span> <span class="nx">rbs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">text</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">selection</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// setup the dialog window</span>
+<span class="kd">function</span> <span class="nx">settingsWin</span><span class="p">(</span><span class="nx">prefsData</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">win</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">Window</span><span class="p">(</span><span class="s2">&quot;dialog&quot;</span><span class="p">);</span>
+  <span class="nx">win</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="s2">&quot;Save Preferences From Dialog Example&quot;</span><span class="p">;</span>
+
+  <span class="c1">// create a radio button for each location</span>
+  <span class="nx">win</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;statictext&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="s2">&quot;Select Your Location&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">gLocation</span> <span class="o">=</span> <span class="nx">win</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;group&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">locationRBs</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="kd">var</span> <span class="nx">rb</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">locations</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rb</span> <span class="o">=</span> <span class="nx">gLocation</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;radiobutton&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="nx">locations</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">prefsData</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nx">locations</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="nx">rb</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">locationRBs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">rb</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// create a radio button for each product</span>
+  <span class="nx">win</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;statictext&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="s2">&quot;Select Your Product Type&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">gProducts</span> <span class="o">=</span> <span class="nx">win</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;group&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">productRBs</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="kd">var</span> <span class="nx">rb</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">products</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">rb</span> <span class="o">=</span> <span class="nx">gProducts</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;radiobutton&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="nx">products</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">prefsData</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nx">products</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="nx">rb</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">productRBs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">rb</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// setup window buttons</span>
+  <span class="kd">var</span> <span class="nx">gWindowButtons</span> <span class="o">=</span> <span class="nx">win</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">btOK</span> <span class="o">=</span> <span class="nx">gWindowButtons</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="s2">&quot;OK&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">btCancel</span> <span class="o">=</span> <span class="nx">gWindowButtons</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;button&quot;</span><span class="p">,</span> <span class="kc">undefined</span><span class="p">,</span> <span class="s2">&quot;Cancel&quot;</span><span class="p">);</span>
+
+  <span class="c1">// if &quot;ok&quot; button clicked then return inputs</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">win</span><span class="p">.</span><span class="nx">show</span><span class="p">()</span> <span class="o">==</span> <span class="mf">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// check to see which location and product was selected</span>
+    <span class="kd">var</span> <span class="nx">selectedSettings</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">location</span><span class="o">:</span> <span class="nx">captureRBSelection</span><span class="p">(</span><span class="nx">locationRBs</span><span class="p">),</span>
+      <span class="nx">product</span><span class="o">:</span> <span class="nx">captureRBSelection</span><span class="p">(</span><span class="nx">productRBs</span><span class="p">),</span>
+    <span class="p">};</span>
+    <span class="k">return</span> <span class="nx">selectedSettings</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>The main thing to understand from the code above are the final few lines. If the user clicks the "OK" button <code>if (win.show() == 1)</code>, I gather their dialog selections (radio buttons in this case) and construct an object from them that I can return for use in the rest of the script.</p>
+<div class="callout" role="comment">
+<p>You may notice a utility function above called <code>captureRBSelection()</code>. It's not necessarily needed, it just provides an easy way to determine which radio button from an UI group is selected. </p>
+</div>
+<h2>Writing JSON Files With ExtendScript</h2>
+<p>Now that I have the user selected settings from the dialog stored as an object, I can write that data to the preferences file.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">writeJSONData</span><span class="p">(</span><span class="nx">settings</span><span class="p">,</span> <span class="nx">prefsFile</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Writing the JSON data to a file is not that dissimilar from reading it. First, I serialize the JSON data using the <a href="https://extendscript.docsforadobe.dev/interapplication-communication/communicating-through-messages.html?highlight=toSource#passing-an-object-with-tosource-and-eval"><code>toSource()</code></a> function mentioned above. Then, I try writing the data to disk using the <a href="https://extendscript.docsforadobe.dev/file-system-access/file-object.html#write"><code>write()</code></a> function provided by the file object.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span> <span class="nx">writeJSONData</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">toSource</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="nx">file</span><span class="p">.</span><span class="nx">encoding</span> <span class="o">=</span> <span class="s2">&quot;UTF-8&quot;</span><span class="p">;</span>
+    <span class="nx">file</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">&quot;w&quot;</span><span class="p">);</span>
+    <span class="nx">file</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="nx">file</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Error writing file &quot;</span> <span class="o">+</span> <span class="nx">file</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<div class="callout" role="comment">
+<p>Normally, a script would do more than just write a preferences file. Usually, the selection(s) made by the user direct the next steps the script takes. In this case, that only means showing the selected preferences in an alert.</p>
+</div>
+<div class="codehilite"><pre><span></span><code><span class="nx">alert</span><span class="p">(</span>
+  <span class="s2">&quot;User Settings Saved!\nSelected Location: &quot;</span> <span class="o">+</span>
+    <span class="nx">settings</span><span class="p">.</span><span class="nx">location</span> <span class="o">+</span>
+    <span class="s2">&quot;\nSelected Product: &quot;</span> <span class="o">+</span>
+    <span class="nx">settings</span><span class="p">.</span><span class="nx">product</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<p><img alt="Save Preferences Alert" loading="lazy" src="/static/images/save-preferences-adobe-extendscript-dialog-alert.png" /></p>
+<h2>Final Thoughts</h2>
+<p>This setup is just the base for more advanced functionality like I implemented in my <a href="https://github.com/joshbduncan/adobe-scripts/blob/main/ScreenSepMarks.jsx">Screen Print Separation Marks</a> script shown below. I hope to do a more in-depth post on this in the future.</p>
+<p><img alt="Save Preferences From Dialog Advanced" loading="lazy" src="/static/images/save-preferences-adobe-extendscript-dialog-advanced.png" /></p>
+<p>View the <a href="https://github.com/joshbduncan/adobe-scripts/blob/main/snippets/savePrefsFromDialog.jsx">full script</a> on Github. ✌️</p>
+  </div>
+  <div id="post-tags">
+    
+    <ul id="tags">
+      <li><b>Tags:</b></li>
+      
+      <li><a href="/tag/adobe.html">adobe</a>, </li>
+      
+      <li><a href="/tag/extendscript.html">extendscript</a>, </li>
+      
+      <li><a href="/tag/javascript.html">javascript</a></li>
+      
+    </ul>
+    
+  </div>
+</article>
+
+  </main>
+
+  <footer>
+    <copyright>&copy; <span id="year">1982</span> Josh Duncan</copyright>
+    <a href="https://github.com/joshbduncan" target="_blank" class="text-decoration-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+      </svg>
+    </a>
+    <a href="https://twitter.com/joshbduncan" target="_blank" class="text-decoration-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+      </svg>
+    </a>
+    <a href="https://www.instagram.com/joshbduncan/" target="_blank" class="text-decoration-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+        <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+      </svg>
+    </a>
+  </footer>
+
+  <script>
+    // update copyright year
+    document.getElementById("year").innerHTML = new Date().getFullYear();
+  </script>
+
+</body>
+
+</html>
