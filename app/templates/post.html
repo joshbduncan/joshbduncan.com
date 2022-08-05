@@ -11,16 +11,19 @@
       <b>Published</b> <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%B %Y') }}</time>
       {% endif %}
       • {{ (post.body|wordcount / 200)|round|int}} min read
-      • <a href="{{ url_for('category', category=post.category) }}"><b>{{ post.category }}</b></a>
     </div>
   </header>
   <div id="post-body">
     {{ post.html|safe }}
   </div>
-  <div id="post-tags">
+  <div id="post-categorization">
+    {% if post.meta["category"] %}
+    <ul id="category" data-title="Category:">
+      <li><a href="{{ url_for('category', category=post.category) }}">{{ post.category }}</a></li>
+    </ul>
+    {% endif %}
     {% if post.meta["tags"] %}
-    <ul id="tags">
-      <li><b>Tags:</b></li>
+    <ul id="tags" data-title="Tags:">
       {% for tag in post.meta["tags"].split(", ") | sort %}
       <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}</li>
       {% endfor %}

@@ -58,8 +58,7 @@ def category(category):
     posts = [post for post in get_live_posts() if category == post.meta["category"]]
     posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template(
-        "posts.html", posts=posts, filter=category, show_all="categories"
-    )
+        "posts.html", posts=posts, filter=category)
 
 
 @app.route("/tags.html")
@@ -72,7 +71,7 @@ def tags():
 def tagged(tag):
     posts = [post for post in get_live_posts() if tag in get_post_tags(post)]
     posts.sort(key=lambda item: item["date"], reverse=True)
-    return render_template("posts.html", posts=posts, filter=tag, show_all="tags")
+    return render_template("posts.html", posts=posts, filter=tag)
 
 
 @app.route("/about.html")

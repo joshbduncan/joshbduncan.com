@@ -1,35 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 {% if filter %}
-<h1 class="text-align-center">#{{ filter }} posts</h1>
-{% if show_all %}
-{% if show_all == "categories" %}
-<p class="text-align-center"><a href="{{ url_for('categories') }}" title="Categories">[show all categories]</a></p>
-{% else %}
-<p class="text-align-center"><a href="{{ url_for('tags') }}" title="Tags">[show all tags]</a></p>
-{% endif %}
-{% endif %}
+<h1 class="text-align-center">#{{ filter }}</h1>
 {% endif %}
 <ul id="posts">
   {% for post in posts %}
   <li>
     <article>
-      <header class="article-list">
+      <header>
         {% if filter == "drafts" %}
         <h2><a class="text-decoration-none" href="{{ url_for('draft', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a></h2>
         {% else %}
         <h2><a class="text-decoration-none" href="{{ url_for('post', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a></h2>
         {% endif %}
+        <div id="post-meta">
+          {% if post.updated %}
+          <time datetime="{{ post.updated.strftime('%Y-%m-%d') }}">{{ post.updated.strftime('%B %Y') }}</time>
+          {% else %}
+          <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%B %Y') }}</time>
+          {% endif %}
+          • {{ (post.body|wordcount / 200)|round|int}} min read
+        </div>
       </header>
+
       <p>{{ post.description }}</p>
-      {% if post.meta["tags"] %}
-      <ul id="tags">
-        <li><b>Tags:</b></li>
-        {% for tag in post.meta["tags"].split(", ") | sort %}
-        <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
     </article>
   </li>
   {% endfor %}

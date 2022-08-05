@@ -21,17 +21,17 @@ Adobe ExtendScript doesn't include a JSON library, so to easily read and write J
 The reason I say JSON "like" is because the `toSource()` function doesn't encode valid JSON, it serializes objects or arrays into a special string. There are a few funky aspects of this serialized string that make it invalid JSON, but since I'll be reconstituting it using the `eval()` function, it works perfect for my purposes.
 
 ```javascript
-\\ valid json
+// valid json
 {
 	"a": 1,
 	"b": 2
 }
 
-\\ invalid `toSource()` serialized JSON string
+// invalid `toSource()` serialized JSON string
 ({"a": 1, "b": 2})
 ```
 
-*Going forward, I'll use just use the term JSON.*
+*Going forward, I'll just use the term JSON.*
 
 ## Script Setup
 
@@ -151,7 +151,7 @@ function settingsWin(prefsData) {
 The main thing to understand from the code above are the final few lines. If the user clicks the "OK" button `if (win.show() == 1)`, I gather their dialog selections (radio buttons in this case) and construct an object from them that I can return for use in the rest of the script.
 
 !!!!
-You may notice a utility function above called `captureRBSelection()`. It's not necessarily needed, it just provides an easy way to determine which radio button from an UI group is selected. 
+You may notice a utility function above called `captureRBSelection()`. It's not necessarily needed, it just provides an easy way to determine which radio button from a UI group is selected. 
 !!!!
 
 ## Writing JSON Files With ExtendScript

@@ -4,27 +4,25 @@
   <h1>whatcha looking for...</h1>
   <form action="https://www.google.com/search" method="GET">
     <div>
-      <input type="text" class="form-control" id="searchQuery" autocomplete="off" />
-      <input type="hidden" class="form-control" id="q" name="q" />
-      <button type="submit">Search</button>
+      <input type="text" class="text-align-center" id="search-query" autocomplete="off" />
+      <input type="hidden" id="q" name="q" />
     </div>
+    <button type="submit">Search</button>
   </form>
 </div>
 
 <hr>
 
-<h2 class="text-align-center">post categories:</h2>
 <div class="text-align-center">
-  <ul id="tags">
+  <ul id="category" data-title="Categories:">
     {% for category in categories %}
     <li><a href="{{ url_for('category', category=category) }}">{{ category }}</a>{% if not loop.last %}, {% endif %}</li>
     {% endfor %}
   </ul>
 </div>
 
-<h2 class="text-align-center">post tags:</h2>
 <div class="text-align-center">
-  <ul id="tags">
+  <ul id="tags" data-title="Tags:">
     {% for tag in tags %}
     <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}</li>
     {% endfor %}
