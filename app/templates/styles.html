@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% block content %}
+<article>
+  <header>
+    <h1>Site Styles</h1>
+  </header>
+
+  <p><b>Note:</b> This website is a work-in-progress. Not all styles are complete so some html elements may still render using the browser defaults.</p>
+
+  <h2>Colors</h2>
+  <section id="colors">
+    <div class="grid">
+      <p><span style="color:rgb(var(--rgb-ink)) !important;">RGB Ink</span></p>
+      <p><span style="color:rgb(var(--rgb-blue)) !important;">RGB Blue</span></p>
+      <p><span style="color:rgb(var(--rgb-green)) !important;">RGB Green</span></p>
+      <p><span style="color:rgb(var(--rgb-grey)) !important;">RGB Grey</span></p>
+      <p><span style="color:rgb(var(--rgb-light-grey)) !important;">RGB Light Grey</span></p>
+      <p><span style="color:rgb(var(--rgb-medium-grey)) !important;">RGB Medium Grey</span></p>
+      <p><span style="color:rgb(var(--rgb-orange)) !important;">RGB Orange</span></p>
+      <p><span style="color:rgb(var(--rgb-red)) !important;">RGB Red</span></p>
+      <p><span style="color:rgb(var(--rgb-yellow)) !important;">RGB Yellow</span></p>
+    </div>
+  </section>
+
+  <section id="typography">
+    <h2>Typography</h2>
+    <p>Aliquam lobortis vitae nibh nec rhoncus. Morbi mattis neque eget efficitur feugiat. Vivamus porta nunc a erat mattis, mattis feugiat turpis pretium. Quisque sed tristique felis.</p>
+    <figure>
+      <blockquote cite="https://www.huxley.net/bnw/four.html">
+        <p>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</p>
+      </blockquote>
+      <figcaption>—Aldous Huxley, <cite>Brave New World</cite></figcaption>
+    </figure>
+
+    <h2>Lists</h2>
+    <ul>
+      <li>Aliquam lobortis lacus eu libero ornare facilisis.
+        <ul>
+          <li>Nam et magna at libero scelerisque egestas.</li>
+        </ul>
+      </li>
+      <li>Suspendisse id nisl ut leo finibus vehicula quis eu ex.</li>
+      <li>Proin ultricies turpis et volutpat vehicula.</li>
+    </ul>
+
+    <ol>
+      <li>Aliquam lobortis lacus eu libero ornare facilisis.
+        <ol>
+          <li>Nam et magna at libero scelerisque egestas.</li>
+        </ol>
+      </li>
+      <li>Suspendisse id nisl ut leo finibus vehicula quis eu ex.</li>
+      <li>Proin ultricies turpis et volutpat vehicula.</li>
+    </ol>
+
+    <h2>Inline Text Elements</h2>
+    <div id="colors" class="grid">
+      <p><a href="#">Primary Link</a></p>
+      <p><a class="secondary" href="#">Secondary Link</a></p>
+      <p><a class="contrast" href="#">Contrast Link</a></p>
+      <p><b>Bold</b></p>
+      <p><em>Italic</em></p>
+      <p><u>Underline</u></p>
+      <p><del>Deleted</del></p>
+      <p><ins>Inserted</ins></p>
+      <p><s>Strikethrough</s></p>
+      <p><abbr title="Abbreviation">Abbr.</abbr></p>
+      <p><kbd>Command + N</kbd></p>
+      <p><mark>Highlighted</mark></p>
+    </div>
+
+    <h1>Heading 1</h1>
+    <p>Integer bibendum malesuada libero vel eleifend. Fusce iaculis turpis ipsum, at efficitur sem scelerisque vel. Aliquam auctor diam ut purus cursus fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+    <h2>Heading 2</h2>
+    <p>Cras fermentum velit vitae auctor aliquet. Nunc non congue urna, at blandit nibh. Donec ac fermentum felis. Vivamus tincidunt arcu ut lacus hendrerit, eget mattis dui finibus.</p>
+    <h3>Heading 3</h3>
+    <p>Donec nec egestas nulla. Sed varius placerat felis eu suscipit. Mauris maximus ante in consequat luctus. Morbi euismod sagittis efficitur. Aenean non eros orci. Vivamus ut diam sem.</p>
+    <h4>Heading 4</h4>
+    <p>Ut sed quam non mauris placerat consequat vitae id risus. Vestibulum tincidunt nulla ut tortor posuere, vitae malesuada tortor molestie. Sed nec interdum dolor. Vestibulum id auctor nisi, a efficitur sem. Aliquam sollicitudin efficitur turpis, sollicitudin hendrerit ligula semper id. Nunc risus felis, egestas eu tristique eget, convallis in velit.</p>
+
+    <figure>
+      <img src="/static/images/duncan-family.jpg" alt="The Duncan Family">
+      <figcaption>Image from <a href="https://joshbduncan.com">joshbduncan.com</a></figcaption>
+    </figure>
+  </section>
+
+  <section id="buttons">
+    <h2>Buttons</h2>
+    <div class="grid">
+      <button>Primary</button>
+      <button class="secondary">Secondary</button>
+      <button class="contrast">Contrast</button>
+    </div>
+    <div class="grid">
+      <button class="outline">Primary outline</button>
+      <button class="outline secondary">Secondary outline</button>
+      <button class="outline contrast">Contrast outline</button>
+    </div>
+  </section>
+
+  <section id="form">
+    <form>
+      <h2>Form elements</h2>
+
+      <!-- Search -->
+      <label for="search">Search</label>
+      <input type="search" id="search" name="search" placeholder="Search">
+
+      <!-- Text -->
+      <label for="text">Text</label>
+      <input type="text" id="text" name="text" placeholder="Text">
+      <small>Curabitur consequat lacus at lacus porta finibus.</small>
+
+      <!-- Select -->
+      <label for="select">Select</label>
+      <select id="select" name="select" required>
+        <option value="" selected>Select…</option>
+        <option>…</option>
+      </select>
+
+      <!-- File browser -->
+      <label for="file">File browser
+        <input type="file" id="file" name="file">
+      </label>
+
+      <!-- Range slider control -->
+      <label for="range">Range slider
+        <input type="range" min="0" max="100" value="50" id="range" name="range">
+      </label>
+
+      <!-- States -->
+      <div class="grid">
+        <label for="valid">
+          Valid
+          <input type="text" id="valid" name="valid" placeholder="Valid" aria-invalid="false">
+        </label>
+        <label for="invalid">
+          Invalid
+          <input type="text" id="invalid" name="invalid" placeholder="Invalid" aria-invalid="true">
+        </label>
+        <label for="disabled">
+          Disabled
+          <input type="text" id="disabled" name="disabled" placeholder="Disabled" disabled>
+        </label>
+      </div>
+
+      <div class="grid">
+
+        <!-- Date-->
+        <label for="date">Date
+          <input type="date" id="date" name="date">
+        </label>
+
+        <!-- Time-->
+        <label for="time">Time
+          <input type="time" id="time" name="time">
+        </label>
+
+        <!-- Color-->
+        <label for="color">Color
+          <input type="color" id="color" name="color" value="#0eaaaa">
+        </label>
+
+      </div>
+
+      <div class="grid">
+
+        <!-- Checkboxes -->
+        <fieldset>
+          <legend><strong>Checkboxes</strong></legend>
+          <label for="checkbox-1">
+            <input type="checkbox" id="checkbox-1" name="checkbox-1" checked>
+            Checkbox
+          </label>
+          <label for="checkbox-2">
+            <input type="checkbox" id="checkbox-2" name="checkbox-2">
+            Checkbox
+          </label>
+        </fieldset>
+
+        <!-- Radio buttons -->
+        <fieldset>
+          <legend><strong>Radio buttons</strong></legend>
+          <label for="radio-1">
+            <input type="radio" id="radio-1" name="radio" value="radio-1" checked>
+            Radio button
+          </label>
+          <label for="radio-2">
+            <input type="radio" id="radio-2" name="radio" value="radio-2">
+            Radio button
+          </label>
+        </fieldset>
+
+        <!-- Switch -->
+        <fieldset>
+          <legend><strong>Switches</strong></legend>
+          <label for="switch-1">
+            <input type="checkbox" id="switch-1" name="switch-1" role="switch" checked>
+            Switch
+          </label>
+          <label for="switch-2">
+            <input type="checkbox" id="switch-2" name="switch-2" role="switch">
+            Switch
+          </label>
+        </fieldset>
+
+      </div>
+
+      <!-- Buttons -->
+      <input type="reset" value="Reset" onclick="event.preventDefault()">
+      <input type="submit" value="Submit" onclick="event.preventDefault()">
+
+    </form>
+  </section>
+
+  <section id="tables">
+    <h2>Tables</h2>
+    <figure>
+      <table role="grid">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Heading</th>
+            <th scope="col">Heading</th>
+            <th scope="col">Heading</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Cell</td>
+            <td>Cell</td>
+            <td>Cell</td>
+          </tr>
+        </tbody>
+      </table>
+    </figure>
+  </section>
+</article>
+{% endblock content %}

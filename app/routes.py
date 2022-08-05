@@ -74,6 +74,17 @@ def tagged(tag):
     return render_template("posts.html", posts=posts, filter=tag)
 
 
+@app.route("/styles.html")
+def styles():
+    return render_template("styles.html")
+
+
+@app.route("/markdown.html")
+def markdown():
+    page = flatpages.get_or_404("pages/markdown")
+    return render_template("page.html", page=page)
+
+
 @app.route("/about.html")
 def about():
     page = flatpages.get_or_404("pages/about")

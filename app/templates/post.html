@@ -18,16 +18,17 @@
   </div>
   <div id="post-categorization">
     {% if post.meta["category"] %}
-    <ul id="category" data-title="Category:">
-      <li><a href="{{ url_for('category', category=post.category) }}">{{ post.category }}</a></li>
-    </ul>
+    <p>
+      <b>Category: </b><a href="{{ url_for('category', category=post.category) }}">{{ post.category }}</a>
+    </p>
     {% endif %}
     {% if post.meta["tags"] %}
-    <ul id="tags" data-title="Tags:">
+    <p>
+      <b>Tags:</b>
       {% for tag in post.meta["tags"].split(", ") | sort %}
-      <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}</li>
+      <a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
       {% endfor %}
-    </ul>
+    </p>
     {% endif %}
   </div>
 </article>
