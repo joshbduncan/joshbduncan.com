@@ -451,7 +451,7 @@ main button {
   font-size: var(--font-size-large);
   font-weight: 700;
   margin: var(--spacing-small);
-  padding: 0 var(--spacing-large);
+  padding: var(--spacing-small) var(--spacing-medium);
 }
 
 input#search-query {
@@ -517,6 +517,14 @@ footer li {
 
 /* ########## UTILITY CLASSES ########## */
 
+.bold {
+  font-weight: 700 !important;
+}
+
+.bolder {
+  font-weight: 900 !important;
+}
+
 /* .flex {
   align-items: center;
   display: flex;
@@ -543,6 +551,10 @@ footer li {
   }
 }
 
+.list-inline {
+  display: inline !important;
+}
+
 .margin-none {
   margin: 0 !important;
 }
@@ -551,20 +563,16 @@ footer li {
   padding: 0 !important;
 }
 
+.table {
+  overflow-x: auto;
+}
+
 .text-align-center {
   text-align: center !important;
 }
 
 .text-decoration-none {
   text-decoration: none !important;
-}
-
-.bold {
-  font-weight: 700 !important;
-}
-
-.bolder {
-  font-weight: 900 !important;
 }
 
 /* ########## RESPONSIVE VIDEO WRAPPER ########## */

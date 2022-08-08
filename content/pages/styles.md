@@ -6,17 +6,34 @@ title: Style Guide
 
 
 ## Colors
-<div class="grid">
-    <p><span style="color:rgb(var(--rgb-ink)) !important;">RGB Ink</span></p>
-    <p><span style="color:rgb(var(--rgb-blue)) !important;">RGB Blue</span></p>
-    <p><span style="color:rgb(var(--rgb-green)) !important;">RGB Green</span></p>
-    <p><span style="color:rgb(var(--rgb-grey)) !important;">RGB Grey</span></p>
-    <p><span style="color:rgb(var(--rgb-light-grey)) !important;">RGB Light Grey</span></p>
-    <p><span style="color:rgb(var(--rgb-medium-grey)) !important;">RGB Medium Grey</span></p>
-    <p><span style="color:rgb(var(--rgb-orange)) !important;">RGB Orange</span></p>
-    <p><span style="color:rgb(var(--rgb-red)) !important;">RGB Red</span></p>
-    <p><span style="color:rgb(var(--rgb-yellow)) !important;">RGB Yellow</span></p>
-</div>
+<<<<grid
+RGB Ink
+{: style="color: rgb(var(--rgb-ink)) !important" }
+
+RGB Blue
+{: style="color: rgb(var(--rgb-blue)) !important" }
+
+RGB Green
+{: style="color: rgb(var(--rgb-green)) !important" }
+
+RGB Grey
+{: style="color: rgb(var(--rgb-grey)) !important" }
+
+RGB Light Grey
+{: style="color: rgb(var(--rgb-light-grey)) !important" }
+
+RGB Medium Grey
+{: style="color: rgb(var(--rgb-medium-grey)) !important" }
+
+RGB Orange
+{: style="color: rgb(var(--rgb-orange)) !important" }
+
+RGB Red
+{: style="color: rgb(var(--rgb-red)) !important" }
+
+RGB Yellow
+{: style="color: rgb(var(--rgb-yellow)) !important" }
+>>>>
 
 ## Inline Text Elements
 <div id="colors" class="grid">
@@ -193,11 +210,13 @@ The basic Markdown syntax allows you to [create code](https://www.markdownguide.
 
 To make a table, use vertical bar characters to denote cells. Start with column headers, separate with a row of cells with hyphens, then add further rows of cells. For example:
 
-| # | Heading | Heading | Heading | 
-|---|---------|---------|---------|
-| 1 | Cell    | Cell    | Cell    |
-| 2 | Cell    | Cell    | Cell    |
-| 3 | Cell    | Cell    | Cell    |
+<<<<table
+| # | Heading | Heading | Heading | Heading | Heading | Heading |
+|---|---------|---------|---------|---------|---------|---------|
+| 1 | Cell    | Cell    | Cell    | Cell    | Cell    | Cell    |
+| 2 | Cell    | Cell    | Cell    | Cell    | Cell    | Cell    |
+| 3 | Cell    | Cell    | Cell    | Cell    | Cell    | Cell    |
+>>>>
 
 ## Buttons
 <div class="grid">

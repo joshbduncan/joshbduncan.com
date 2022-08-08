@@ -4,7 +4,6 @@
   <header>
     <h1>{{ post.title }}</h1>
     <div id="post-meta">
-      By {{ post.author | default("Josh Duncan", true) }} •
       {% if post.updated %}
       <b>Updated</b> <time datetime="{{ post.updated.strftime('%Y-%m-%d') }}">{{ post.updated.strftime('%B %Y') }}</time>
       {% else %}

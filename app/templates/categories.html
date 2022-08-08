@@ -4,7 +4,7 @@
 <div class="text-align-center">
   <ul id="tags">
     {% for category in categories %}
-    <li><a href="{{ url_for('category', category=category) }}">{{ category }}</a>{% if not loop.last %}, {% endif %}</li>
+    <li class="list-inline"><a href="{{ url_for('category', category=category) }}">{{ category }}</a>{% if not loop.last %}, {% endif %}</li>
     {% endfor %}
   </ul>
 </div>
