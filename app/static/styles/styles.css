@@ -59,6 +59,8 @@
   --font-size-x-large: 2rem;
   --font-size-xx-large: 3rem;
 
+  --font-size-posts--header: var(--font-size-x-large);
+
   --line-height-x-small: 1;
   --line-height-small: 1.125;
   --line-height-medium: 1.25;
@@ -103,6 +105,8 @@
     --font-size-large: 1.8rem;
     --font-size-x-large: 2.2rem;
     --font-size-xx-large: 3.2rem;
+
+    --font-size-posts--header: var(--font-size-xx-large);
 
     --spacing-x-small: 0.5rem;
     --spacing-small: 1rem;
@@ -245,6 +249,7 @@ header {
 }
 
 logo {
+  color: var(--color-txt--action);
   display: inline-block;
   margin-top: var(--spacing-large);
 }
@@ -258,7 +263,7 @@ h6 {
   font-weight: 900;
   line-height: var(--line-height-small);
   padding-bottom: var(--spacing-small);
-  padding-top: var(--spacing-large);
+  padding-top: var(--spacing-xx-large);
 }
 
 h1 {
@@ -360,7 +365,7 @@ header input#toggle {
 }
 
 nav {
-  background: var(--color-txt);
+  background: var(--color-txt--action);
   height: 100%;
   overflow: hidden;
   position: fixed;
@@ -380,7 +385,7 @@ nav ul li {
 }
 
 nav a {
-  color: var(--color-txt--reversed);
+  color: rgb(var(--rgb-white));
   font-size: var(--font-size-xx-large);
   font-weight: 900;
   text-decoration: none;
@@ -411,10 +416,10 @@ main ul#posts {
   margin: 0;
 }
 
-@media (min-width: 60rem) {
-  main ul#posts header h2 {
-    font-size: var(--font-size-xx-large);
-  }
+main ul#posts h2 {
+  font-size: var(--font-size-posts--header);
+  list-style: none;
+  margin: 0;
 }
 
 main ul#posts li:not(:first-child) {
