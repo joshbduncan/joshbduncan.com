@@ -9,7 +9,7 @@
   <meta name="description" content="Josh Duncan – Designer. Maker. Fun haver." />
   <title>Josh Duncan – Blog</title>
 
-  <link rel="stylesheet" type="text/css" href="/static/styles/codehilite-gruvbox-dark.css" />
+  <link rel="stylesheet" type="text/css" href="/static/styles/codehilite-dracula.css" />
   <link rel="stylesheet" type="text/css" href="/static/styles/styles.css" />
   <link rel="shortcut icon" href="/static/favicon.ico" />
 
@@ -38,7 +38,9 @@
   <header>
     <logo>
       <a href="/" title="Home">
-        <img src="/static/images/jbd_avatar_pixel_head.svg" alt="Josh Duncan" width="72" height="72" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="47" fill="currentColor" viewBox="0 0 60 47">
+          <path d="m58.461 31.933c-1.027 2.689-2.354 4.908-3.982 6.659-1.629 1.752-3.508 3.157-5.638 4.217-2.131 1.06-4.735 1.88-7.814 2.46-1.361 0.267-3.503 0.401-6.425 0.401h-2.036c-0.539 0-0.976-0.437-0.976-0.976v-0.525c0-0.539 0.437-0.976 0.976-0.976h2.806c3.726 0 6.57-1.272 8.533-3.815 2.677-3.435 4.016-8.768 4.016-15.996 0-5.823-0.915-10.474-2.744-13.954-1.451-2.722-3.313-4.573-5.588-5.555-1.596-0.687-4.241-1.021-7.93-1.004-1.338 0-2.409 0.234-3.212 0.703-0.558 0.313-1.004 0.848-1.339 1.606-0.246 0.535-0.368 1.941-0.368 4.216v20.881c0 4.35-0.435 7.513-1.305 9.487s-2.415 3.626-4.635 4.953-4.891 1.991-8.015 1.991c-3.815 0-6.899-1.004-9.253-3.012-2.355-2.006-3.532-4.226-3.532-6.658 0-1.561 0.48-2.828 1.439-3.798s2.13-1.455 3.514-1.455c1.36 0 2.504 0.435 3.43 1.305 0.925 0.87 1.389 1.941 1.389 3.213 0 2.892-2.209 2.866-2.209 5.254 0 0.581 0.29 1.083 0.87 1.506 0.848 0.625 1.952 0.937 3.313 0.937 0.959 0 1.751-0.245 2.376-0.736 0.624-0.49 1.065-1.255 1.322-2.292 0.256-1.038 0.385-3.921 0.385-8.65v-22.925c0-2.32-0.129-3.77-0.385-4.35-0.257-0.58-0.759-1.088-1.506-1.523-0.748-0.435-1.757-0.652-3.029-0.652h-0.932c-0.539 0-0.976-0.437-0.976-0.976v-0.626c0-0.539 0.437-0.976 0.976-0.976h24.624c5.421 0 9.782 0.736 13.084 2.209 4.037 1.807 7.099 4.54 9.186 8.199 2.086 3.659 3.129 7.797 3.129 12.415 0 3.191-0.514 6.13-1.539 8.818z" />
+        </svg>
       </a>
     </logo>
     <input id="toggle" type="checkbox" autocomplete="off" />
@@ -64,252 +66,345 @@
     
 <article>
   <header>
-    <h1>Site Styles</h1>
+    <h1>Style Guide</h1>
   </header>
+  <p><strong>Note:</strong> This website is a work-in-progress. Not all styles are complete so some html elements may still render using the browser defaults.</p>
+<h2>Colors</h2>
+<div class="grid">
+    <p><span style="color:rgb(var(--rgb-ink)) !important;">RGB Ink</span></p>
+    <p><span style="color:rgb(var(--rgb-blue)) !important;">RGB Blue</span></p>
+    <p><span style="color:rgb(var(--rgb-green)) !important;">RGB Green</span></p>
+    <p><span style="color:rgb(var(--rgb-grey)) !important;">RGB Grey</span></p>
+    <p><span style="color:rgb(var(--rgb-light-grey)) !important;">RGB Light Grey</span></p>
+    <p><span style="color:rgb(var(--rgb-medium-grey)) !important;">RGB Medium Grey</span></p>
+    <p><span style="color:rgb(var(--rgb-orange)) !important;">RGB Orange</span></p>
+    <p><span style="color:rgb(var(--rgb-red)) !important;">RGB Red</span></p>
+    <p><span style="color:rgb(var(--rgb-yellow)) !important;">RGB Yellow</span></p>
+</div>
 
-  <p><b>Note:</b> This website is a work-in-progress. Not all styles are complete so some html elements may still render using the browser defaults.</p>
+<h2>Inline Text Elements</h2>
+<div id="colors" class="grid">
+  <p><a href="#">Primary Link</a></p>
+  <p><a class="secondary" href="#">Secondary Link</a></p>
+  <p><a class="contrast" href="#">Contrast Link</a></p>
+  <p><b>Bold</b></p>
+  <p><em>Italic</em></p>
+  <p><u>Underline</u></p>
+  <p><del>Deleted</del></p>
+  <p><ins>Inserted</ins></p>
+  <p><s>Strikethrough</s></p>
+  <p><abbr title="Abbreviation">Abbr.</abbr></p>
+  <p><kbd>Command + N</kbd></p>
+  <p><mark>Highlighted</mark></p>
+</div>
 
-  <h2>Colors</h2>
-  <section id="colors">
-    <div class="grid">
-      <p><span style="color:rgb(var(--rgb-ink)) !important;">RGB Ink</span></p>
-      <p><span style="color:rgb(var(--rgb-blue)) !important;">RGB Blue</span></p>
-      <p><span style="color:rgb(var(--rgb-green)) !important;">RGB Green</span></p>
-      <p><span style="color:rgb(var(--rgb-grey)) !important;">RGB Grey</span></p>
-      <p><span style="color:rgb(var(--rgb-light-grey)) !important;">RGB Light Grey</span></p>
-      <p><span style="color:rgb(var(--rgb-medium-grey)) !important;">RGB Medium Grey</span></p>
-      <p><span style="color:rgb(var(--rgb-orange)) !important;">RGB Orange</span></p>
-      <p><span style="color:rgb(var(--rgb-red)) !important;">RGB Red</span></p>
-      <p><span style="color:rgb(var(--rgb-yellow)) !important;">RGB Yellow</span></p>
-    </div>
-  </section>
+<h2>Post Metadata</h2>
+<p>All pages and posts most contain a <a href="https://yaml.org/">YAML</a> information section at the top. It can include any information you like but the below format is standard for every post. Values are accessed in <a href="https://jinja.palletsprojects.com/">Jinja</a> as <code>{{ post.title }}</code>.</p>
+<div class="codehilite"><pre><span></span><code><span class="nn">---</span><span class="w"></span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Post Title</span><span class="w"></span>
+<span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2020-10-23</span><span class="w"></span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The post description goes here.</span><span class="w"></span>
+<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Author</span><span class="w"></span>
+<span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">category</span><span class="w"></span>
+<span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tag1, tag2, tag3</span><span class="w"></span>
+<span class="nn">---</span><span class="w"></span>
+</code></pre></div>
 
-  <section id="typography">
-    <h2>Typography</h2>
-    <p>Aliquam lobortis vitae nibh nec rhoncus. Morbi mattis neque eget efficitur feugiat. Vivamus porta nunc a erat mattis, mattis feugiat turpis pretium. Quisque sed tristique felis.</p>
-    <figure>
-      <blockquote cite="https://www.huxley.net/bnw/four.html">
-        <p>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</p>
-      </blockquote>
-      <figcaption>—Aldous Huxley, <cite>Brave New World</cite></figcaption>
-    </figure>
+<h2>Headings</h2>
+<p>You can use up to up to six levels by writing # at the start of a line; the number of hashtags defines the hierarchy of the heading.</p>
+<h1>First level heading</h1>
+<h2>Second level heading</h2>
+<h3>Third level heading</h3>
+<div class="codehilite"><pre><span></span><code># First level heading
+## Second level heading
+### Third level heading
+</code></pre></div>
 
-    <h2>Lists</h2>
-    <ul>
-      <li>Aliquam lobortis lacus eu libero ornare facilisis.
-        <ul>
-          <li>Nam et magna at libero scelerisque egestas.</li>
-        </ul>
-      </li>
-      <li>Suspendisse id nisl ut leo finibus vehicula quis eu ex.</li>
-      <li>Proin ultricies turpis et volutpat vehicula.</li>
-    </ul>
+<h2>Emphasis</h2>
+<p><em>italic</em></p>
+<div class="codehilite"><pre><span></span><code>*italic*
+</code></pre></div>
 
-    <ol>
-      <li>Aliquam lobortis lacus eu libero ornare facilisis.
-        <ol>
-          <li>Nam et magna at libero scelerisque egestas.</li>
-        </ol>
-      </li>
-      <li>Suspendisse id nisl ut leo finibus vehicula quis eu ex.</li>
-      <li>Proin ultricies turpis et volutpat vehicula.</li>
-    </ol>
+<p><strong>bold</strong></p>
+<div class="codehilite"><pre><span></span><code>**bold**
+</code></pre></div>
 
-    <h2>Inline Text Elements</h2>
-    <div id="colors" class="grid">
-      <p><a href="#">Primary Link</a></p>
-      <p><a class="secondary" href="#">Secondary Link</a></p>
-      <p><a class="contrast" href="#">Contrast Link</a></p>
-      <p><b>Bold</b></p>
-      <p><em>Italic</em></p>
-      <p><u>Underline</u></p>
-      <p><del>Deleted</del></p>
-      <p><ins>Inserted</ins></p>
-      <p><s>Strikethrough</s></p>
-      <p><abbr title="Abbreviation">Abbr.</abbr></p>
-      <p><kbd>Command + N</kbd></p>
-      <p><mark>Highlighted</mark></p>
-    </div>
+<p><strong><em>bold-italic</em></strong></p>
+<div class="codehilite"><pre><span></span><code>***bold-italic***
+</code></pre></div>
 
-    <h1>Heading 1</h1>
-    <p>Integer bibendum malesuada libero vel eleifend. Fusce iaculis turpis ipsum, at efficitur sem scelerisque vel. Aliquam auctor diam ut purus cursus fringilla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
-    <h2>Heading 2</h2>
-    <p>Cras fermentum velit vitae auctor aliquet. Nunc non congue urna, at blandit nibh. Donec ac fermentum felis. Vivamus tincidunt arcu ut lacus hendrerit, eget mattis dui finibus.</p>
-    <h3>Heading 3</h3>
-    <p>Donec nec egestas nulla. Sed varius placerat felis eu suscipit. Mauris maximus ante in consequat luctus. Morbi euismod sagittis efficitur. Aenean non eros orci. Vivamus ut diam sem.</p>
-    <h4>Heading 4</h4>
-    <p>Ut sed quam non mauris placerat consequat vitae id risus. Vestibulum tincidunt nulla ut tortor posuere, vitae malesuada tortor molestie. Sed nec interdum dolor. Vestibulum id auctor nisi, a efficitur sem. Aliquam sollicitudin efficitur turpis, sollicitudin hendrerit ligula semper id. Nunc risus felis, egestas eu tristique eget, convallis in velit.</p>
+<h2>Numbered List</h2>
+<ol>
+<li>Numbered list item</li>
+<li>Numbered list item</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>1. Numbered list item
+2. Numbered list item
+</code></pre></div>
 
-    <figure>
-      <img src="/static/images/duncan-family.jpg" alt="The Duncan Family">
-      <figcaption>Image from <a href="https://joshbduncan.com">joshbduncan.com</a></figcaption>
-    </figure>
-  </section>
+<h2>Bulleted List</h2>
+<ul>
+<li>Bulleted list item (also * or +)</li>
+<li>Bulleted list item</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>- Bulleted list item (also * or +)
+- Bulleted list item
+</code></pre></div>
 
-  <section id="buttons">
-    <h2>Buttons</h2>
-    <div class="grid">
-      <button>Primary</button>
-      <button class="secondary">Secondary</button>
-      <button class="contrast">Contrast</button>
-    </div>
-    <div class="grid">
-      <button class="outline">Primary outline</button>
-      <button class="outline secondary">Secondary outline</button>
-      <button class="outline contrast">Contrast outline</button>
-    </div>
-  </section>
+<h2>Nested List</h2>
+<ul>
+<li>First level<ul>
+<li>Second level</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>* First level
+    * Second level
+</code></pre></div>
 
-  <section id="form">
-    <form>
-      <h2>Form elements</h2>
+<ol>
+<li>First level<ol>
+<li>Second level</li>
+</ol>
+</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>1. First level
+    1. Second level
+</code></pre></div>
 
-      <!-- Search -->
-      <label for="search">Search</label>
-      <input type="search" id="search" name="search" placeholder="Search">
+<ul>
+<li>First level unordered list item<ol>
+<li>Second level ordered list item</li>
+</ol>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>* First level unordered list item
+    1. Second level ordered list item
+</code></pre></div>
 
-      <!-- Text -->
-      <label for="text">Text</label>
-      <input type="text" id="text" name="text" placeholder="Text">
-      <small>Curabitur consequat lacus at lacus porta finibus.</small>
+<h2>Blockquotes</h2>
+<blockquote>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porttitor mi sed maximus hendrerit..</p>
+<p>– Someone Cool</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><code>&gt; A quoted passage
+&gt;
+&gt; – Someone Cool
+</code></pre></div>
 
-      <!-- Select -->
-      <label for="select">Select</label>
-      <select id="select" name="select" required>
-        <option value="" selected>Select…</option>
-        <option>…</option>
-      </select>
+<h2>Links</h2>
+<p><a href="https://google.com">Google "No Link Description"</a><br />
+<a href="https://google.com" title="Google">Google</a></p>
+<div class="codehilite"><pre><span></span><code>Inline Link:
+[Link Name](https://google.com) or
+[Link Name](https://google.com &quot;Google&quot;)
+</code></pre></div>
 
-      <!-- File browser -->
-      <label for="file">File browser
-        <input type="file" id="file" name="file">
+<p><a href="https://google.com/" title="Google">Google</a><br />
+<a href="https://apple.com" title="Apple">Apple</a><br />
+<a href="https://microsoft.com" title="Microsoft">Microsoft</a>  </p>
+<div class="codehilite"><pre><span></span><code>Reference Link:
+[Google][]  
+[Apple][]  
+[Microsoft][]  
+
+[Google]: https://google.com/ &quot;Google&quot;
+[Apple]: https://apple.com &quot;Apple&quot;
+[Microsoft]: https://microsoft.com &quot;Microsoft&quot;
+</code></pre></div>
+
+<h2>Images</h2>
+<p>Both local and web URLs are supported. On export to .docx, currently the image’s alt text is added, but the image is not embedded. Markdown uses the following syntax for images:</p>
+<p><img alt="The Duncan Family" loading="lazy" src="/static/images/duncan-family.jpg" /></p>
+<div class="codehilite"><pre><span></span><code>![](http://example.com/image.jpg){: loading=&quot;lazy&quot; }
+![](/image.jpg){: loading=&quot;lazy&quot; }
+</code></pre></div>
+
+<p><strong>Note:</strong> Markdown image syntax and HTML image filename rules are different from Content Blocks. When using Markdown syntax, spaces must be encoded as %20, and the leading slash must be omitted because it refers to the root directory of a device.</p>
+<p><strong>Also Note:</strong> To force lazy loading prepend <code>{: loading="lazy" }</code> to any Markdown image link as above.</p>
+<h2>Code Blocks</h2>
+<p>To create code blocks, indent every line of the block by at least four spaces or one tab.</p>
+<div class="codehilite"><pre><span></span><code>This is a code block (start with 4 blank spaces)
+</code></pre></div>
+
+<h3>Fenced Code Block</h3>
+<p>The basic Markdown syntax allows you to <a href="https://www.markdownguide.org/basic-syntax#code-blocks">create code</a> blocks by indenting lines by four spaces or one tab. If you find that inconvenient, try using fenced code blocks. Put with three backticks <code>(```)</code> on the lines before and after the code block. The best part? You don’t have to indent any lines!</p>
+<div class="codehilite"><pre><span></span><code>```
+This is a fenced code block
+```
+</code></pre></div>
+
+<h2>Tables</h2>
+<p>To make a table, use vertical bar characters to denote cells. Start with column headers, separate with a row of cells with hyphens, then add further rows of cells. For example:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Heading</th>
+<th>Heading</th>
+<th>Heading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Cell</td>
+<td>Cell</td>
+<td>Cell</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Cell</td>
+<td>Cell</td>
+<td>Cell</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Cell</td>
+<td>Cell</td>
+<td>Cell</td>
+</tr>
+</tbody>
+</table>
+<h2>Buttons</h2>
+<div class="grid">
+  <button>Primary</button>
+  <button class="secondary">Secondary</button>
+  <button class="contrast">Contrast</button>
+</div>
+<div class="grid">
+  <button class="outline">Primary outline</button>
+  <button class="outline secondary">Secondary outline</button>
+  <button class="outline contrast">Contrast outline</button>
+</div>
+
+<h2>Form Elements</h2>
+<form>
+  <!-- Search -->
+  <label for="search">Search</label>
+  <input type="search" id="search" name="search" placeholder="Search">
+
+  <!-- Text -->
+  <label for="text">Text</label>
+  <input type="text" id="text" name="text" placeholder="Text">
+  <small>Curabitur consequat lacus at lacus porta finibus.</small>
+
+  <!-- Select -->
+  <label for="select">Select</label>
+  <select id="select" name="select" required>
+    <option value="" selected>Select…</option>
+    <option>…</option>
+  </select>
+
+  <!-- File browser -->
+  <label for="file">File browser
+    <input type="file" id="file" name="file">
+  </label>
+
+  <!-- Range slider control -->
+  <label for="range">Range slider
+    <input type="range" min="0" max="100" value="50" id="range" name="range">
+  </label>
+
+  <!-- States -->
+  <div class="grid">
+    <label for="valid">
+      Valid
+      <input type="text" id="valid" name="valid" placeholder="Valid" aria-invalid="false">
+    </label>
+    <label for="invalid">
+      Invalid
+      <input type="text" id="invalid" name="invalid" placeholder="Invalid" aria-invalid="true">
+    </label>
+    <label for="disabled">
+      Disabled
+      <input type="text" id="disabled" name="disabled" placeholder="Disabled" disabled>
+    </label>
+  </div>
+
+  <div class="grid">
+    <!-- Date-->
+    <label for="date">Date
+      <input type="date" id="date" name="date">
+    </label>
+    <!-- Time-->
+    <label for="time">Time
+      <input type="time" id="time" name="time">
+    </label>
+    <!-- Color-->
+    <label for="color">Color
+      <input type="color" id="color" name="color" value="#0eaaaa">
+    </label>
+  </div>
+
+  <div class="grid">
+    <!-- Checkboxes -->
+    <fieldset>
+      <legend><strong>Checkboxes</strong></legend>
+      <label for="checkbox-1">
+        <input type="checkbox" id="checkbox-1" name="checkbox-1" checked>
+        Checkbox
       </label>
-
-      <!-- Range slider control -->
-      <label for="range">Range slider
-        <input type="range" min="0" max="100" value="50" id="range" name="range">
+      <label for="checkbox-2">
+        <input type="checkbox" id="checkbox-2" name="checkbox-2">
+        Checkbox
       </label>
+    </fieldset>
+    <!-- Radio buttons -->
+    <fieldset>
+      <legend><strong>Radio buttons</strong></legend>
+      <label for="radio-1">
+        <input type="radio" id="radio-1" name="radio" value="radio-1" checked>
+        Radio button
+      </label>
+      <label for="radio-2">
+        <input type="radio" id="radio-2" name="radio" value="radio-2">
+        Radio button
+      </label>
+    </fieldset>
+    <!-- Switch -->
+    <fieldset>
+      <legend><strong>Switches</strong></legend>
+      <label for="switch-1">
+        <input type="checkbox" id="switch-1" name="switch-1" role="switch" checked>
+        Switch
+      </label>
+      <label for="switch-2">
+        <input type="checkbox" id="switch-2" name="switch-2" role="switch">
+        Switch
+      </label>
+    </fieldset>
+  </div>
 
-      <!-- States -->
-      <div class="grid">
-        <label for="valid">
-          Valid
-          <input type="text" id="valid" name="valid" placeholder="Valid" aria-invalid="false">
-        </label>
-        <label for="invalid">
-          Invalid
-          <input type="text" id="invalid" name="invalid" placeholder="Invalid" aria-invalid="true">
-        </label>
-        <label for="disabled">
-          Disabled
-          <input type="text" id="disabled" name="disabled" placeholder="Disabled" disabled>
-        </label>
-      </div>
+  <!-- Buttons -->
+  <input type="reset" value="Reset" onclick="event.preventDefault()">
+  <input type="submit" value="Submit" onclick="event.preventDefault()">
+</form>
 
-      <div class="grid">
+<h2>Horizontal Rule</h2>
+<p>To do so, add three or more asterisks (*), hyphens (-), or underscores (_) on a line by themselves, optionally separated with spaces.</p>
+<hr />
+<div class="codehilite"><pre><span></span><code>***, ---, or ___
+</code></pre></div>
 
-        <!-- Date-->
-        <label for="date">Date
-          <input type="date" id="date" name="date">
-        </label>
+<h2>Comments</h2>
+<p>Markdown doesn’t have an official syntax for comments. Since HTML is completely valid in Markdown, you can use HTML comments instead:</p>
+<div class="codehilite"><pre><span></span><code>&lt;!-- This is a comment --&gt;
+</code></pre></div>
 
-        <!-- Time-->
-        <label for="time">Time
-          <input type="time" id="time" name="time">
-        </label>
+<!-- This is a comment -->
 
-        <!-- Color-->
-        <label for="color">Color
-          <input type="color" id="color" name="color" value="#0eaaaa">
-        </label>
+<h2>“Escaping” formatting characters</h2>
+<p>If you want to type a formatting character and have Writer treat it as text not formatting, type a backslash first . This means * gives *, _ gives _ etc. Escaping isn’t needed in code blocks.</p>
+<h2>YouTube Video Embed</h2>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;video-wrapper&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/Jhh_Dvfs0ro&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
 
-      </div>
-
-      <div class="grid">
-
-        <!-- Checkboxes -->
-        <fieldset>
-          <legend><strong>Checkboxes</strong></legend>
-          <label for="checkbox-1">
-            <input type="checkbox" id="checkbox-1" name="checkbox-1" checked>
-            Checkbox
-          </label>
-          <label for="checkbox-2">
-            <input type="checkbox" id="checkbox-2" name="checkbox-2">
-            Checkbox
-          </label>
-        </fieldset>
-
-        <!-- Radio buttons -->
-        <fieldset>
-          <legend><strong>Radio buttons</strong></legend>
-          <label for="radio-1">
-            <input type="radio" id="radio-1" name="radio" value="radio-1" checked>
-            Radio button
-          </label>
-          <label for="radio-2">
-            <input type="radio" id="radio-2" name="radio" value="radio-2">
-            Radio button
-          </label>
-        </fieldset>
-
-        <!-- Switch -->
-        <fieldset>
-          <legend><strong>Switches</strong></legend>
-          <label for="switch-1">
-            <input type="checkbox" id="switch-1" name="switch-1" role="switch" checked>
-            Switch
-          </label>
-          <label for="switch-2">
-            <input type="checkbox" id="switch-2" name="switch-2" role="switch">
-            Switch
-          </label>
-        </fieldset>
-
-      </div>
-
-      <!-- Buttons -->
-      <input type="reset" value="Reset" onclick="event.preventDefault()">
-      <input type="submit" value="Submit" onclick="event.preventDefault()">
-
-    </form>
-  </section>
-
-  <section id="tables">
-    <h2>Tables</h2>
-    <figure>
-      <table role="grid">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Heading</th>
-            <th scope="col">Heading</th>
-            <th scope="col">Heading</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Cell</td>
-            <td>Cell</td>
-            <td>Cell</td>
-          </tr>
-        </tbody>
-      </table>
-    </figure>
-  </section>
+<div class="video-wrapper">
+  <iframe src="https://www.youtube.com/embed/Jhh_Dvfs0ro" frameborder="0" allowfullscreen></iframe>
+</div>
 </article>
 
   </main>
