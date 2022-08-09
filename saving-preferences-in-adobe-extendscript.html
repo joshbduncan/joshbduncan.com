@@ -46,7 +46,7 @@
 </head>
 
 <body>
-  <header>
+  <header id="page-header">
     <logo>
       <a href="/" title="Home">
         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="47" fill="currentColor" viewBox="0 0 60 47">
@@ -77,9 +77,8 @@
     
 <article>
   <header>
-    <h1>Saving JSON &#34;like&#34; Preferences Files With Adobe ExtendScript</h1>
+    <h1 id="post-title">Saving JSON &#34;like&#34; Preferences Files With Adobe ExtendScript</h1>
     <div id="post-meta">
-      By Josh Duncan •
       
       <b>Published</b> <time datetime="2022-07-07">July 2022</time>
       
@@ -209,9 +208,9 @@
 </code></pre></div>
 
 <p>The main thing to understand from the code above are the final few lines. If the user clicks the "OK" button <code>if (win.show() == 1)</code>, I gather their dialog selections (radio buttons in this case) and construct an object from them that I can return for use in the rest of the script.</p>
-<div class="callout" role="comment">
-<p>You may notice a utility function above called <code>captureRBSelection()</code>. It's not necessarily needed, it just provides an easy way to determine which radio button from a UI group is selected. </p>
-</div>
+<p>!!!!
+You may notice a utility function above called <code>captureRBSelection()</code>. It's not necessarily needed, it just provides an easy way to determine which radio button from a UI group is selected. 
+!!!!</p>
 <h2>Writing JSON Files With ExtendScript</h2>
 <p>Now that I have the user selected settings from the dialog stored as an object, I can write that data to the preferences file.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
@@ -233,9 +232,9 @@
 <span class="p">}</span>
 </code></pre></div>
 
-<div class="callout" role="comment">
-<p>Normally, a script would do more than just write a preferences file. Usually, the selection(s) made by the user direct the next steps the script takes. In this case, that only means showing the selected preferences in an alert.</p>
-</div>
+<p>!!!!
+Normally, a script would do more than just write a preferences file. Usually, the selection(s) made by the user direct the next steps the script takes. In this case, that only means showing the selected preferences in an alert.
+!!!!</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">alert</span><span class="p">(</span>
   <span class="s2">&quot;User Settings Saved!\nSelected Location: &quot;</span> <span class="o">+</span>
     <span class="nx">settings</span><span class="p">.</span><span class="nx">location</span> <span class="o">+</span>

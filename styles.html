@@ -35,7 +35,7 @@
 </head>
 
 <body>
-  <header>
+  <header id="page-header">
     <logo>
       <a href="/" title="Home">
         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="47" fill="currentColor" viewBox="0 0 60 47">
@@ -71,17 +71,16 @@
   <p><strong>Note:</strong> This website is a work-in-progress. Not all styles are complete so some html elements may still render using the browser defaults.</p>
 <h2>Colors</h2>
 <div class="grid">
-    <p><span style="color:rgb(var(--rgb-ink)) !important;">RGB Ink</span></p>
-    <p><span style="color:rgb(var(--rgb-blue)) !important;">RGB Blue</span></p>
-    <p><span style="color:rgb(var(--rgb-green)) !important;">RGB Green</span></p>
-    <p><span style="color:rgb(var(--rgb-grey)) !important;">RGB Grey</span></p>
-    <p><span style="color:rgb(var(--rgb-light-grey)) !important;">RGB Light Grey</span></p>
-    <p><span style="color:rgb(var(--rgb-medium-grey)) !important;">RGB Medium Grey</span></p>
-    <p><span style="color:rgb(var(--rgb-orange)) !important;">RGB Orange</span></p>
-    <p><span style="color:rgb(var(--rgb-red)) !important;">RGB Red</span></p>
-    <p><span style="color:rgb(var(--rgb-yellow)) !important;">RGB Yellow</span></p>
+<p style="color: rgb(var(--rgb-ink)) !important">RGB Ink</p>
+<p style="color: rgb(var(--rgb-blue)) !important">RGB Blue</p>
+<p style="color: rgb(var(--rgb-green)) !important">RGB Green</p>
+<p style="color: rgb(var(--rgb-grey)) !important">RGB Grey</p>
+<p style="color: rgb(var(--rgb-light-grey)) !important">RGB Light Grey</p>
+<p style="color: rgb(var(--rgb-medium-grey)) !important">RGB Medium Grey</p>
+<p style="color: rgb(var(--rgb-orange)) !important">RGB Orange</p>
+<p style="color: rgb(var(--rgb-red)) !important">RGB Red</p>
+<p style="color: rgb(var(--rgb-yellow)) !important">RGB Yellow</p>
 </div>
-
 <h2>Inline Text Elements</h2>
 <div id="colors" class="grid">
   <p><a href="#">Primary Link</a></p>
@@ -236,10 +235,14 @@ This is a fenced code block
 
 <h2>Tables</h2>
 <p>To make a table, use vertical bar characters to denote cells. Start with column headers, separate with a row of cells with hyphens, then add further rows of cells. For example:</p>
+<div class="table">
 <table>
 <thead>
 <tr>
 <th>#</th>
+<th>Heading</th>
+<th>Heading</th>
+<th>Heading</th>
 <th>Heading</th>
 <th>Heading</th>
 <th>Heading</th>
@@ -251,9 +254,15 @@ This is a fenced code block
 <td>Cell</td>
 <td>Cell</td>
 <td>Cell</td>
+<td>Cell</td>
+<td>Cell</td>
+<td>Cell</td>
 </tr>
 <tr>
 <td>2</td>
+<td>Cell</td>
+<td>Cell</td>
+<td>Cell</td>
 <td>Cell</td>
 <td>Cell</td>
 <td>Cell</td>
@@ -263,9 +272,13 @@ This is a fenced code block
 <td>Cell</td>
 <td>Cell</td>
 <td>Cell</td>
+<td>Cell</td>
+<td>Cell</td>
+<td>Cell</td>
 </tr>
 </tbody>
 </table>
+</div>
 <h2>Buttons</h2>
 <div class="grid">
   <button>Primary</button>

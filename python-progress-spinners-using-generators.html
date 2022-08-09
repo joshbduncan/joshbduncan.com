@@ -46,7 +46,7 @@
 </head>
 
 <body>
-  <header>
+  <header id="page-header">
     <logo>
       <a href="/" title="Home">
         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="47" fill="currentColor" viewBox="0 0 60 47">
@@ -77,9 +77,8 @@
     
 <article>
   <header>
-    <h1>Progress Spinners Using Python Generators and Context Managers</h1>
+    <h1 id="post-title">Progress Spinners Using Python Generators and Context Managers</h1>
     <div id="post-meta">
-      By Josh Duncan •
       
       <b>Published</b> <time datetime="2022-04-01">April 2022</time>
       
@@ -277,9 +276,9 @@
         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
 </code></pre></div>
 
-<div class="callout callout-callout" role="comment">
-<p>You'll notice a few special dunder methods above, like <code>__enter__</code> and <code>__exit__</code>. These allow the Spinner class to be used as a <a href="https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers">context manager</a>.</p>
-</div>
+<p>!!!!callout
+You'll notice a few special dunder methods above, like <code>__enter__</code> and <code>__exit__</code>. These allow the Spinner class to be used as a <a href="https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers">context manager</a>.
+!!!!</p>
 <h4>Using Spinner As A Simple Generator</h4>
 <p>The most basic usage of the Spinner class is to create an instance of it and then update it each iteration. You can specify the spinner style and the spinner text.</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">time</span>

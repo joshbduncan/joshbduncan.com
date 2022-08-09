@@ -48,7 +48,7 @@
 </head>
 
 <body>
-  <header>
+  <header id="page-header">
     <logo>
       <a href="/" title="Home">
         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="47" fill="currentColor" viewBox="0 0 60 47">
@@ -79,9 +79,8 @@
     
 <article>
   <header>
-    <h1>Generating a Sitemap with Flask and Flask-FlatPages</h1>
+    <h1 id="post-title">Generating a Sitemap with Flask and Flask-FlatPages</h1>
     <div id="post-meta">
-      By Josh Duncan •
       
       <b>Published</b> <time datetime="2020-10-31">October 2020</time>
       
@@ -122,9 +121,9 @@
 <span class="nt">&lt;/urlset&gt;</span>
 </code></pre></div>
 
-<div class="callout" role="comment">
-<p>There are many other xml tags you can include in your file. You can view the entire protocol at <a href="https://www.sitemaps.org/protocol.html">sitemaps.org</a>.</p>
-</div>
+<p>!!!!
+There are many other xml tags you can include in your file. You can view the entire protocol at <a href="https://www.sitemaps.org/protocol.html">sitemaps.org</a>.
+!!!!</p>
 <h2>Sitemap Jinja Template</h2>
 <p>Here's my final sitemap.xml Jinja template.</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
