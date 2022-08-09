@@ -2,7 +2,7 @@
 {% block content %}
 <article>
   <header>
-    <h1>{{ post.title }}</h1>
+    <h1 id="post-title">{{ post.title }}</h1>
     <div id="post-meta">
       {% if post.updated %}
       <b>Updated</b> <time datetime="{{ post.updated.strftime('%Y-%m-%d') }}">{{ post.updated.strftime('%B %Y') }}</time>
