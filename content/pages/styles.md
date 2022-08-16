@@ -6,7 +6,7 @@ title: Style Guide
 
 
 ## Colors
-<<<<grid
+!!!!grid
 RGB Ink
 {: style="color: rgb(var(--rgb-ink)) !important" }
 
@@ -33,7 +33,7 @@ RGB Red
 
 RGB Yellow
 {: style="color: rgb(var(--rgb-yellow)) !important" }
->>>>
+!!!!
 
 ## Inline Text Elements
 <div id="colors" class="grid">
@@ -65,6 +65,38 @@ category: category
 tags: tag1, tag2, tag3
 ---
 ```
+
+## Callouts
+
+```markdown
+!!!!callout
+This is a standard callout!
+!!!!
+```
+
+!!!!callout
+This is a standard callout!
+!!!!
+
+```markdown
+!!!!callout callout-highlight
+This is a highlight callout!
+!!!!
+```
+
+!!!!callout callout-highlight
+This is a highlight callout!
+!!!!
+
+```markdown
+!!!!callout callout-danger
+This is a danger callout!
+!!!!
+```
+
+!!!!callout callout-danger
+This is a danger callout!
+!!!!
 
 ## Headings
 
@@ -210,13 +242,13 @@ The basic Markdown syntax allows you to [create code](https://www.markdownguide.
 
 To make a table, use vertical bar characters to denote cells. Start with column headers, separate with a row of cells with hyphens, then add further rows of cells. For example:
 
-<<<<table
+!!!!table
 | # | Heading | Heading | Heading | Heading | Heading | Heading |
 |---|---------|---------|---------|---------|---------|---------|
 | 1 | Cell    | Cell    | Cell    | Cell    | Cell    | Cell    |
 | 2 | Cell    | Cell    | Cell    | Cell    | Cell    | Cell    |
 | 3 | Cell    | Cell    | Cell    | Cell    | Cell    | Cell    |
->>>>
+!!!!
 
 ## Buttons
 <div class="grid">

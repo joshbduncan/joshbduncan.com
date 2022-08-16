@@ -48,7 +48,7 @@ Here's the sample HTML table I'll work from...
 </table>
 ```
 
-!!!!
+!!!!callout
 Need a refresher on HTML tables? <a href="https://www.w3schools.com/html/html_tables.asp">Check this out</a>.
 !!!!
 
@@ -116,7 +116,7 @@ rows.forEach((row) => {
 });
 ```
 
-!!!!
+!!!!callout
 I used the [Spread operator (`...`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) to convert the NodeList into an array that JavaScript can apply map() to. This was a new trick I learned during this project. You'll see it used again later in the script.
 !!!!
 
@@ -181,7 +181,7 @@ Ignoring columns isn't a hard feature addition, I just couldn't decide how I wan
 
 So, I decided that `data-attribute-search-ignore-cols` would be a comma separated list of index ids ([zero based](https://en.wikipedia.org/wiki/Zero-based_numbering)) for the columns that should be ignored (e.g. `data-attribute-search-ignore-cols="0,2,7"`)
 
-!!!!
+!!!!callout
 FYI, JavaScript removes the "-" in data-attributes names and coverts the string to camel case <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes#javascript_access">read more</a>. So `data-attribute-sample-name-with-dashes` becomes `sampleNameWithDashes`.
 !!!!
 
@@ -201,7 +201,7 @@ const filteredCols = ignoreCols
   : [...cols];
 ```
 
-!!!!
+!!!!callout
 I mostly program in Python, so maps and filters are a bit new to me but they are very similar to list comprehensions once you get your head around them.
 !!!!
 

@@ -86,6 +86,12 @@ def about():
     return render_template("page.html", page=page)
 
 
+@app.route("/software.html")
+def software():
+    page = flatpages.get_or_404("pages/software")
+    return render_template("page.html", page=page)
+
+
 @app.route("/search.html")
 def search():
     categories = get_all_categories()

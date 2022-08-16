@@ -128,7 +128,7 @@ Next, I'll make this function super extra fancy with Python's newish type hints 
 
 [pep484]: https://www.python.org/dev/peps/pep-0484/
 
-!!!!
+!!!!callout
 It is important for the user to be able to define types in a form that can be understood by type checkers. The goal of this PEP is to propose such a systematic way of defining types for type annotations of variables and functions using PEP 3107 syntax. These annotations can be used to avoid many kind of bugs, for documentation purposes, or maybe even to increase speed of program execution.
 !!!!
 

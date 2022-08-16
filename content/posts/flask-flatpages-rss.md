@@ -102,7 +102,7 @@ To generate the final RSS xml document I needed to create a Jinja template that 
 
 As you can see, the first section is my website and feed information. All of this is hardcoded except for the lastBuildDate which is the current date and time that I passed in my Flask route.
 
-!!!!
+!!!!callout
 The dates and times in your RSS feed need to match the [RFC822 standard][rfc822]. I have Jinja format the date and time information from Python into the correct format using the [strftime][strftime] (string from time) function.
 !!!!
 

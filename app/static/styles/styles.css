@@ -39,12 +39,11 @@
   --color-border: rgba(var(--rgb-ink), 0.15);
   --color-border--reversed: rgba(var(--rgb-almost-white), 0.25);
   --color-border--light: rgba(var(--rgb-ink), 0.05);
+  --color-border--medium: rgba(var(--rgb-ink), 0.3);
   --color-border--heavy: rgba(var(--rgb-ink), 0.5);
   --color-border--solid: rgb(var(--rgb-ink));
   --color-border--popup: rgba(var(--rgb-black), 0.15);
-  --color-shadow: rgba(var(--rgb-medium-grey), 0.5);
-  --color-shadow--light: rgba(var(--rgb-medium-grey), 0.3);
-  --color-shadow--dark: rgba(var(--rgb-black), 0.1);
+  --color-shadow: rgba(var(--rgb-black), 0.125);
 
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -429,12 +428,24 @@ main ul#posts li:not(:first-child) {
 }
 
 .callout {
+  background-color: var(--color-border--medium);
   border-radius: var(--spacing-small);
   border: 1px solid var(--color-border);
   box-shadow: 5px 5px 7px var(--color-shadow);
-  color: var(--color-txt) !important;
-  margin: var(--spacing-large);
+  /* color: var(--color-black); */
+  font-weight: 500;
+  margin: var(--spacing-large) 0;
   padding: var(--spacing-large);
+}
+
+.callout-highlight {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+.callout-danger {
+  background-color: var(--color-negative);
+  color: var(--color-black);
 }
 
 .callout p {
@@ -471,18 +482,17 @@ table {
 }
 
 thead th {
-  border-width: 3px;
+  border-bottom: 3px solid rgb(var(--rgb-ink));
 }
 
 td,
 th {
   padding: var(--spacing-small);
-  border-bottom: 1px solid var(--color-border--light);
   text-align: start;
 }
 
 table tbody tr:nth-child(odd) {
-  background-color: var(--color-shadow--light);
+  background-color: var(--color-border--medium);
 }
 
 /* ########## ABOUT STYLING ########## */
@@ -525,7 +535,11 @@ footer li {
   font-weight: 900 !important;
 }
 
-/* .flex {
+.center {
+  align-items: center !important;
+}
+
+.flex {
   align-items: center;
   display: flex;
   columns: 4;
@@ -535,7 +549,7 @@ footer li {
 
 .flex * {
   padding-inline: 1rem;
-} */
+}
 
 .grid {
   grid-column-gap: var(--spacing-medium);

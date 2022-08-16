@@ -21,7 +21,7 @@ Well, recently I've just grown tired of the look. There is nothing wrong with th
 
 But after trying it out for a few days I wasn't 100% sold on the to-do entry mechanism or their repeating feature, so I never made the switch from Todoist.
 
-!!!!
+!!!!callout
 If I'm being honest, I've always felt like I wasted my money on the Things 3 purchase and that's why I'm giving the app a real chance this time and I'm hoping it sticks.
 !!!!
 
@@ -78,7 +78,7 @@ Now, I can activate my new virtual environment.
 $ source venv/bin/activate
 ```
 
-!!!!
+!!!!callout
 If you are new to Python Virtual Environments, you can learn more about them [here][venv].
 !!!!
 
@@ -284,7 +284,7 @@ And with the magic of Python 3's [f-Strings][f-strings] I can easily make a cust
 f'things:///add?title={title}&notes={notes}&when={when}&tags={tags}&list={list_title}&creation-date={creation_date}'
 ```
 
-!!!!
+!!!!callout
 You can leave the value for a placeholder variable blank if it's not needed for a specific to-do.
 !!!!
 

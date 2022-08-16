@@ -13,17 +13,17 @@ class MarkdownContainer(Extension):
 
 
 class MarkdownContainerProcessor(BlockProcessor):
-    RE_FENCE_START = r"^<{4}(.*)\n"
-    RE_FENCE_END = r"\n>{4}\s*$"
+    RE_FENCE_START = r"^!{4}(.*)\n"
+    RE_FENCE_END = r"\n!{4}\s*$"
 
     def test(self, parent, block):
         """Test to make sure fenced text is found in block
 
         Fenced block must be as follows:
 
-        <<<<type(optional)
+        !!!!class
         Markdown content to be rendered inside...
-        >>>>
+        !!!!
 
         """
         return re.match(self.RE_FENCE_START, block)

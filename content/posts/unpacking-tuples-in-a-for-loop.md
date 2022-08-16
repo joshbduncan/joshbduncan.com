@@ -37,7 +37,7 @@ My task was to download each employee picture from the url in the tuple and then
 
 There were 500+ employees, so this would be torture to do manually 😩.
 
-!!!!
+!!!!callout
 I originally started learning Python from the book [Automate the Boring Stuff with Python][automate], and this is a great example of what the it teaches. Enter Python 🐍.
 !!!!
 

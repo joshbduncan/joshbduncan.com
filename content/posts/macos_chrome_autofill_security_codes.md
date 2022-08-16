@@ -10,7 +10,7 @@ tags: keyboard maestro, productivity, macos, chrome
 
 Looking to escape the constant battery drain of Chrome I've tried switching to Safari a few times this past year but it never sticks. Multiple times a day I had to open Chrome for (decent) Developer Tools and I'm just not interested in using two browsers.
 
-!!!!
+!!!!callout
 Not long after posting this I saw a <a href="https://tyler.io/a-better-way-to-copy-two-factor-codes-on-macos">cleaner solution</a> from Tyler Hall.
 !!!!
 
@@ -28,7 +28,7 @@ If I can work out how to read the notification with [OCR](https://en.wikipedia.o
 
 Enter [Keyboard Maestro](https://www.keyboardmaestro.com/main/), the Swiss Army Knife of Mac automation.
 
-!!!!
+!!!!callout
 [Version 10](https://www.stairways.com/press/2021-11-02) of Keyboard Maestro was just released and it now allows you to OCR an exact area of the screen. Previously, this Macro used a screenshot and cropping but now it's much more simplified.
 !!!!
 
@@ -64,7 +64,7 @@ HELP if you didn't request it.
 
 To clean this up I'm using the [Search using Regular Expression action](https://wiki.keyboardmaestro.com/action/Search_using_Regular_Expression?redirect=1) on the variable `OCR`.
 
-!!!!
+!!!!callout
 [Regular Expressions (regex)](https://en.wikipedia.org/wiki/Regular_expression) are a deep topic so I won't cover them in detail here but you can learn tons at [RegExr.com](https://regexr.com/).
 !!!!
 
@@ -72,7 +72,7 @@ To clean this up I'm using the [Search using Regular Expression action](https://
 
 This regex is quite simple. The `\d` matches any digit character (0-9), and the `{5,7}` is a quantifier for `\d` that instructs the search to only match groups of consecutive digits between 5 and 7 digits long. The first match the regex finds will be stored in the variable `TwoFactorCode`.
 
-!!!!
+!!!!callout
 To figure out the best regex to capture the 2FA codes, I dumped the last fifteen 2FA codes I had received into (names changed to protect to innocent) RegExr and started experimenting. You can also [experiment here](https://regexr.com/68lnv) and see exactly how this regex works on my list of [example notifications](/static/downloads/sample-2fa-codes.txt).
 !!!!
 
@@ -112,6 +112,6 @@ Here's the final macro in all its glory 🙌.
 
 It's really simple but quite useful. You can [download it here](/static/downloads/OCR-macOS-2FA-Notification-Codes.kmmacros) if you think it could help make your life a bit easier. It's set up to be triggered by the [Hyper Key](https://brettterpstra.com/2017/06/15/a-hyper-key-with-karabiner-elements-full-instructions/) + 2 (Shift-Control-Option-Command-2). The number 2 is easy to remember for "2FA" and also simple to press quickly with your left hand. ✌️
 
-!!!!
+!!!!callout
 Pro Tip: If you completely miss the notification you can still OCR it by opening Notification Center and running the macro. The 2FA notification does need to be at the top of the list or it won't be in the capture area Keyboard Maestro is looking at.
 !!!!

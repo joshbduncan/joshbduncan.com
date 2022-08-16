@@ -61,7 +61,7 @@ Now, when we I call `sorted()`, I can provide the [key parameter](https://docs.p
 
 The key I'm using to sort by is the [lambda function](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) `key=lambda d: sort_by.index(d)`.
 
-!!!!
+!!!!callout
 Lambdas are "small anonymous functions" that run a single expression against a provided argument.
 !!!!
 

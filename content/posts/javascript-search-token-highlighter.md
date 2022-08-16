@@ -11,7 +11,7 @@ While building a full-text search engine for a [Flask][flask] project I'm workin
 
 [flask]: https://flask.palletsprojects.com/
 
-!!!!
+!!!!callout
 Just to be clear, I'm not a JavaScript programmer. This is something I was able to hack together for my purposes and it seems to work well. Your milage may vary...
 !!!!
 
@@ -93,7 +93,7 @@ $ console.log(tokens)
 $ "this|is|a|query"
 ```
 
-!!!!
+!!!!callout
 So, regex is an entire language that I'm definitely not going to even scratch the surface of here. If you want to learn more, I suggest the great website [regexr.com][regexr].
 !!!!
 
@@ -125,7 +125,7 @@ Since I'll be using regex to find all matching tokens on the page, I'm going to 
 var re_quotes = new RegExp(tokens, "gi");
 ```
 
-!!!!
+!!!!callout
 The "gi" options are for "global" search, and "case-insensitive" search". This ensures I find every instance of the search tokens.
 !!!!
 

@@ -10,7 +10,7 @@ Thumbs.db
 .gitconfig
 .vscode
 scratchpad.txt
-cursor.txt
+cursor.txtc
 *.code-workspace
 building/
 tmp/
