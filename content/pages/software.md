@@ -5,8 +5,14 @@ title: Software
 I'm a designer by trade but started to learn development in 2020 and I'm currently developing in Python, [ExtendScript for Adobe](#extendscript), and HTML/CSS/JavaScript. I'm sharing some of my projects here in hope that you may find them useful.
 
 !!!!callout
-Most of the things I make are free to download but if you would like to **[buy me a coffee](https://www.buymeacoffee.com/joshbduncan)** that would be awesome. Your support is greatly appreciated!
+Most of the things I make are free to download but if you would like to [buy me a coffee](https://www.buymeacoffee.com/joshbduncan){: style="font-weight: 700" target="_blank" } that would be awesome. Your support is greatly appreciated!
 !!!!
+
+<div class="grid">
+    <a href="https://www.buymeacoffee.com/joshbduncan" target="_blank">
+        <button type="button">Buy Me A Coffee</button>
+    </a>
+</div>
 
 ⚙️ **Looking for a custom solution?** I am available for hire. [Get in touch](https://contact-josh.carrd.co){: target="_blank" }.
 
