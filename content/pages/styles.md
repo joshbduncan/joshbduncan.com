@@ -79,23 +79,23 @@ This is a standard callout!
 !!!!
 
 ```markdown
-!!!!callout callout-highlight
-This is a highlight callout!
+!!!!callout callout-positive
+This is a positive callout!
 !!!!
 ```
 
-!!!!callout callout-highlight
-This is a highlight callout!
+!!!!callout callout-positive
+This is a positive callout!
 !!!!
 
 ```markdown
-!!!!callout callout-danger
-This is a danger callout!
+!!!!callout callout-negative
+This is a negative callout!
 !!!!
 ```
 
-!!!!callout callout-danger
-This is a danger callout!
+!!!!callout callout-negative
+This is a negative callout!
 !!!!
 
 ## Headings
@@ -252,14 +252,14 @@ To make a table, use vertical bar characters to denote cells. Start with column 
 
 ## Buttons
 <div class="grid">
-  <button>Primary</button>
-  <button class="secondary">Secondary</button>
-  <button class="contrast">Contrast</button>
+  <button type="button">Primary</button>
+  <button class="secondary" type="button">Secondary</button>
+  <button class="contrast" type="button">Contrast</button>
 </div>
 <div class="grid">
-  <button class="outline">Primary outline</button>
-  <button class="outline secondary">Secondary outline</button>
-  <button class="outline contrast">Contrast outline</button>
+  <button class="outline" type="button">Primary outline</button>
+  <button class="outline secondary" type="button">Secondary outline</button>
+  <button class="outline contrast" type="button">Contrast outline</button>
 </div>
 
 ## Form Elements

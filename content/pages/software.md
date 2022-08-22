@@ -4,14 +4,18 @@ title: Software
 
 I'm a designer by trade but started to learn development in 2020 and I'm currently developing in Python, [ExtendScript for Adobe](#extendscript), and HTML/CSS/JavaScript. I'm sharing some of my projects here in hope that you may find them useful.
 
-!!!!callout callout-highlight
-Most of my software is free to download but if you would like to support my work you can click the buttons below to contribute any amount. Thank you!
+!!!!callout
+Most of my software is free to download but if you would like to support my work use the buttons below. Your support is greatly appreciated!
 !!!!
 
-!!!!text-align-center
-<a href="https://buy.stripe.com/4gw2c70oq6kBgHS6oo" target="_blank"><button class="center">Support on Stripe</button></a>
-<a href="https://www.paypal.com/donate/?hosted_button_id=F9WGMH9BSLKLA" target="_blank"><button class="center">Support on PayPal</button></a>
-!!!!
+<div class="grid">
+    <a href="https://buy.stripe.com/4gw2c70oq6kBgHS6oo" target="_blank">
+        <button type="button">Support on Stripe</button>
+    </a>
+    <a href="https://www.paypal.com/donate/?hosted_button_id=F9WGMH9BSLKLA" target="_blank">
+        <button type="button">Support on PayPal</button>
+    </a>
+</div>
 
 ⚙️ **Looking for a custom solution?** I am available to hire. [Get in touch](https://contact-josh.carrd.co){: target="_blank" }.
 
