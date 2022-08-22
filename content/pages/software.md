@@ -5,23 +5,14 @@ title: Software
 I'm a designer by trade but started to learn development in 2020 and I'm currently developing in Python, [ExtendScript for Adobe](#extendscript), and HTML/CSS/JavaScript. I'm sharing some of my projects here in hope that you may find them useful.
 
 !!!!callout
-Most of my software is free to download but if you would like to support my work use the buttons below. Your support is greatly appreciated!
+Most of the things I make are free to download but if you would like to **[buy me a coffee](https://www.buymeacoffee.com/joshbduncan)** that would be awesome. Your support is greatly appreciated!
 !!!!
 
-<div class="grid">
-    <a href="https://buy.stripe.com/4gw2c70oq6kBgHS6oo" target="_blank">
-        <button type="button">Support on Stripe</button>
-    </a>
-    <a href="https://www.paypal.com/donate/?hosted_button_id=F9WGMH9BSLKLA" target="_blank">
-        <button type="button">Support on PayPal</button>
-    </a>
-</div>
-
-⚙️ **Looking for a custom solution?** I am available to hire. [Get in touch](https://contact-josh.carrd.co){: target="_blank" }.
+⚙️ **Looking for a custom solution?** I am available for hire. [Get in touch](https://contact-josh.carrd.co){: target="_blank" }.
 
 🙋‍♂️ **Need help with my software?** Feel free to contact me on [Twitter](https://twitter.com/joshbduncan){: target="_blank" }.
 
-🐞 **Find a bug?** To report any bugs you may find submit an issue on [GitHub](https://github.com/joshbduncan){: target="_blank" }.
+🐞 **Find a bug?** Please submit an issue on [GitHub](https://github.com/joshbduncan){: target="_blank" }.
 
 ## Adobe Scripts (ExtendScript) {: #extendscript }
 
