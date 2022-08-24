@@ -2,10 +2,6 @@
   --content-width: 72rem;
 
   --rgb-black: 0, 0, 0;
-  --rgb-white: 255, 255, 255;
-  --rgb-almost-black: 51, 51, 51;
-  --rgb-almost-white: 236, 233, 230;
-
   --rgb-blue: 0, 116, 228;
   --rgb-green: 41, 152, 80;
   --rgb-grey: 116, 116, 128;
@@ -13,7 +9,11 @@
   --rgb-medium-grey: 226, 221, 215;
   --rgb-orange: 248, 121, 23;
   --rgb-red: 201, 36, 0;
+  --rgb-white: 255, 255, 255;
   --rgb-yellow: 255, 214, 10;
+
+  --rgb-almost-black: 51, 51, 51;
+  --rgb-almost-white: 236, 233, 230;
 
   --rgb-background: var(--rgb-white);
   --rgb-ink: var(--rgb-almost-black);
@@ -248,7 +248,7 @@ header {
 }
 
 logo {
-  color: var(--color-txt--action);
+  color: var(--color-primary);
   display: inline-block;
   margin-top: var(--spacing-large);
 }
@@ -364,7 +364,7 @@ header input#toggle {
 }
 
 nav {
-  background: var(--color-txt--action);
+  background: var(--color-primary);
   height: 100%;
   overflow: hidden;
   position: fixed;
