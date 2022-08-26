@@ -6,37 +6,26 @@ title: Style Guide
 
 
 ## Colors
-!!!!grid
-RGB Ink
-{: style="color: rgb(var(--rgb-ink)) !important" }
-
-RGB Blue
-{: style="color: rgb(var(--rgb-blue)) !important" }
-
-RGB Green
-{: style="color: rgb(var(--rgb-green)) !important" }
-
-RGB Grey
-{: style="color: rgb(var(--rgb-grey)) !important" }
-
-RGB Light Grey
-{: style="color: rgb(var(--rgb-light-grey)) !important" }
-
-RGB Medium Grey
-{: style="color: rgb(var(--rgb-medium-grey)) !important" }
-
-RGB Orange
-{: style="color: rgb(var(--rgb-orange)) !important" }
-
-RGB Red
-{: style="color: rgb(var(--rgb-red)) !important" }
-
-RGB Yellow
-{: style="color: rgb(var(--rgb-yellow)) !important" }
-!!!!
+<div id="colors" class="grid">
+<span style="color: hsl(var(--hsl-almost-black)) !important" >--hsl-almost-black</span>
+<span style="color: hsl(var(--hsl-almost-white)) !important" >--hsl-almost-white</span>
+<span style="color: hsl(var(--hsl-black)) !important" >--hsl-black</span>
+<span style="color: hsl(var(--hsl-blue)) !important" >--hsl-blue</span>
+<span style="color: hsl(var(--hsl-green)) !important" >--hsl-green</span>
+<span style="color: hsl(var(--hsl-grey)) !important" >--hsl-grey</span>
+<span style="color: hsl(var(--hsl-mint)) !important" >--hsl-mint</span>
+<span style="color: hsl(var(--hsl-off-white)) !important" >--hsl-off-white</span>
+<span style="color: hsl(var(--hsl-orange)) !important" >--hsl-orange</span>
+<span style="color: hsl(var(--hsl-purple)) !important" >--hsl-purple</span>
+<span style="color: hsl(var(--hsl-red)) !important" >--hsl-red</span>
+<span style="color: hsl(var(--hsl-turquoise)) !important" >--hsl-turquoise</span>
+<span style="color: hsl(var(--hsl-violet)) !important" >--hsl-violet</span>
+<span style="color: hsl(var(--hsl-white)) !important" >--hsl-white</span>
+<span style="color: hsl(var(--hsl-yellow)) !important" >--hsl-yellow</span>
+</div>
 
 ## Inline Text Elements
-<div id="colors" class="grid">
+<div id="inline-text-elements" class="grid">
   <p><a href="#">Primary Link</a></p>
   <p><a class="secondary" href="#">Secondary Link</a></p>
   <p><a class="contrast" href="#">Contrast Link</a></p>
@@ -70,32 +59,32 @@ tags: tag1, tag2, tag3
 
 ```markdown
 !!!!callout
-This is a standard callout!
+This is a standard callout with a [link](#)!
 !!!!
 ```
 
 !!!!callout
-This is a standard callout!
+This is a standard callout with a [link](#)!
 !!!!
 
 ```markdown
 !!!!callout callout-positive
-This is a positive callout!
+This is a positive callout with a [link](#)!
 !!!!
 ```
 
 !!!!callout callout-positive
-This is a positive callout!
+This is a positive callout with a [link](#)!
 !!!!
 
 ```markdown
 !!!!callout callout-negative
-This is a negative callout!
+This is a negative callout with a [link](#)!
 !!!!
 ```
 
 !!!!callout callout-negative
-This is a negative callout!
+This is a negative callout with a [link](#)!
 !!!!
 
 ## Headings
