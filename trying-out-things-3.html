@@ -45,6 +45,27 @@
   <meta name="twitter:creator" content="@joshbduncan" />
 
   <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <script>
+    // color theme selector
+    (function (window, document) {
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const selectedTheme = window.localStorage.getItem("theme");
+      if (selectedTheme === "dark" || (!selectedTheme && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark")
+      };
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleButton = document.querySelector(".toggle-theme");
+        toggleButton.addEventListener("click", () => {
+          const currentTheme = document.documentElement.getAttribute("data-theme");
+          const theme = currentTheme == "dark" ? "light" : "dark";
+          window.localStorage.setItem("theme", theme);
+          document.documentElement.setAttribute("data-theme", theme)
+          console.log("color theme switched to " + theme + ".");
+        });
+      });
+    })(window, document);
+  </script>
 </head>
 
 <body>
@@ -56,9 +77,27 @@
         </svg>
       </a>
     </logo>
-    <input id="toggle" type="checkbox" autocomplete="off" />
-    <label for="toggle" id="hamburger">
-      <svg id="icon-hamburger" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+    <div class="theme-toggle">
+      <button title="Switch Color Theme" aria-label="Switch Color Theme" class="toggle-theme">
+        <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="moon">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun">
+          <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </div>
+    <input id="toggle-nav" type="checkbox" autocomplete="off" />
+    <label for="toggle-nav" id="hamburger">
+      <svg id="icon-hamburger" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
       </svg>
     </label>

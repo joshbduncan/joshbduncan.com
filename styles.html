@@ -32,6 +32,27 @@
   <meta name="twitter:creator" content="@joshbduncan" />
 
   <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <script>
+    // color theme selector
+    (function (window, document) {
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const selectedTheme = window.localStorage.getItem("theme");
+      if (selectedTheme === "dark" || (!selectedTheme && prefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark")
+      };
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleButton = document.querySelector(".toggle-theme");
+        toggleButton.addEventListener("click", () => {
+          const currentTheme = document.documentElement.getAttribute("data-theme");
+          const theme = currentTheme == "dark" ? "light" : "dark";
+          window.localStorage.setItem("theme", theme);
+          document.documentElement.setAttribute("data-theme", theme)
+          console.log("color theme switched to " + theme + ".");
+        });
+      });
+    })(window, document);
+  </script>
 </head>
 
 <body>
@@ -43,9 +64,27 @@
         </svg>
       </a>
     </logo>
-    <input id="toggle" type="checkbox" autocomplete="off" />
-    <label for="toggle" id="hamburger">
-      <svg id="icon-hamburger" xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+    <div class="theme-toggle">
+      <button title="Switch Color Theme" aria-label="Switch Color Theme" class="toggle-theme">
+        <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="moon">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun">
+          <circle cx="12" cy="12" r="5" fill="currentColor"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </div>
+    <input id="toggle-nav" type="checkbox" autocomplete="off" />
+    <label for="toggle-nav" id="hamburger">
+      <svg id="icon-hamburger" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
       </svg>
     </label>
@@ -71,19 +110,26 @@
   </header>
   <p><strong>Note:</strong> This website is a work-in-progress. Not all styles are complete so some html elements may still render using the browser defaults.</p>
 <h2>Colors</h2>
-<div class="grid">
-<p style="color: rgb(var(--rgb-ink)) !important">RGB Ink</p>
-<p style="color: rgb(var(--rgb-blue)) !important">RGB Blue</p>
-<p style="color: rgb(var(--rgb-green)) !important">RGB Green</p>
-<p style="color: rgb(var(--rgb-grey)) !important">RGB Grey</p>
-<p style="color: rgb(var(--rgb-light-grey)) !important">RGB Light Grey</p>
-<p style="color: rgb(var(--rgb-medium-grey)) !important">RGB Medium Grey</p>
-<p style="color: rgb(var(--rgb-orange)) !important">RGB Orange</p>
-<p style="color: rgb(var(--rgb-red)) !important">RGB Red</p>
-<p style="color: rgb(var(--rgb-yellow)) !important">RGB Yellow</p>
-</div>
-<h2>Inline Text Elements</h2>
 <div id="colors" class="grid">
+<span style="color: hsl(var(--hsl-almost-black)) !important" >--hsl-almost-black</span>
+<span style="color: hsl(var(--hsl-almost-white)) !important" >--hsl-almost-white</span>
+<span style="color: hsl(var(--hsl-black)) !important" >--hsl-black</span>
+<span style="color: hsl(var(--hsl-blue)) !important" >--hsl-blue</span>
+<span style="color: hsl(var(--hsl-green)) !important" >--hsl-green</span>
+<span style="color: hsl(var(--hsl-grey)) !important" >--hsl-grey</span>
+<span style="color: hsl(var(--hsl-mint)) !important" >--hsl-mint</span>
+<span style="color: hsl(var(--hsl-off-white)) !important" >--hsl-off-white</span>
+<span style="color: hsl(var(--hsl-orange)) !important" >--hsl-orange</span>
+<span style="color: hsl(var(--hsl-purple)) !important" >--hsl-purple</span>
+<span style="color: hsl(var(--hsl-red)) !important" >--hsl-red</span>
+<span style="color: hsl(var(--hsl-turquoise)) !important" >--hsl-turquoise</span>
+<span style="color: hsl(var(--hsl-violet)) !important" >--hsl-violet</span>
+<span style="color: hsl(var(--hsl-white)) !important" >--hsl-white</span>
+<span style="color: hsl(var(--hsl-yellow)) !important" >--hsl-yellow</span>
+</div>
+
+<h2>Inline Text Elements</h2>
+<div id="inline-text-elements" class="grid">
   <p><a href="#">Primary Link</a></p>
   <p><a class="secondary" href="#">Secondary Link</a></p>
   <p><a class="contrast" href="#">Contrast Link</a></p>
@@ -112,28 +158,28 @@
 
 <h2>Callouts</h2>
 <div class="codehilite"><pre><span></span><code>!!!!callout
-This is a standard callout!
+This is a standard callout with a [<span class="nt">link</span>](<span class="na">#</span>)!
 !!!!
 </code></pre></div>
 
 <div class="callout">
-<p>This is a standard callout!</p>
+<p>This is a standard callout with a <a href="#">link</a>!</p>
 </div>
 <div class="codehilite"><pre><span></span><code>!!!!callout callout-positive
-This is a positive callout!
+This is a positive callout with a [<span class="nt">link</span>](<span class="na">#</span>)!
 !!!!
 </code></pre></div>
 
 <div class="callout callout-positive">
-<p>This is a positive callout!</p>
+<p>This is a positive callout with a <a href="#">link</a>!</p>
 </div>
 <div class="codehilite"><pre><span></span><code>!!!!callout callout-negative
-This is a negative callout!
+This is a negative callout with a [<span class="nt">link</span>](<span class="na">#</span>)!
 !!!!
 </code></pre></div>
 
 <div class="callout callout-negative">
-<p>This is a negative callout!</p>
+<p>This is a negative callout with a <a href="#">link</a>!</p>
 </div>
 <h2>Headings</h2>
 <p>You can use up to up to six levels by writing # at the start of a line; the number of hashtags defines the hierarchy of the heading.</p>
