@@ -38,7 +38,7 @@ My task was to download each employee picture from the url in the tuple and then
 There were 500+ employees, so this would be torture to do manually 😩.
 
 !!!!callout
-I originally started learning Python from the book [Automate the Boring Stuff with Python][automate], and this is a great example of what the it teaches. Enter Python 🐍.
+I originally started learning Python from the book [Automate the Boring Stuff with Python][automate], and this is a great example of what it teaches. Enter Python 🐍.
 !!!!
 
 [automate]: https://automatetheboringstuff.com/
@@ -63,7 +63,7 @@ After re-learning this basic idea, I wondered if this also worked with the [enum
 [enumerate]: https://docs.python.org/3/library/functions.html?highlight=enumerate#enumerate
 
 ```pycon
->>> for i, (url, name, dept, date) in employees:
+>>> for i, (url, name, dept, date) in enerarate(employees):
 ...     print(f'Record {I}: {name} image located @ {url}')
 Record 0: J. DOE located @ https://www.url.com/1
 Record 1: D. JONES located @ https://www.url.com/2
