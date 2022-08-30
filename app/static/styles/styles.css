@@ -537,9 +537,14 @@ main ul#posts li:not(:first-child) {
   font-weight: inherit;
 }
 
-.callout a:hover {
-  color: inherit;
-  font-weight: 900;
+@keyframes pulse {
+  25% {
+    transform: scale(0.95);
+  }
+
+  75% {
+    transform: scale(1);
+  }
 }
 
 main button {
@@ -552,6 +557,13 @@ main button {
   font-weight: 700;
   padding: var(--spacing--small) var(--spacing--medium);
   width: 100%;
+}
+
+main button:hover {
+  animation-name: pulse;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
 }
 
 main button.secondary {
