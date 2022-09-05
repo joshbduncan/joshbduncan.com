@@ -21,6 +21,7 @@
   --hsl-ink: var(--hsl-almost-black);
   --hsl-primary: var(--hsl-purple);
   --hsl-secondary: var(--hsl-mint);
+  --hsl-contrast: var(--hsl-black);
 
   --color-almost-black: hsl(var(--hsl-almost-black));
   --color-almost-white: hsl(var(--hsl-almost-white));
@@ -101,6 +102,7 @@
   --hsl-ink: var(--hsl-almost-white);
   --hsl-primary: var(--hsl-mint);
   --hsl-secondary: var(--hsl-purple);
+  --hsl-contrast: var(--hsl-white);
 
   --color-contrast: hsl(var(--hsl-white));
 }
@@ -346,6 +348,53 @@ hr {
   margin: var(--spacing--x-large) 0;
 }
 
+form {
+  display: grid;
+  gap: var(--spacing--x-small);
+}
+
+input {
+  color: var(--color-txt);
+  background: hsl(var(--hsl-ink), 0.125);
+  border-radius: var(--spacing--small);
+  border: none;
+  padding: var(--spacing--small) var(--spacing--medium);
+  max-width: 100%;
+}
+
+select {
+  color: var(--color-txt);
+  background: hsl(var(--hsl-ink), 0.125);
+  border-radius: var(--spacing--small);
+  border: none;
+  padding: var(--spacing--small) var(--spacing--medium);
+  max-width: 100%;
+}
+
+input[type="color"] {
+  height: 200%;
+  width: 100%;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: solid 1px transparent;
+  border-radius: 40px;
+}
+
+fieldset {
+  background: red;
+}
+
+legend {
+  font-weight: 700;
+}
+
+label {
+  font-weight: 700;
+}
+
 blockquote {
   border-inline-start: 1px solid var(--color-border);
   padding-block: 0;
@@ -364,13 +413,13 @@ pre {
 }
 
 mark {
-  background-color: hsl(var(--hsl-yellow));
+  background: hsl(var(--hsl-yellow));
   padding: 0 var(--spacing--xx-small);
 }
 
 kbd {
   /* align-self: center; */
-  background-color: var(--color-secondary);
+  background: var(--color-secondary);
   border-radius: var(--spacing--small);
   font-family: var(--font-family--mono);
   font-size: var(--font-size--small);
@@ -407,11 +456,6 @@ ins {
   transition: all 0.3s ease-in-out;
   padding-top: 0.25em;
 }
-
-/* .toggle-theme:hover,
-.toggle-theme:focus {
-  color: hsl(var(--hsl-yellow));
-} */
 
 .toggle-theme .sun {
   display: none;
@@ -464,6 +508,12 @@ nav ul li {
   padding-bottom: var(--spacing--medium);
 }
 
+nav ul li a[aria-current="page"] {
+  color: var(--color-secondary);
+  text-decoration: underline wavy var(--color-secondary) 0.25rem;
+  text-underline-offset: var(--spacing--x-small);
+}
+
 nav a {
   color: hsl(var(--hsl-white));
   font-size: var(--font-size--xx-large);
@@ -472,7 +522,7 @@ nav a {
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: var(--color-secondary);
 }
 
 input#toggle-nav:checked + #hamburger * {
@@ -509,7 +559,7 @@ main ul#posts li:not(:first-child) {
 }
 
 .callout {
-  background-color: hsl(var(--hsl-yellow));
+  background: hsl(var(--hsl-yellow));
   border-radius: var(--spacing--small);
   color: var(--color-almost-black);
   font-weight: 700;
@@ -518,12 +568,12 @@ main ul#posts li:not(:first-child) {
 }
 
 .callout-positive {
-  background-color: var(--color-positive);
+  background: var(--color-positive);
   color: var(--color-white);
 }
 
 .callout-negative {
-  background-color: var(--color-negative);
+  background: var(--color-negative);
   color: var(--color-white);
 }
 
@@ -547,45 +597,54 @@ main ul#posts li:not(:first-child) {
   }
 }
 
-main button {
-  background-color: var(--color-primary);
-  border-radius: var(--spacing--large);
+button {
+  font: inherit;
   border: none;
-  color: var(--color-txt--reversed);
   cursor: pointer;
+}
+
+.btn {
+  background: hsl(var(--hsl-primary));
+  border: 3px solid transparent;
+  border-radius: var(--spacing--large);
+  color: var(--color-txt--reversed);
+  display: flex;
   font-size: var(--font-size--large);
   font-weight: 700;
+  gap: 3rem;
+  justify-content: center;
   padding: var(--spacing--small) var(--spacing--medium);
-  width: 100%;
+  text-decoration: none;
 }
 
-main button:hover {
-  animation-name: pulse;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
+.btn:hover {
+  border-color: hsl(var(--hsl-violet));
 }
 
-main button.secondary {
-  background-color: var(--color-secondary);
+.btn-secondary {
+  background: hsl(var(--hsl-secondary));
 }
 
-main button.contrast {
-  background-color: var(--color-contrast);
+.btn-contrast {
+  background: hsl(var(--hsl-contrast));
 }
 
-main button.outline {
-  background-color: transparent;
-  border: 3px solid var(--color-primary);
+.btn-outline {
+  background: transparent;
+  border: 3px solid hsl(var(--hsl-primary));
   color: var(--color-contrast);
 }
 
-main button.outline.secondary {
-  border: 3px solid var(--color-secondary);
+.btn-outline-secondary {
+  background: transparent;
+  border: 3px solid hsl(var(--hsl-secondary));
+  color: var(--color-contrast);
 }
 
-main button.outline.contrast {
-  border: 3px solid var(--color-contrast);
+.btn-outline-contrast {
+  background: transparent;
+  border: 3px solid hsl(var(--hsl-contrast));
+  color: var(--color-contrast);
 }
 
 input#search-query {
@@ -615,7 +674,7 @@ th {
 }
 
 table tbody tr:nth-child(odd) {
-  background-color: hsl(var(--hsl-ink), 0.125);
+  background: hsl(var(--hsl-ink), 0.125);
 }
 
 /* ########## FOOTER STYLING ########## */
@@ -650,10 +709,12 @@ footer li {
 }
 
 .flex {
-  align-items: center;
   display: flex;
-  justify-content: space-evenly;
-  margin: var(--spacing--large) 0;
+  flex-wrap: wrap;
+  gap: var(--spacing--large);
+  justify-content: center;
+  /* margin: var(--spacing--large) 0; */
+  place-items: center;
 }
 
 .grid {
@@ -1215,30 +1276,30 @@ footer li {
 
   td.linenos .normal {
     color: inherit;
-    background-color: transparent;
+    background: transparent;
     padding-left: 5px;
     padding-right: 5px;
   }
   span.linenos {
     color: inherit;
-    background-color: transparent;
+    background: transparent;
     padding-left: 5px;
     padding-right: 5px;
   }
   td.linenos .special {
     color: #000000;
-    background-color: #ffffc0;
+    background: #ffffc0;
     padding-left: 5px;
     padding-right: 5px;
   }
   span.linenos.special {
     color: #000000;
-    background-color: #ffffc0;
+    background: #ffffc0;
     padding-left: 5px;
     padding-right: 5px;
   }
   .codehilite .hll {
-    background-color: #ffffcc;
+    background: #ffffcc;
   }
   .codehilite {
     background: #f8f8f8;

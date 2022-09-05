@@ -101,15 +101,25 @@
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
       </svg>
     </label>
+
+    {% set navigation_links = [
+    ("index", "Home"),
+    ("about", "About"),
+    ("software", "Software"),
+    ("categories", "Categories"),
+    ("tags", "Tags"),
+    ("search", "Search"),
+    ("rss", "RSS"),
+    ] %}
+
     <nav>
       <ul>
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('about') }}">About</a></li>
-        <li><a href="{{ url_for('software') }}">Software</a></li>
-        <li><a href="{{ url_for('categories') }}">Categories</a></li>
-        <li><a href="{{ url_for('tags') }}">Tags</a></li>
-        <li><a href="{{ url_for('search') }}">Search</a></li>
-        <li><a href="{{ url_for('rss') }}">RSS</a></li>
+        {% for route, title in navigation_links %}
+        <li><a
+             role="menuitem"
+             href="{{ url_for(route) }}"
+             {% if request.path==url_for(route) %} aria-current="page" {% endif %}>{{ title }}</a></li>
+        {% endfor %}
       </ul>
     </nav>
   </header>

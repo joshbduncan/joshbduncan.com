@@ -55,37 +55,49 @@ tags: tag1, tag2, tag3
 ---
 ```
 
+## Markdown Div Plugin
+
+```markdown
+<<< #element-id .class1 .class2 data-attribute="test"
+This is a paragraph element put inside of an html div.
+>>>
+```
+
+<<< #element-id .class1 .class2 data-attribute="test"
+This is a paragraph element inside of an html div with custom attributes.
+>>>
+
 ## Callouts
 
 ```markdown
-!!!!callout
+<<< .callout
 This is a standard callout with a [link](#)!
-!!!!
+>>>
 ```
 
-!!!!callout
+<<< .callout
 This is a standard callout with a [link](#)!
-!!!!
+>>>
 
 ```markdown
-!!!!callout callout-positive
+<<< .callout .callout-positive
 This is a positive callout with a [link](#)!
-!!!!
+>>>
 ```
 
-!!!!callout callout-positive
+<<< .callout .callout-positive
 This is a positive callout with a [link](#)!
-!!!!
+>>>
 
 ```markdown
-!!!!callout callout-negative
+<<< .callout .callout-negative
 This is a negative callout with a [link](#)!
-!!!!
+>>>
 ```
 
-!!!!callout callout-negative
+<<< .callout .callout-negative
 This is a negative callout with a [link](#)!
-!!!!
+>>>
 
 ## Headings
 
@@ -231,13 +243,13 @@ The basic Markdown syntax allows you to [create code](https://www.markdownguide.
 
 To make a table, use vertical bar characters to denote cells. Start with column headers, separate with a row of cells with hyphens, then add further rows of cells. For example:
 
-!!!!table
+<<< .table
 | # | Heading | Heading | Heading | Heading | Heading | Heading |
 |---|---------|---------|---------|---------|---------|---------|
 | 1 | Cell    | Cell    | Cell    | Cell    | Cell    | Cell    |
 | 2 | Cell    | Cell    | Cell    | Cell    | Cell    | Cell    |
 | 3 | Cell    | Cell    | Cell    | Cell    | Cell    | Cell    |
-!!!!
+>>>
 
 ## Buttons
 <div class="grid">

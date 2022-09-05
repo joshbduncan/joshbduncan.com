@@ -150,9 +150,9 @@ function settingsWin(prefsData) {
 
 The main thing to understand from the code above are the final few lines. If the user clicks the "OK" button `if (win.show() == 1)`, I gather their dialog selections (radio buttons in this case) and construct an object from them that I can return for use in the rest of the script.
 
-!!!!callout
+<<< .callout
 You may notice a utility function above called `captureRBSelection()`. It's not necessarily needed, it just provides an easy way to determine which radio button from a UI group is selected. 
-!!!!
+>>>
 
 ## Writing JSON Files With ExtendScript
 
@@ -180,9 +180,9 @@ function writeJSONData(obj, file) {
 }
 ```
 
-!!!!callout
+<<< .callout
 Normally, a script would do more than just write a preferences file. Usually, the selection(s) made by the user direct the next steps the script takes. In this case, that only means showing the selected preferences in an alert.
-!!!!
+>>>
 
 ```javascript
 alert(
