@@ -88,15 +88,47 @@
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
       </svg>
     </label>
+
+    
+
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/software.html">Software</a></li>
-        <li><a href="/categories.html">Categories</a></li>
-        <li><a href="/tags.html">Tags</a></li>
-        <li><a href="/search.html">Search</a></li>
-        <li><a href="/rss.xml">RSS</a></li>
+        
+        <li><a
+             role="menuitem"
+             href="/"
+             >Home</a></li>
+        
+        <li><a
+             role="menuitem"
+             href="/about.html"
+             >About</a></li>
+        
+        <li><a
+             role="menuitem"
+             href="/software.html"
+             >Software</a></li>
+        
+        <li><a
+             role="menuitem"
+             href="/categories.html"
+             >Categories</a></li>
+        
+        <li><a
+             role="menuitem"
+             href="/tags.html"
+             >Tags</a></li>
+        
+        <li><a
+             role="menuitem"
+             href="/search.html"
+             >Search</a></li>
+        
+        <li><a
+             role="menuitem"
+             href="/rss.xml"
+             >RSS</a></li>
+        
       </ul>
     </nav>
   </header>
@@ -156,26 +188,35 @@
 <span class="nn">---</span><span class="w"></span>
 </code></pre></div>
 
+<h2>Markdown Div Plugin</h2>
+<div class="codehilite"><pre><span></span><code>&lt;&lt;&lt; <span class="ni">#element</span>-id .class1 .class2 data-attribute=&quot;test&quot;
+This is a paragraph element put inside of an html div.
+&gt;&gt;&gt;
+</code></pre></div>
+
+<div class="class1 class2" data-attribute="test" id="element-id">
+<p>This is a paragraph element inside of an html div with custom attributes.</p>
+</div>
 <h2>Callouts</h2>
-<div class="codehilite"><pre><span></span><code>!!!!callout
+<div class="codehilite"><pre><span></span><code>&lt;&lt;&lt; .callout
 This is a standard callout with a [<span class="nt">link</span>](<span class="na">#</span>)!
-!!!!
+&gt;&gt;&gt;
 </code></pre></div>
 
 <div class="callout">
 <p>This is a standard callout with a <a href="#">link</a>!</p>
 </div>
-<div class="codehilite"><pre><span></span><code>!!!!callout callout-positive
+<div class="codehilite"><pre><span></span><code>&lt;&lt;&lt; .callout .callout-positive
 This is a positive callout with a [<span class="nt">link</span>](<span class="na">#</span>)!
-!!!!
+&gt;&gt;&gt;
 </code></pre></div>
 
 <div class="callout callout-positive">
 <p>This is a positive callout with a <a href="#">link</a>!</p>
 </div>
-<div class="codehilite"><pre><span></span><code>!!!!callout callout-negative
+<div class="codehilite"><pre><span></span><code>&lt;&lt;&lt; .callout .callout-negative
 This is a negative callout with a [<span class="nt">link</span>](<span class="na">#</span>)!
-!!!!
+&gt;&gt;&gt;
 </code></pre></div>
 
 <div class="callout callout-negative">
