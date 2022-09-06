@@ -362,6 +362,12 @@ input {
   max-width: 100%;
 }
 
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  width: 100%;
+}
+
 select {
   color: var(--color-txt);
   background: hsl(var(--hsl-ink), 0.125);
@@ -372,7 +378,7 @@ select {
 }
 
 input[type="color"] {
-  height: 200%;
+  height: var(--spacing--xx-large);
   width: 100%;
 }
 input[type="color"]::-webkit-color-swatch-wrapper {
@@ -623,6 +629,7 @@ button {
 
 .btn-secondary {
   background: hsl(var(--hsl-secondary));
+  color: var(--color-contrast);
 }
 
 .btn-contrast {
