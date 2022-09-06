@@ -253,14 +253,14 @@ To make a table, use vertical bar characters to denote cells. Start with column 
 
 ## Buttons
 <div class="grid">
-  <button type="button">Primary</button>
-  <button class="secondary" type="button">Secondary</button>
-  <button class="contrast" type="button">Contrast</button>
+  <button class="btn" type="button">Primary</button>
+  <button class="btn btn-secondary" type="button">Secondary</button>
+  <button class="btn btn-contrast" type="button">Contrast</button>
 </div>
 <div class="grid">
-  <button class="outline" type="button">Primary outline</button>
-  <button class="outline secondary" type="button">Secondary outline</button>
-  <button class="outline contrast" type="button">Contrast outline</button>
+  <button class="btn btn-outline" type="button">Primary outline</button>
+  <button class="btn btn-outline-secondary" type="button">Secondary outline</button>
+  <button class="btn btn-outline-contrast" type="button">Contrast outline</button>
 </div>
 
 ## Form Elements
@@ -322,8 +322,7 @@ To make a table, use vertical bar characters to denote cells. Start with column 
     </label>
   </div>
 
-  <div class="grid">
-    <!-- Checkboxes -->
+  <!-- <div class="grid">
     <fieldset>
       <legend><strong>Checkboxes</strong></legend>
       <label for="checkbox-1">
@@ -335,7 +334,6 @@ To make a table, use vertical bar characters to denote cells. Start with column 
         Checkbox
       </label>
     </fieldset>
-    <!-- Radio buttons -->
     <fieldset>
       <legend><strong>Radio buttons</strong></legend>
       <label for="radio-1">
@@ -347,7 +345,6 @@ To make a table, use vertical bar characters to denote cells. Start with column 
         Radio button
       </label>
     </fieldset>
-    <!-- Switch -->
     <fieldset>
       <legend><strong>Switches</strong></legend>
       <label for="switch-1">
@@ -359,7 +356,7 @@ To make a table, use vertical bar characters to denote cells. Start with column 
         Switch
       </label>
     </fieldset>
-  </div>
+  </div> -->
 
   <!-- Buttons -->
   <input type="reset" value="Reset" onclick="event.preventDefault()">

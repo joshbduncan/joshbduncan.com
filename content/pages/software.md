@@ -9,15 +9,9 @@ Most of the things I make are free to download but if you would like to support 
 >>>
 
 <div class="grid">
-    <a href="https://buy.stripe.com/4gw2c70oq6kBgHS6oo" target="_blank">
-        <button type="button">Support on Stripe</button>
-    </a>
-    <a href="https://www.buymeacoffee.com/joshbduncan" target="_blank">
-        <button type="button">Buy Me A Coffee</button>
-    </a>
-    <a href="https://www.paypal.com/donate/?hosted_button_id=F9WGMH9BSLKLA" target="_blank">
-        <button type="button">Support on PayPal</button>
-    </a>
+    <a class="btn" href="https://buy.stripe.com/4gw2c70oq6kBgHS6oo" target="_blank">Support on Stripe</a>
+    <a class="btn" href="https://www.buymeacoffee.com/joshbduncan" target="_blank">Buy Me A Coffee</a>
+    <a class="btn" href="https://www.paypal.com/donate/?hosted_button_id=F9WGMH9BSLKLA" target="_blank">Support on PayPal</a>
 </div>
 
 ⚙️ **Looking for a custom solution?** I am available for hire. [Get in touch](https://contact-josh.carrd.co){: target="_blank" }.
