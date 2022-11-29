@@ -1368,6 +1368,7 @@ span.linenos.special {
 }
 .codehilite {
   background: #f8f8f8;
+  border-radius: var(--spacing--small);
 }
 .codehilite .c {
   color: #3d7b7b;
@@ -1625,6 +1626,7 @@ span.linenos.special {
 }
 [data-theme="dark"] .codehilite {
   background: #363949;
+  border-radius: var(--spacing--small);
   color: #f8f8f2;
 }
 [data-theme="dark"] .codehilite .c {
@@ -1691,7 +1693,7 @@ span.linenos.special {
   font-weight: bold;
 } /* Generic.Inserted */
 [data-theme="dark"] .codehilite .go {
-  color: #44475a;
+  color: #7e82a6;
 } /* Generic.Output */
 [data-theme="dark"] .codehilite .gp {
   color: #f8f8f2;
