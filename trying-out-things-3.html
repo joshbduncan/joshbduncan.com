@@ -386,7 +386,7 @@ $ python3 -m venv venv
 <p><img alt="To-dos Added to Things 3" loading="lazy" src="/static/images/to-dos-added-to-things.gif" /></p>
 <p>As you can see, all of the to-dos come flooding in to my new project. Success!</p>
 <h2>Cleaning Up</h2>
-<p>Now, I just need to clean up my code and add a if *<strong>*name</strong> == '<strong>main</strong>'** clause so I can use this standalone or on import if need be.</p>
+<p>Now, I just need to clean up my code and add the <code>if name == main</code> clause so I can use this standalone or on import if need be.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">todoist_tasks</span> <span class="o">=</span> <span class="n">get_all_tasks</span><span class="p">()</span>
     <span class="n">todoist_projects</span> <span class="o">=</span> <span class="n">get_all_projects</span><span class="p">()</span>
