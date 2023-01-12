@@ -357,7 +357,7 @@ As you can see, all of the to-dos come flooding in to my new project. Success!
 
 ## Cleaning Up
 
-Now, I just need to clean up my code and add a if \***\*name** == '**main**'\*\* clause so I can use this standalone or on import if need be.
+Now, I just need to clean up my code and add the `if name == main` clause so I can use this standalone or on import if need be.
 
 ```python
 if __name__ == '__main__':

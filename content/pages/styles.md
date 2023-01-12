@@ -7,28 +7,50 @@ title: Style Guide
 
 ## Colors
 <div id="colors" class="grid">
-<span style="color: hsl(var(--hsl-almost-black)) !important" >--hsl-almost-black</span>
-<span style="color: hsl(var(--hsl-almost-white)) !important" >--hsl-almost-white</span>
-<span style="color: hsl(var(--hsl-black)) !important" >--hsl-black</span>
-<span style="color: hsl(var(--hsl-blue)) !important" >--hsl-blue</span>
-<span style="color: hsl(var(--hsl-green)) !important" >--hsl-green</span>
-<span style="color: hsl(var(--hsl-grey)) !important" >--hsl-grey</span>
-<span style="color: hsl(var(--hsl-mint)) !important" >--hsl-mint</span>
-<span style="color: hsl(var(--hsl-off-white)) !important" >--hsl-off-white</span>
-<span style="color: hsl(var(--hsl-orange)) !important" >--hsl-orange</span>
-<span style="color: hsl(var(--hsl-purple)) !important" >--hsl-purple</span>
-<span style="color: hsl(var(--hsl-red)) !important" >--hsl-red</span>
-<span style="color: hsl(var(--hsl-turquoise)) !important" >--hsl-turquoise</span>
-<span style="color: hsl(var(--hsl-violet)) !important" >--hsl-violet</span>
-<span style="color: hsl(var(--hsl-white)) !important" >--hsl-white</span>
-<span style="color: hsl(var(--hsl-yellow)) !important" >--hsl-yellow</span>
+<span style="color: var(--color-body-color) !important">--color-body-color</span>
+<span style="color: var(--color-body-bg) !important">--color-body-bg</span>
+<span style="color: var(--color-heading-color) !important">--color-heading-color</span>
+<span style="color: var(--color-secondary-color) !important">--color-secondary-color</span>
+<span style="color: var(--color-secondary-bg) !important">--color-secondary-bg</span>
+<span style="color: var(--color-tertiary-color) !important">--color-tertiary-color</span>
+<span style="color: var(--color-tertiary-bg) !important">--color-tertiary-bg</span>
+<span style="color: var(--color-emphasis-color) !important">--color-emphasis-color</span>
+<span style="color: var(--color-border-color) !important">--color-border-color</span>
+<span style="color: var(--color-primary) !important">--color-primary</span>
+<span style="color: var(--color-primary-bg-subtle) !important">--color-primary-bg-subtle</span>
+<span style="color: var(--color-primary-border-subtle) !important">--color-primary-border-subtle</span>
+<span style="color: var(--color-primary-text) !important">--color-primary-text</span>
+<span style="color: var(--color-success) !important">--color-success</span>
+<span style="color: var(--color-success-bg-subtle) !important">--color-success-bg-subtle</span>
+<span style="color: var(--color-success-border-subtle) !important">--color-success-border-subtle</span>
+<span style="color: var(--color-success-text) !important">--color-success-text</span>
+<span style="color: var(--color-danger) !important">--color-danger</span>
+<span style="color: var(--color-danger-bg-subtle) !important">--color-danger-bg-subtle</span>
+<span style="color: var(--color-danger-border-subtle) !important">--color-danger-border-subtle</span>
+<span style="color: var(--color-danger-text) !important">--color-danger-text</span>
+<span style="color: var(--color-warning) !important">--color-warning</span>
+<span style="color: var(--color-warning-bg-subtle) !important">--color-warning-bg-subtle</span>
+<span style="color: var(--color-warning-border-subtle) !important">--color-warning-border-subtle</span>
+<span style="color: var(--color-warning-text) !important">--color-warning-text</span>
+<span style="color: var(--color-info) !important">--color-info</span>
+<span style="color: var(--color-info-bg-subtle) !important">--color-info-bg-subtle</span>
+<span style="color: var(--color-info-border-subtle) !important">--color-info-border-subtle</span>
+<span style="color: var(--color-info-text) !important">--color-info-text</span>
+<span style="color: var(--color-light) !important">--color-light</span>
+<span style="color: var(--color-light-bg-subtle) !important">--color-light-bg-subtle</span>
+<span style="color: var(--color-light-border-subtle) !important">--color-light-border-subtle</span>
+<span style="color: var(--color-light-text) !important">--color-light-text</span>
+<span style="color: var(--color-dark) !important">--color-dark</span>
+<span style="color: var(--color-dark-bg-subtle) !important">--color-dark-bg-subtle</span>
+<span style="color: var(--color-dark-border-subtle) !important">--color-dark-border-subtle</span>
+<span style="color: var(--color-dark-text) !important">--color-dark-text</span>
 </div>
 
 ## Inline Text Elements
 <div id="inline-text-elements" class="grid">
   <p><a href="#">Primary Link</a></p>
   <p><a class="secondary" href="#">Secondary Link</a></p>
-  <p><a class="contrast" href="#">Contrast Link</a></p>
+  <p><a class="tertiary" href="#">Tertiary Link</a></p>
   <p><b>Bold</b></p>
   <p><em>Italic</em></p>
   <p><u>Underline</u></p>
@@ -255,113 +277,13 @@ To make a table, use vertical bar characters to denote cells. Start with column 
 <div class="grid">
   <button class="btn" type="button">Primary</button>
   <button class="btn btn-secondary" type="button">Secondary</button>
-  <button class="btn btn-contrast" type="button">Contrast</button>
+  <button class="btn btn-success" type="button">Success</button>
 </div>
 <div class="grid">
-  <button class="btn btn-outline" type="button">Primary outline</button>
-  <button class="btn btn-outline-secondary" type="button">Secondary outline</button>
-  <button class="btn btn-outline-contrast" type="button">Contrast outline</button>
+  <button class="btn btn-warning" type="button">Warning</button>
+  <button class="btn btn-danger" type="button">Danger</button>
+  <button class="btn btn-info" type="button">Info</button>
 </div>
-
-## Form Elements
-<form>
-  <!-- Search -->
-  <label for="search">Search</label>
-  <input type="search" id="search" name="search" placeholder="Search">
-
-  <!-- Text -->
-  <label for="text">Text</label>
-  <input type="text" id="text" name="text" placeholder="Text">
-  <small>Curabitur consequat lacus at lacus porta finibus.</small>
-
-  <!-- Select -->
-  <label for="select">Select</label>
-  <select id="select" name="select" required>
-    <option value="" selected>Select…</option>
-    <option>…</option>
-  </select>
-
-  <!-- File browser -->
-  <label for="file">File browser
-    <input type="file" id="file" name="file">
-  </label>
-
-  <!-- Range slider control -->
-  <label for="range">Range slider
-    <input type="range" min="0" max="100" value="50" id="range" name="range">
-  </label>
-
-  <!-- States -->
-  <div class="grid">
-    <label for="valid">
-      Valid
-      <input type="text" id="valid" name="valid" placeholder="Valid" aria-invalid="false">
-    </label>
-    <label for="invalid">
-      Invalid
-      <input type="text" id="invalid" name="invalid" placeholder="Invalid" aria-invalid="true">
-    </label>
-    <label for="disabled">
-      Disabled
-      <input type="text" id="disabled" name="disabled" placeholder="Disabled" disabled>
-    </label>
-  </div>
-
-  <div class="grid">
-    <!-- Date-->
-    <label for="date">Date
-      <input type="date" id="date" name="date">
-    </label>
-    <!-- Time-->
-    <label for="time">Time
-      <input type="time" id="time" name="time">
-    </label>
-    <!-- Color-->
-    <label for="color">Color
-      <input type="color" id="color" name="color" value="#0eaaaa">
-    </label>
-  </div>
-
-  <!-- <div class="grid">
-    <fieldset>
-      <legend><strong>Checkboxes</strong></legend>
-      <label for="checkbox-1">
-        <input type="checkbox" id="checkbox-1" name="checkbox-1" checked>
-        Checkbox
-      </label>
-      <label for="checkbox-2">
-        <input type="checkbox" id="checkbox-2" name="checkbox-2">
-        Checkbox
-      </label>
-    </fieldset>
-    <fieldset>
-      <legend><strong>Radio buttons</strong></legend>
-      <label for="radio-1">
-        <input type="radio" id="radio-1" name="radio" value="radio-1" checked>
-        Radio button
-      </label>
-      <label for="radio-2">
-        <input type="radio" id="radio-2" name="radio" value="radio-2">
-        Radio button
-      </label>
-    </fieldset>
-    <fieldset>
-      <legend><strong>Switches</strong></legend>
-      <label for="switch-1">
-        <input type="checkbox" id="switch-1" name="switch-1" role="switch" checked>
-        Switch
-      </label>
-      <label for="switch-2">
-        <input type="checkbox" id="switch-2" name="switch-2" role="switch">
-        Switch
-      </label>
-    </fieldset>
-  </div> -->
-
-  <!-- Buttons -->
-  <input type="reset" value="Reset" onclick="event.preventDefault()">
-  <input type="submit" value="Submit" onclick="event.preventDefault()">
-</form>
 
 ## Horizontal Rule
 
