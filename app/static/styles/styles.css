@@ -278,10 +278,15 @@ header {
 logo {
   display: inline-block;
   margin-top: var(--spacing--large);
+  transition: transform 0.5s;
 }
 
 logo a {
   color: var(--color-primary);
+}
+
+logo:hover {
+  transform: scale(1.2);
 }
 
 h1,
