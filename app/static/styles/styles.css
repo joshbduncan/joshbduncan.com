@@ -521,7 +521,12 @@ nav ul li {
 
 nav ul li a[aria-current="page"] {
   color: #fff;
-  text-decoration: underline wavy var(--color-warning) 0.25rem;
+  /* text-decoration: underline wavy var(--color-warning) 0.25rem; */
+  /* text-underline-offset: var(--spacing--x-small); */
+  text-decoration-color: var(--color-warning);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.25rem;
+  text-decoration-style: wavy;
   text-underline-offset: var(--spacing--x-small);
 }
 
@@ -533,7 +538,12 @@ nav a {
 }
 
 nav a:hover {
-  text-decoration: underline wavy var(--color-warning) 0.25rem;
+  /* text-decoration: underline wavy var(--color-warning) 0.25rem; */
+  /* text-underline-offset: var(--spacing--x-small); */
+  text-decoration-color: var(--color-warning);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.25rem;
+  text-decoration-style: wavy;
   text-underline-offset: var(--spacing--x-small);
 }
 
