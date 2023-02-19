@@ -5,7 +5,7 @@ updated: 2022-01-15
 description: If you use Chrome on macOS and are jealous of Safari's ability to autofill Two Factor Authentication (2FA) security codes checkout this sweet Keyboard Maestro macro.
 author: Josh Duncan
 category: productivity
-tags: keyboard maestro, productivity, macos, chrome
+tags: keyboard-maestro, productivity, macos, chrome
 ---
 
 Looking to escape the constant battery drain of Chrome I've tried switching to Safari a few times this past year but it never sticks. Multiple times a day I had to open Chrome for (decent) Developer Tools and I'm just not interested in using two browsers.
