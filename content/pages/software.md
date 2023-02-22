@@ -2,7 +2,7 @@
 title: Software
 ---
 
-I'm a designer by trade but started to learn development in 2020 and I'm currently developing in Python, [ExtendScript for Adobe](#extendscript), and HTML/CSS/JavaScript. I'm sharing some of my projects here in hope that you may find them useful.
+I'm a designer by trade but started to learn development in 2020 and I'm currently developing in [Python](#python), [ExtendScript for Adobe](#extendscript), and HTML/CSS/JavaScript. I'm sharing some of my projects here in hope that you may find them useful.
 
 <<< .callout .callout-warning
 Most of the things I make are free to download but if you would like to support me that would be awesome and greatly appreciated! 🙏
@@ -20,26 +20,37 @@ Most of the things I make are free to download but if you would like to support 
 
 🐞 **Find a bug?** Please submit an issue on [GitHub](https://github.com/joshbduncan){: target="_blank" }.
 
+## Python 🐍 {: #python }
+
+### Word Search Generator ([GitHub](https://github.com/joshbduncan/word-search-generator){: target="_blank" })
+
+Word-Search-Generator is a Python module for generating fun [Word Search Puzzles](https://en.wikipedia.org/wiki/Word_search).
+
+Like most of my programming endeavors, Word-Search-Generator was born out of necessity. I needed an easy way to generate a bunch of word search puzzles for kid's food menus.
+
+🤦‍♂️ Does the world need this? Probably not.  
+⏰ Did I spend way too much time on it? Yep!  
+✅ Does it come in handy? Heck yeah!  
+👍 Did I have fun making it? Absofreakinglutly!
+
+![Ai Command Palette](/static/images/word-search-generator.gif){: loading="lazy" }
+
 ## Adobe Scripts (ExtendScript) {: #extendscript }
 
 As a longtime user of Adobe products I often find the need for extended functionality. Here are some of the solutions I have developed.
 
-### Ai Command Palette
+### Ai Command Palette ([GitHub](https://github.com/joshbduncan/AiCommandPalette){: target="_blank" })
 
-Boost your Adobe Illustrator efficiency with quick access to **most menu commands** and **tools**, all of your **actions**, and any **scripts** right from your keyboard.
+Boost your Adobe Illustrator efficiency with quick access to **most Menu Commands** and **Tools**, all of your **Actions**, **Bookmarked** file or folder, and any **Scripts** right from your keyboard.
 
 And, with custom **Workflows**, you can combine multiple commands, actions, and scripts to get things done in your own way. Replace repetitive tasks with workflows and boost your productivity.
 
-[Adobe Illustrator Command Palette - GitHub](https://github.com/joshbduncan/AiCommandPalette){: target="_blank" }
-
 ![Ai Command Palette](/static/images/ai-command-palette.png){: loading="lazy" }
 
-### Ai Match Objects
+### Ai Match Objects ([GitHub](https://github.com/joshbduncan/adobe-scripts#matchobjectsjsx){: target="_blank" })
 
 Match one or more objects to another by position, size, rotation, layer, and or alignment.
 
 **My most used script by far!**
-
-[Adobe Illustrator Match Objects - GitHub](https://github.com/joshbduncan/adobe-scripts#matchobjectsjsx){: target="_blank" }
 
 ![Ai Match Objects](/static/images/ai-match-objects.png){: loading="lazy" }
