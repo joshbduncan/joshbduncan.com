@@ -3,43 +3,64 @@
 
 <article>
   <header>
-    <h1>whatcha looking for...</h1>
-  </header>
-  <form action="https://www.google.com/search" method="GET">
     <div>
-      <input type="text" class="text-align-center" id="search-query" autocomplete="off" />
-      <input type="hidden" id="q" name="q" />
+      <input data-search type="search" id="search" placeholder="Search posts, tags, and categories">
     </div>
-    <div class="search-button">
-      <button class="btn btn-search mt-l" type="submit">Search</button>
-    </div>
-  </form>
+  </header>
 </article>
 
-<!-- <div class="text-align-center">
-  <ul id="category" data-title="Categories:">
-    {% for category in categories %}
-    <li><a href="{{ url_for('category', category=category) }}">{{ category }}</a>{% if not loop.last %}, {% endif %}</li>
-    {% endfor %}
-  </ul>
-</div>
+<ul id="posts" data-posts-list>
+  <template data-post-template>
+    <li class="hide">
+      <article>
+        <header>
+          <h2><a class="text-decoration-none" data-title href=""></a></h2>
+        </header>
+        <p data-description></p>
+      </article>
+    </li>
+  </template>
+</ul>
 
-<div class="text-align-center">
-  <ul id="tags" data-title="Tags:">
-    {% for tag in tags %}
-    <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}</li>
-    {% endfor %}
-  </ul>
-</div> -->
+<script>
+  const postTemplate = document.querySelector("[data-post-template]");
+  const postList = document.querySelector("[data-posts-list]");
+  const searchInput = document.querySelector("[data-search]");
 
-<script type="text/javascript">
-  var form = document.querySelector("form");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var search = form.querySelector("input[type=text]");
-    var q = form.querySelector("input[name=q]");
-    q.value = "site:joshbduncan.com " + search.value;
-    form.submit();
+  searchInput.addEventListener("input", (e) => {
+    const query = e.target.value.toLowerCase();
+    const tokens = query.trim().split(" ");
+    const matches = [];
+    posts.forEach((post) => {
+      let isVisible = false;
+      tokens.forEach((word) => {
+        if (
+          post.words.includes(word) ||
+          post.title.toLowerCase().includes(word) ||
+          post.description.toLowerCase().includes(word) ||
+          post.tags.join(" ").toLowerCase().includes(word)
+        )
+          isVisible = true;
+      });
+      post.element.classList.toggle("hide", query.length > 0 ? !isVisible : true);
+    });
   });
+
+  fetch("./search.json")
+    .then((response) => response.json())
+    .then((data) => {
+      posts = data.map((post) => {
+        const li = postTemplate.content.cloneNode(true).children[0];
+        const title = li.querySelector("[data-title]");
+        const description = li.querySelector("[data-description]");
+        title.textContent = post.title;
+        title.href = post.url;
+        description.textContent = post.description;
+        postList.append(li);
+        post["element"] = li;
+        return post;
+      });
+    });
 </script>
+
 {% endblock content %}

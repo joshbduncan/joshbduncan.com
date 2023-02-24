@@ -1,3 +1,6 @@
+import demoji
+import json
+import re
 from datetime import datetime
 
 from flask import render_template
@@ -6,6 +9,42 @@ from app import app, flatpages, freezer
 
 POST_DIR = app.config["POST_DIR"]
 DRAFT_DIR = app.config["DRAFT_DIR"]
+
+STOPWORDS = {
+    "the",
+    "be",
+    "to",
+    "of",
+    "and",
+    "a",
+    "in",
+    "that",
+    "have",
+    "I",
+    "it",
+    "for",
+    "not",
+    "on",
+    "with",
+    "he",
+    "as",
+    "you",
+    "do",
+    "at",
+    "this",
+    "but",
+    "his",
+    "by",
+    "from",
+    "wikipedia",
+    "then",
+    "i",
+    "an",
+    "or",
+    "their",
+    "what",
+    "if",
+}
 
 
 # ----- ROUTES -----#
@@ -57,8 +96,7 @@ def categories():
 def category(category):
     posts = [post for post in get_live_posts() if category == post.meta["category"]]
     posts.sort(key=lambda item: item["date"], reverse=True)
-    return render_template(
-        "posts.html", posts=posts, filter=category)
+    return render_template("posts.html", posts=posts, filter=category)
 
 
 @app.route("/tags.html")
@@ -94,9 +132,96 @@ def software():
 
 @app.route("/search.html")
 def search():
-    categories = get_all_categories()
-    tags = get_all_tags()
-    return render_template("search.html", categories=categories, tags=tags)
+    return render_template("search.html")
+
+
+@app.route("/search.json")
+def json_search():
+    posts = get_live_posts()
+    posts.sort(key=lambda item: item["date"], reverse=True)
+    posts_data = []
+    for post in posts:
+        body = post.body
+
+        # strip out code blocks
+        body = re.sub(r"```([\s\S]*?)\n([\s\S]*?)```", "", body)
+        body = re.sub(r"`.*?`", "", body)
+
+        # strip out markdown_div extension tags
+        body = re.sub(r"<<<([\s\S]*?)\n", "", body)
+
+        # strip out images
+        body = re.sub(r"!\[.*?\]\(.*?\)", "", body)
+
+        # strip out attribute tags
+        body = re.sub(r"{:.*?}", "", body)
+
+        # strip out urls (including markdown types)
+        body = re.sub(r"\[.*?\]:\s.*\n", "", body)
+        body = re.sub(r"\[.*?\]\(.*?\)", "", body)
+        body = re.sub(r"\[.*?\]\[.*?\]", "", body)
+        # [validation]: https://validator.w3.org/feed/
+        body = re.sub(r"\S*https?:\S*", "", body)
+
+        # strip out emoji
+        body = demoji.replace(body, "")
+
+        # strip out header tags
+        body = re.sub(r"#+\s", " ", body)
+
+        # strip out newlines and extra spaces
+        body = re.sub(r"\n", " ", body)
+        body = re.sub(r"\s{2,}", " ", body)
+
+        # remove punctuation and get all words in a set minus stopwords
+        punctuation = r"!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"  # TODO: remove some items
+        body = body.translate(str.maketrans('', '', punctuation)).lower()
+        words = set(body.split(" ")) - STOPWORDS - {""}
+
+        # put everything into a dict to send via json
+        posts_data.append(
+            {
+                "title": post.meta["title"],
+                "description": post.meta["description"],
+                "category": post.meta["category"] or "",
+                "tags": post.meta["tags"].split(", "),
+                "url": f"https://joshbduncan.com/{post.path.split('/')[-1]}.html",
+                "words": " ".join(words),
+            }
+        )
+    return json.dumps(posts_data)
+
+
+@app.route("/posts.json")
+def json_posts():
+    posts = get_live_posts()
+    posts.sort(key=lambda item: item["date"], reverse=True)
+    posts_data = []
+    for post in posts:
+        # put everything into a dict to send via json
+        posts_data.append(
+            {
+                "title": post.meta["title"],
+                "date": post.meta["date"].strftime("%Y-%m-%d"),
+                "author": post.meta["author"],
+                "description": post.meta["description"],
+                "category": post.meta["category"] or "",
+                "tags": post.meta["tags"].split(", "),
+                "body": post.body,
+                "url": f"https://joshbduncan.com/{post.path.split('/')[-1]}.html",
+            }
+        )
+    return json.dumps(posts_data)
+
+
+@app.route("/tags.json")
+def json_tags():
+    return json.dumps(get_all_tags())
+
+
+@app.route("/categories.json")
+def json_categories():
+    return json.dumps(get_all_categories())
 
 
 @app.route("/sitemap.xml")

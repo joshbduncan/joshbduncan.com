@@ -423,8 +423,19 @@ ins {
   text-decoration: none;
 }
 
-input#search-query {
-  width: 100%;
+input {
+  background-color: transparent;
+  border: 2px solid var(--color-border-color);
+  border-radius: var(--spacing--x-small);
+  color: var(--color-body-color);
+}
+
+input#search {
+  font-size: var(--font-size--x-large);
+  margin-top: var(--spacing--xx-large);
+  padding: var(--spacing--small);
+  text-align: center;
+  width: 80%;
 }
 
 figure {
@@ -717,6 +728,10 @@ footer li {
 }
 
 /* ########## UTILITY CLASSES ########## */
+
+.hide {
+  display: none;
+}
 
 .bold {
   font-weight: 700 !important;
