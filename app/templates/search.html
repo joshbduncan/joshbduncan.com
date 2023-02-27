@@ -34,11 +34,12 @@
     posts.forEach((post) => {
       let isVisible = false;
       tokens.forEach((word) => {
+        let re = new RegExp("\\b" + word);
         if (
-          post.words.includes(word) ||
-          post.title.toLowerCase().includes(word) ||
-          post.description.toLowerCase().includes(word) ||
-          post.tags.join(" ").toLowerCase().includes(word)
+          re.test(post.body) ||
+          re.test(post.title.toLowerCase()) ||
+          re.test(post.description.toLowerCase()) ||
+          re.test(post.tags.join(" ").toLowerCase())
         )
           isVisible = true;
       });
@@ -46,7 +47,7 @@
     });
   });
 
-  fetch("./search.json")
+  fetch("./posts.json")
     .then((response) => response.json())
     .then((data) => {
       posts = data.map((post) => {

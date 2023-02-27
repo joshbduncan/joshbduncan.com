@@ -1,5 +1,4 @@
 black==21.12b0
-demoji==1.1.0
 flake8==4.0.1
 Flask==2.1.1
 Flask-FlatPages==0.8.1

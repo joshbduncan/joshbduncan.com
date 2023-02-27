@@ -1,6 +1,4 @@
-import demoji
 import json
-import re
 from datetime import datetime
 
 from flask import render_template
@@ -9,42 +7,6 @@ from app import app, flatpages, freezer
 
 POST_DIR = app.config["POST_DIR"]
 DRAFT_DIR = app.config["DRAFT_DIR"]
-
-STOPWORDS = {
-    "the",
-    "be",
-    "to",
-    "of",
-    "and",
-    "a",
-    "in",
-    "that",
-    "have",
-    "I",
-    "it",
-    "for",
-    "not",
-    "on",
-    "with",
-    "he",
-    "as",
-    "you",
-    "do",
-    "at",
-    "this",
-    "but",
-    "his",
-    "by",
-    "from",
-    "wikipedia",
-    "then",
-    "i",
-    "an",
-    "or",
-    "their",
-    "what",
-    "if",
-}
 
 
 # ----- ROUTES -----#
@@ -133,63 +95,6 @@ def software():
 @app.route("/search.html")
 def search():
     return render_template("search.html")
-
-
-@app.route("/search.json")
-def json_search():
-    posts = get_live_posts()
-    posts.sort(key=lambda item: item["date"], reverse=True)
-    posts_data = []
-    for post in posts:
-        body = post.body
-
-        # strip out code blocks
-        body = re.sub(r"```([\s\S]*?)\n([\s\S]*?)```", "", body)
-        body = re.sub(r"`.*?`", "", body)
-
-        # strip out markdown_div extension tags
-        body = re.sub(r"<<<([\s\S]*?)\n", "", body)
-
-        # strip out images
-        body = re.sub(r"!\[.*?\]\(.*?\)", "", body)
-
-        # strip out attribute tags
-        body = re.sub(r"{:.*?}", "", body)
-
-        # strip out urls (including markdown types)
-        body = re.sub(r"\[.*?\]:\s.*\n", "", body)
-        body = re.sub(r"\[.*?\]\(.*?\)", "", body)
-        body = re.sub(r"\[.*?\]\[.*?\]", "", body)
-        # [validation]: https://validator.w3.org/feed/
-        body = re.sub(r"\S*https?:\S*", "", body)
-
-        # strip out emoji
-        body = demoji.replace(body, "")
-
-        # strip out header tags
-        body = re.sub(r"#+\s", " ", body)
-
-        # strip out newlines and extra spaces
-        body = re.sub(r"\n", " ", body)
-        body = re.sub(r"\s{2,}", " ", body)
-
-        # remove punctuation and get all words in a set minus stopwords
-        punctuation = r"!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"  # TODO: remove some items
-        body = body.translate(str.maketrans('', '', punctuation)).lower()
-        words = set(body.split(" ")) - STOPWORDS - {""}
-
-        # put everything into a dict to send via json
-        posts_data.append(
-            {
-                "title": post.meta["title"],
-                "description": post.meta["description"],
-                "category": post.meta["category"] or "",
-                "tags": post.meta["tags"].split(", "),
-                "url": f"https://joshbduncan.com/{post.path.split('/')[-1]}.html",
-                "words": " ".join(words),
-            }
-        )
-    return json.dumps(posts_data)
 
 
 @app.route("/posts.json")
