@@ -1,7 +1,6 @@
-import json
 from datetime import datetime
 
-from flask import render_template
+from flask import render_template, jsonify
 
 from app import app, flatpages, freezer
 
@@ -116,17 +115,17 @@ def json_posts():
                 "url": f"https://joshbduncan.com/{post.path.split('/')[-1]}.html",
             }
         )
-    return json.dumps(posts_data)
+    return jsonify(posts_data)
 
 
 @app.route("/tags.json")
 def json_tags():
-    return json.dumps(get_all_tags())
+    return jsonify(get_all_tags())
 
 
 @app.route("/categories.json")
 def json_categories():
-    return json.dumps(get_all_categories())
+    return jsonify(get_all_categories())
 
 
 @app.route("/sitemap.xml")

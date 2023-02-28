@@ -34,7 +34,7 @@
     posts.forEach((post) => {
       let isVisible = false;
       tokens.forEach((word) => {
-        let re = new RegExp("\\b" + word);
+        let re = new RegExp("\\b" + word, "gi");
         if (
           re.test(post.body) ||
           re.test(post.title.toLowerCase()) ||
