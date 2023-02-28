@@ -1,6 +1,7 @@
 ---
 title: Search & Filter HTML Table Data With JavaScript
 date: 2022-03-06
+updated: 2023-02-28
 description: Searching through HTML tables is super simple using  Vanilla JavaScript, a few query selectors, and some neat methods.
 author: Josh Duncan
 category: development
@@ -81,10 +82,10 @@ I will also go ahead and setup a custom CSS selector to make it easy to hide any
 
 ### Input Listener
 
-Now that I have everything set up and all key elements selected, I need to listen for input in the `search-input` field. After every keyup, I can set the variable `q` to what the user has typed.
+Now that I have everything set up and all key elements selected, I need to listen for input in the `search-input` field.
 
 ```javascript
-searchInput.addEventListener("keyup", function (e) {
+searchInput.addEventListener("input", function (e) {
   const q = e.target.value.toLowerCase();  
 }
 ```
@@ -109,15 +110,13 @@ Now that I have a NodeList of each cell in the row, I can [map](https://develope
 
 ```javascript
 rows.forEach((row) => {
-  const cells = row.querySelectorAll("td");
-  const matchString = [...cells].map((n) => n.textContent.toLowerCase()).join(" ");
-  const match = matchString.includes(q);
-  row.classList.toggle("hide", !match);
+  const cells = Array.from(row.querySelectorAll("td"));
+  const matchString = cells.map((n) => n.textContent.toLowerCase()).join(" ");
 });
 ```
 
 <<< .callout
-I used the [Spread operator (`...`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) to convert the NodeList into an array that JavaScript can apply map() to. This was a new trick I learned during this project. You'll see it used again later in the script.
+I used the [Array.from()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) method to convert the NodeList into an array that JavaScript can apply `map()` to. This was a new trick I learned during this project.
 >>>
 
 You'll notice I did two extra things that I didn't mention above. First, I converted the entire string to lower case to match what I did on the user input. Second I [joined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) the resulting array so that I get a single string of all the content separated by the space character.
@@ -126,8 +125,8 @@ Now, I can use the [includes()](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 ```javascript
 rows.forEach((row) => {
-  const cells = row.querySelectorAll("td");
-  const matchString = [...cells].map((n) => n.textContent.toLowerCase()).join(" ");
+  const cells = Array.from(row.querySelectorAll("td"));
+  const matchString = cells.map((n) => n.textContent.toLowerCase()).join(" ");
   const match = matchString.includes(q);
 });
 ```
@@ -142,8 +141,8 @@ Best part is, this helps me remove the class when the user query changes and a r
 
 ```javascript
 rows.forEach((row) => {
-  const cells = row.querySelectorAll("td");
-  const matchString = [...cells].map((n) => n.textContent.toLowerCase()).join(" ");
+  const cells = Array.from(row.querySelectorAll("td"));
+  const matchString = cells.map((n) => n.textContent.toLowerCase()).join(" ");
   const match = matchString.includes(q);
   row.classList.toggle("hide", !match);
 });
@@ -193,12 +192,12 @@ const ignoreCols = searchTable.dataset.searchIgnoreCols
 
 The above allows me to grab the data-attribute if it is present (doesn't have to be if I want all columns searchable), and convert each column id to an integer using the [map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method.
 
-Now, while iterating over each row and grabbing the textContent, I can check and make sure if any columns should be ignored using the same [spread synrax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) as above and but paired with the [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) method this time.
+Now, while iterating over each row and grabbing the textContent, I can check and make sure if any columns should be ignored using the same [Array.from()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) method as above and also paring it with the [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) method this time.
 
 ```javascript
 const filteredCols = ignoreCols
-  ? [...cols].filter((_, n) => ignoreCols && !ignoreCols.includes(n))
-  : [...cols];
+  ? Array.from(cols).filter((_, n) => ignoreCols && !ignoreCols.includes(n))
+  : Array.from(cols);
 ```
 
 <<< .callout
@@ -225,7 +224,7 @@ row.classList.toggle("hide", !colsText.includes(q));
 
 ### Putting It All Together
 
-I setup a [full working example](https://codepen.io/joshbduncan/pen/wvPYRJb) over on CodePen if you want to check it out.
+I setup a [full working example](https://codepen.io/joshbduncan/pen/ZEaqeBp) over on CodePen if you want to check it out.
 
 ```javascript
 const searchInput = document.getElementById("search-input");
@@ -233,11 +232,11 @@ if (searchInput != null) {
   const searchTable = document.getElementById("search-table");
   const ignoreCols = searchTable.dataset.searchIgnoreCols ? searchTable.dataset.searchIgnoreCols.split(",").map(Number) : false;
   const rows = searchTable.querySelectorAll("tbody tr");
-  searchInput.addEventListener("keyup", function (e) {
+  searchInput.addEventListener("input", function (e) {
     const q = e.target.value.toLowerCase();
     rows.forEach((row) => {
       const cols = row.querySelectorAll("td");
-      const filteredCols = ignoreCols ? [...cols].filter((_, n) => ignoreCols && !ignoreCols.includes(n)) : [...cols];
+      const filteredCols = ignoreCols ? Array.from(cols).filter((_, n) => ignoreCols && !ignoreCols.includes(n)) : Array.from(cols);
       const colsText = filteredCols.map((n) => n.textContent.toLowerCase()).join(" ");
       row.classList.toggle("hide", !colsText.includes(q));
     });
