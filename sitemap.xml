@@ -6,18 +6,22 @@
     <loc>https://joshbduncan.com</loc>
     <changefreq>weekly</changefreq>
   </url>
+  
   <url>
     <loc>https://joshbduncan.com/about.html</loc>
     <changefreq>monthly</changefreq>
   </url>
+  
   <url>
-    <loc>https://joshbduncan.com/categories.html</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://joshbduncan.com/styles.html</loc>
+    <changefreq>monthly</changefreq>
   </url>
+  
   <url>
-    <loc>https://joshbduncan.com/tags.html</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://joshbduncan.com/software.html</loc>
+    <changefreq>monthly</changefreq>
   </url>
+  
   
   <!-- POSTS -->
   
