@@ -13,7 +13,7 @@ class Config(object):
 
     # flatpages configuration
     FLATPAGES_AUTO_RELOAD = "DEBUG"
-    FLATPAGES_EXTENSION = ".md"
+    FLATPAGES_EXTENSION = [".md", ".html", ".js"]
     FLATPAGES_ROOT = "../content"
     FLATPAGES_MARKDOWN_EXTENSIONS = [
         "codehilite",
@@ -26,6 +26,7 @@ class Config(object):
 
     POST_DIR = "posts"
     DRAFT_DIR = "drafts"
+    PAGE_DIR = "pages"
 
     # freezer static files destination
     FREEZER_DESTINATION = "../build"

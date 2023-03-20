@@ -1,11 +1,12 @@
 from datetime import datetime
 
-from flask import render_template, jsonify
+from flask import jsonify, render_template
 
 from app import app, flatpages, freezer
 
 POST_DIR = app.config["POST_DIR"]
 DRAFT_DIR = app.config["DRAFT_DIR"]
+PAGE_DIR = app.config["PAGE_DIR"]
 
 
 # ----- ROUTES -----#
@@ -27,10 +28,15 @@ def index():
 
 
 @app.route("/<name>.html")
-def post(name):
-    path = f"{POST_DIR}/{name}"
-    post = flatpages.get_or_404(path)
-    return render_template("post.html", post=post)
+def page(name):
+    path = f"{PAGE_DIR}/{name}"
+    page = flatpages.get(path)
+    if page:
+        return render_template("page.html", page=page)
+    else:
+        path = f"{POST_DIR}/{name}"
+        post = flatpages.get_or_404(path)
+        return render_template("post.html", post=post)
 
 
 @app.route("/drafts/")
@@ -73,24 +79,6 @@ def tagged(tag):
     return render_template("posts.html", posts=posts, filter=tag)
 
 
-@app.route("/styles.html")
-def styles():
-    page = flatpages.get_or_404("pages/styles")
-    return render_template("page.html", page=page)
-
-
-@app.route("/about.html")
-def about():
-    page = flatpages.get_or_404("pages/about")
-    return render_template("page.html", page=page)
-
-
-@app.route("/software.html")
-def software():
-    page = flatpages.get_or_404("pages/software")
-    return render_template("page.html", page=page)
-
-
 @app.route("/search.html")
 def search():
     return render_template("search.html")
@@ -130,11 +118,14 @@ def json_categories():
 
 @app.route("/sitemap.xml")
 def sitemap():
+    pages = get_pages()
     posts = get_live_posts()
     categories = get_all_categories()
     tags = get_all_tags() or ""
     posts.sort(key=lambda item: item["date"], reverse=False)
-    return render_template("sitemap.xml", posts=posts, categories=categories, tags=tags)
+    return render_template(
+        "sitemap.xml", pages=pages, posts=posts, categories=categories, tags=tags
+    )
 
 
 @app.route("/rss.xml")
@@ -150,6 +141,10 @@ def robots():
 
 
 # ----- FUNCTIONS -----#
+def get_pages():
+    return [page for page in flatpages if page.path.startswith(PAGE_DIR)]
+
+
 def get_live_posts():
     return [post for post in flatpages if post.path.startswith(POST_DIR)]
 

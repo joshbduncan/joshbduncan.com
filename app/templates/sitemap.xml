@@ -6,18 +6,12 @@
     <loc>https://joshbduncan.com</loc>
     <changefreq>weekly</changefreq>
   </url>
+  {% for page in pages %}
   <url>
-    <loc>https://joshbduncan.com/about.html</loc>
+    <loc>https://joshbduncan.com/{{ page.path.split('/')[-1] }}.html</loc>
     <changefreq>monthly</changefreq>
   </url>
-  <url>
-    <loc>https://joshbduncan.com/categories.html</loc>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://joshbduncan.com/tags.html</loc>
-    <changefreq>weekly</changefreq>
-  </url>
+  {% endfor %}
   
   <!-- POSTS -->
   {% for post in posts %}

@@ -27,29 +27,29 @@ def _handle_word(s, t):
     return t, t
 
 
-_scanner = re.Scanner([
-    (r'[^ =]+=".*?"', _handle_double_quote),
-    (r"[^ =]+='.*?'", _handle_single_quote),
-    (r"[^ =]+=[^ =]+", _handle_key_value),
-    (r"[^ =]+", _handle_word),
-    (r" ", None)
-])
+_scanner = re.Scanner(
+    [
+        (r'[^ =]+=".*?"', _handle_double_quote),
+        (r"[^ =]+='.*?'", _handle_single_quote),
+        (r"[^ =]+=[^ =]+", _handle_key_value),
+        (r"[^ =]+", _handle_word),
+        (r" ", None),
+    ]
+)
 
 
 def get_attrs(str):
-    """ Parse attribute list and return a list of attribute tuples. """
+    """Parse attribute list and return a list of attribute tuples."""
     return _scanner.scan(str)[0]
 
 
 class MarkdownDiv(Extension):
     def extendMarkdown(self, md):
-        md.parser.blockprocessors.register(
-            MarkdownDivProcessor(md.parser), "box", 175
-        )
+        md.parser.blockprocessors.register(MarkdownDivProcessor(md.parser), "box", 175)
 
 
 class MarkdownDivProcessor(BlockProcessor):
-    """ Create <div> elements from fenced Markdown blocks.
+    """Create <div> elements from fenced Markdown blocks.
     Mostly borrowed from https://python-markdown.github.io/extensions/attr_list/
 
     Fenced block must be as follows:
@@ -86,7 +86,7 @@ class MarkdownDivProcessor(BlockProcessor):
                 e = etree.SubElement(parent, "div")
                 for k, v in get_attrs(match.groups()[0].strip()):
                     cls = e.get("class")
-                    if k == '.':
+                    if k == ".":
                         if cls:
                             e.set("class", f"{cls} {v}")
                         else:
