@@ -1,12 +1,19 @@
 import sys
 
-from app import app, freezer
+from app import app, Config, freezer, flatpages
+
+@app.shell_context_processor
+def make_shell_context():
+    return {'app': app, 'config': Config, 'freezer': freezer, 'flatpages': flatpages,}
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        if sys.argv[1] == "--build":
-            freezer.freeze()
-        else:
-            exit
+        match sys.argv[1]:
+            case "--build":
+                freezer.freeze()
+            case "--run":
+                freezer.run()
+            case _:
+                exit
     else:
         app.run()

@@ -13,15 +13,16 @@ function server {
     flask run
 }
 
+function test_freeze {
+    # freeze the blog and start up dev server on static files
+    source venv/bin/activate
+    python3 blog.py --run
+}
+
 function shell {
     # start up the flask shell
     source venv/bin/activate
     flask shell
-}
-
-function push {
-    # push the app to github
-    git add -A && git commit && git push
 }
 
 function help {

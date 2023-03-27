@@ -28,15 +28,10 @@ def index():
 
 
 @app.route("/<name>.html")
-def page(name):
-    path = f"{PAGE_DIR}/{name}"
-    page = flatpages.get(path)
-    if page:
-        return render_template("page.html", page=page)
-    else:
-        path = f"{POST_DIR}/{name}"
-        post = flatpages.get_or_404(path)
-        return render_template("post.html", post=post)
+def post(name):
+    path = f"{POST_DIR}/{name}"
+    post = flatpages.get_or_404(path)
+    return render_template("post.html", post=post)
 
 
 @app.route("/drafts/")
@@ -51,6 +46,24 @@ def draft(name):
     path = f"{DRAFT_DIR}/{name}"
     post = flatpages.get_or_404(path)
     return render_template("post.html", post=post, draft=True)
+
+
+@app.route("/styles.html")
+def styles():
+    page = flatpages.get_or_404("pages/styles")
+    return render_template("page.html", page=page)
+
+
+@app.route("/about.html")
+def about():
+    page = flatpages.get_or_404("pages/about")
+    return render_template("page.html", page=page)
+
+
+@app.route("/software.html")
+def software():
+    page = flatpages.get_or_404("pages/software")
+    return render_template("page.html", page=page)
 
 
 @app.route("/categories.html")

@@ -120,8 +120,8 @@
         {% for route, title in navigation_links %}
         <li role="presentation"><a
              role="menuitem"
-             href="{{ url_for('page', name=route) }}"
-             {% if request.path==url_for('page', name=route) %} aria-current="page" {% endif %}>{{ title }}</a></li>
+             href="{{ url_for(route) }}"
+             {% if request.path==url_for(route) %} aria-current="page" {% endif %}>{{ title }}</a></li>
         {% endfor %}
       </ul>
     </nav>
