@@ -241,13 +241,13 @@ $ python3 -m venv venv
 </code></pre></div>
 
 <p>Then I can set the variable 'api_key' to my Todoist token.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;TODOIST_KEY&#39;</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TODOIST_KEY&quot;</span><span class="p">]</span>
 </code></pre></div>
 
 <p>And, to test out the connection, I'll print the name associated with my token.</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">api</span> <span class="o">=</span> <span class="n">TodoistAPI</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">api</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">][</span><span class="s1">&#39;full_name&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">][</span><span class="s2">&quot;full_name&quot;</span><span class="p">])</span>
 <span class="go">Josh D.</span>
 </code></pre></div>
 
@@ -256,7 +256,7 @@ $ python3 -m venv venv
 <h3>Getting Every To-do from Todoist</h3>
 <p>I have a lot of to-dos in Todoist, so I'm going to make a function that grabs them all and then stores them in the variable 'todoist_tasks'.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_all_tasks</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">api</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">api</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;items&quot;</span><span class="p">]</span>
 
 <span class="n">todoist_tasks</span> <span class="o">=</span> <span class="n">get_all_tasks</span><span class="p">()</span>
 </code></pre></div>
@@ -265,7 +265,7 @@ $ python3 -m venv venv
 <h3>My Todoist Projects</h3>
 <p>Since, I'm only interested in the to-dos inside of my "Review" project, I need to grab all of my projects...</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_all_projects</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">api</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;projects&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">api</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="s2">&quot;projects&quot;</span><span class="p">]</span>
 
 <span class="n">todoist_projects</span> <span class="o">=</span> <span class="n">get_all_projects</span><span class="p">()</span>
 </code></pre></div>
@@ -273,14 +273,14 @@ $ python3 -m venv venv
 <p>And then present a list to pick from...</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">pick_project</span><span class="p">(</span><span class="n">todoist_projects</span><span class="p">):</span>
     <span class="n">projects</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;todoist projects&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;todoist projects&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">project</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">todoist_projects</span><span class="p">):</span>
-        <span class="n">project_name</span> <span class="o">=</span> <span class="n">project</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-            <span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span>  <span class="c1"># remove emojis</span>
-        <span class="n">project_id</span> <span class="o">=</span> <span class="n">project</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="n">project_name</span> <span class="o">=</span> <span class="n">project</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+            <span class="s2">&quot;ascii&quot;</span><span class="p">,</span> <span class="s2">&quot;ignore&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;ascii&quot;</span><span class="p">)</span>  <span class="c1"># remove emojis</span>
+        <span class="n">project_id</span> <span class="o">=</span> <span class="n">project</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
         <span class="n">projects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">project_id</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">project_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">project</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;which project id? &#39;</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">project_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">project</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;which project id? &quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">projects</span><span class="p">[</span><span class="n">project</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
 
 <span class="n">todoist_project</span> <span class="o">=</span> <span class="n">pick_project</span><span class="p">(</span><span class="n">todoist_projects</span><span class="p">)</span>
@@ -292,19 +292,19 @@ $ python3 -m venv venv
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">find_tasks</span><span class="p">(</span><span class="n">todoist_tasks</span><span class="p">,</span> <span class="n">todoist_project</span><span class="p">):</span>
     <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">todoist_tasks</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;project_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">todoist_project</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
-            <span class="n">when</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;due&#39;</span><span class="p">][</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;due&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
-            <span class="n">creation_date</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;date_added&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;project_id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">todoist_project</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span>
+            <span class="n">when</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;due&quot;</span><span class="p">][</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;due&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">creation_date</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;date_added&quot;</span><span class="p">]</span>
             <span class="c1"># if markdown link task then separate out</span>
-            <span class="k">if</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;[&#39;</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
-                <span class="n">title</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;](&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-                <span class="n">notes</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;](&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;[&quot;</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;)&quot;</span><span class="p">:</span>
+                <span class="n">title</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;](&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">notes</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;](&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">title</span> <span class="o">=</span> <span class="n">content</span>
-                <span class="n">notes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-            <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="s1">&#39;notes&#39;</span><span class="p">:</span> <span class="n">notes</span><span class="p">,</span>
-                            <span class="s1">&#39;when&#39;</span><span class="p">:</span> <span class="n">when</span><span class="p">,</span> <span class="s1">&#39;creation_date&#39;</span><span class="p">:</span> <span class="n">creation_date</span><span class="p">})</span>
+                <span class="n">notes</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="p">:</span> <span class="n">notes</span><span class="p">,</span>
+                            <span class="s2">&quot;when&quot;</span><span class="p">:</span> <span class="n">when</span><span class="p">,</span> <span class="s2">&quot;creation_date&quot;</span><span class="p">:</span> <span class="n">creation_date</span><span class="p">})</span>
     <span class="k">return</span> <span class="n">tasks</span>
 
 <span class="n">things_tasks</span> <span class="o">=</span> <span class="n">find_tasks</span><span class="p">(</span><span class="n">todoist_tasks</span><span class="p">,</span> <span class="n">todoist_project</span><span class="p">)</span>
@@ -313,12 +313,12 @@ $ python3 -m venv venv
 <p>When the function finds a to-do from the "Review" project, it will save the to-do information I need as a dictionary to the list 'tasks'.</p>
 <p>Before, appends to the tasks list, the function checks to see if the to-do includes one of the Markdown links I described earlier.</p>
 <p>Basically, if the to-do 'content' starts with an opening bracket '[' and ends with a closing parenthesis ')', it's a Markdown link for the purposes of this program.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;[&#39;</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;](&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="n">notes</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;](&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;[&quot;</span> <span class="ow">and</span> <span class="n">content</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;)&quot;</span><span class="p">:</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;](&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">notes</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;](&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">content</span>
-    <span class="n">notes</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">notes</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 </code></pre></div>
 
 <p>If the function finds a match for that pattern, it splits the string at the '](' and takes the two parts, title and notes (url).</p>
@@ -329,13 +329,13 @@ $ python3 -m venv venv
 </code></pre></div>
 
 <h3>Building the Urls</h3>
-<p>Cultured Code has an awesome URL Scheme <a href="https://culturedcode.com/things/support/articles/2803573/">Link Builder</a> on it's website. This makes it really easy to figure out the exact url I'll need to create each to-do in Things 3.</p>
+<p>Cultured Code has an awesome URL Scheme <a href="https://culturedcode.com/things/support/articles/2803573/#link-builder">Link Builder</a> on it's website. This makes it really easy to figure out the exact url I'll need to create each to-do in Things 3.</p>
 <p>Using their Link Builder, I created placeholders for everything I would need to enter and ended up with this url.</p>
 <div class="codehilite"><pre><span></span><code>things:///add?title=title&amp;notes=notes&amp;when=when&amp;tags=tags&amp;list=list_title&amp;creation-date=creation_date
 </code></pre></div>
 
 <p>And with the magic of Python 3's <a href="https://docs.python.org/3/reference/lexical_analysis.html#f-strings">f-Strings</a> I can easily make a custom url for each to-do, I'll just need to have each variable with the curly braces '{}' defined.</p>
-<div class="codehilite"><pre><span></span><code><span class="sa">f</span><span class="s1">&#39;things:///add?title=</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">&amp;notes=</span><span class="si">{</span><span class="n">notes</span><span class="si">}</span><span class="s1">&amp;when=</span><span class="si">{</span><span class="n">when</span><span class="si">}</span><span class="s1">&amp;tags=</span><span class="si">{</span><span class="n">tags</span><span class="si">}</span><span class="s1">&amp;list=</span><span class="si">{</span><span class="n">list_title</span><span class="si">}</span><span class="s1">&amp;creation-date=</span><span class="si">{</span><span class="n">creation_date</span><span class="si">}</span><span class="s1">&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="sa">f</span><span class="s2">&quot;things:///add?title=</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&amp;notes=</span><span class="si">{</span><span class="n">notes</span><span class="si">}</span><span class="s2">&amp;when=</span><span class="si">{</span><span class="n">when</span><span class="si">}</span><span class="s2">&amp;tags=</span><span class="si">{</span><span class="n">tags</span><span class="si">}</span><span class="s2">&amp;list=</span><span class="si">{</span><span class="n">list_title</span><span class="si">}</span><span class="s2">&amp;creation-date=</span><span class="si">{</span><span class="n">creation_date</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 <div class="callout">
@@ -344,14 +344,14 @@ $ python3 -m venv venv
 <h3>Covering my A$$</h3>
 <p>Before I import 100+ to-dos, maybe I should make it easy to find the imported to-dos just in case something goes wrong.</p>
 <p>So, I plan to create a new project in Things 3 to hold all of the imported to-dos, which should make them easier to find.</p>
-<p>Using the same <a href="https://culturedcode.com/things/support/articles/2803573/">Link Builder</a> from above, I was able to create this url.</p>
+<p>Using the same <a href="https://culturedcode.com/things/support/articles/2803573/#link-builder">Link Builder</a> from above, I was able to create this url.</p>
 <div class="codehilite"><pre><span></span><code>things:///add-project?title=things_project&amp;reveal=true
 </code></pre></div>
 
 <p>Visiting this url will create a new project in Things 3 and then reveal that project in the app.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_project</span><span class="p">():</span>
-    <span class="n">things_project</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;IMPORT </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%m-%y </span><span class="si">%X</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="n">purl</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;things:///add-project?title=</span><span class="si">{</span><span class="n">things_project</span><span class="si">}</span><span class="s1">&amp;reveal=true&#39;</span>
+    <span class="n">things_project</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;IMPORT </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%m-%y </span><span class="si">%X</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">purl</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;things:///add-project?title=</span><span class="si">{</span><span class="n">things_project</span><span class="si">}</span><span class="s2">&amp;reveal=true&quot;</span>
     <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">purl</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">things_project</span>
 </code></pre></div>
@@ -368,16 +368,16 @@ $ python3 -m venv venv
     <span class="c1"># create a new project/list to hold the imported tasks</span>
     <span class="n">list_title</span> <span class="o">=</span> <span class="n">make_project</span><span class="p">()</span>
     <span class="c1"># tags must already exist, comma separated</span>
-    <span class="n">tags</span> <span class="o">=</span> <span class="s1">&#39;todoist&#39;</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="s2">&quot;todoist&quot;</span>
     <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">things_tasks</span><span class="p">:</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
-        <span class="n">notes</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="s1">&#39;notes&#39;</span><span class="p">]</span>
-        <span class="n">when</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="s1">&#39;when&#39;</span><span class="p">]</span>
-        <span class="n">creation_date</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="s1">&#39;creation_date&#39;</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;...moving </span><span class="si">{</span><span class="n">title</span><span class="p">[:</span><span class="mi">30</span><span class="p">]</span><span class="si">}</span><span class="s1">...&#39;</span><span class="p">)</span>
-        <span class="n">turl</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;things:///add?title=</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">&amp;notes=</span><span class="si">{</span><span class="n">notes</span><span class="si">}</span><span class="s1">&amp;when=</span><span class="si">{</span><span class="n">when</span><span class="si">}</span><span class="s1">&amp;tags=</span><span class="si">{</span><span class="n">tags</span><span class="si">}</span><span class="s1">&amp;list=</span><span class="si">{</span><span class="n">list_title</span><span class="si">}</span><span class="s1">&amp;creation-date=</span><span class="si">{</span><span class="n">creation_date</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+        <span class="n">notes</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="s2">&quot;notes&quot;</span><span class="p">]</span>
+        <span class="n">when</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="s2">&quot;when&quot;</span><span class="p">]</span>
+        <span class="n">creation_date</span> <span class="o">=</span> <span class="n">task</span><span class="p">[</span><span class="s2">&quot;creation_date&quot;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;...moving </span><span class="si">{</span><span class="n">title</span><span class="p">[:</span><span class="mi">30</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+        <span class="n">turl</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;things:///add?title=</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&amp;notes=</span><span class="si">{</span><span class="n">notes</span><span class="si">}</span><span class="s2">&amp;when=</span><span class="si">{</span><span class="n">when</span><span class="si">}</span><span class="s2">&amp;tags=</span><span class="si">{</span><span class="n">tags</span><span class="si">}</span><span class="s2">&amp;list=</span><span class="si">{</span><span class="n">list_title</span><span class="si">}</span><span class="s2">&amp;creation-date=</span><span class="si">{</span><span class="n">creation_date</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">turl</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;tasks moved to things. find them in project </span><span class="si">{</span><span class="n">list_title</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tasks moved to things. find them in project </span><span class="si">{</span><span class="n">list_title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <p>First, I'll call the make_project() function to create and open a new project in Things 3.</p>
@@ -389,18 +389,18 @@ $ python3 -m venv venv
 <p>As you can see, all of the to-dos come flooding in to my new project. Success!</p>
 <h2>Cleaning Up</h2>
 <p>Now, I just need to clean up my code and add the <code>if name == main</code> clause so I can use this standalone or on import if need be.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">todoist_tasks</span> <span class="o">=</span> <span class="n">get_all_tasks</span><span class="p">()</span>
     <span class="n">todoist_projects</span> <span class="o">=</span> <span class="n">get_all_projects</span><span class="p">()</span>
     <span class="n">todoist_project</span> <span class="o">=</span> <span class="n">pick_project</span><span class="p">(</span><span class="n">todoist_projects</span><span class="p">)</span>
     <span class="n">things_tasks</span> <span class="o">=</span> <span class="n">find_tasks</span><span class="p">(</span><span class="n">todoist_tasks</span><span class="p">,</span> <span class="n">todoist_project</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">things_tasks</span><span class="p">)</span><span class="si">}</span><span class="s1"> matching tasks...&#39;</span><span class="p">)</span>
-    <span class="n">cont</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;continue? (y/n) &#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">cont</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;no tasks were moved.&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">things_tasks</span><span class="p">)</span><span class="si">}</span><span class="s2"> matching tasks...&quot;</span><span class="p">)</span>
+    <span class="n">cont</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;continue? (y/n) &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cont</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no tasks were moved.&quot;</span><span class="p">)</span>
         <span class="n">exit</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;starting to move your tasks...&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;starting to move your tasks...&quot;</span><span class="p">)</span>
         <span class="n">add_to_things</span><span class="p">(</span><span class="n">things_tasks</span><span class="p">)</span>
 </code></pre></div>
 

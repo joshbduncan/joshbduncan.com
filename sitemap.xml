@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-  <!-- PAGES -->
   <url>
     <loc>https://joshbduncan.com</loc>
     <changefreq>weekly</changefreq>
   </url>
-  
+
+  <!-- PAGES -->
   <url>
     <loc>https://joshbduncan.com/about.html</loc>
     <changefreq>monthly</changefreq>
   </url>
-  
-  <url>
-    <loc>https://joshbduncan.com/styles.html</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  
   <url>
     <loc>https://joshbduncan.com/software.html</loc>
     <changefreq>monthly</changefreq>
   </url>
-  
   
   <!-- POSTS -->
   

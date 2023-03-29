@@ -165,9 +165,9 @@
 <p>Back in December, while working on the <a href="https://adventofcode.com/">2020 Advent of Code</a> challenge, I needed an easy way to print what I'm calling "banners" while debugging.</p>
 <p>If you've participated in an Advent of Code challenge, you know that while solving the challenges, you print lots of information out to the terminal. And, sometimes you need easily recognizable breaks (what I'm calling "banners") in the output (e.g. new branches in a recursion tree).</p>
 <p>I usually do something like this...</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Thing I&#39;m looking for&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
 <span class="go">****************************************</span>
 <span class="go">Thing I&#39;m looking for</span>
 <span class="go">****************************************</span>
@@ -177,13 +177,13 @@
 <h2>Let's Make a Function</h2>
 <p>First, I'll make a new function 'make_banner()' so it's easy to print new banners when needed.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
 </code></pre></div>
 
 <p>Now, you just call the function make_banner() and supply your banner text as an argument.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;Provided as an argument&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;Provided as an argument&quot;</span><span class="p">)</span>
 <span class="go">****************************************</span>
 <span class="go">Provided as an argument</span>
 <span class="go">****************************************</span>
@@ -192,13 +192,13 @@
 <h2>Adding Styling</h2>
 <p>Wouldn't it be nice to have the text centered? That's simple enough...</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="p">((</span><span class="mi">40</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">txt</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">((</span><span class="mi">40</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">txt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
 </code></pre></div>
 
 <p>Here, I've subtracted the length of the provided text from 40 (the amount of stars), divided that by 2, and added that many spaces before printing the text.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;This is a banner&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;This is a banner&quot;</span><span class="p">)</span>
 <span class="go">****************************************</span>
 <span class="go">            This is a banner</span>
 <span class="go">****************************************</span>
@@ -207,7 +207,7 @@
 <p>This works, but I notice a few problems.</p>
 <h3>Problem #1:</h3>
 <p>If the supplied text is longer than 40 characters, the border stars '*' will end before the text.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;This is a really really really long banner!&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;This is a really really really long banner!&quot;</span><span class="p">)</span>
 <span class="go">****************************************</span>
 <span class="go">This is a really really really long banner!</span>
 <span class="go">****************************************</span>
@@ -215,7 +215,7 @@
 
 <h3>Problem #2:</h3>
 <p>If the supplied text length is a negative number, then the padding on the left and right of the text can't be equal.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;This is a banner!&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;This is a banner!&quot;</span><span class="p">)</span>
 <span class="go">****************************************</span>
 <span class="go">           This is a banner!</span>
 <span class="go">****************************************</span>
@@ -226,13 +226,13 @@
 <p>The fix for Problem #1 is simple enough and as you'll see and it solves Problem #2 as well.</p>
 <p>I'll just take the length of the provided string into account when calculating how many stars to print.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
 </code></pre></div>
 
 <p>Running the function give us a better version that works for any length of text and eliminates the centering problem.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;This is a really really really long banner!&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;This is a really really really long banner!&quot;</span><span class="p">)</span>
 <span class="go">*******************************************</span>
 <span class="go">This is a really really really long banner!</span>
 <span class="go">*******************************************</span>
@@ -246,9 +246,9 @@
 <p>Among many things, type hints allow me to specify the type of object my function is expecting to receive. As noted above, this can help with debugging and act as documentation too.</p>
 <p>I'll start by specifying that the txt argument should be a string.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">))</span>
 </code></pre></div>
 
 <p>By adding ': str' to the function argument, I'm letting myself/user/type checker/IDE know that the function expects a string to be supplied as the argument. Not a list, or an integer, a string. Now, you could provide something other than a string, but that's not what is expected and doing so could cause problems with the function operation.</p>
@@ -256,20 +256,20 @@
 <h3>Optional Arguments</h3>
 <p>I think the banner would look nicer with padding on each side of the text.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">txt</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;*&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">txt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
 </code></pre></div>
 
 <p>So, I've added the new argument 'padding' and specified it as an integer with the type hint 'int'. I've also added something else, a default value of 5 '= 5'. This way, if a padding isn't specified in the function call, everything will still look nice.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;A banner with some padding!&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;A banner with some padding!&quot;</span><span class="p">)</span>
 <span class="go">*************************************</span>
 <span class="go">     A banner with some padding!</span>
 <span class="go">*************************************</span>
 </code></pre></div>
 
 <p>Since I didn't specify any padding, I get the default of five stars '*' on each side of the text.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;A banner with MORE padding!&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;A banner with MORE padding!&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="go">***********************************************</span>
 <span class="go">          A banner with MORE padding!</span>
 <span class="go">***********************************************</span>
@@ -277,26 +277,26 @@
 
 <p>Here, I specified a padding value of 10, so I get ten stars '*' on each side of my banner text.</p>
 <p>Let's keep going by adding an optional argument for the border character.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">border</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">border</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">border</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">txt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">padding</span> <span class="o">+</span> <span class="n">txt</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">border</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
 </code></pre></div>
 
 <p>This new option allows me to change the border character to anything I want. Like before, I set a default of '*', so if nothing is specified, I'll get stars. Let's try it...</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;A banner with some padding!&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;A banner with some padding!&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
 <span class="go">---------------------------------</span>
 <span class="go">   A banner with some padding!</span>
 <span class="go">---------------------------------</span>
 </code></pre></div>
 
 <p>Nice! How about a few more?</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;A banner with some padding!&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;A banner with some padding!&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">)</span>
 <span class="go">#################################</span>
 <span class="go">   A banner with some padding!</span>
 <span class="go">#################################</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;A banner with some padding!&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;A banner with some padding!&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">)</span>
 <span class="go">+++++++++++++++++++++++++++++++++++++++++++++++++++</span>
 <span class="go">            A banner with some padding!</span>
 <span class="go">+++++++++++++++++++++++++++++++++++++++++++++++++++</span>
@@ -304,19 +304,19 @@
 
 <p><strong>A few things to note...</strong> If you specify a border that's more than one character, the alignment will be thrown off.</p>
 <p>And, even though the 'padding' and 'border' arguments are optional, they must be provided in the order they are defined in the function. If you want to change the border then you must also provide a padding value. So, txt, padding, border, in that order. If you try something like:</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;A banner with some padding!&#39;</span><span class="p">,</span> <span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;A banner with some padding!&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">)</span>
 <span class="go">TypeError: unsupported operand type(s) for +: &#39;int&#39; and &#39;str&#39;</span>
 </code></pre></div>
 
 <p>You'll get a TypeError as the function is trying to use the '+' for the padding amount. The workaround for this is simple, just specify which argument you are providing to the function.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="o">=</span><span class="s1">&#39;A banner with some padding!&#39;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="o">=</span><span class="s2">&quot;A banner with some padding!&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">)</span>
 <span class="go">+++++++++++++++++++++++++++++++++++++</span>
 <span class="go">     A banner with some padding!</span>
 <span class="go">+++++++++++++++++++++++++++++++++++++</span>
 </code></pre></div>
 
 <p>By providing the arguments this way, the order actually doesn't matter at all.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="n">border</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="s1">&#39;This is craziness!&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">make_banner</span><span class="p">(</span><span class="n">border</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">txt</span><span class="o">=</span><span class="s2">&quot;This is craziness!&quot;</span><span class="p">)</span>
 <span class="go">++++++++++++++++++++++++++++++++++++++</span>
 <span class="go">          This is craziness!</span>
 <span class="go">++++++++++++++++++++++++++++++++++++++</span>
@@ -324,18 +324,18 @@
 
 <h3>Return Values</h3>
 <p>You can also specify the return value of your function using type hints. This helps the user know what to expect when running the function.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">border</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">make_banner</span><span class="p">(</span><span class="n">txt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">padding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">border</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">return</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">border</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
-        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="n">padding</span><span class="si">}{</span><span class="n">txt</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
-        <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">border</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">border</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="n">padding</span><span class="si">}{</span><span class="n">txt</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">border</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="p">)</span>
 </code></pre></div>
 
 <p>You can see the addition of '-&gt; str:' to the end of the function. This is the letting the user/type checker/IDE know a string will be returned.</p>
 <p>To make the function correct, I need to return the banner as a string now instead of just printing it out. This is good practice anyway, as I may want to store a banner as a variable instead of printing it right away. I accomplish this by using Python 3's <a href="https://docs.python.org/3/reference/lexical_analysis.html#f-strings">f-Strings</a>.</p>
 <p>Now, to store the banner as a variable I can run:</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">banner</span> <span class="o">=</span> <span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;Banner as a variable&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">banner</span> <span class="o">=</span> <span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;Banner as a variable&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">)</span>
 </code></pre></div>
 
 <p>Then, to print out the new banner I can run:</p>
@@ -346,7 +346,7 @@
 </code></pre></div>
 
 <p>Or, if I want to print the banner right away I can just put the function call inside of a print statement.</p>
-<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">make_banner</span><span class="p">(</span><span class="s1">&#39;Print me now! :)&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">))</span>
+<div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">make_banner</span><span class="p">(</span><span class="s2">&quot;Print me now! :)&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">))</span>
 <span class="go">########################</span>
 <span class="go">    Print me now! :)</span>
 <span class="go">########################</span>

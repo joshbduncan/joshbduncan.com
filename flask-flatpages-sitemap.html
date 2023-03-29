@@ -28,6 +28,8 @@
   <meta property="og:article:published_time" content="2020-10-31" />
   <meta property="og:article:author" content="Josh Duncan" />
   
+  <meta property="og:article:modified_time" content="2023-03-27" />
+  
   <meta property="og:article:section" content="development" />
   
   
@@ -157,7 +159,7 @@
     <h1 id="post-title">Generating a Sitemap with Flask and Flask-FlatPages</h1>
     <div id="post-meta">
       
-      <b>Published</b> <time datetime="2020-10-31">October 2020</time>
+      <b>Updated</b> <time datetime="2023-03-27">March 2023</time>
       
       • 3 min read
     </div>
@@ -171,18 +173,18 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">post</span> <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">flatpages</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">POST_DIR</span><span class="p">)]</span>
 </code></pre></div>
 
-<p>When I run the function, I get a list of <a href="https://pythonhosted.org/Flask-FlatPages/#flask_flatpages.Page">Page objects</a> for each blog post.</p>
+<p>When I run the function, I get a list of <a href="page-https://pythonhosted.org/Flask-FlatPages/#flask_flatpages.Page">Page objects</a> for each blog post.</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">get_all_posts</span><span class="p">()</span>
 <span class="go">[&lt;Page &#39;posts/post1.html&#39;&gt;, &lt;Page &#39;posts/post2.html&#39;&gt;]</span>
 </code></pre></div>
 
 <h2>Adding a New Route</h2>
-<p>Now I needed a new Flask route to serve requests at '/sitemap.xml'.</p>
-<div class="codehilite"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/sitemap.xml&#39;</span><span class="p">)</span>
+<p>Now I needed a new Flask route to serve requests at "/sitemap.xml".</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/sitemap.xml&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">sitemap</span><span class="p">():</span>
     <span class="n">posts</span> <span class="o">=</span> <span class="n">get_all_posts</span><span class="p">()</span>
-    <span class="n">posts</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;sitemap.xml&#39;</span><span class="p">,</span> <span class="n">posts</span><span class="o">=</span><span class="n">posts</span><span class="p">)</span>
+    <span class="n">posts</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;sitemap.xml&quot;</span><span class="p">,</span> <span class="n">posts</span><span class="o">=</span><span class="n">posts</span><span class="p">)</span>
 </code></pre></div>
 
 <p>Once I retrieve my blog posts using the get_all_posts() function, I sort them oldest to newest, then send them to my sitemap.xml template (that I still needed to create).</p>
@@ -196,9 +198,9 @@
 <span class="nt">&lt;/urlset&gt;</span>
 </code></pre></div>
 
-<p>&lt;&lt;&lt; .callout
-There are many other xml tags you can include in your file. You can view the entire protocol at <a href="https://www.sitemaps.org/protocol.html">sitemaps.org</a>.
-!!!!</p>
+<div class="callout">
+<p>There are many other xml tags you can include in your file. You can view the entire protocol at <a href="https://www.sitemaps.org/protocol.html">sitemaps.org</a>.</p>
+</div>
 <h2>Sitemap Jinja Template</h2>
 <p>Here's my final sitemap.xml Jinja template.</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
@@ -211,12 +213,15 @@ There are many other xml tags you can include in your file. You can view the ent
   <span class="nt">&lt;/url&gt;</span>
   {% for post in posts %}
   <span class="nt">&lt;url&gt;</span>
-  <span class="nt">&lt;loc&gt;</span>https://www.url.com/{{ post.path }}.html<span class="nt">&lt;/loc&gt;</span>
+  <span class="nt">&lt;loc&gt;</span>{{ url_for(&quot;post&quot;, name=post.path, _external=True) }}<span class="nt">&lt;/loc&gt;</span>
   <span class="nt">&lt;/url&gt;</span>
   {% endfor %}
 <span class="nt">&lt;/urlset&gt;</span>
 </code></pre></div>
 
+<div class="callout">
+<p>Note the <code>_external=True</code> parameter in the <code>url_for</code> method call. This is to ensure full (not relative) URLs are provided. You can read more about the <code>url_for</code> method in the Flask <a href="https://flask.palletsprojects.com/en/latest/api/#flask.Flask.url_for">docs</a>.</p>
+</div>
 <p>Since my website is simple, I just hardcoded the home and about pages first. Next, I have Jinja iterate through all of the page objects that I provided via my route and the render_template() function.</p>
 <h2>Rendered Sitemap</h2>
 <p>Once rendered, my sitemap.xml looks like this.</p>
@@ -239,7 +244,7 @@ There are many other xml tags you can include in your file. You can view the ent
 
 <p>After my home and about pages, each individual post (post1.html, post2.html...) is listed one after another. Every time I add a new blog post it will automatically get added to the bottom.</p>
 <p>Well, that wasn't hard at all! Now off, to submit my sitemap.xml to <a href="https://support.google.com/webmasters/answer/7451001">Google</a>.</p>
-<p><a href="https://joshbduncan.com/sitemap.xml">View my actual sitemap.xml here.</a></p>
+<p>View my live <a href="/sitemap.xml">sitemap.xml</a>.</p>
   </div>
   <div id="post-categorization">
     

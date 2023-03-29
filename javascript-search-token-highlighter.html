@@ -201,7 +201,7 @@
 
 <h2>Setting Up For Regex</h2>
 <p>Since, I'll be utilizing <a href="https://en.wikipedia.org/wiki/Regular_expression">Regular Expressions (regex)</a> to find the tokens, I'm going to add regex "or" separators between my tokens using the Jinja <a href="https://jinja.palletsprojects.com/en/2.11.x/templates/?highlight=replace#replace">Replace Filter</a>.</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="s2">&quot;{{ tokens|replace(&#39; &#39;, &#39;|&#39;) }}&quot;</span><span class="p">;</span> <span class="c1">// add regex &#39;|&#39; &quot;or&quot; character</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="s2">&quot;{{ tokens|replace(&#39; &#39;, &#39;|&#39;) }}&quot;</span><span class="p">;</span> <span class="c1">// add regex &quot;|&#39; &quot;or&quot; character</span>
 </code></pre></div>
 
 <p>This filter is just like the built-in Python string.replace function, in where it replaces each occurrence of the first argument with the second argument.</p>
@@ -210,15 +210,15 @@
 </code></pre></div>
 
 <p>Original query string from Jinja:</p>
-<div class="codehilite"><pre><span></span><code>$ var tokens = &quot;{{ tokens }}&quot;;
-$ console.log(tokens)
-$ &quot;this is a query&quot;
+<div class="codehilite"><pre><span></span><code><span class="nx">$</span> <span class="kd">var</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="s2">&quot;{{ tokens }}&quot;</span><span class="p">;</span>
+<span class="nx">$</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tokens</span><span class="p">)</span>
+<span class="nx">$</span> <span class="s2">&quot;this is a query&quot;</span>
 </code></pre></div>
 
 <p>Update query string with regex "or" separators added in:</p>
-<div class="codehilite"><pre><span></span><code>$ var tokens = &quot;{{ tokens|replace(&#39; &#39;, &#39;|&#39;) }}&quot;;
-$ console.log(tokens)
-$ &quot;this|is|a|query&quot;
+<div class="codehilite"><pre><span></span><code><span class="nx">$</span> <span class="kd">var</span> <span class="nx">tokens</span> <span class="o">=</span> <span class="s2">&quot;{{ tokens|replace(&#39; &#39;, &#39;|&#39;) }}&quot;</span><span class="p">;</span>
+<span class="nx">$</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tokens</span><span class="p">)</span>
+<span class="nx">$</span> <span class="s2">&quot;this|is|a|query&quot;</span>
 </code></pre></div>
 
 <div class="callout">

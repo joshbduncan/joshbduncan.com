@@ -28,6 +28,8 @@
   <meta property="og:article:published_time" content="2020-11-11" />
   <meta property="og:article:author" content="Josh Duncan" />
   
+  <meta property="og:article:modified_time" content="2023-03-27" />
+  
   <meta property="og:article:section" content="development" />
   
   
@@ -157,15 +159,15 @@
     <h1 id="post-title">RSS Feeds Using Flask-FlatPages</h1>
     <div id="post-meta">
       
-      <b>Published</b> <time datetime="2020-11-11">November 2020</time>
+      <b>Updated</b> <time datetime="2023-03-27">March 2023</time>
       
       • 5 min read
     </div>
   </header>
   <div id="post-body">
-    <p>After learning how easy it was to <a href="https://joshbduncan.com/flask-flatpages-sitemap.html">generate a sitemap</a> with <a href="https://flask.palletsprojects.com/">Flask</a> and <a href="https://pythonhosted.org/Flask-FlatPages/">Flask-FlatPages</a>, I decided to use the same technique to generate a valid RSS feed too.</p>
+    <p>After learning how easy it was to <a href="/flask-flatpages-sitemap.html">generate a sitemap</a> with <a href="https://flask.palletsprojects.com/">Flask</a> and <a href="https://pythonhosted.org/Flask-FlatPages/">Flask-FlatPages</a>, I decided to use the same technique to generate a valid RSS feed too.</p>
 <h2>Getting Every Blog Post</h2>
-<p>Just like in the <a href="https://joshbduncan.com/flask-flatpages-sitemap.html">sitemap</a> tutorial, I'm grabbing all of my blog posts from Flask-FlatPages using the get_all_posts() function I wrote.</p>
+<p>Just like in the <a href="/flask-flatpages-sitemap.html">sitemap</a> tutorial, I'm grabbing all of my blog posts from Flask-FlatPages using the get_all_posts() function I wrote.</p>
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_all_posts</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">post</span> <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">flatpages</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">POST_DIR</span><span class="p">)]</span>
 </code></pre></div>
@@ -176,17 +178,17 @@
 </code></pre></div>
 
 <h2>Adding a New Route</h2>
-<p>Now I needed a new Flask route to serve requests at '/rss.xml'.</p>
-<div class="codehilite"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/rss.xml&#39;</span><span class="p">)</span>
+<p>Now I needed a new Flask route to serve requests at "/rss.xml".</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/rss.xml&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">rss</span><span class="p">():</span>
     <span class="n">posts</span> <span class="o">=</span> <span class="n">get_all_posts</span><span class="p">()</span>
-    <span class="n">posts</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;rss.xml&#39;</span><span class="p">,</span> <span class="n">posts</span><span class="o">=</span><span class="n">posts</span><span class="p">,</span> <span class="n">build_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
+    <span class="n">posts</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;rss.xml&quot;</span><span class="p">,</span> <span class="n">posts</span><span class="o">=</span><span class="n">posts</span><span class="p">,</span> <span class="n">build_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
 </code></pre></div>
 
 <p>Once I retrieve my blog posts, I sort them newest to oldest, then send them to my rss.xml template along with the current date and time from Python's <a href="https://docs.python.org/3/library/datetime.html">datetime module</a>.</p>
 <h2>RSS Basics</h2>
-<p><a href="https://joshbduncan.com/rss.xml">RSS</a> or Really Simple Syndication, is a web feed that allows users and applications to access updates to websites in a standardized, computer-readable format.</p>
+<p><a href="https://en.wikipedia.org/wiki/RSS">RSS</a> or Really Simple Syndication, is a web feed that allows users and applications to access updates to websites in a standardized, computer-readable format.</p>
 <p>As with a sitemap, there's not much to a valid RSS feed. Provide the encoding and rss version, then include your website/feed information, and finally provide your blog posts as xml items.</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
 <span class="nt">&lt;rss</span> <span class="na">version=</span><span class="s">&quot;2.0&quot;</span><span class="nt">&gt;</span>
@@ -215,14 +217,14 @@
   <span class="nt">&lt;atom:link</span> <span class="na">href=</span><span class="s">&quot;https://joshbduncan.com/rss.xml&quot;</span> <span class="na">rel=</span><span class="s">&quot;self&quot;</span> <span class="na">type=</span><span class="s">&quot;application/rss+xml&quot;</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;link&gt;</span>https://joshbduncan.com<span class="nt">&lt;/link&gt;</span>
   <span class="nt">&lt;description&gt;</span>just some random thoughts published on the internet...<span class="nt">&lt;/description&gt;</span>
-  <span class="nt">&lt;lastBuildDate&gt;</span>{{ build_date.strftime(&#39;%a, %d %b %Y %T&#39;) }} EST<span class="nt">&lt;/lastBuildDate&gt;</span>
+  <span class="nt">&lt;lastBuildDate&gt;</span>{{ build_date.strftime(&quot;%a, %d %b %Y %T&quot;) }} EST<span class="nt">&lt;/lastBuildDate&gt;</span>
   <span class="nt">&lt;language&gt;</span>en-US<span class="nt">&lt;/language&gt;</span>
   {% for post in posts %}
   <span class="nt">&lt;item&gt;</span>
-  <span class="nt">&lt;title&gt;</span>{{ post.meta[&#39;title&#39;] }}<span class="nt">&lt;/title&gt;</span>
-  <span class="nt">&lt;link&gt;</span>https://joshbduncan.com/{{ post.path.split(&#39;/&#39;)[-1] }}.html<span class="nt">&lt;/link&gt;</span>
-  <span class="nt">&lt;description&gt;</span>{{ post.meta[&#39;description&#39;] }}<span class="nt">&lt;/description&gt;</span>
-  <span class="nt">&lt;pubDate&gt;</span>{{ post.meta[&#39;date&#39;].strftime(&#39;%a, %d %b %Y %T&#39;) }} EST<span class="nt">&lt;/pubDate&gt;</span>
+  <span class="nt">&lt;title&gt;</span>{{ post.meta[&quot;title&quot;] }}<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;link&gt;</span>{{ url_for(&quot;post&quot;, name=post.path, _external=True) }}<span class="nt">&lt;/link&gt;</span>
+  <span class="nt">&lt;description&gt;</span>{{ post.meta[&quot;description&quot;] }}<span class="nt">&lt;/description&gt;</span>
+  <span class="nt">&lt;pubDate&gt;</span>{{ post.meta[&quot;date&quot;].strftime(&quot;%a, %d %b %Y %T&quot;) }} EST<span class="nt">&lt;/pubDate&gt;</span>
   <span class="nt">&lt;/item&gt;</span>
   {% endfor %}
 <span class="nt">&lt;/channel&gt;</span>
@@ -234,6 +236,9 @@
 <p>The dates and times in your RSS feed need to match the <a href="https://www.w3.org/Protocols/rfc822/#z28">RFC822 standard</a>. I have Jinja format the date and time information from Python into the correct format using the <a href="https://jinja.palletsprojects.com/en/2.11.x/api/">strftime</a> (string from time) function.</p>
 </div>
 <p>Next, I have Jinja iterate through all of the page objects that I provided via my route to create each xml item. Each item entry needs to include a title, permalink, description, and publication date.</p>
+<div class="callout">
+<p>Note the <code>_external=True</code> parameter in the <code>url_for</code> method call. This is to ensure full (not relative) URLs are provided. You can read more about the <code>url_for</code> method in the Flask <a href="https://flask.palletsprojects.com/en/latest/api/#flask.Flask.url_for">docs</a>.</p>
+</div>
 <h2>Rendered RSS Feed</h2>
 <p>Once rendered, my rss.xml feed looks like this.</p>
 <div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
@@ -268,7 +273,8 @@
 <p>Boom, I'm valid! I even got this cute little badge!</p>
 <h2>Final Thoughts</h2>
 <p>Eventually, I may limit the number of posts listed in my RSS feed (thinking maybe 10 or so), but since I'm just starting this website I’m going to leave them all in there for now.</p>
-<p><a href="https://joshbduncan.com/rss.xml">View my actual RSS feed here.</a></p>
+<p><a href="/rss.xml">View my live RSS feed</a>.</p>
+<p><a href="https://validator.w3.org/feed/">Feed Validation Service</a>.</p>
   </div>
   <div id="post-categorization">
     

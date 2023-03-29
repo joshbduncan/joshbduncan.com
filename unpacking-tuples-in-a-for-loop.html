@@ -163,18 +163,18 @@
 <p>Well, I have to constantly remind myself of this, and here's a real life example...</p>
 <h2>Backstory</h2>
 <p>The other day I was provided a text file full of employee information in tuples.</p>
-<div class="codehilite"><pre><span></span><code>(&#39;http://www.url.com/1.png&#39;, &#39;J. DOE&#39;, &#39;DEPT 1&#39;, &#39;2020-01-01&#39;)
-(&#39;http://www.url.com/2.png&#39;, &#39;D. JONES&#39;, &#39;DEPT 2&#39;, &#39;2020-02-01&#39;)
-(&#39;http://www.url.com/3.png&#39;, &#39;B. SMITH&#39;, &#39;DEPT 3&#39;, &#39;2020-03-01&#39;)
-(&#39;http://www.url.com/4.png&#39;, &#39;L. BLUE&#39;, &#39;DEPT 4&#39;, &#39;2020-04-01&#39;)
+<div class="codehilite"><pre><span></span><code>(&quot;http://www.url.com/1.png&quot;, &quot;J. DOE&quot;, &quot;DEPT 1&quot;, &quot;2020-01-01&quot;)
+(&quot;http://www.url.com/2.png&quot;, &quot;D. JONES&quot;, &quot;DEPT 2&quot;, &quot;2020-02-01&quot;)
+(&quot;http://www.url.com/3.png&quot;, &quot;B. SMITH&quot;, &quot;DEPT 3&quot;, &quot;2020-03-01&quot;)
+(&quot;http://www.url.com/4.png&quot;, &quot;L. BLUE&quot;, &quot;DEPT 4&quot;, &quot;2020-04-01&quot;)
 </code></pre></div>
 
 <p>So, I loaded the file and appended each tuple to a list leaving me with something like this.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">employees</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;http://www.url.com/1.png&#39;</span><span class="p">,</span> <span class="s1">&#39;J. DOE&#39;</span><span class="p">,</span> <span class="s1">&#39;DEPT 1&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-01-01&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;http://www.url.com/2.png&#39;</span><span class="p">,</span> <span class="s1">&#39;D. JONES&#39;</span><span class="p">,</span> <span class="s1">&#39;DEPT 2&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-02-01&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;http://www.url.com/3.png&#39;</span><span class="p">,</span> <span class="s1">&#39;B. SMITH&#39;</span><span class="p">,</span> <span class="s1">&#39;DEPT 3&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-03-01&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;http://www.url.com/4.png&#39;</span><span class="p">,</span> <span class="s1">&#39;L. BLUE&#39;</span><span class="p">,</span> <span class="s1">&#39;DEPT 4&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-04-01&#39;</span><span class="p">)</span>
+    <span class="p">(</span><span class="s2">&quot;http://www.url.com/1.png&quot;</span><span class="p">,</span> <span class="s2">&quot;J. DOE&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPT 1&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-01-01&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;http://www.url.com/2.png&quot;</span><span class="p">,</span> <span class="s2">&quot;D. JONES&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPT 2&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-02-01&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;http://www.url.com/3.png&quot;</span><span class="p">,</span> <span class="s2">&quot;B. SMITH&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPT 3&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-03-01&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;http://www.url.com/4.png&quot;</span><span class="p">,</span> <span class="s2">&quot;L. BLUE&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPT 4&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-04-01&quot;</span><span class="p">)</span>
 <span class="p">]</span>
 </code></pre></div>
 
@@ -186,7 +186,7 @@
 <p>My first thought was to iterate over the list of tuples and make a dictionary so I could easily access each variable by name... But that's an extra step I didn't need to take.</p>
 <p>I could just unpack the tuple values to proper named variables right inside of my for loop.</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dept</span><span class="p">,</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">employees</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Downloading </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> image...&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloading </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> image...&quot;</span><span class="p">)</span>
 <span class="go">Downloading J. DOE image...</span>
 <span class="go">Downloading D. JONES image...</span>
 <span class="go">Downloading B. SMITH image...</span>
@@ -196,7 +196,7 @@
 <p>As you can see, it's quite easy and definitely more Pythonic to have easily identifiable variable names <em>(e.g., url, name, dept, date)</em>.</p>
 <p>After re-learning this basic idea, I wondered if this also worked with the <a href="https://docs.python.org/3/library/functions.html?highlight=enumerate#enumerate">enumerate</a> method. Well, it certainly does.</p>
 <div class="codehilite"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dept</span><span class="p">,</span> <span class="n">date</span><span class="p">)</span> <span class="ow">in</span> <span class="n">enerarate</span><span class="p">(</span><span class="n">employees</span><span class="p">):</span>
-<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Record </span><span class="si">{</span><span class="n">I</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> image located @ </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Record </span><span class="si">{</span><span class="n">I</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> image located @ </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="go">Record 0: J. DOE located @ https://www.url.com/1</span>
 <span class="go">Record 1: D. JONES located @ https://www.url.com/2</span>
 <span class="go">Record 2: B. SMITH located @ https://www.url.com/3</span>
