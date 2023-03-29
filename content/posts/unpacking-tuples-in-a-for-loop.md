@@ -16,20 +16,20 @@ Well, I have to constantly remind myself of this, and here's a real life example
 The other day I was provided a text file full of employee information in tuples.
 
 ```
-('http://www.url.com/1.png', 'J. DOE', 'DEPT 1', '2020-01-01')
-('http://www.url.com/2.png', 'D. JONES', 'DEPT 2', '2020-02-01')
-('http://www.url.com/3.png', 'B. SMITH', 'DEPT 3', '2020-03-01')
-('http://www.url.com/4.png', 'L. BLUE', 'DEPT 4', '2020-04-01')
+("http://www.url.com/1.png", "J. DOE", "DEPT 1", "2020-01-01")
+("http://www.url.com/2.png", "D. JONES", "DEPT 2", "2020-02-01")
+("http://www.url.com/3.png", "B. SMITH", "DEPT 3", "2020-03-01")
+("http://www.url.com/4.png", "L. BLUE", "DEPT 4", "2020-04-01")
 ```
 
 So, I loaded the file and appended each tuple to a list leaving me with something like this.
 
 ```python
 employees = [
-    ('http://www.url.com/1.png', 'J. DOE', 'DEPT 1', '2020-01-01'),
-    ('http://www.url.com/2.png', 'D. JONES', 'DEPT 2', '2020-02-01'),
-    ('http://www.url.com/3.png', 'B. SMITH', 'DEPT 3', '2020-03-01'),
-    ('http://www.url.com/4.png', 'L. BLUE', 'DEPT 4', '2020-04-01')
+    ("http://www.url.com/1.png", "J. DOE", "DEPT 1", "2020-01-01"),
+    ("http://www.url.com/2.png", "D. JONES", "DEPT 2", "2020-02-01"),
+    ("http://www.url.com/3.png", "B. SMITH", "DEPT 3", "2020-03-01"),
+    ("http://www.url.com/4.png", "L. BLUE", "DEPT 4", "2020-04-01")
 ]
 ```
 
@@ -38,10 +38,8 @@ My task was to download each employee picture from the url in the tuple and then
 There were 500+ employees, so this would be torture to do manually 😩.
 
 <<< .callout
-I originally started learning Python from the book [Automate the Boring Stuff with Python][automate], and this is a great example of what it teaches. Enter Python 🐍.
+I originally started learning Python from the book [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/), and this is a great example of what it teaches. Enter Python 🐍.
 >>>
-
-[automate]: https://automatetheboringstuff.com/
 
 My first thought was to iterate over the list of tuples and make a dictionary so I could easily access each variable by name... But that's an extra step I didn't need to take.
 
@@ -49,7 +47,7 @@ I could just unpack the tuple values to proper named variables right inside of m
 
 ```pycon
 >>> for url, name, dept, date in employees:
-...     print(f'Downloading {name} image...')
+...     print(f"Downloading {name} image...")
 Downloading J. DOE image...
 Downloading D. JONES image...
 Downloading B. SMITH image...
@@ -58,13 +56,11 @@ Downloading L. BLUE image...
 
 As you can see, it's quite easy and definitely more Pythonic to have easily identifiable variable names _(e.g., url, name, dept, date)_.
 
-After re-learning this basic idea, I wondered if this also worked with the [enumerate][enumerate] method. Well, it certainly does.
-
-[enumerate]: https://docs.python.org/3/library/functions.html?highlight=enumerate#enumerate
+After re-learning this basic idea, I wondered if this also worked with the [enumerate](https://docs.python.org/3/library/functions.html?highlight=enumerate#enumerate) method. Well, it certainly does.
 
 ```pycon
 >>> for i, (url, name, dept, date) in enerarate(employees):
-...     print(f'Record {I}: {name} image located @ {url}')
+...     print(f"Record {I}: {name} image located @ {url}")
 Record 0: J. DOE located @ https://www.url.com/1
 Record 1: D. JONES located @ https://www.url.com/2
 Record 2: B. SMITH located @ https://www.url.com/3

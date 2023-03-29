@@ -1,19 +1,16 @@
 ---
 title: Generating a Sitemap with Flask and Flask-FlatPages
 date: 2020-10-31
+updated: 2023-03-27
 description: If you're using Flask-FlatPages, it's really simple to generate a sitemap that plays nice with search engines and helps your website get noticed.
 author: Josh Duncan
 category: development
 tags: python, flask, jinja, flask-flatpages
 ---
 
-After creating this [Flask][flask] based site, I needed an easy way to generate a sitemap that plays nice with search engines and web crawlers.
+After creating this [Flask](https://flask.palletsprojects.com/) based site, I needed an easy way to generate a sitemap that plays nice with search engines and web crawlers.
 
-[flask]: https://flask.palletsprojects.com/
-
-Since I was using [Flask-FlatPages][flatpages], it was quite simple.
-
-[flatpages]: https://pythonhosted.org/Flask-FlatPages/
+Since I was using [Flask-FlatPages](https://pythonhosted.org/Flask-FlatPages/), it was quite simple.
 
 ## Getting Every Blog Post
 
@@ -24,9 +21,7 @@ def get_all_posts():
     return [post for post in flatpages if post.path.startswith(POST_DIR)]
 ```
 
-When I run the function, I get a list of [Page objects][page-objects] for each blog post.
-
-[page-objects]: https://pythonhosted.org/Flask-FlatPages/#flask_flatpages.Page
+When I run the function, I get a list of [Page objects](page-https://pythonhosted.org/Flask-FlatPages/#flask_flatpages.Page) for each blog post.
 
 ```pycon
 >>> get_all_posts()
@@ -35,14 +30,14 @@ When I run the function, I get a list of [Page objects][page-objects] for each b
 
 ## Adding a New Route
 
-Now I needed a new Flask route to serve requests at '/sitemap.xml'.
+Now I needed a new Flask route to serve requests at "/sitemap.xml".
 
 ```python
-@app.route('/sitemap.xml')
+@app.route("/sitemap.xml")
 def sitemap():
     posts = get_all_posts()
-    posts.sort(key=lambda item: item['date'], reverse=False)
-    return render_template('sitemap.xml', posts=posts)
+    posts.sort(key=lambda item: item["date"], reverse=False)
+    return render_template("sitemap.xml", posts=posts)
 ```
 
 Once I retrieve my blog posts using the get_all_posts() function, I sort them oldest to newest, then send them to my sitemap.xml template (that I still needed to create).
@@ -61,10 +56,8 @@ A basic sitemap.xml is pretty straightforward. I only need the encoding, a urlse
 ```
 
 <<< .callout
-There are many other xml tags you can include in your file. You can view the entire protocol at [sitemaps.org][sitemaps-protocol].
-!!!!
-
-[sitemaps-protocol]: https://www.sitemaps.org/protocol.html
+There are many other xml tags you can include in your file. You can view the entire protocol at [sitemaps.org](https://www.sitemaps.org/protocol.html).
+>>>
 
 ## Sitemap Jinja Template
 
@@ -81,11 +74,15 @@ Here's my final sitemap.xml Jinja template.
   </url>
   {% for post in posts %}
   <url>
-  <loc>https://www.url.com/{{ post.path }}.html</loc>
+  <loc>{{ url_for("post", name=post.path, _external=True) }}</loc>
   </url>
   {% endfor %}
 </urlset>
 ```
+
+<<< .callout
+Note the `_external=True` parameter in the `url_for` method call. This is to ensure full (not relative) URLs are provided. You can read more about the `url_for` method in the Flask [docs](https://flask.palletsprojects.com/en/latest/api/#flask.Flask.url_for).
+>>>
 
 Since my website is simple, I just hardcoded the home and about pages first. Next, I have Jinja iterate through all of the page objects that I provided via my route and the render_template() function.
 
@@ -113,10 +110,6 @@ Once rendered, my sitemap.xml looks like this.
 
 After my home and about pages, each individual post (post1.html, post2.html...) is listed one after another. Every time I add a new blog post it will automatically get added to the bottom.
 
-Well, that wasn't hard at all! Now off, to submit my sitemap.xml to [Google][google].
+Well, that wasn't hard at all! Now off, to submit my sitemap.xml to [Google](https://support.google.com/webmasters/answer/7451001).
 
-[google]: https://support.google.com/webmasters/answer/7451001
-
-[View my actual sitemap.xml here.][sitemap]
-
-[sitemap]: https://joshbduncan.com/sitemap.xml
+View my live [sitemap.xml](/sitemap.xml).

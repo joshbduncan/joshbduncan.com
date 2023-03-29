@@ -15,6 +15,9 @@
       <article>
         <header>
           <h2><a class="text-decoration-none" data-title href=""></a></h2>
+          <div id="post-meta">
+            <span data-date></span> • <span data-read-time></span>
+          </div>
         </header>
         <p data-description></p>
       </article>
@@ -27,6 +30,10 @@
   const postList = document.querySelector("[data-posts-list]");
   const searchInput = document.querySelector("[data-search]");
 
+  // focus on search input
+  searchInput.focus();
+  searchInput.select();
+
   searchInput.addEventListener("input", (e) => {
     const query = e.target.value.toLowerCase();
     const tokens = query.trim().split(" ");
@@ -36,7 +43,6 @@
       tokens.forEach((word) => {
         let re = new RegExp("\\b" + word, "gi");
         if (
-          re.test(post.body) ||
           re.test(post.title.toLowerCase()) ||
           re.test(post.description.toLowerCase()) ||
           re.test(post.tags.join(" ").toLowerCase())
@@ -54,8 +60,17 @@
         const li = postTemplate.content.cloneNode(true).children[0];
         const title = li.querySelector("[data-title]");
         const description = li.querySelector("[data-description]");
+        const date = li.querySelector("[data-date]")
+        const readTime = li.querySelector("[data-read-time]")
+        // format post date
+        const postDate = post.updated ? new Date(post.updated) : new Date(post.date);
+        const month = postDate.toLocaleString('default', { month: 'long' });
+        const year = postDate.toLocaleString('default', { year: 'numeric' });
+        // set html info
         title.textContent = post.title;
-        title.href = post.url;
+        title.href = post.url_internal;
+        date.innerHTML = post.updated ? `<b>Updated</b> ${month} ${year}` : `<b>Published</b> ${month} ${year}`
+        readTime.textContent = Math.round(post.read_time / 60) + " min read";
         description.textContent = post.description;
         postList.append(li);
         post["element"] = li;

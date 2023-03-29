@@ -30,6 +30,7 @@ class Config(object):
 
     # freezer static files destination
     FREEZER_DESTINATION = "../build"
+    FREEZER_BASE_URL = "https://joshbduncan.com/"
 
     # Ignore MIME warning for type application/xml (sitemap, rss)
     FREEZER_IGNORE_MIMETYPE_WARNINGS = True

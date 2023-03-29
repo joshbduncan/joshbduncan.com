@@ -7,9 +7,7 @@ category: development
 tags: javascript, python, flask, jinja
 ---
 
-While building a full-text search engine for a [Flask][flask] project I'm working on, I wanted a way to highlight all of the search terms on the search results page. After dabbling in JavaScript for a bit, here's what I come up with.
-
-[flask]: https://flask.palletsprojects.com/
+While building a full-text search engine for a [Flask](https://flask.palletsprojects.com/) project I'm working on, I wanted a way to highlight all of the search terms on the search results page. After dabbling in JavaScript for a bit, here's what I come up with.
 
 <<< .callout
 Just to be clear, I'm not a JavaScript programmer. This is something I was able to hack together for my purposes and it seems to work well. Your milage may vary...
@@ -48,9 +46,7 @@ for (var i = 0; i < articles.length; i++) {
 
 After a visitor successfully submits a search query to my Flask app, I'm capturing their input, sanitizing it, and then passing that query to the search results page as the variable `tokens`.
 
-Once, the search results page is rendered, I can access that variable via [Jinja][jinja] inside of my JavaScript script.
-
-[jinja]: https://jinja.palletsprojects.com/
+Once, the search results page is rendered, I can access that variable via [Jinja](https://jinja.palletsprojects.com/) inside of my JavaScript script.
 
 ```javascript
 var tokens = "{{ tokens }}";
@@ -58,20 +54,15 @@ var tokens = "{{ tokens }}";
 
 ## Setting Up For Regex
 
-Since, I'll be utilizing [Regular Expressions (regex)][regex] to find the tokens, I'm going to add regex "or" separators between my tokens using the Jinja [Replace Filter][replace-filter].
-
-[regex]: https://en.wikipedia.org/wiki/Regular_expression
-[replace-filter]: https://jinja.palletsprojects.com/en/2.11.x/templates/?highlight=replace#replace
+Since, I'll be utilizing [Regular Expressions (regex)](https://en.wikipedia.org/wiki/Regular_expression) to find the tokens, I'm going to add regex "or" separators between my tokens using the Jinja [Replace Filter](https://jinja.palletsprojects.com/en/2.11.x/templates/?highlight=replace#replace).
 
 ```javascript
-var tokens = "{{ tokens|replace(' ', '|') }}"; // add regex '|' "or" character
+var tokens = "{{ tokens|replace(' ', '|') }}"; // add regex "|' "or" character
 ```
 
 This filter is just like the built-in Python string.replace function, in where it replaces each occurrence of the first argument with the second argument.
 
-You could also do this with the JavaScript [string replace method][stringreplace] if you are not using Jinja templates.
-
-[stringreplace]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+You could also do this with the JavaScript [string replace method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace) if you are not using Jinja templates.
 
 ```javascript
 var tokens = query.replace(/ /g, "|");
@@ -79,7 +70,7 @@ var tokens = query.replace(/ /g, "|");
 
 Original query string from Jinja:
 
-```
+```nodejsrepl
 $ var tokens = "{{ tokens }}";
 $ console.log(tokens)
 $ "this is a query"
@@ -87,25 +78,21 @@ $ "this is a query"
 
 Update query string with regex "or" separators added in:
 
-```
+```nodejsrepl
 $ var tokens = "{{ tokens|replace(' ', '|') }}";
 $ console.log(tokens)
 $ "this|is|a|query"
 ```
 
 <<< .callout
-So, regex is an entire language that I'm definitely not going to even scratch the surface of here. If you want to learn more, I suggest the great website [regexr.com][regexr].
+So, regex is an entire language that I'm definitely not going to even scratch the surface of here. If you want to learn more, I suggest the great website [regexr.com](https://regexr.com/).
 >>>
-
-[regexr]: https://regexr.com/
 
 ## Cleaning Up The Query
 
 The first issue I encountered were HTML encodings in my string that were added when everything was passed to Jinja.
 
-To remove these, I found a nifty little function from [Rob Wu on StackOverflow][stackoverflow] that strips all HTML encoding so I have a raw string to match.
-
-[stackoverflow]: https://gomakethings.com/decoding-html-entities-with-vanilla-javascript/
+To remove these, I found a nifty little function from [Rob Wu on StackOverflow](https://gomakethings.com/decoding-html-entities-with-vanilla-javascript/) that strips all HTML encoding so I have a raw string to match.
 
 ```javascript
 // remove html encoding from the flask search tokens

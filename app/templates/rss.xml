@@ -11,7 +11,7 @@
   {% for post in posts %}
   <item>
     <title>{{ post.meta['title'] }}</title>
-    <link>https://joshbduncan.com/{{ post.path.split('/')[-1] }}.html</link>
+    <link>{{ url_for('post', name=post.path.replace(post.folder, ''), _external=True) }}</link>
     <description>{{ post.meta['description'] }}</description>
     <pubDate>{{ post.meta['date'].strftime('%a, %d %b %Y %T') }} EST</pubDate>
   </item>

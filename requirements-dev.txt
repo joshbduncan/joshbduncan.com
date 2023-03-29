@@ -5,5 +5,7 @@ Flask-FlatPages==0.8.1
 Frozen-Flask==0.18
 isort==5.10.1
 Markdown==3.3.6
+mypy==1.1.1
 Pygments==2.11.2
 python-dotenv==0.19.2
+ruff==0.0.259

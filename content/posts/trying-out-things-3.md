@@ -7,17 +7,13 @@ category: development
 tags: python, mac, productivity, automation
 ---
 
-I'm always on the search for the best to-do list app and I've been pretty happy with [Todoist][todoist] since 2015 as a premium member. Their input and date recognition are the best, and they are always adding and updating features. What's not to like, right?
-
-[todoist]: https://todoist.com/
+I'm always on the search for the best to-do list app and I've been pretty happy with [Todoist](https://todoist.com/) since 2015 as a premium member. Their input and date recognition are the best, and they are always adding and updating features. What's not to like, right?
 
 Well, recently I've just grown tired of the look. There is nothing wrong with the look, I'm just tired of it.
 
 ## Enter Things 3
 
-[Things 3][things3] is gorgeous, and it's a native Mac app, so a few years back, I purchased it from Cultured Code for all of my devices on a whim 🤦‍♂️.
-
-[things3]: https://culturedcode.com/things/
+[Things 3](https://culturedcode.com/things/) is gorgeous, and it's a native Mac app, so a few years back, I purchased it from Cultured Code for all of my devices on a whim 🤦‍♂️.
 
 But after trying it out for a few days I wasn't 100% sold on the to-do entry mechanism or their repeating feature, so I never made the switch from Todoist.
 
@@ -31,9 +27,7 @@ I often use Todoist as a read-it-later service, so I have a lot of to-dos that n
 
 To move over these to-dos correctly, I've have a hurdles to overcome...
 
-Since I enter most of the read-it-later to-dos via the iOS share sheet, the to-do name in Todoist is actually a link in the [Markdown link format][markdown] like below.
-
-[markdown]: https://daringfireball.net/projects/markdown/syntax#link
+Since I enter most of the read-it-later to-dos via the iOS share sheet, the to-do name in Todoist is actually a link in the [Markdown link format](https://daringfireball.net/projects/markdown/syntax#link) like below.
 
 ```
 Todoist To-do Item With Clickable Link:
@@ -56,11 +50,7 @@ But this way would require a lots of copying and pasting, would be prone to erro
 
 ## The Solution
 
-Now, I could probably hack something together using the Mac Swiss Army knife [Keyboard Maestro][keyboard-maestro], but I know that Todoist has an awesome [Python API Library][todoist-api] and Things 3 has great support for [URL Schemes][things-urls] so I should be able to whip something up with Python.
-
-[keyboard-maestro]: https://www.keyboardmaestro.com/
-[todoist-api]: https://github.com/Doist/todoist-python
-[things-urls]: https://culturedcode.com/things/blog/2018/02/hey-things/
+Now, I could probably hack something together using the Mac Swiss Army knife [Keyboard Maestro](https://www.keyboardmaestro.com/), but I know that Todoist has an awesome [Python API Library](https://github.com/Doist/todoist-python) and Things 3 has great support for [URL Schemes](https://culturedcode.com/things/blog/2018/02/hey-things/) so I should be able to whip something up with Python.
 
 ### Getting Setup
 
@@ -79,10 +69,8 @@ $ source venv/bin/activate
 ```
 
 <<< .callout
-If you are new to Python Virtual Environments, you can learn more about them [here][venv].
+If you are new to Python Virtual Environments, you can learn more about them [here](https://docs.python.org/3/tutorial/venv.html).
 >>>
-
-[venv]: https://docs.python.org/3/tutorial/venv.html
 
 Lastly, I'll create a Python file to hold my code.
 
@@ -102,9 +90,7 @@ $ export TODOIST_KEY=abunchofgibberish0123456789
 
 Saving environment variables this way is only temporary. As soon as you deactivate your virtual environment, they are lost.
 
-An easier option is to use [python-dotenv][dotenv].
-
-[dotenv]: https://github.com/theskumar/python-dotenv
+An easier option is to use [python-dotenv](https://github.com/theskumar/python-dotenv).
 
 ```
 $ pip install python-dotenv
@@ -120,7 +106,7 @@ Now, whenever I activate the virtual environment for this project my Todoist API
 
 ### Todoist Python API library
 
-Doist, the company behind the Todoist app has an official [Python API Library][todoist-api]. I can install the package using pip.
+Doist, the company behind the Todoist app has an official [Python API Library](https://github.com/Doist/todoist-python). I can install the package using pip.
 
 ```
 $ pip install todoist-python
@@ -130,9 +116,7 @@ This module will make it easier to interact with the Todoist API, saving me time
 
 ## The Code
 
-I'll start off using the [Python Interpreter][interpreter] to make sure everything is working correctly with the Todoist API.
-
-[interpreter]: https://docs.python.org/3/tutorial/interpreter.html
+I'll start off using the [Python Interpreter](https://docs.python.org/3/tutorial/interpreter.html) to make sure everything is working correctly with the Todoist API.
 
 ```pycon
 >>> import os
@@ -151,7 +135,7 @@ Next, I need to instantiate python-dotenv to load the environment variables I ha
 Then I can set the variable 'api_key' to my Todoist token.
 
 ```pycon
->>> api_key = os.environ['TODOIST_KEY']
+>>> api_key = os.environ["TODOIST_KEY"]
 ```
 
 And, to test out the connection, I'll print the name associated with my token.
@@ -159,7 +143,7 @@ And, to test out the connection, I'll print the name associated with my token.
 ```pycon
 >>> api = TodoistAPI(api_key)
 >>> api.sync()
->>> print(api.state['user']['full_name'])
+>>> print(api.state["user"]["full_name"])
 Josh D.
 ```
 
@@ -173,7 +157,7 @@ I have a lot of to-dos in Todoist, so I'm going to make a function that grabs th
 
 ```python
 def get_all_tasks():
-    return api.state['items']
+    return api.state["items"]
 
 todoist_tasks = get_all_tasks()
 ```
@@ -186,7 +170,7 @@ Since, I'm only interested in the to-dos inside of my "Review" project, I need t
 
 ```python
 def get_all_projects():
-    return api.state['projects']
+    return api.state["projects"]
 
 todoist_projects = get_all_projects()
 ```
@@ -196,14 +180,14 @@ And then present a list to pick from...
 ```python
 def pick_project(todoist_projects):
     projects = []
-    print('todoist projects')
+    print("todoist projects")
     for n, project in enumerate(todoist_projects):
-        project_name = project['name'].encode(
-            'ascii', 'ignore').decode('ascii')  # remove emojis
-        project_id = project['id']
+        project_name = project["name"].encode(
+            "ascii", "ignore").decode("ascii")  # remove emojis
+        project_id = project["id"]
         projects.append(project_id)
-        print(f'{n + 1}: {project_name}')
-    project = int(input('which project id? '))
+        print(f"{n + 1}: {project_name}")
+    project = int(input("which project id? "))
     return projects[project - 1]
 
 todoist_project = pick_project(todoist_projects)
@@ -219,19 +203,19 @@ This next function will iterate over all of my to-dos and only grab the ones fro
 def find_tasks(todoist_tasks, todoist_project):
     tasks = []
     for task in todoist_tasks:
-        if task.data['project_id'] == todoist_project:
-            content = task.data['content']
-            when = task.data['due']['date'] if task.data['due'] else ''
-            creation_date = task.data['date_added']
+        if task.data["project_id"] == todoist_project:
+            content = task.data["content"]
+            when = task.data["due"]["date"] if task.data["due"] else ""
+            creation_date = task.data["date_added"]
             # if markdown link task then separate out
-            if content[0] == '[' and content[-1] == ')':
-                title = content.split('](')[0][1:].strip()
-                notes = content.split('](')[1][:-1].strip()
+            if content[0] == "[" and content[-1] == ")":
+                title = content.split("](")[0][1:].strip()
+                notes = content.split("](")[1][:-1].strip()
             else:
                 title = content
-                notes = ''
-            tasks.append({'title': title, 'notes': notes,
-                            'when': when, 'creation_date': creation_date})
+                notes = ""
+            tasks.append({"title": title, "notes": notes,
+                            "when": when, "creation_date": creation_date})
     return tasks
 
 things_tasks = find_tasks(todoist_tasks, todoist_project)
@@ -244,12 +228,12 @@ Before, appends to the tasks list, the function checks to see if the to-do inclu
 Basically, if the to-do 'content' starts with an opening bracket '[' and ends with a closing parenthesis ')', it's a Markdown link for the purposes of this program.
 
 ```python
-if content[0] == '[' and content[-1] == ')':
-    title = content.split('](')[0][1:].strip()
-    notes = content.split('](')[1][:-1].strip()
+if content[0] == "[" and content[-1] == ")":
+    title = content.split("](")[0][1:].strip()
+    notes = content.split("](")[1][:-1].strip()
 else:
     title = content
-    notes = ''
+    notes = ""
 ```
 
 If the function finds a match for that pattern, it splits the string at the '](' and takes the two parts, title and notes (url).
@@ -266,9 +250,7 @@ import webbrowser
 
 ### Building the Urls
 
-Cultured Code has an awesome URL Scheme [Link Builder][link-builder] on it's website. This makes it really easy to figure out the exact url I'll need to create each to-do in Things 3.
-
-[link-builder]: https://culturedcode.com/things/support/articles/2803573/
+Cultured Code has an awesome URL Scheme [Link Builder](https://culturedcode.com/things/support/articles/2803573/#link-builder) on it's website. This makes it really easy to figure out the exact url I'll need to create each to-do in Things 3.
 
 Using their Link Builder, I created placeholders for everything I would need to enter and ended up with this url.
 
@@ -276,12 +258,10 @@ Using their Link Builder, I created placeholders for everything I would need to 
 things:///add?title=title&notes=notes&when=when&tags=tags&list=list_title&creation-date=creation_date
 ```
 
-And with the magic of Python 3's [f-Strings][f-strings] I can easily make a custom url for each to-do, I'll just need to have each variable with the curly braces '{}' defined.
-
-[f-strings]: https://docs.python.org/3/reference/lexical_analysis.html#f-strings
+And with the magic of Python 3's [f-Strings](https://docs.python.org/3/reference/lexical_analysis.html#f-strings) I can easily make a custom url for each to-do, I'll just need to have each variable with the curly braces '{}' defined.
 
 ```python
-f'things:///add?title={title}&notes={notes}&when={when}&tags={tags}&list={list_title}&creation-date={creation_date}'
+f"things:///add?title={title}&notes={notes}&when={when}&tags={tags}&list={list_title}&creation-date={creation_date}"
 ```
 
 <<< .callout
@@ -294,7 +274,7 @@ Before I import 100+ to-dos, maybe I should make it easy to find the imported to
 
 So, I plan to create a new project in Things 3 to hold all of the imported to-dos, which should make them easier to find.
 
-Using the same [Link Builder][link-builder] from above, I was able to create this url.
+Using the same [Link Builder](https://culturedcode.com/things/support/articles/2803573/#link-builder) from above, I was able to create this url.
 
 ```
 things:///add-project?title=things_project&reveal=true
@@ -304,8 +284,8 @@ Visiting this url will create a new project in Things 3 and then reveal that pro
 
 ```python
 def make_project():
-    things_project = f'IMPORT {datetime.now().strftime("%m-%y %X")}'
-    purl = f'things:///add-project?title={things_project}&reveal=true'
+    things_project = f"IMPORT {datetime.now().strftime('%m-%y %X')}"
+    purl = f"things:///add-project?title={things_project}&reveal=true"
     webbrowser.open(purl)
     return things_project
 ```
@@ -329,16 +309,16 @@ def add_to_things(things_tasks):
     # create a new project/list to hold the imported tasks
     list_title = make_project()
     # tags must already exist, comma separated
-    tags = 'todoist'
+    tags = "todoist"
     for task in things_tasks:
-        title = task['title']
-        notes = task['notes']
-        when = task['when']
-        creation_date = task['creation_date']
-        print(f'...moving {title[:30]}...')
-        turl = f'things:///add?title={title}&notes={notes}&when={when}&tags={tags}&list={list_title}&creation-date={creation_date}'
+        title = task["title"]
+        notes = task["notes"]
+        when = task["when"]
+        creation_date = task["creation_date"]
+        print(f"...moving {title[:30]}...")
+        turl = f"things:///add?title={title}&notes={notes}&when={when}&tags={tags}&list={list_title}&creation-date={creation_date}"
         webbrowser.open(turl)
-    print(f'tasks moved to things. find them in project {list_title}')
+    print(f"tasks moved to things. find them in project {list_title}")
 ```
 
 First, I'll call the make_project() function to create and open a new project in Things 3.
@@ -360,18 +340,18 @@ As you can see, all of the to-dos come flooding in to my new project. Success!
 Now, I just need to clean up my code and add the `if name == main` clause so I can use this standalone or on import if need be.
 
 ```python
-if __name__ == '__main__':
+if __name__ == "__main__":
     todoist_tasks = get_all_tasks()
     todoist_projects = get_all_projects()
     todoist_project = pick_project(todoist_projects)
     things_tasks = find_tasks(todoist_tasks, todoist_project)
-    print(f'found {len(things_tasks)} matching tasks...')
-    cont = input('continue? (y/n) ')
-    if cont.lower() != 'y':
-        print('no tasks were moved.')
+    print(f"found {len(things_tasks)} matching tasks...")
+    cont = input("continue? (y/n) ")
+    if cont.lower() != "y":
+        print("no tasks were moved.")
         exit()
     else:
-        print('starting to move your tasks...')
+        print("starting to move your tasks...")
         add_to_things(things_tasks)
 ```
 

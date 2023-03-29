@@ -20,3 +20,5 @@ content/deleted
 build/drafts
 build/deleted
 __pycache__
+.ruff_cache
+.mypy_cache

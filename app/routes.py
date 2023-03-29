@@ -1,6 +1,8 @@
 from datetime import datetime
+from pathlib import Path
 
-from flask import jsonify, render_template
+from flask import jsonify, render_template, url_for
+from jinja2.filters import do_wordcount
 
 from app import app, flatpages, freezer
 
@@ -94,7 +96,9 @@ def tagged(tag):
 
 @app.route("/search.html")
 def search():
-    return render_template("search.html")
+    posts = get_live_posts()
+    posts.sort(key=lambda item: item["date"], reverse=True)
+    return render_template("search.html", posts=posts)
 
 
 @app.route("/posts.json")
@@ -103,17 +107,25 @@ def json_posts():
     posts.sort(key=lambda item: item["date"], reverse=True)
     posts_data = []
     for post in posts:
-        # put everything into a dict to send via json
+        post_path = Path(post.path)
         posts_data.append(
             {
                 "title": post.meta["title"],
-                "date": post.meta["date"].strftime("%Y-%m-%d"),
+                "date": datetime.fromisoformat(
+                    post.meta["date"].isoformat()
+                ).isoformat(),
+                "updated": datetime.fromisoformat(
+                    post.meta["updated"].isoformat()
+                ).isoformat()
+                if post.meta.get("updated")
+                else None,
                 "author": post.meta["author"],
                 "description": post.meta["description"],
                 "category": post.meta["category"] or "",
                 "tags": post.meta["tags"].split(", "),
-                "body": post.body,
-                "url": f"https://joshbduncan.com/{post.path.split('/')[-1]}.html",
+                "read_time": int(round(do_wordcount(post.body) / (200 / 60))),
+                "url": url_for("post", name=post_path.name, _external=True),
+                "url_internal": url_for("post", name=post_path.name),
             }
         )
     return jsonify(posts_data)
@@ -131,14 +143,11 @@ def json_categories():
 
 @app.route("/sitemap.xml")
 def sitemap():
-    pages = get_pages()
     posts = get_live_posts()
     categories = get_all_categories()
     tags = get_all_tags() or ""
     posts.sort(key=lambda item: item["date"], reverse=False)
-    return render_template(
-        "sitemap.xml", pages=pages, posts=posts, categories=categories, tags=tags
-    )
+    return render_template("sitemap.xml", posts=posts, categories=categories, tags=tags)
 
 
 @app.route("/rss.xml")

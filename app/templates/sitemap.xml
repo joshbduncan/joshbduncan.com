@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-  <!-- PAGES -->
   <url>
     <loc>https://joshbduncan.com</loc>
     <changefreq>weekly</changefreq>
   </url>
-  {% for page in pages %}
+
+  <!-- PAGES -->
   <url>
-    <loc>https://joshbduncan.com/{{ page.path.split('/')[-1] }}.html</loc>
+    <loc>{{ url_for('about', _external=True) }}</loc>
     <changefreq>monthly</changefreq>
   </url>
-  {% endfor %}
+  <url>
+    <loc>{{ url_for('software', _external=True) }}</loc>
+    <changefreq>monthly</changefreq>
+  </url>
   
   <!-- POSTS -->
   {% for post in posts %}
   <url>
-    <loc>https://joshbduncan.com/{{ post.path.split('/')[-1] }}.html</loc>
+    <loc>{{ url_for('post', name=post.path.replace(post.folder, ''), _external=True) }}</loc>
   </url>
   {% endfor %}
   
   <!-- CATEGORIES -->
   {% for category in categories %}
   <url>
-    <loc>https://joshbduncan.com/category/{{ category }}.html</loc>
+    <loc>{{ url_for('category', category=category, _external=True) }}</loc>
   </url>
   {% endfor %}
   
   <!-- TAGS -->
   {% for tag in tags %}
   <url>
-    <loc>https://joshbduncan.com/tag/{{ tag }}.html</loc>
+    <loc>{{ url_for('tagged', tag=tag, _external=True) }}</loc>
   </url>
   {% endfor %}
 
