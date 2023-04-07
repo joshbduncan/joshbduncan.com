@@ -281,6 +281,22 @@ logo {
   transition: transform 0.5s;
 }
 
+logo .strokeTypeRound {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 333.3333;
+}
+
+logo .strokeTypeCorner {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 4.5;
+  stroke-miterlimit: 333.3333;
+}
+
 logo a {
   color: var(--color-primary);
 }
