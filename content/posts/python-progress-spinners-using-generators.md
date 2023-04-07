@@ -174,7 +174,7 @@ Now, to get extra fancy, I'm going combine what I did above into a Python [Class
 
 ### Spinners Galore
 
-There are tons of spinners you can come up with but here are the four I'm going to have averrable for use.
+There are tons of spinners you can come up with but here are the four I'm going to have available for use.
 
 ```python
 spinners = {
