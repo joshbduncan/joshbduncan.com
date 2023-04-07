@@ -1,10 +1,17 @@
 import sys
 
-from app import app, Config, freezer, flatpages
+from app import Config, app, flatpages, freezer
+
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'app': app, 'config': Config, 'freezer': freezer, 'flatpages': flatpages,}
+    return {
+        "app": app,
+        "config": Config,
+        "freezer": freezer,
+        "flatpages": flatpages,
+    }
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
