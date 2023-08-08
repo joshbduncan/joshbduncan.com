@@ -3,4 +3,7 @@ Allow: /
 Disallow: /drafts/
 Disallow: /search.html
 
+User-agent: GPTBot
+Disallow: /
+
 Sitemap: https://www.joshbduncan.com/sitemap.xml
