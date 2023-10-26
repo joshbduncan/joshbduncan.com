@@ -4,3 +4,4 @@ Frozen-Flask==0.18
 Markdown==3.3.6
 Pygments==2.14.0
 python-dotenv==1.0.0
+Werkzeug==2.3.6
