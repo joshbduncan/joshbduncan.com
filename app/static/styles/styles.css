@@ -126,7 +126,7 @@
   --color-dark-text: hsl(212, 14%, 89%);
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 768px) {
   :root {
     --font-size--x-small: 1.2rem;
     --font-size--small: 1.4rem;
@@ -397,6 +397,39 @@ blockquote {
   padding-block: 0;
   padding-inline-end: 0;
   padding-inline-start: var(--spacing--medium);
+}
+
+.codehilite {
+  position: relative;
+}
+
+.copy-button {
+  display: block;
+  background-color: #eff1f5;
+  border: 1px solid var(--color-border-color);
+  border-radius: 6px;
+  box-shadow: -0.25em 0.25em 0.5em 0.125em #eff1f5;
+  color: var(--color-body-color);
+  padding: var(--spacing--small);
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
+}
+
+[data-theme="dark"] .copy-button {
+  background-color: #303446;
+  box-shadow: -0.25em 0.25em 0.5em 0.125em #303446;
+}
+
+.copy-button:hover {
+  background-color: var(--color-border-color);
+  border-color: var(--color-body-color);
+}
+
+.copy-button.success {
+  border-color: var(--color-success);
+  background-color: var(--color-success);
+  color: #fff;
 }
 
 pre {
@@ -1322,6 +1355,10 @@ footer li {
 
   .codehilite {
     background: #fff;
+  }
+
+  .copy-button {
+    display: none;
   }
 
   pre {
