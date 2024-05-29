@@ -141,8 +141,8 @@
   </main>
 
   <footer>
-    <copyright>&copy;
-      <script>document.write(new Date().getFullYear())</script> Josh Duncan
+    <copyright id="copyright">&copy;
+      <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script> Josh Duncan
     </copyright>
   </footer>
 
