@@ -47,7 +47,6 @@
     blocks.forEach((block) => {
       const wrapper = document.createElement("div");
       wrapper.classList.add("copy-button")
-      wrapper.setAttribute('aria-label', "Copy Code")
       wrapper.insertAdjacentHTML("beforeend", copyIcon);
       block.append(wrapper)
 

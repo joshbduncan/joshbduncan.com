@@ -1,6 +1,12 @@
 import sys
+from datetime import datetime
 
 from app import Config, app, flatpages, freezer
+
+
+@app.context_processor
+def inject_year():
+    return dict(year=datetime.now().year)
 
 
 @app.shell_context_processor
