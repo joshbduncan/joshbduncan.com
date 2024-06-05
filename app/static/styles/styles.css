@@ -278,7 +278,7 @@ header {
 logo {
   display: inline-block;
   margin-top: var(--spacing--large);
-  transition: transform 0.5s;
+  transition: transform 0.1s;
 }
 
 logo .strokeTypeRound {
@@ -302,7 +302,7 @@ logo a {
 }
 
 logo:hover {
-  transform: scale(1.2) rotate(-0.03125turn);
+  transform: scale(1.1) rotate(-0.02turn);
 }
 
 h1,

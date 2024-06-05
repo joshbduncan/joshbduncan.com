@@ -27,5 +27,10 @@ test-freeze: # freeze the blog and start up dev server on static files
 	$(BIN)/python blog.py --run
 
 ##@ Build
-build: ## freeze the blog for deployment on render
+build: ## freeze the blog for deployment
+	$(BIN)/python blog.py --build
+
+render: ## freeze the blog for deployment on render
+	python -m venv $(VENV)
+	$(BIN)/pip install -r requirements-github.txt
 	$(BIN)/python blog.py --build
