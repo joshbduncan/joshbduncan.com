@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_flatpages import FlatPages
-from flask_frozen import Freezer
 
 from config import Config
+
+from .flask_frozen import Freezer
 
 app = Flask(__name__)
 flatpages = FlatPages(app)

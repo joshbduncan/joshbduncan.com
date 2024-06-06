@@ -34,3 +34,5 @@ class Config(object):
 
     # Ignore MIME warning for type application/xml (sitemap, rss)
     FREEZER_IGNORE_MIMETYPE_WARNINGS = True
+
+    FREEZER_BLOCKLIST = ["draft", "drafts"]

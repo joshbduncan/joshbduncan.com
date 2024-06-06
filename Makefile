@@ -31,6 +31,5 @@ build: ## freeze the blog for deployment
 	$(BIN)/python blog.py --build
 
 render: ## freeze the blog for deployment on render
-	python -m venv $(VENV)
-	$(BIN)/pip install -r requirements-github.txt
-	$(BIN)/python blog.py --build
+	pip install -r requirements-github.txt
+	python blog.py --build
