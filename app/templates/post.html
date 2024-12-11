@@ -12,9 +12,11 @@
       • {{ (post.body|wordcount / 200)|round|int}} min read
     </div>
   </header>
-  <div id="post-body">
-    {{ post.html|safe }}
-  </div>
+  <section>
+    <div id="post-body">
+      {{ post.html|safe }}
+    </div>
+  </section>
   <div id="post-categorization">
     {% if post.meta["category"] %}
     <p>

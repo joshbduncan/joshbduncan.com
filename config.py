@@ -27,6 +27,7 @@ class Config(object):
     POST_DIR = "posts"
     DRAFT_DIR = "drafts"
     PAGE_DIR = "pages"
+    PLAYGROUND_DIR = "playground"
 
     # freezer static files destination
     FREEZER_DESTINATION = "../build"

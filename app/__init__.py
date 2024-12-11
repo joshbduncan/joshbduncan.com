@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_flatpages import FlatPages
+from flask_flatpages import FlatPages  # type: ignore
 
 from config import Config
 

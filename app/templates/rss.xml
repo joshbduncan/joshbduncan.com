@@ -5,15 +5,15 @@
   <atom:link href="https://joshbduncan.com/rss.xml" rel="self" type="application/rss+xml" />
   <link>https://joshbduncan.com</link>
   <description>just some random thoughts published on the internet...</description>
-  <lastBuildDate>{{ build_date.strftime('%a, %d %b %Y %T') }} EST</lastBuildDate>
+  <lastBuildDate>{{ build_date.strftime("%a, %d %b %Y %T") }} EST</lastBuildDate>
   <language>en-US</language>
 
   {% for post in posts %}
   <item>
-    <title>{{ post.meta['title'] }}</title>
-    <link>{{ url_for('post', name=post.path.replace(post.folder, ''), _external=True) }}</link>
-    <description>{{ post.meta['description'] }}</description>
-    <pubDate>{{ post.meta['date'].strftime('%a, %d %b %Y %T') }} EST</pubDate>
+    <title>{{ post.meta["title"] }}</title>
+    <link>{{ url_for("post", name=post.path.replace(post.folder, ""), _external=True) }}</link>
+    <description>{{ post.meta["description"] }}</description>
+    <pubDate>{{ post.meta["date"].strftime("%a, %d %b %Y %T") }} EST</pubDate>
   </item>
   {% endfor %}
 

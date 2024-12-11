@@ -4,7 +4,7 @@ title: Designer. Maker. Fun Haver.
 
 Hi there, my name is Josh! I'm a designer by trade but love tinkering with all sorts of things. Right now I'm all in on programming 👨‍💻 and automation ⚙️, and sometimes I write about what I've learned. Maybe you can find something useful here. ✌️
 
-![The Duncan Family](/static/images/duncan-family.jpg){: loading="lazy" }
+![The Duncan Family](/static/images/duncan-family-2024.jpg){: loading="lazy" }
 
 ## Some Current Interests:
 

@@ -8,32 +8,32 @@
 
   <!-- PAGES -->
   <url>
-    <loc>{{ url_for('about', _external=True) }}</loc>
+    <loc>{{ url_for("about", _external=True) }}</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>{{ url_for('software', _external=True) }}</loc>
+    <loc>{{ url_for("software", _external=True) }}</loc>
     <changefreq>monthly</changefreq>
   </url>
   
   <!-- POSTS -->
   {% for post in posts %}
   <url>
-    <loc>{{ url_for('post', name=post.path.replace(post.folder, ''), _external=True) }}</loc>
+    <loc>{{ url_for("post", name=post.path.replace(post.folder, ""), _external=True) }}</loc>
   </url>
   {% endfor %}
   
   <!-- CATEGORIES -->
   {% for category in categories %}
   <url>
-    <loc>{{ url_for('category', category=category, _external=True) }}</loc>
+    <loc>{{ url_for("category", category=category, _external=True) }}</loc>
   </url>
   {% endfor %}
   
   <!-- TAGS -->
   {% for tag in tags %}
   <url>
-    <loc>{{ url_for('tagged', tag=tag, _external=True) }}</loc>
+    <loc>{{ url_for("tagged", tag=tag, _external=True) }}</loc>
   </url>
   {% endfor %}
 
