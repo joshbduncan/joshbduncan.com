@@ -1,14 +1,14 @@
 """
-    flask_frozen
-    ~~~~~~~~~~~~
+flask_frozen
+~~~~~~~~~~~~
 
-    Frozen-Flask freezes a Flask application into a set of static files.
-    The result can be hosted without any server-side software other than a
-    traditional web server.
+Frozen-Flask freezes a Flask application into a set of static files.
+The result can be hosted without any server-side software other than a
+traditional web server.
 
 
-    :copyright: (c) 2010-2012 by Simon Sapin.
-    :license: BSD, see LICENSE for more details.
+:copyright: (c) 2010-2012 by Simon Sapin.
+:license: BSD, see LICENSE for more details.
 
 """
 
@@ -363,7 +363,10 @@ class Freezer:
         if content != previous_content:
             # Do not overwrite when content hasn't changed to help rsync
             # by keeping the modification date.
-            path.write_bytes(content)
+            try:
+                path.write_bytes(content)
+            except IsADirectoryError:
+                pass
 
         response.close()
         return path
