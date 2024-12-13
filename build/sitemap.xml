@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://joshbduncan.com</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- PAGES -->
+  <url>
+    <loc>https://joshbduncan.com/about.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://joshbduncan.com/software.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <!-- POSTS -->
+  
+  <url>
+    <loc>https://joshbduncan.com/unpacking-tuples-in-a-for-loop.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/flask-flatpages-sitemap.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/flask-flatpages-rss.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/python-type-hints-and-banners.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/trying-out-things-3.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/javascript-search-token-highlighter.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/checking-linked-records-in-airtable.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/python-custom-sorting.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/macos_chrome_autofill_security_codes.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/search-and-filter-html-table-data-with-javascript.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/python-progress-spinners-using-generators.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/saving-preferences-in-adobe-extendscript.html</loc>
+  </url>
+  
+  
+  <!-- CATEGORIES -->
+  
+  <url>
+    <loc>https://joshbduncan.com/category/development.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/category/productivity.html</loc>
+  </url>
+  
+  
+  <!-- TAGS -->
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/adobe.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/airtable.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/automation.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/chrome.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/cli.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/extendscript.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/filter.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/flask.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/flask-flatpages.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/generators.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/html.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/javascript.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/jinja.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/keyboard-maestro.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/mac.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/macos.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/productivity.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/python.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/search.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/sort.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/sorting.html</loc>
+  </url>
+  
+  <url>
+    <loc>https://joshbduncan.com/tag/type-hints.html</loc>
+  </url>
+  
+
+</urlset>
