@@ -238,7 +238,7 @@ Reference Link:
 
 Both local and web URLs are supported. On export to .docx, currently the image’s alt text is added, but the image is not embedded. Markdown uses the following syntax for images:
 
-![](/static/images/duncan-family.jpg){: loading="lazy" alt="The Duncan Family"}
+![](/static/images/duncan-family-2024.jpg){: loading="lazy" alt="The Duncan Family"}
 
     ![](http://example.com/image.jpg){: loading="lazy" }
     ![](/image.jpg){: loading="lazy" }
