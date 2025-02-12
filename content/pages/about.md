@@ -8,8 +8,9 @@ Hi there, my name is Josh! I'm a designer by trade but love tinkering with all s
 
 ## Some Current Interests:
 
-- [Adobe ExtendScript](https://extendscript.docsforadobe.dev/introduction/extendscript-overview.html)
-- [Python](https://www.python.org/)
+- [Adobe Photoshop UXP Plugin Development](https://developer.adobe.com/photoshop/uxp/2022/)
+- [Adobe ExtendScript Development](https://extendscript.docsforadobe.dev/introduction/extendscript-overview.html)
+- [Python Development](https://www.python.org/)
 - [Photography](https://unsplash.com/@joshbduncan)
 
 ## Wanna Chat?
