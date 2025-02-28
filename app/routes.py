@@ -33,9 +33,10 @@ def error_handlers():
 @freezer.register_generator
 def playground_pages():
     for p in Path().rglob(f"content/{PLAYGROUND_DIR}/**/*"):
+        path = str(p).removeprefix("content")
         if p.is_dir():
-            continue
-        yield str(p).removeprefix("content")
+            path = path + "/"
+        yield path
 
 
 @app.route("/")
