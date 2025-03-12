@@ -3,6 +3,11 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+import html
+
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+
 from zoneinfo import ZoneInfo
 import xml.etree.cElementTree as ET
 
@@ -311,6 +316,31 @@ def rss() -> str:
 
         return date.strftime("%a, %d %b %Y %H:%M:%S %z")
 
+    def make_links_absolute(
+        html: str, base_url: str = url_for("index", _external=True)
+    ) -> str:
+        """Convert all relative links in HTML to absolute URLs."""
+        if not html:
+            return html  # Return as-is if empty
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        # convert relative <a href=""> links
+        for a in soup.find_all("a", href=True):
+            a["href"] = urljoin(base_url, a["href"])
+
+        # convert relative <img src=""> links
+        for img in soup.find_all("img", src=True):
+            img["src"] = urljoin(base_url, img["src"])
+
+        return str(soup)
+
+    def escape_xml(text: str) -> str:
+        """Escape special XML characters to prevent parsing errors."""
+        if text:
+            return html.escape(text)  # Escapes &, <, >, " and '
+        return text
+
     # get all posts sorted by date
     posts = sorted(get_live_posts(), key=lambda item: item["date"], reverse=True)
 
@@ -323,14 +353,7 @@ def rss() -> str:
     ET.register_namespace("content", CONTENT_NS)
 
     # create root RSS element with required attributes
-    root = ET.Element(
-        "rss",
-        {
-            "version": "2.0",
-            "xmlns:atom": ATOM_NS,
-            "xmlns:content": CONTENT_NS,
-        },
-    )
+    root = ET.Element("rss", {"version": "2.0"})
     channel = ET.SubElement(root, "channel")
 
     # add site metadata
@@ -360,7 +383,7 @@ def rss() -> str:
             "post", name=post.path.replace(post.folder, ""), _external=True
         )
         item = ET.SubElement(channel, "item")
-        ET.SubElement(item, "title").text = post.meta["title"]
+        ET.SubElement(item, "title").text = escape_xml(post.meta["title"])
         ET.SubElement(item, "link").text = post_url
         pub_date = datetime.combine(
             post.meta["date"], datetime.min.time(), ZoneInfo("America/New_York")
@@ -368,18 +391,18 @@ def rss() -> str:
         ET.SubElement(item, "pubDate").text = get_rss_pubdate(pub_date)
         ET.SubElement(item, "guid").text = post_url
 
-        # wrap description in CDATA
-        description = ET.SubElement(item, "description")
-        description.text = post.meta["description"]
+        # convert links to absolute in description & content
+        description_html = make_links_absolute(post.meta["description"])
+        content_html = make_links_absolute(post.html)
 
-        # correctly namespace `content:encoded` and use CDATA
-        content_encoded = ET.SubElement(item, f"{{{CONTENT_NS}}}encoded")
+        # add description (wrapped in CDATA)
+        ET.SubElement(item, "description").text = f"<![CDATA[{description_html}]]>"
 
-        # instead of setting text directly, format it properly
-        html_content = post.html
-
-        # directly set the text without escaping CDATA
-        content_encoded.text = f"<![CDATA[{html_content}]]>"
+        # add content:encoded (wrapped in CDATA)
+        content_encoded = ET.SubElement(
+            item, "{http://purl.org/rss/1.0/modules/content/}encoded"
+        )
+        content_encoded.text = f"<![CDATA[{content_html}]]>"
 
     # convert XML to string
     xml_string = ET.tostring(root, encoding="utf-8").decode("utf-8")
