@@ -3,6 +3,9 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+from zoneinfo import ZoneInfo
+import xml.etree.cElementTree as ET
+
 from flask import Response, abort, jsonify, render_template, send_file, url_for
 from flask_flatpages import Page  # type: ignore
 from jinja2.filters import do_wordcount
@@ -234,18 +237,164 @@ def json_categories() -> Response:
 
 @app.route("/sitemap.xml")
 def sitemap() -> str:
+    # get data for the sitemap
     posts = get_live_posts()
     categories = get_all_categories()
-    tags = get_all_tags() or ""
+    tags = get_all_tags() or []
+
+    # sort posts by date (oldest first)
     posts.sort(key=lambda item: item["date"], reverse=False)
-    return render_template("sitemap.xml", posts=posts, categories=categories, tags=tags)
+
+    # define the XML namespace
+    NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
+    XHTML_NS = "http://www.w3.org/1999/xhtml"
+
+    # create the root <urlset> element with namespaces
+    urlset = ET.Element("urlset", {"xmlns": NS, "xmlns:xhtml": XHTML_NS})
+
+    # helper function to add a URL entry
+    def add_url(loc: str, changefreq: str = None):
+        url = ET.SubElement(urlset, "url")
+        ET.SubElement(url, "loc").text = loc
+        if changefreq:
+            ET.SubElement(url, "changefreq").text = changefreq
+
+    # add the base website URL
+    add_url(url_for("index", _external=True), "weekly")
+
+    # add static pages
+    add_url(url_for("about", _external=True), "monthly")
+    add_url(url_for("software", _external=True), "monthly")
+
+    # add posts
+    for post in posts:
+        post_url = url_for(
+            "post", name=post.path.replace(post.folder, ""), _external=True
+        )
+        add_url(post_url)
+
+    # add categories
+    for category in categories:
+        category_url = url_for("category", category=category, _external=True)
+        add_url(category_url)
+
+    # add tags
+    for tag in tags:
+        tag_url = url_for("tagged", tag=tag, _external=True)
+        add_url(tag_url)
+
+    # convert the XML tree to a string
+    xml_string = ET.tostring(urlset, encoding="utf-8", xml_declaration=True).decode(
+        "utf-8"
+    )
+
+    return xml_string, 200, {"Content-Type": "application/xml"}
 
 
 @app.route("/rss.xml")
 def rss() -> str:
-    posts = get_live_posts()
-    posts.sort(key=lambda item: item["date"], reverse=True)
-    return render_template("rss.xml", posts=posts[:10], build_date=datetime.now())
+    def get_rss_pubdate(date: datetime | None = None) -> str:
+        """Format a datetime object to RFC-822 format for an RSS `pubDate`.
+
+        Args:
+            date (datetime | None): The datetime to format. Defaults to the current time in America/New_York.
+
+        Returns:
+            str: RFC-822-compliant date string.
+        """
+        zone = ZoneInfo("America/New_York")
+
+        if date is None:
+            date = datetime.now(zone)
+        elif date.tzinfo is None:
+            date = date.replace(tzinfo=zone)  # localize if naive
+
+        return date.strftime("%a, %d %b %Y %H:%M:%S %z")
+
+    # get all posts sorted by date
+    posts = sorted(get_live_posts(), key=lambda item: item["date"], reverse=True)
+
+    # define namespaces
+    ATOM_NS = "http://www.w3.org/2005/Atom"
+    CONTENT_NS = "http://purl.org/rss/1.0/modules/content/"
+
+    # register namespaces
+    ET.register_namespace("atom", ATOM_NS)
+    ET.register_namespace("content", CONTENT_NS)
+
+    # create root RSS element with required attributes
+    root = ET.Element(
+        "rss",
+        {
+            "version": "2.0",
+            "xmlns:atom": ATOM_NS,
+            "xmlns:content": CONTENT_NS,
+        },
+    )
+    channel = ET.SubElement(root, "channel")
+
+    # add site metadata
+    ET.SubElement(channel, "title").text = "Josh Duncan - Blog"
+
+    # correct `atom:link` (namespace handling)
+    ET.SubElement(
+        channel,
+        f"{{{ATOM_NS}}}link",
+        {
+            "href": url_for("rss", _external=True),
+            "rel": "self",
+            "type": "application/rss+xml",
+        },
+    )
+
+    ET.SubElement(channel, "link").text = url_for("index", _external=True)
+    ET.SubElement(
+        channel, "description"
+    ).text = "just some random thoughts published on the internet..."
+    ET.SubElement(channel, "lastBuildDate").text = get_rss_pubdate()
+    ET.SubElement(channel, "language").text = "en-US"
+
+    # add the last 10 posts
+    for post in posts[:10]:
+        post_url = url_for(
+            "post", name=post.path.replace(post.folder, ""), _external=True
+        )
+        item = ET.SubElement(channel, "item")
+        ET.SubElement(item, "title").text = post.meta["title"]
+        ET.SubElement(item, "link").text = post_url
+        pub_date = datetime.combine(
+            post.meta["date"], datetime.min.time(), ZoneInfo("America/New_York")
+        )
+        ET.SubElement(item, "pubDate").text = get_rss_pubdate(pub_date)
+        ET.SubElement(item, "guid").text = post_url
+
+        # wrap description in CDATA
+        description = ET.SubElement(item, "description")
+        description.text = f"<![CDATA[{post.meta['description']}]]>"
+
+        # correctly namespace `content:encoded` and use CDATA
+        content_encoded = ET.SubElement(item, f"{{{CONTENT_NS}}}encoded")
+
+        # instead of setting text directly, format it properly
+        html_content = post.html
+
+        # directly set the text without escaping CDATA
+        content_encoded.text = f"<![CDATA[{html_content}]]>"
+
+    # convert XML to string
+    xml_string = ET.tostring(root, encoding="utf-8").decode("utf-8")
+
+    # fix the escaping of CDATA sections
+    xml_string = xml_string.replace("&lt;![CDATA[", "<![CDATA[").replace(
+        "]]&gt;", "]]>"
+    )
+
+    # ensure HTML inside CDATA remains untouched
+    xml_string = (
+        xml_string.replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&")
+    )
+
+    return xml_string, 200, {"Content-Type": "application/rss+xml"}
 
 
 ##########
