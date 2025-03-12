@@ -245,7 +245,7 @@ def sitemap() -> str:
 def rss() -> str:
     posts = get_live_posts()
     posts.sort(key=lambda item: item["date"], reverse=True)
-    return render_template("rss.xml", posts=posts, build_date=datetime.now())
+    return render_template("rss.xml", posts=posts[:10], build_date=datetime.now())
 
 
 ##########
