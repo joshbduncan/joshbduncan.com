@@ -335,6 +335,17 @@ def rss() -> str:
 
         return str(soup)
 
+    def clean_html(html: str) -> str:
+        """Remove `loading="lazy"` attributes from <img> tags in HTML content."""
+        soup = BeautifulSoup(html, "html.parser")
+
+        # Find all <img> tags and remove the "loading" attribute
+        for img in soup.find_all("img"):
+            if "loading" in img.attrs:
+                del img["loading"]
+
+        return str(soup)  # Return cleaned HTML as a string
+
     def escape_xml(text: str) -> str:
         """Escape special XML characters to prevent parsing errors."""
         if text:
@@ -394,6 +405,9 @@ def rss() -> str:
         # convert links to absolute in description & content
         description_html = make_links_absolute(post.meta["description"])
         content_html = make_links_absolute(post.html)
+
+        # remove lazy loading tag from images
+        content_html = clean_html(content_html)
 
         # add description (wrapped in CDATA)
         ET.SubElement(item, "description").text = f"<![CDATA[{description_html}]]>"
