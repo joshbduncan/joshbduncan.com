@@ -2,6 +2,7 @@ import os
 import time
 from datetime import datetime
 from pathlib import Path
+import re
 
 import html
 
@@ -408,6 +409,14 @@ def rss() -> str:
 
         # remove lazy loading tag from images
         content_html = clean_html(content_html)
+
+        assert not re.search(r'href=["\'](?!https?:\/\/)[^"\']+', content_html), (
+            "Found relative href link!"
+        )
+        assert not re.search(r'src=["\'](?!https?:\/\/)[^"\']+', content_html), (
+            "Found relative src link!"
+        )
+        assert 'loading="lazy"' not in content_html, "Found a lazy loading img tag!"
 
         # add description (wrapped in CDATA)
         ET.SubElement(item, "description").text = f"<![CDATA[{description_html}]]>"
