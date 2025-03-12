@@ -370,7 +370,7 @@ def rss() -> str:
 
         # wrap description in CDATA
         description = ET.SubElement(item, "description")
-        description.text = f"<![CDATA[{post.meta['description']}]]>"
+        description.text = post.meta["description"]
 
         # correctly namespace `content:encoded` and use CDATA
         content_encoded = ET.SubElement(item, f"{{{CONTENT_NS}}}encoded")
