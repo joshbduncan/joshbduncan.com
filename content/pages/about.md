@@ -1,5 +1,5 @@
 ---
-title: Dad. Designer. Maker. Fun Haver.
+title: Dad x 2. Designer. Maker. Fun Haver.
 ---
 
 Hi there, my name is Josh! I'm a designer by trade but love tinkering with all sorts of things. Right now I'm all in on programming 👨‍💻 and automation ⚙️, and sometimes I write about what I've learned. Maybe you can find something useful here. ✌️
