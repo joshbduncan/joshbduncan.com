@@ -7,7 +7,7 @@ category: development
 tags: adobe, extendscript, javascript
 ---
 
-Anytime I'm writing an [Adobe ExtendScript](https://extendscript.docsforadobe.dev/introduction/extendscript-overview.html) that includes a dialog box with more than a few options, I like to give the user the ability to save their dialog selections to a preference file. That way, when they run the script again their defaults (or last used settings) are preloaded, saving them time.
+Any time I'm writing an [Adobe ExtendScript](https://extendscript.docsforadobe.dev/introduction/extendscript-overview.html) that includes a dialog box with more than a few options, I like to give the user the ability to save their dialog selections to a preference file. That way, when they run the script again their defaults (or last used settings) are preloaded, saving them time.
 
 I hope to go deeper into this subject in a later post, but for now I'll show you how I write the users last used settings out to a JSON "like" file on their hard disk.
 
