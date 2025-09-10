@@ -470,6 +470,17 @@ pre {
     padding: var(--spacing--medium);
 }
 
+code:not(pre :is(code)) {
+    padding: var(--spacing--x-small);
+    background: #eff1f5;
+    color: #4c4f69;
+}
+
+[data-theme="dark"] code:not(pre :is(code)) {
+    background: #303446;
+    color: #c6d0f5;
+}
+
 mark {
     background: var(--color-mark-bg);
     padding: var(--spacing--xx-small);
@@ -539,6 +550,11 @@ th {
 
 table tbody tr:nth-child(odd) {
     background: var(--color-light-bg-subtle);
+}
+
+#post-categorization {
+    margin: var(--spacing--large) 0;
+    border-top: 2px dotted var(--color-border-color);
 }
 
 /* ########## THEME TOGGLE STYLING ########## */
