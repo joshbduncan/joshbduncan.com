@@ -242,7 +242,7 @@ def json_categories() -> Response:
 
 
 @app.route("/sitemap.xml")
-def sitemap() -> str:
+def sitemap() -> Response:
     # get data for the sitemap
     posts = get_live_posts()
     categories = get_all_categories()
@@ -259,7 +259,7 @@ def sitemap() -> str:
     urlset = ET.Element("urlset", {"xmlns": NS, "xmlns:xhtml": XHTML_NS})
 
     # helper function to add a URL entry
-    def add_url(loc: str, changefreq: str = None):
+    def add_url(loc: str, changefreq: str | None = None):
         url = ET.SubElement(urlset, "url")
         ET.SubElement(url, "loc").text = loc
         if changefreq:
@@ -294,11 +294,11 @@ def sitemap() -> str:
         "utf-8"
     )
 
-    return xml_string, 200, {"Content-Type": "application/xml"}
+    return Response(xml_string, status=200, content_type="application/xml")
 
 
 @app.route("/rss.xml")
-def rss() -> str:
+def rss() -> Response:
     def get_rss_pubdate(date: datetime | None = None) -> str:
         """Format a datetime object to RFC-822 format for an RSS `pubDate`.
 
@@ -440,7 +440,7 @@ def rss() -> str:
         xml_string.replace("&lt;", "<").replace("&gt;", ">").replace("&amp;", "&")
     )
 
-    return xml_string, 200, {"Content-Type": "application/rss+xml"}
+    return Response(xml_string, status=200, content_type="application/rss+xml")
 
 
 ##########

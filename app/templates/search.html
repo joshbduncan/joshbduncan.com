@@ -1,82 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 
-<article>
-  <header>
-    <div>
-      <input data-search type="search" id="search" placeholder="Search posts, tags, and categories">
-    </div>
-  </header>
-</article>
+<div class="search">
+  <input data-search type="search" id="search-input" placeholder="Search posts, tags, and categories">
+</div>
 
-<ul id="posts" data-posts-list>
-  <template data-post-template>
-    <li class="hide">
-      <article>
-        <header>
-          <h2><a class="text-decoration-none" data-title href=""></a></h2>
-          <div id="post-meta">
-            <span data-date></span> • <span data-read-time></span>
-          </div>
-        </header>
-        <p data-description></p>
-      </article>
-    </li>
-  </template>
-</ul>
+<section id="posts">
+  {% for post in posts %}
+  <article class="hidden" data-post-tags="{{ post.tags }}">
+    <header>
+      {% if filter == "drafts" %}
+      <h2 class="post-title"><a href="{{ url_for('draft', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a></h2>
+      {% else %}
+      <h2 class="post-title"><a href="{{ url_for('post', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a></h2>
+      {% endif %}
+      <div id="post-meta">
+        {% if post.updated %}
+        <b>Updated</b> <time datetime="{{ post.updated.strftime('%Y-%m-%d') }}">{{ post.updated.strftime('%B %Y') }}</time>
+        {% else %}
+        <b>Published</b> <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%B %Y') }}</time>
+        {% endif %}
+        • {{ (post.body|wordcount / 200)|round|int }} min read
+      </div>
+    </header>
+    <p class="post-description">{{ post.description }}</p>
+  </article>
+  {% endfor %}
+</section>
 
-<script>
-  const postTemplate = document.querySelector("[data-post-template]");
-  const postList = document.querySelector("[data-posts-list]");
-  const searchInput = document.querySelector("[data-search]");
-
-  // focus on search input
-  searchInput.focus();
-  searchInput.select();
-
-  searchInput.addEventListener("input", (e) => {
-    const query = e.target.value.toLowerCase();
-    const tokens = query.trim().split(" ");
-    const matches = [];
-    posts.forEach((post) => {
-      let isVisible = false;
-      tokens.forEach((word) => {
-        let re = new RegExp("\\b" + word, "gi");
-        if (
-          re.test(post.title.toLowerCase()) ||
-          re.test(post.description.toLowerCase()) ||
-          re.test(post.tags.join(" ").toLowerCase())
-        )
-          isVisible = true;
-      });
-      post.element.classList.toggle("hide", query.length > 0 ? !isVisible : true);
-    });
-  });
-
-  fetch("./posts.json")
-    .then((response) => response.json())
-    .then((data) => {
-      posts = data.map((post) => {
-        const li = postTemplate.content.cloneNode(true).children[0];
-        const title = li.querySelector("[data-title]");
-        const description = li.querySelector("[data-description]");
-        const date = li.querySelector("[data-date]")
-        const readTime = li.querySelector("[data-read-time]")
-        // format post date
-        const postDate = post.updated ? new Date(post.updated) : new Date(post.date);
-        const month = postDate.toLocaleString('default', { month: 'long' });
-        const year = postDate.toLocaleString('default', { year: 'numeric' });
-        // set html info
-        title.textContent = post.title;
-        title.href = post.url_internal;
-        date.innerHTML = post.updated ? `<b>Updated</b> ${month} ${year}` : `<b>Published</b> ${month} ${year}`
-        readTime.textContent = Math.round(post.read_time / 60) + " min read";
-        description.textContent = post.description;
-        postList.append(li);
-        post["element"] = li;
-        return post;
-      });
-    });
-</script>
+{% include "search-posts.html" %}
 
 {% endblock content %}

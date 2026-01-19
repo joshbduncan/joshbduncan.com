@@ -1,28 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 {% if filter %}
-<h1 class="text-align-center">#{{ filter }}</h1>
+<header class="posts-filter">
+    <h1>#{{ filter }}</h1>
+</header>
 {% endif %}
-<section>
-  {% for post in posts %}
-  <article>
-    <header>
-      {% if filter == "drafts" %}
-      <h2><a class="text-decoration-none" href="{{ url_for('draft', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a></h2>
-      {% else %}
-      <h2><a class="text-decoration-none" href="{{ url_for('post', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a></h2>
-      {% endif %}
-      <div id="post-meta">
-        {% if post.updated %}
-        <b>Updated</b> <time datetime="{{ post.updated.strftime('%Y-%m-%d') }}">{{ post.updated.strftime('%B %Y') }}</time>
-        {% else %}
-        <b>Published</b> <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%B %Y') }}</time>
-        {% endif %}
-        • {{ (post.body|wordcount / 200)|round|int }} min read
-      </div>
-    </header>
-    <p>{{ post.description }}</p>
-  </article>
-  {% endfor %}
-</section>
+{% include "posts-list.html" %}
 {% endblock content %}

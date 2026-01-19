@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 class="text-align-center">tags</h1>
-<div class="text-align-center">
-  <ul id="tags">
+<h1>tags</h1>
+<div>
+  <ul>
     {% for tag in tags %}
-    <li class="list-inline"><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}</li>
+    <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a></li>
     {% endfor %}
   </ul>
 </div>

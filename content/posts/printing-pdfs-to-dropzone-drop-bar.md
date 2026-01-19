@@ -7,7 +7,7 @@ category: development
 tags: automator, dropzone, productivity, mac, macos
 ---
 
-I often use macOS’s “Print to PDF” option and have Automator Print Plugins for tasks like saving receipts, statements, and order confirmations. The problem comes when I do not know where to file a PDF right away. In the past, I would drop it on the Desktop 😱, send it to Downloads, or leave it open in Preview until I had time to deal with it. None of these options are great, so I started looking for a better way.
+"I often use macOS’s “Print to PDF” option and have Automator Print Plugins for tasks like saving receipts, statements, and order confirmations. The problem comes when I do not know where to file a PDF right away. In the past, I would drop it on the Desktop 😱, send it to Downloads, or leave it open in Preview until I had time to deal with it. None of these options are great, so I started looking for a better way.
 
 ## An Aha Moment
 
