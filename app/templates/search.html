@@ -2,10 +2,10 @@
 {% block content %}
 
 <div class="search">
-  <input data-search type="search" id="search-input" placeholder="Search posts, tags, and categories">
+  <input data-search type="search" placeholder="Search posts, tags, and categories">
 </div>
 
-<section id="posts">
+<section class="search-results">
   {% for post in posts %}
   <article class="hidden" data-post-tags="{{ post.tags }}">
     <header>

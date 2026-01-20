@@ -5,11 +5,43 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
+
+  <meta name="description" content="Josh Duncan – Dad. Designer. Maker. Fun haver." />
+  <title>{% if post %}{{ post.title }} – Josh Duncan{% elif page %}{{ page.title }} – Josh Duncan{% else %}Josh Duncan – Blog{% endif %}</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.colors.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.min.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/codehilite.css') }}" />
-  <title>Hello world!</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+  <!-- Open Graph -->
+  <meta property="og:url" content="https://joshbduncan.com{{ request.path }}" />
+  <meta property="og:image" content="https://joshbduncan.com{{ url_for('static', filename='images/jbd-card.png') }}" />
+
+  {% if post %}
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{{ post.title }}" />
+  <meta property="og:description" content="{{ post.description }}" />
+  <meta property="og:article:published_time" content="{{ post.date }}" />
+  <meta property="og:article:author" content="Josh Duncan" />
+  {% if post.updated %}
+  <meta property="og:article:modified_time" content="{{ post.updated }}" />
+  {% endif %}
+  <meta property="og:article:section" content="{{ post.category }}" />
+  {% if post.meta["tags"] %}
+  {% for tag in post.meta["tags"].split(", ") | sort %}
+  <meta property="og:article:tag" content="{{ tag }}" />
+  {% endfor %}
+  {% endif %}
+  {% elif page %}
+  <meta property="og:title" content="{{ page.title }}" />
+  {% else %}
+  <meta property="og:title" content="joshbduncan.com" />
+  <meta property="og:description" content="Josh Duncan – Dad. Designer. Maker. Fun haver." />
+  {% endif %}
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
 </head>
 
 <body>

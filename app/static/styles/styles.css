@@ -9,10 +9,6 @@ html {
     scrollbar-gutter: stable;
 }
 
-/* :is(h1, h2, h3, h4, h5, h6) {
-    text-wrap: balance;
-} */
-
 /* responsive media */
 img,
 picture,
@@ -163,7 +159,7 @@ article.post blockquote p {
 /* ########## SEARCH PAGE ########## */
 
 .search {
-    padding-block-end: 2rem;
+    padding-block: 1.25rem 2rem;
 }
 
 .hidden {
