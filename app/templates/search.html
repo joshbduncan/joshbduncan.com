@@ -7,24 +7,7 @@
 
 <section class="search-results">
   {% for post in posts %}
-  <article class="hidden" data-post-tags="{{ post.tags }}">
-    <header>
-      {% if filter == "drafts" %}
-      <h2 class="post-title"><a href="{{ url_for('draft', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a></h2>
-      {% else %}
-      <h2 class="post-title"><a href="{{ url_for('post', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a></h2>
-      {% endif %}
-      <div id="post-meta">
-        {% if post.updated %}
-        <b>Updated</b> <time datetime="{{ post.updated.strftime('%Y-%m-%d') }}">{{ post.updated.strftime('%B %Y') }}</time>
-        {% else %}
-        <b>Published</b> <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%B %Y') }}</time>
-        {% endif %}
-        • {{ (post.body|wordcount / 200)|round|int }} min read
-      </div>
-    </header>
-    <p class="post-description">{{ post.description }}</p>
-  </article>
+  {% include "post-for-list-search.html" %}
   {% endfor %}
 </section>
 

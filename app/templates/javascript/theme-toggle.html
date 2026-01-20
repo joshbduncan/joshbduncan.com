@@ -17,6 +17,13 @@
         }
         document.addEventListener("DOMContentLoaded", () => {
             const toggleButton = document.querySelector(".toggle-theme");
+
+            // Initialize icon based on current theme
+            const currentTheme = document.documentElement.getAttribute("data-theme");
+            toggleButton.innerHTML = currentTheme === "dark" ? sunSVG : moonSVG;
+            let label = currentTheme === "dark" ? "Turn off dark mode" : "Turn on dark mode";
+            toggleButton.setAttribute("aria-label", label);
+
             toggleButton.addEventListener("click", () => {
                 const currentTheme = document.documentElement.getAttribute("data-theme");
                 const theme = currentTheme == "dark" ? "light" : "dark";

@@ -79,7 +79,6 @@ body > header .container {
 
 .logo {
     width: 50px;
-    height: auto;
 }
 
 nav ul.icons::before {
@@ -91,20 +90,26 @@ nav ul.icons::before {
 }
 
 .page-nav .icons li {
-    display: flex;
     align-items: center;
+    display: flex;
+}
+
+.page-nav .icons li a {
+    color: light-dark(var(--pico-color-violet-650), var(--pico-color-amber-250));
 }
 
 .page-nav .icons svg {
     height: 24px;
+    transform-origin: center;
+    transition: transform var(--pico-transition);
 }
 
-.page-nav .icons svg {
-    color: var(--pico-color-amber-150);
+.page-nav .icons li a:hover svg {
+    transform: scale(1.05);
 }
 
 .page-footer {
-    border-top: 1px solid var(--pico-muted-border-color);
+    border-top: 1px dotted var(--pico-muted-border-color);
     padding-inline: var(--pico-block-spacing-horizontal);
 }
 
@@ -149,7 +154,7 @@ article.post blockquote p {
 
 .social-icons li {
     border: none !important;
-    padding-block: 0;
+    padding-block: 0.25rem 0;
 }
 
 .social-icons svg {
@@ -175,13 +180,17 @@ article.post blockquote p {
     margin-block: 1.5rem;
 }
 
-.support-buttons svg {
-    color: var(--pico-color-pink-450);
-    transition: all 0.2s ease-in-out;
+.support-buttons a svg {
+    transform-origin: center;
+    transition: transform var(--pico-transition);
 }
 
 .support-buttons a:hover svg {
-    transform: scale(1.25);
+    transform: translate(0px, -2px);
+}
+
+.support-buttons svg.bi-heart-fill {
+    color: var(--pico-color-pink-450);
 }
 
 /* ########## CUSTOM ELEMENTS ########## */
@@ -257,11 +266,34 @@ article.post blockquote p {
     position: relative;
 }
 
-.copy-button {
+.codehilite .copy-to-clipboard {
+    background-color: var(--pico-code-background-color);
+    padding: 0.25rem 1rem 0.25rem 0.25rem;
+    position: absolute;
+    right: 0;
+    top: 0.75rem;
+    transform-origin: center;
+    transition: color var(--pico-transition);
+    z-index: 1;
+}
+
+.codehilite .copy-to-clipboard svg {
+    transition: transform var(--pico-transition);
+}
+
+.codehilite .copy-to-clipboard:hover svg {
+    transform: translate(0, -1px);
+}
+
+.codehilite svg.check {
+    color: var(--pico-color-green-300);
+}
+
+/* .copy-button {
     background-color: var(--pico-code-background-color);
     display: block;
     padding: 0.25rem;
     position: absolute;
     right: 0.5em;
     top: 0.5em;
-}
+} */
