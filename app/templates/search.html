@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="search">
-  <input data-search type="search" placeholder="Search posts, tags, and categories">
+  <input data-search type="search" class="search-input" placeholder="Search posts, tags, and categories">
 </div>
 
 <section class="search-results">
@@ -28,6 +28,6 @@
   {% endfor %}
 </section>
 
-{% include "search-posts.html" %}
+{% include "javascript/search-posts.html" %}
 
 {% endblock content %}
