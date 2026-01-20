@@ -67,7 +67,22 @@ article > header {
 /* ########## PAGE STRUCTURE ########## */
 
 .page-header {
-    border-bottom: 1px dotted var(--pico-muted-border-color);
+    border-bottom: 2px solid;
+    border-image: linear-gradient(
+            to right,
+            var(--pico-color-pink-450) 0%,
+            var(--pico-color-pink-450) 20%,
+            var(--pico-color-jade-450) 20%,
+            var(--pico-color-jade-450) 40%,
+            var(--pico-color-azure-450) 40%,
+            var(--pico-color-azure-450) 60%,
+            var(--pico-color-orange-450) 60%,
+            var(--pico-color-orange-450) 80%,
+            var(--pico-color-purple-450) 80%,
+            var(--pico-color-purple-450) 100%
+        )
+        1;
+    border-image-slice: 1;
     padding-inline: var(--pico-block-spacing-horizontal);
 }
 
@@ -288,12 +303,3 @@ article.post blockquote p {
 .codehilite svg.check {
     color: var(--pico-color-green-300);
 }
-
-/* .copy-button {
-    background-color: var(--pico-code-background-color);
-    display: block;
-    padding: 0.25rem;
-    position: absolute;
-    right: 0.5em;
-    top: 0.5em;
-} */

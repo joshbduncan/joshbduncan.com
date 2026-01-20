@@ -1,6 +1,8 @@
 <article class="post-details no-box-shadow" data-post-tags="{{ post.tags }}">
     <hgroup>
-        <h2 class=" post-title"><a href="{{ url_for('post', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a></h2>
+        <h2 class=" post-title">
+            <a class="contrast" href="{{ url_for('post', name=post.path.replace(post.folder, '')) }}">{{ post.title }}</a>
+        </h2>
         <p>
             <small id="post-meta">
                 <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%B %Y') }}</time> • {{ (post.body|wordcount / 200)|round|int }} min read
