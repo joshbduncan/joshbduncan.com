@@ -4,7 +4,13 @@ title: Dad x 2. Designer. Maker. Fun Haver.
 
 Hi there, my name is Josh! I'm a designer by trade but love tinkering with all sorts of things. Right now I'm all in on programming 👨‍💻 and automation ⚙️, and sometimes I write about what I've learned. Maybe you can find something useful here. ✌️
 
-![The Duncan Family](/static/images/duncan-family-2024.jpg){: loading="lazy" }
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+</style>
+
+<figure class="polaroid" data-caption="The Duncans">
+  <img alt="The Duncans" src="/static/images/the-duncans.jpg" loading="lazy">
+</figure>
 
 ## Some Current Interests:
 

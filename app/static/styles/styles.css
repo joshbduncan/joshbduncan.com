@@ -156,6 +156,30 @@ article.post blockquote p {
 
 /* ########## ABOUT PAGE ########## */
 
+.polaroid {
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: var(--pico-card-box-shadow);
+    font-size: var(--pico-font-size);
+    margin-block-start: 1.5rem;
+    margin-inline: auto;
+    padding: 0.75rem;
+    transform: rotate(-1deg);
+    width: 80%;
+}
+
+.polaroid::after {
+    color: #2d3138;
+    content: attr(data-caption);
+    display: block;
+    font-family: "Homemade Apple", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    margin-block: 1rem 0;
+    text-align: center;
+}
+
 .social-icons {
     justify-content: center;
     padding-block-start: 1.5rem;
