@@ -9,7 +9,7 @@ Hi there, my name is Josh! I'm a designer by trade but love tinkering with all s
 </style>
 
 <figure class="polaroid" data-caption="The Duncans">
-  <img alt="The Duncans" src="/static/images/the-duncans.jpg" loading="lazy">
+  <img alt="The Duncans" width="1500" height="1200" src="/static/images/the-duncans.jpg" loading="lazy">
 </figure>
 
 ## Some Current Interests:
