@@ -93,7 +93,12 @@ body > header .container {
 }
 
 .logo {
-    width: 50px;
+    padding-block: 1rem;
+    transition: transform var(--pico-transition);
+}
+
+.logo:hover svg {
+    transform: translate(0px, -2px);
 }
 
 nav ul.icons::before {
@@ -120,7 +125,7 @@ nav ul.icons::before {
 }
 
 .page-nav .icons li a:hover svg {
-    transform: scale(1.05);
+    transform: translate(0px, -2px);
 }
 
 .page-footer {

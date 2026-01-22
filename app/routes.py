@@ -12,7 +12,15 @@ from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 import xml.etree.cElementTree as ET
 
-from flask import Response, abort, jsonify, render_template, send_file, url_for
+from flask import (
+    Response,
+    abort,
+    jsonify,
+    render_template,
+    send_file,
+    url_for,
+    send_from_directory,
+)
 from flask_flatpages import Page  # type: ignore
 from jinja2.filters import do_wordcount
 
@@ -22,11 +30,6 @@ POST_DIR = app.config["POST_DIR"]
 DRAFT_DIR = app.config["DRAFT_DIR"]
 PAGE_DIR = app.config["PAGE_DIR"]
 PLAYGROUND_DIR = app.config["PLAYGROUND_DIR"]
-
-
-##########
-# ROUTES #
-##########
 
 
 @app.errorhandler(404)
@@ -48,6 +51,11 @@ def playground_pages():
         yield path
 
 
+##########
+# ROUTES #
+##########
+
+
 @app.route("/")
 def index():
     posts = get_live_posts()
@@ -60,6 +68,29 @@ def post(name: str) -> str:
     path = f"{POST_DIR}/{name}"
     post = flatpages.get_or_404(path)
     return render_template("post.html", post=post)
+
+
+@app.get("/site.webmanifest")
+def manifest():
+    return send_from_directory(app.static_folder, "site.webmanifest")
+
+
+ROOT_IMAGE_FILES = {
+    "favicon.ico": "favicon.ico",
+    "favicon.svg": "favicon.svg",
+    "apple-touch-icon.png": "apple-touch-icon.png",
+    "icon-192.png": "icon-192.png",
+    "icon-512.png": "icon-512.png",
+    "og-image.png": "og-image.png",
+    "og-image-square.png": "og-image-square.png",
+}
+
+
+@app.get("/<path:filename>")
+def root_static(filename: str):
+    if filename not in ROOT_IMAGE_FILES:
+        abort(404)
+    return send_from_directory(app.static_folder, ROOT_IMAGE_FILES[filename])
 
 
 ################################

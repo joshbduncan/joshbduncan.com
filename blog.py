@@ -1,5 +1,4 @@
 import sys
-from datetime import datetime
 
 from app import Config, app, flatpages, freezer
 

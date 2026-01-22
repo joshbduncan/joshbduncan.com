@@ -2,12 +2,12 @@
 {% block content %}
 <h1>categories</h1>
 <section>
-  <div>
-    <ul id="tags">
-      {% for category in categories %}
-      <li><a href="{{ url_for('category', category=category) }}">{{ category }}</a></li>
-      {% endfor %}
-    </ul>
-  </div>
+    <div>
+        <ul id="tags">
+            {% for category in categories %}
+            <li><a href="{{ url_for('category', category=category) }}">{{ category }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </section>
 {% endblock content %}

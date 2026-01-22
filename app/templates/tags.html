@@ -2,10 +2,10 @@
 {% block content %}
 <h1>tags</h1>
 <div>
-  <ul>
-    {% for tag in tags %}
-    <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a></li>
-    {% endfor %}
-  </ul>
+    <ul>
+        {% for tag in tags %}
+        <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a></li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock content %}

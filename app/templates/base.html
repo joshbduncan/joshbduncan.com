@@ -2,66 +2,83 @@
 <html lang="en" data-theme="light">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
 
-  <meta name="description" content="Josh Duncan – Dad. Designer. Maker. Fun haver." />
-  <title>{% if post %}{{ post.title }} – Josh Duncan{% elif page %}{{ page.title }} – Josh Duncan{% else %}Josh Duncan – Blog{% endif %}</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.colors.min.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.min.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/codehilite.css') }}" />
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <meta name="description" content="Josh Duncan – Dad. Designer. Maker. Fun haver." />
+    <title>{% if post %}{{ post.title }} – Josh Duncan{% elif page %}{{ page.title }} – Josh Duncan{% else %}Josh Duncan – Blog{% endif %}</title>
 
-  <!-- Open Graph -->
-  <meta property="og:url" content="https://joshbduncan.com{{ request.path }}" />
-  <meta property="og:image" content="https://joshbduncan.com{{ url_for('static', filename='images/jbd-card.png') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.colors.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/codehilite.css') }}" />
 
-  {% if post %}
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="{{ post.title }}" />
-  <meta property="og:description" content="{{ post.description }}" />
-  <meta property="og:article:published_time" content="{{ post.date }}" />
-  <meta property="og:article:author" content="Josh Duncan" />
-  {% if post.updated %}
-  <meta property="og:article:modified_time" content="{{ post.updated }}" />
-  {% endif %}
-  <meta property="og:article:section" content="{{ post.category }}" />
-  {% if post.meta["tags"] %}
-  {% for tag in post.meta["tags"].split(", ") | sort %}
-  <meta property="og:article:tag" content="{{ tag }}" />
-  {% endfor %}
-  {% endif %}
-  {% elif page %}
-  <meta property="og:title" content="{{ page.title }}" />
-  {% else %}
-  <meta property="og:title" content="joshbduncan.com" />
-  <meta property="og:description" content="Josh Duncan – Dad. Designer. Maker. Fun haver." />
-  {% endif %}
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
+    <link rel="manifest" href="/site.webmanifest">
 
-  <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://joshbduncan.com{{ request.path }}" />
+
+    <meta property="og:image" content="/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta property="og:image" content="/og-image-square.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+
+    {% if post %}
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ post.title }}" />
+    <meta property="og:description" content="{{ post.description }}" />
+    <meta name="twitter:title" content="{{ post.title }}">
+    <meta name="twitter:description" content="{{ post.title }}">
+    <meta property="og:article:published_time" content="{{ post.date }}" />
+    <meta property="og:article:author" content="Josh Duncan" />
+    {% if post.updated %}
+    <meta property="og:article:modified_time" content="{{ post.updated }}" />
+    {% endif %}
+    <meta property="og:article:section" content="{{ post.category }}" />
+    {% if post.meta["tags"] %}
+    {% for tag in post.meta["tags"].split(", ") | sort %}
+    <meta property="og:article:tag" content="{{ tag }}" />
+    {% endfor %}
+    {% endif %}
+    {% elif page %}
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.title }}">
+    {% else %}
+    <meta property="og:title" content="joshbduncan.com" />
+    <meta property="og:description" content="Josh Duncan – Dad. Designer. Maker. Fun haver." />
+    <meta name="twitter:title" content="joshbduncan.com">
+    <meta name="twitter:description" content="Josh Duncan – Dad. Designer. Maker. Fun haver.">
+    <meta property="og:type" content="website">
+    {% endif %}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://yourdomain.com/og-image.png">
+
+    <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 
 <body>
-  <header class="container page-header">
-    <div class="container">
-      <a href="{{ url_for('index') }}" title="Home">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 47" fill="currentColor" class="logo">
-          <path d="M58.461 31.933c-1.027 2.689-2.354 4.908-3.982 6.659a19.503 19.503 0 0 1-5.638 4.217c-2.131 1.06-4.735 1.88-7.814 2.46-1.361.267-3.503.401-6.425.401h-2.036a.976.976 0 0 1-.976-.976v-.525c0-.539.437-.976.976-.976h2.806c3.726 0 6.57-1.272 8.533-3.815 2.677-3.435 4.016-8.768 4.016-15.996 0-5.823-.915-10.474-2.744-13.954-1.451-2.722-3.313-4.573-5.588-5.555-1.596-.687-4.241-1.021-7.93-1.004-1.338 0-2.409.234-3.212.703-.558.313-1.004.848-1.339 1.606-.246.535-.368 1.941-.368 4.216v20.881c0 4.35-.435 7.513-1.305 9.487-.87 1.974-2.415 3.626-4.635 4.953-2.22 1.327-4.891 1.991-8.015 1.991-3.815 0-6.899-1.004-9.253-3.012C1.177 41.688 0 39.468 0 37.036c0-1.561.48-2.828 1.439-3.798.959-.97 2.13-1.455 3.514-1.455 1.36 0 2.504.435 3.43 1.305.925.87 1.389 1.941 1.389 3.213 0 2.892-2.209 2.866-2.209 5.254 0 .581.29 1.083.87 1.506.848.625 1.952.937 3.313.937.959 0 1.751-.245 2.376-.736.624-.49 1.065-1.255 1.322-2.292.256-1.038.385-3.921.385-8.65V9.395c0-2.32-.129-3.77-.385-4.35-.257-.58-.759-1.088-1.506-1.523-.748-.435-1.757-.652-3.029-.652h-.932a.976.976 0 0 1-.976-.976v-.626c0-.539.437-.976.976-.976h24.624c5.421 0 9.782.736 13.084 2.209 4.037 1.807 7.099 4.54 9.186 8.199C58.957 14.359 60 18.497 60 23.115c0 3.191-.514 6.13-1.539 8.818z" />
-        </svg>
-      </a>
-      {% include "nav.html" %}
-    </div>
-    {% include "javascript/theme-toggle.html" %}
-  </header>
-  <main class="container">
-    {% block content %}{% endblock %}
-  </main>
-  {% include "footer.html" %}
+    <header class="container page-header">
+        <div class="container">
+            {% include "logo.html" %}
+            {% include "nav.html" %}
+        </div>
+        {% include "javascript/theme-toggle.html" %}
+    </header>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    {% include "footer.html" %}
 </body>
 
 </html>
