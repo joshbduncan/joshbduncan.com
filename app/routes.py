@@ -51,6 +51,23 @@ def playground_pages():
         yield path
 
 
+ROOT_IMAGE_FILES = {
+    "favicon.ico": "favicon.ico",
+    "favicon.svg": "favicon.svg",
+    "apple-touch-icon.png": "apple-touch-icon.png",
+    "icon-192.png": "icon-192.png",
+    "icon-512.png": "icon-512.png",
+    "og-image.png": "og-image.png",
+    "og-image-square.png": "og-image-square.png",
+}
+
+
+@freezer.register_generator
+def root_image_files():
+    for path in ROOT_IMAGE_FILES.values():
+        yield f"/{path}"
+
+
 ##########
 # ROUTES #
 ##########
@@ -73,17 +90,6 @@ def post(name: str) -> str:
 @app.get("/site.webmanifest")
 def manifest():
     return send_from_directory(app.static_folder, "site.webmanifest")
-
-
-ROOT_IMAGE_FILES = {
-    "favicon.ico": "favicon.ico",
-    "favicon.svg": "favicon.svg",
-    "apple-touch-icon.png": "apple-touch-icon.png",
-    "icon-192.png": "icon-192.png",
-    "icon-512.png": "icon-512.png",
-    "og-image.png": "og-image.png",
-    "og-image-square.png": "og-image-square.png",
-}
 
 
 @app.get("/<path:filename>")

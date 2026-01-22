@@ -14,20 +14,20 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/codehilite.css') }}" />
 
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="{{ url_for('root_static', filename='favicon.ico') }}" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('root_static', filename='favicon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('root_static', filename='apple-touch-icon.png') }}">
 
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="{{ url_for('manifest') }}">
 
     <!-- Open Graph -->
     <meta property="og:url" content="https://joshbduncan.com{{ request.path }}" />
 
-    <meta property="og:image" content="/og-image.png">
+    <meta property="og:image" content="{{ url_for('root_static', filename='og-image.png') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <meta property="og:image" content="/og-image-square.png">
+    <meta property="og:image" content="{{ url_for('root_static', filename='og-image-square.png') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
 
@@ -62,7 +62,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://yourdomain.com/og-image.png">
+    <meta name="twitter:image" content="{{ url_for('root_static', filename='og-image.png') }}">
 
     <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
