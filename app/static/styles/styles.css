@@ -1,11 +1,12 @@
 :root {
     --content-width: 65ch;
+
+    color-scheme: light dark;
 }
 
 /* ########## RESETS AND DEFAULTS ########## */
 
 html {
-    color-scheme: light dark;
     scrollbar-gutter: stable;
 }
 

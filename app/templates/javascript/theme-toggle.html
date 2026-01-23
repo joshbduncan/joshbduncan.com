@@ -24,14 +24,26 @@
             let label = currentTheme === "dark" ? "Turn off dark mode" : "Turn on dark mode";
             toggleButton.setAttribute("aria-label", label);
 
-            toggleButton.addEventListener("click", () => {
-                const currentTheme = document.documentElement.getAttribute("data-theme");
-                const theme = currentTheme == "dark" ? "light" : "dark";
-                toggleButton.innerHTML = currentTheme == "dark" ? moonSVG : sunSVG;
-                let label = currentTheme == "dark" ? "Turn off dark mode" : "Turn on dark mode"
+            function switchTheme(theme) {
+                toggleButton.innerHTML = theme == "dark" ? sunSVG : moonSVG;
+                let label = theme == "dark" ? "Turn off dark mode" : "Turn on dark mode"
                 toggleButton.setAttribute("aria-label", label);
                 window.localStorage.setItem("theme", theme);
                 document.documentElement.setAttribute("data-theme", theme);
+            }
+
+            toggleButton.addEventListener("click", () => {
+                const currentTheme = document.documentElement.getAttribute("data-theme");
+                const theme = currentTheme == "dark" ? "light" : "dark";
+
+                if (!document.startViewTransition) {
+                    switchTheme(theme)
+                    return
+                }
+
+                document.startViewTransition(() => {
+                    switchTheme(theme)
+                })
             });
         });
     })(window, document);
