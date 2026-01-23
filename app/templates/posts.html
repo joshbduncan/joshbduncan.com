@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 {% if filter %}
-<header class="posts-filter">
+<hgroup class="posts-filter">
     <h1>#{{ filter }}</h1>
-</header>
+</hgroup>
 {% endif %}
 {% include "posts-list.html" %}
 {% endblock content %}

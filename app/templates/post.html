@@ -2,7 +2,7 @@
 {% block content %}
 <article class="post">
     <hgroup>
-        <h1 class=" post-title">{{ post.title }}</h1>
+        <h1 class="post-title">{{ post.title }}</h1>
         <p>
             <small id="post-meta">
                 <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">{{ post.date.strftime('%B %Y') }}</time> • {{ (post.body|wordcount / 200)|round|int }} min read
@@ -23,7 +23,7 @@
             <br>
             <b>Tags:</b>
             {% for tag in post.meta["tags"].split(", ") | sort %}
-            <a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+            <a href="{{ url_for('tag', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
             {% endfor %}
         </p>
         {% endif %}

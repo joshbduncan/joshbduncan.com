@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>categories</h1>
-<section>
-    <div>
-        <ul id="tags">
-            {% for category in categories %}
-            <li><a href="{{ url_for('category', category=category) }}">{{ category }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-</section>
+<article class="page">
+    <hgroup>
+        <h1>categories</h1>
+    </hgroup>
+    <section>
+        <div>
+            <ul class="tags">
+                {% for category in categories %}
+                <li>
+                    <a href="{{ url_for('category', category=category) }}">{{ category }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+</article>
 {% endblock content %}

@@ -16,6 +16,7 @@ from flask import (
     Response,
     abort,
     render_template,
+    request,
     send_file,
     url_for,
     send_from_directory,
@@ -213,12 +214,6 @@ def draft(name: str) -> str:
 ##############
 
 
-@app.route("/categories.html")
-def categories() -> str:
-    categories: list[str] = get_all_categories()
-    return render_template("categories.html", categories=categories)
-
-
 @app.route("/category/<category>.html")
 def category(category: str) -> str:
     posts: list[Page] = [
@@ -228,14 +223,26 @@ def category(category: str) -> str:
     return render_template("posts.html", posts=posts, filter=category)
 
 
+@app.route("/categories.html")
 @app.route("/tags.html")
 def tags() -> str:
-    tags: list[str] = get_all_tags()
-    return render_template("tags.html", tags=tags)
+    if request.path == "/categories.html":
+        tags: list[str] = get_all_categories()
+        title: str = "#categories"
+        route = "category"
+    else:
+        tags: list[str] = get_all_tags()
+        title: str = "#tags"
+        route = "tag"
+
+    if not tags:
+        abort(404)
+
+    return render_template("tags.html", title=title, tags=tags, route=route)
 
 
 @app.route("/tag/<tag>.html")
-def tagged(tag: str) -> str:
+def tag(tag: str) -> str:
     posts: list[Page] = [
         post for post in get_live_posts() if tag in get_post_tags(post)
     ]
@@ -293,7 +300,7 @@ def sitemap() -> Response:
 
     # add tags
     for tag in tags:
-        tag_url: str = url_for("tagged", tag=tag, _external=True)
+        tag_url: str = url_for("tag", tag=tag, _external=True)
         add_url(tag_url)
 
     # convert the XML tree to a string

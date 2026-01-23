@@ -2,62 +2,60 @@
 <html lang="en" data-theme="light">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="color-scheme" content="light dark" />
 
-    <!-- Defaults -->
-    {% set title = title ~ " – Josh Duncan" | default("Josh Duncan – Dad x 2. Designer. Maker. Fun haver.") %}
-    {% set og_type = og_type | default("website") %}
-    {% set description = description | default("Dad x 2. Designer. Maker. Fun haver.") %}
-    {% set origin = site_url.rstrip('/') %}
-    {% set canonical_url = origin ~ request.path %}
+      <!-- Defaults -->
+      {% set page_title = title ~ " – Josh Duncan" | default("Josh Duncan – Dad x 2. Designer. Maker. Fun haver.") %}
+      {% set og_type = og_type | default("website") %}
+      {% set description = description | default("Dad x 2. Designer. Maker. Fun haver.") %}
+      {% set origin = site_url.rstrip('/') %}
+      {% set canonical_url = origin ~ request.path %}
 
-    <!-- Page-specific overrides -->
-    {% if post %}
-    {% set title = post.title ~ " – Josh Duncan" | default(title) %}
-    {% set description = post.description | default(description) %}
-    {% set author = post.author | default("Josh Duncan") %}
-    {% set og_type = "article" %}
-    {% elif page %}
-    {% set title = page.title ~ " – Josh Duncan" | default(title) %}
-    {% set description = page.description | default(description) %}
-    {% endif %}
+      <!-- Page-specific overrides -->
+      {% if post %}
+      {% set page_title = post.title ~ " – Josh Duncan" | default(page_title) %}
+      {% set description = post.description | default(description) %}
+      {% set author = post.author | default("Josh Duncan") %}
+      {% set og_type = "article" %}
+      {% elif page %}
+      {% set page_title = page.title ~ " – Josh Duncan" | default(page_title) %}
+      {% set description = page.description | default(description) %}
+      {% endif %}
 
-    <title>{{ title }}</title>
-    <meta name="description" content="{{ description }}" />
-    <link rel="canonical" href="{{ canonical_url }}">
+      <title>{{ page_title }}</title>
+      <meta name="description" content="{{ description }}" />
+      <link rel="canonical" href="{{ canonical_url }}" />
 
-    {% include "og-meta.html" %}
+      {% include "og-meta.html" %}
 
-    <!-- Styling -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.colors.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/codehilite.css') }}" />
+      <!-- Styling -->
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.colors.min.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.min.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/codehilite.css') }}" />
 
-    <!-- Icons -->
-    <link rel="icon" href="{{ url_for('root_static', filename='favicon.ico') }}" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="{{ url_for('root_static', filename='favicon.svg') }}">
-    <link rel="apple-touch-icon" href="{{ url_for('root_static', filename='apple-touch-icon.png') }}">
+      <!-- Icons -->
+      <link rel="icon" href="{{ url_for('root_static', filename='favicon.ico') }}" sizes="any" />
+      <link rel="icon" type="image/svg+xml" href="{{ url_for('root_static', filename='favicon.svg') }}" />
+      <link rel="apple-touch-icon" href="{{ url_for('root_static', filename='apple-touch-icon.png') }}" />
 
-    <link rel="manifest" href="{{ url_for('manifest') }}">
+      <link rel="manifest" href="{{ url_for('manifest') }}" />
 
-    <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+      <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 
 <body>
-    <header class="container page-header">
-        <div class="container">
+      <header class="container page-header">
             {% include "logo.html" %}
             {% include "nav.html" %}
-        </div>
-        {% include "javascript/theme-toggle.html" %}
-    </header>
-    <main class="container">
-        {% block content %}{% endblock %}
-    </main>
-    {% include "footer.html" %}
+            {% include "javascript/theme-toggle.html" %}
+      </header>
+      <main class="container">
+            {% block content %}{% endblock %}
+      </main>
+      {% include "footer.html" %}
 </body>
 
 </html>

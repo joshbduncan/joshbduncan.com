@@ -69,6 +69,9 @@ article.post-details {
 /* ########## PAGE STRUCTURE ########## */
 
 .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-bottom: 2px solid;
     border-image: linear-gradient(
             to right,
@@ -86,66 +89,63 @@ article.post-details {
         1;
     border-image-slice: 1;
     padding-inline: var(--pico-block-spacing-horizontal);
+
+    .logo {
+        padding-block: 1rem;
+    }
+
+    svg {
+        will-change: transform;
+        transition: transform var(--pico-transition);
+    }
+
+    a:hover svg,
+    a:focus-visible svg {
+        transform: translate(0px, -2px);
+    }
 }
 
-body > header .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+.page-nav {
+    ul.icons {
+        &::before {
+            display: block;
+            height: 1.125rem;
+            margin-inline: var(--pico-nav-element-spacing-horizontal);
+            border-left: var(--pico-border-width) solid
+                var(--pico-form-element-border-color);
+            content: "";
+        }
 
-.logo {
-    padding-block: 1rem;
-}
+        li {
+            align-items: center;
+            display: flex;
+        }
 
-.logo svg {
-    will-change: transform;
-    transition: transform var(--pico-transition);
-}
+        a {
+            color: light-dark(
+                var(--pico-color-violet-650),
+                var(--pico-color-amber-250)
+            );
+        }
 
-.logo:hover svg {
-    transform: translate(0px, -2px);
-}
-
-nav ul.icons::before {
-    display: block;
-    height: 1.125rem;
-    margin-inline: var(--pico-nav-element-spacing-horizontal);
-    border-left: var(--pico-border-width) solid var(--pico-form-element-border-color);
-    content: "";
-}
-
-.page-nav .icons li {
-    align-items: center;
-    display: flex;
-}
-
-.page-nav .icons li a {
-    color: light-dark(var(--pico-color-violet-650), var(--pico-color-amber-250));
-}
-
-.page-nav .icons svg {
-    height: 24px;
-    will-change: transform;
-    transition: transform var(--pico-transition);
-}
-
-.page-nav .icons li a:hover svg {
-    transform: translate(0px, -2px);
+        svg {
+            height: 24px;
+        }
+    }
 }
 
 .page-footer {
     border-top: 1px dotted var(--pico-muted-border-color);
     padding-inline: var(--pico-block-spacing-horizontal);
-}
 
-.footer-nav {
-    justify-content: center;
-}
+    .footer-nav {
+        justify-content: center;
+    }
 
-.copyright {
-    color: var(--pico-muted-color);
-    text-align: center;
+    .copyright {
+        color: var(--pico-muted-color);
+        text-align: center;
+    }
 }
 
 /* ########## POSTS LIST ########## */
@@ -165,6 +165,20 @@ article.post blockquote p {
     margin: 0;
 }
 
+/* ########## CATEGORIES & TAGS ########## */
+
+ul.tags {
+    display: flex;
+    gap: 0.25rem 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+
+    > li {
+        list-style: none;
+    }
+}
+
 /* ########## ABOUT PAGE ########## */
 
 .polaroid {
@@ -177,38 +191,38 @@ article.post blockquote p {
     padding: 0.75rem;
     transform: rotate(-1deg);
     width: 80%;
-}
 
-.polaroid::after {
-    color: #2d3138;
-    content: attr(data-caption);
-    display: block;
-    font-family: "Homemade Apple", cursive;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 1.5rem;
-    margin-block: 1rem 0;
-    text-align: center;
+    &::after {
+        color: #2d3138;
+        content: attr(data-caption);
+        display: block;
+        font-family: "Homemade Apple", cursive;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 1.5rem;
+        margin-block: 1rem 0;
+        text-align: center;
+    }
 }
 
 .social-icons {
     justify-content: center;
     padding-block-start: 1.5rem;
-}
 
-.social-icons ul {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-evenly;
-}
+    ul {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-evenly;
+    }
 
-.social-icons li {
-    border: none !important;
-    padding-block: 0.25rem 0;
-}
+    li {
+        border: none !important;
+        padding-block: 0.25rem 0;
+    }
 
-.social-icons svg {
-    height: 60px;
+    svg {
+        height: 60px;
+    }
 }
 
 /* ########## SEARCH PAGE ########## */
@@ -217,7 +231,7 @@ article.post blockquote p {
     padding-block: 1.25rem 2rem;
 }
 
-.hidden {
+.search-results .hidden {
     display: none;
 }
 
@@ -228,19 +242,17 @@ article.post blockquote p {
     gap: 0.25rem;
     justify-content: space-evenly;
     margin-block: 1.5rem;
-}
 
-.support-buttons a svg {
-    will-change: transform;
-    transition: transform var(--pico-transition);
-}
+    svg {
+        color: var(--pico-color-pink-450);
+        will-change: transform;
+        transition: transform var(--pico-transition);
+    }
 
-.support-buttons a:hover svg {
-    transform: translate(0px, -2px);
-}
-
-.support-buttons svg.bi-heart-fill {
-    color: var(--pico-color-pink-450);
+    a:hover svg,
+    a:focus-visible svg {
+        transform: translate(0px, -2px);
+    }
 }
 
 /* ########## CUSTOM ELEMENTS ########## */
@@ -314,26 +326,27 @@ article.post blockquote p {
 
 .codehilite {
     position: relative;
-}
 
-.codehilite .copy-to-clipboard {
-    background-color: var(--pico-code-background-color);
-    padding: 0.25rem 1rem 0.25rem 0.25rem;
-    position: absolute;
-    right: 0;
-    top: 0.75rem;
-    z-index: 1;
-}
+    .copy-to-clipboard {
+        background-color: var(--pico-code-background-color);
+        padding: 0.25rem 1rem 0.25rem 0.25rem;
+        position: absolute;
+        right: 0;
+        top: 0.75rem;
+        z-index: 1;
+    }
 
-.codehilite .copy-to-clipboard svg {
-    will-change: transform;
-    transition: transform var(--pico-transition);
-}
+    .copy-to-clipboard svg {
+        will-change: transform;
+        transition: transform var(--pico-transition);
+    }
 
-.codehilite .copy-to-clipboard:hover svg {
-    transform: translate(0, -1px);
-}
+    .copy-to-clipboard:hover svg,
+    .copy-to-clipboard:focus-visible svg {
+        transform: translate(0, -1px);
+    }
 
-.codehilite svg.check {
-    color: var(--pico-color-green-300);
+    svg.check {
+        color: var(--pico-color-green-300);
+    }
 }

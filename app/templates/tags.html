@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>tags</h1>
-<div>
-    <ul>
-        {% for tag in tags %}
-        <li><a href="{{ url_for('tagged', tag=tag) }}">{{ tag }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
+<article class="page">
+    <hgroup>
+        <h1 class="posts-filter">{{ title }}</h1>
+    </hgroup>
+    <section>
+        <ul class="tags">
+            {% for tag in tags %}
+            {% if route == "category" %}
+            {% set tag_url = url_for(route, category=tag) %}
+            {% else %}
+            {% set tag_url = url_for(route, tag=tag) %}
+            {% endif %}
+            <li><a role="button" class="outline" href="{{ tag_url }}">{{ tag }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+</article>
 {% endblock content %}

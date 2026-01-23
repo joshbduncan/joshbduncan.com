@@ -13,4 +13,5 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["pyright>=1.1.396", "ruff>=0.9.9"]
+lint = ["ruff"]
+type_check = ["ty"]

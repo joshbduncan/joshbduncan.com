@@ -1,9 +1,19 @@
 <nav class="footer-nav">
     <ul>
-        <li><a class="secondary" href="{{ url_for('index') }}" {% if request.path==url_for("index") %} aria-current="page" {% endif %}>Home</a></li>
-        <li><a class="secondary" href="{{ url_for('about') }}" {% if request.path==url_for("about") %} aria-current="page" {% endif %}>About</a></li>
-        <li><a class="secondary" href="{{ url_for('software') }}" {% if request.path==url_for("software") %} aria-current="page" {% endif %}>Software</a></li>
-        <li><a class="secondary" href="{{ url_for('search') }}" {% if request.path==url_for("search") %} aria-current="page" {% endif %}>Search</a></li>
-        <li><a class="secondary" href="{{ url_for('rss') }}" {% if request.path==url_for("rss") %} aria-current="page" {% endif %}>RSS</a></li>
+        <li>
+            <a class="secondary" href="{{ url_for('index') }}" {% if request.path==url_for("index") %}aria-current="page" {% endif %}>Home</a>
+        </li>
+        <li>
+            <a class="secondary" href="{{ url_for('about') }}" {% if request.path==url_for("about") %}aria-current="page" {% endif %}>About</a>
+        </li>
+        <li>
+            <a class="secondary" href="{{ url_for('software') }}" {% if request.path==url_for("software") %}aria-current="page" {% endif %}>Software</a>
+        </li>
+        <li>
+            <a class="secondary" href="{{ url_for('search') }}" {% if request.path==url_for("search") %}aria-current="page" {% endif %}>Search</a>
+        </li>
+        <li>
+            <a class="secondary" href="{{ url_for('rss') }}" {% if request.path==url_for("rss") %}aria-current="page" {% endif %}>RSS</a>
+        </li>
     </ul>
 </nav>
