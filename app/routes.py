@@ -15,25 +15,23 @@ import xml.etree.cElementTree as ET
 from flask import (
     Response,
     abort,
-    jsonify,
     render_template,
     send_file,
     url_for,
     send_from_directory,
 )
 from flask_flatpages import Page  # type: ignore
-from jinja2.filters import do_wordcount
 
 from app import app, flatpages, freezer
 
-POST_DIR = app.config["POST_DIR"]
-DRAFT_DIR = app.config["DRAFT_DIR"]
-PAGE_DIR = app.config["PAGE_DIR"]
-PLAYGROUND_DIR = app.config["PLAYGROUND_DIR"]
+POST_DIR: str = app.config.get("POST_DIR")
+DRAFT_DIR: str = app.config.get("DRAFT_DIR")
+PAGE_DIR: str = app.config.get("PAGE_DIR")
+PLAYGROUND_DIR: str = app.config.get("PLAYGROUND_DIR")
 
 
 @app.errorhandler(404)
-def page_not_found(e):
+def page_not_found(e) -> str:
     return render_template("404.html")
 
 
@@ -45,13 +43,13 @@ def error_handlers():
 @freezer.register_generator
 def playground_pages():
     for p in Path().rglob(f"content/{PLAYGROUND_DIR}/**/*"):
-        path = str(p).removeprefix("content")
+        path: str = str(p).removeprefix("content")
         if p.is_dir():
-            path = path + "/"
+            path += "/"
         yield path
 
 
-ROOT_IMAGE_FILES = {
+ROOT_IMAGE_FILES: dict[str, str] = {
     "favicon.ico": "favicon.ico",
     "favicon.svg": "favicon.svg",
     "apple-touch-icon.png": "apple-touch-icon.png",
@@ -75,28 +73,41 @@ def root_image_files():
 
 @app.route("/")
 def index():
-    posts = get_live_posts()
+    posts: list[Page] = get_live_posts()
     posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template("posts.html", posts=posts)
 
 
 @app.route("/<name>.html")
 def post(name: str) -> str:
-    path = f"{POST_DIR}/{name}"
+    path: str = f"{POST_DIR}/{name}"
     post = flatpages.get_or_404(path)
     return render_template("post.html", post=post)
 
 
 @app.get("/site.webmanifest")
-def manifest():
-    return send_from_directory(app.static_folder, "site.webmanifest")
+def manifest() -> Response:
+    directory: str | None = app.static_folder
+    if directory is None:
+        abort(404)
+
+    assert directory is not None  # to fix type error for `send_from_directory`
+
+    return send_from_directory(directory, "site.webmanifest")
 
 
 @app.get("/<path:filename>")
-def root_static(filename: str):
+def root_static(filename: str) -> Response:
     if filename not in ROOT_IMAGE_FILES:
         abort(404)
-    return send_from_directory(app.static_folder, ROOT_IMAGE_FILES[filename])
+
+    directory: str | None = app.static_folder
+    if directory is None:
+        abort(404)
+
+    assert directory is not None  # to fix type error for `send_from_directory`
+
+    return send_from_directory(directory, ROOT_IMAGE_FILES[filename])
 
 
 ################################
@@ -114,7 +125,7 @@ def playground_path_mtime(path: str | Path) -> str:
 
 def playground_path_size(path: str | Path) -> str:
     if not isinstance(path, Path):
-        path = Path(path)
+        path: Path = Path(path)
     return "-" if path.is_dir() else str(os.path.getsize(path))
 
 
@@ -125,14 +136,14 @@ app.add_template_filter(playground_path_size)
 
 @app.route("/playground/")
 def playground() -> str:
-    path = Path(f"content/{PLAYGROUND_DIR}")
-    paths = sorted(path.iterdir())
+    path: Path = Path(f"content/{PLAYGROUND_DIR}")
+    paths: list[Path] = sorted(path.iterdir())
     return render_template("paths.html", base_dir=path, paths=paths)
 
 
 @app.route("/playground/<path:path>")
 def playground_page(path: str) -> str | Response:
-    _path = Path(f"content/{PLAYGROUND_DIR}/{path}")
+    _path: Path = Path(f"content/{PLAYGROUND_DIR}/{path}")
     if not _path.exists():
         abort(404)
     if _path.is_dir():
@@ -152,30 +163,30 @@ def playground_page(path: str) -> str | Response:
 
 @app.route("/styles.html")
 def styles() -> str:
-    path = f"{PAGE_DIR}/styles"
+    path: str = f"{PAGE_DIR}/styles"
     page = flatpages.get_or_404(path)
     return render_template("page.html", page=page)
 
 
 @app.route("/about.html")
 def about() -> str:
-    path = f"{PAGE_DIR}/about"
+    path: str = f"{PAGE_DIR}/about"
     page = flatpages.get_or_404(path)
-    return render_template("page.html", page=page)
+    return render_template("page.html", page=page, og_type="profile")
 
 
 @app.route("/software.html")
 def software() -> str:
-    path = f"{PAGE_DIR}/software"
+    path: str = f"{PAGE_DIR}/software"
     page = flatpages.get_or_404(path)
     return render_template("page.html", page=page)
 
 
 @app.route("/search.html")
 def search() -> str:
-    posts = get_live_posts()
+    posts: list[Page] = get_live_posts()
     posts.sort(key=lambda item: item["date"], reverse=True)
-    return render_template("search.html", posts=posts)
+    return render_template("search.html", posts=posts, title="Search")
 
 
 ###############
@@ -185,14 +196,14 @@ def search() -> str:
 
 @app.route("/drafts/")
 def drafts() -> str:
-    posts = [post for post in flatpages if post.path.startswith(DRAFT_DIR)]
+    posts: list[Page] = [post for post in flatpages if post.path.startswith(DRAFT_DIR)]
     posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template("posts.html", posts=posts, filter="drafts")
 
 
 @app.route("/drafts/<name>.html")
 def draft(name: str) -> str:
-    path = f"{DRAFT_DIR}/{name}"
+    path: str = f"{DRAFT_DIR}/{name}"
     post = flatpages.get_or_404(path)
     return render_template("post.html", post=post, draft=True)
 
@@ -204,73 +215,32 @@ def draft(name: str) -> str:
 
 @app.route("/categories.html")
 def categories() -> str:
-    categories = get_all_categories()
+    categories: list[str] = get_all_categories()
     return render_template("categories.html", categories=categories)
 
 
 @app.route("/category/<category>.html")
 def category(category: str) -> str:
-    posts = [post for post in get_live_posts() if category == post.meta["category"]]
+    posts: list[Page] = [
+        post for post in get_live_posts() if category == post.meta["category"]
+    ]
     posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template("posts.html", posts=posts, filter=category)
 
 
 @app.route("/tags.html")
 def tags() -> str:
-    tags = get_all_tags()
+    tags: list[str] = get_all_tags()
     return render_template("tags.html", tags=tags)
 
 
 @app.route("/tag/<tag>.html")
 def tagged(tag: str) -> str:
-    posts = [post for post in get_live_posts() if tag in get_post_tags(post)]
+    posts: list[Page] = [
+        post for post in get_live_posts() if tag in get_post_tags(post)
+    ]
     posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template("posts.html", posts=posts, filter=tag)
-
-
-#############
-# JSON DATA #
-#############
-
-
-@app.route("/posts.json")
-def json_posts() -> Response:
-    posts = get_live_posts()
-    posts.sort(key=lambda item: item["date"], reverse=True)
-    posts_data = []
-    for post in posts:
-        post_path = Path(post.path)
-        posts_data.append(
-            {
-                "title": post.meta["title"],
-                "date": datetime.fromisoformat(
-                    post.meta["date"].isoformat()
-                ).isoformat(),
-                "updated": (
-                    datetime.fromisoformat(post.meta["updated"].isoformat()).isoformat()
-                    if post.meta.get("updated")
-                    else None
-                ),
-                "author": post.meta["author"],
-                "description": post.meta["description"],
-                "category": post.meta["category"] or "",
-                "tags": post.meta["tags"].split(", "),
-                "read_time": int(round(do_wordcount(post.body) / (200 / 60))),
-                "url": url_for("post", name=post_path.name, _external=True),
-                "url_internal": url_for("post", name=post_path.name),
-            }
-        )
-    return jsonify(posts_data)
-
-
-@app.route("/tags.json")
-def json_tags() -> Response:
-    return jsonify(get_all_tags())
-
-
-@app.route("/categories.json")
-def json_categories() -> Response:
-    return jsonify(get_all_categories())
 
 
 ############
@@ -281,9 +251,9 @@ def json_categories() -> Response:
 @app.route("/sitemap.xml")
 def sitemap() -> Response:
     # get data for the sitemap
-    posts = get_live_posts()
-    categories = get_all_categories()
-    tags = get_all_tags() or []
+    posts: list[Page] = get_live_posts()
+    categories: list[str] = get_all_categories()
+    tags: list[str] | list = get_all_tags() or []
 
     # sort posts by date (oldest first)
     posts.sort(key=lambda item: item["date"], reverse=False)
@@ -296,7 +266,7 @@ def sitemap() -> Response:
     urlset = ET.Element("urlset", {"xmlns": NS, "xmlns:xhtml": XHTML_NS})
 
     # helper function to add a URL entry
-    def add_url(loc: str, changefreq: str | None = None):
+    def add_url(loc: str, changefreq: str | None = None) -> None:
         url = ET.SubElement(urlset, "url")
         ET.SubElement(url, "loc").text = loc
         if changefreq:
@@ -311,19 +281,19 @@ def sitemap() -> Response:
 
     # add posts
     for post in posts:
-        post_url = url_for(
+        post_url: str = url_for(
             "post", name=post.path.replace(post.folder, ""), _external=True
         )
         add_url(post_url)
 
     # add categories
     for category in categories:
-        category_url = url_for("category", category=category, _external=True)
+        category_url: str = url_for("category", category=category, _external=True)
         add_url(category_url)
 
     # add tags
     for tag in tags:
-        tag_url = url_for("tagged", tag=tag, _external=True)
+        tag_url: str = url_for("tagged", tag=tag, _external=True)
         add_url(tag_url)
 
     # convert the XML tree to a string
@@ -348,9 +318,9 @@ def rss() -> Response:
         zone = ZoneInfo("America/New_York")
 
         if date is None:
-            date = datetime.now(zone)
+            date: datetime = datetime.now(zone)
         elif date.tzinfo is None:
-            date = date.replace(tzinfo=zone)  # localize if naive
+            date: datetime = date.replace(tzinfo=zone)  # localize if naive
 
         return date.strftime("%a, %d %b %Y %H:%M:%S %z")
 
@@ -361,7 +331,7 @@ def rss() -> Response:
         if not html:
             return html  # Return as-is if empty
 
-        soup = BeautifulSoup(html, "html.parser")
+        soup: BeautifulSoup = BeautifulSoup(html, "html.parser")
 
         # convert relative <a href=""> links
         for a in soup.find_all("a", href=True):
@@ -375,7 +345,7 @@ def rss() -> Response:
 
     def clean_html(html: str) -> str:
         """Remove `loading="lazy"` attributes from <img> tags in HTML content."""
-        soup = BeautifulSoup(html, "html.parser")
+        soup: BeautifulSoup = BeautifulSoup(html, "html.parser")
 
         # Find all <img> tags and remove the "loading" attribute
         for img in soup.find_all("img"):
@@ -391,7 +361,9 @@ def rss() -> Response:
         return text
 
     # get all posts sorted by date
-    posts = sorted(get_live_posts(), key=lambda item: item["date"], reverse=True)
+    posts: list[Page] = sorted(
+        get_live_posts(), key=lambda item: item["date"], reverse=True
+    )
 
     # define namespaces
     ATOM_NS = "http://www.w3.org/2005/Atom"
@@ -428,7 +400,7 @@ def rss() -> Response:
 
     # add the last 10 posts
     for post in posts[:10]:
-        post_url = url_for(
+        post_url: str = url_for(
             "post", name=post.path.replace(post.folder, ""), _external=True
         )
         item = ET.SubElement(channel, "item")
@@ -441,11 +413,11 @@ def rss() -> Response:
         ET.SubElement(item, "guid").text = post_url
 
         # convert links to absolute in description & content
-        description_html = make_links_absolute(post.meta["description"])
-        content_html = make_links_absolute(post.html)
+        description_html: str = make_links_absolute(post.meta["description"])
+        content_html: str = make_links_absolute(post.html)
 
         # remove lazy loading tag from images
-        content_html = clean_html(content_html)
+        content_html: str = clean_html(content_html)
 
         assert not re.search(r'href=["\'](?!https?:\/\/)[^"\']+', content_html), (
             "Found relative href link!"
@@ -508,19 +480,19 @@ def get_draft_posts() -> list[Page]:
 
 
 def get_all_categories() -> list[str]:
-    categories = set()
+    categories: set[str] = set()
     for post in get_live_posts():
         categories.add(post.meta["category"])
     return sorted(list(categories))
 
 
 def get_post_tags(post: Page) -> list[str]:
-    tags = post.meta.get("tags", "")
+    tags: str = post.meta.get("tags", "")
     return sorted(tags.split(", "))
 
 
-def get_all_tags():
-    tags = set()
+def get_all_tags() -> list[str]:
+    tags: set[str] = set()
     for post in get_live_posts():
         tags.update(set(get_post_tags(post)))
     return sorted(list(tags))

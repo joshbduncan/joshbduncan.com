@@ -1,0 +1,40 @@
+{# Absolute image URLs #}
+{% set og_image = origin ~ url_for('root_static', filename='og-image.png') %}
+{% set og_image_square = origin ~ url_for('root_static', filename='og-image-square.png') %}
+
+<!-- Open Graph -->
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+
+{% if og_type == "article" %}
+{% if author %}
+<meta property="article:author" content="{{ author }}">{% endif %}
+{% if post.date %}
+<meta property="article:published_time" content="{{ post.date }}">{% endif %}
+{% if post.category %}
+<meta property="article:section" content="{{ post.category }}">{% endif %}
+{% if post.updated %}
+<meta property="article:modified_time" content="{{ post.updated }}">{% endif %}
+
+{% set tags = post.meta["tags"] if post.meta is defined and "tags" in post.meta else None %}
+{% if tags %}
+{% for tag in tags.split(",") | map("trim") | reject("equalto","") | sort %}
+<meta property="article:tag" content="{{ tag }}">
+{% endfor %}
+{% endif %}
+{% endif %}
+
+{# Prefer one primary OG image unless you have a reason to provide multiple #}
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:site" content="@joshbduncan">
+<meta name="twitter:creator" content="@joshbduncan">

@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 
-from app.markdown_div.extension import MarkdownDiv
+from .markdown_div import MarkdownDiv
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(os.path.join(basedir, ".env"))

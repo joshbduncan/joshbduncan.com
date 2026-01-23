@@ -1,5 +1,7 @@
 ---
 title: Software
+description: I'm a designer by trade but started to learn development in 2020 and I'm currently developing in Python, ExtendScript for Adobe, and HTML/CSS/JavaScript. I'm sharing some of my projects here in hope that you may find them useful.
+author: Josh Duncan
 ---
 
 I'm a designer by trade but started to learn development in 2020 and I'm currently developing in [Python](#python), [ExtendScript for Adobe](#extendscript), and HTML/CSS/JavaScript. I'm sharing some of my projects here in hope that you may find them useful.

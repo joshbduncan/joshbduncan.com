@@ -54,14 +54,16 @@ p {
     }
 }
 
-article {
+article.page,
+article.post,
+article.post-details {
     background-color: transparent;
     box-shadow: none;
-}
 
-article > header {
-    background-color: transparent;
-    border: none;
+    & hgroup {
+        background-color: transparent;
+        box-shadow: none;
+    }
 }
 
 /* ########## PAGE STRUCTURE ########## */
@@ -94,6 +96,10 @@ body > header .container {
 
 .logo {
     padding-block: 1rem;
+}
+
+.logo svg {
+    will-change: transform;
     transition: transform var(--pico-transition);
 }
 
@@ -120,7 +126,7 @@ nav ul.icons::before {
 
 .page-nav .icons svg {
     height: 24px;
-    transform-origin: center;
+    will-change: transform;
     transition: transform var(--pico-transition);
 }
 
@@ -225,7 +231,7 @@ article.post blockquote p {
 }
 
 .support-buttons a svg {
-    transform-origin: center;
+    will-change: transform;
     transition: transform var(--pico-transition);
 }
 
@@ -316,12 +322,11 @@ article.post blockquote p {
     position: absolute;
     right: 0;
     top: 0.75rem;
-    transform-origin: center;
-    transition: color var(--pico-transition);
     z-index: 1;
 }
 
 .codehilite .copy-to-clipboard svg {
+    will-change: transform;
     transition: transform var(--pico-transition);
 }
 

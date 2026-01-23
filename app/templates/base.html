@@ -6,63 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
 
-    <meta name="description" content="Josh Duncan – Dad. Designer. Maker. Fun haver." />
-    <title>{% if post %}{{ post.title }} – Josh Duncan{% elif page %}{{ page.title }} – Josh Duncan{% else %}Josh Duncan – Blog{% endif %}</title>
+    <!-- Defaults -->
+    {% set title = title ~ " – Josh Duncan" | default("Josh Duncan – Dad x 2. Designer. Maker. Fun haver.") %}
+    {% set og_type = og_type | default("website") %}
+    {% set description = description | default("Dad x 2. Designer. Maker. Fun haver.") %}
+    {% set origin = site_url.rstrip('/') %}
+    {% set canonical_url = origin ~ request.path %}
 
+    <!-- Page-specific overrides -->
+    {% if post %}
+    {% set title = post.title ~ " – Josh Duncan" | default(title) %}
+    {% set description = post.description | default(description) %}
+    {% set author = post.author | default("Josh Duncan") %}
+    {% set og_type = "article" %}
+    {% elif page %}
+    {% set title = page.title ~ " – Josh Duncan" | default(title) %}
+    {% set description = page.description | default(description) %}
+    {% endif %}
+
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {% include "og-meta.html" %}
+
+    <!-- Styling -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.colors.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/pico.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/codehilite.css') }}" />
 
+    <!-- Icons -->
     <link rel="icon" href="{{ url_for('root_static', filename='favicon.ico') }}" sizes="any">
     <link rel="icon" type="image/svg+xml" href="{{ url_for('root_static', filename='favicon.svg') }}">
     <link rel="apple-touch-icon" href="{{ url_for('root_static', filename='apple-touch-icon.png') }}">
 
     <link rel="manifest" href="{{ url_for('manifest') }}">
-
-    <!-- Open Graph -->
-    <meta property="og:url" content="https://joshbduncan.com{{ request.path }}" />
-
-    <meta property="og:image" content="{{ url_for('root_static', filename='og-image.png') }}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <meta property="og:image" content="{{ url_for('root_static', filename='og-image-square.png') }}">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="1200">
-
-    {% if post %}
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="{{ post.title }}" />
-    <meta property="og:description" content="{{ post.description }}" />
-    <meta name="twitter:title" content="{{ post.title }}">
-    <meta name="twitter:description" content="{{ post.title }}">
-    <meta property="og:article:published_time" content="{{ post.date }}" />
-    <meta property="og:article:author" content="Josh Duncan" />
-    {% if post.updated %}
-    <meta property="og:article:modified_time" content="{{ post.updated }}" />
-    {% endif %}
-    <meta property="og:article:section" content="{{ post.category }}" />
-    {% if post.meta["tags"] %}
-    {% for tag in post.meta["tags"].split(", ") | sort %}
-    <meta property="og:article:tag" content="{{ tag }}" />
-    {% endfor %}
-    {% endif %}
-    {% elif page %}
-    <meta property="og:title" content="{{ page.title }}" />
-    <meta name="twitter:title" content="{{ page.title }}">
-    <meta name="twitter:description" content="{{ page.title }}">
-    {% else %}
-    <meta property="og:title" content="joshbduncan.com" />
-    <meta property="og:description" content="Josh Duncan – Dad. Designer. Maker. Fun haver." />
-    <meta name="twitter:title" content="joshbduncan.com">
-    <meta name="twitter:description" content="Josh Duncan – Dad. Designer. Maker. Fun haver.">
-    <meta property="og:type" content="website">
-    {% endif %}
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ url_for('root_static', filename='og-image.png') }}">
 
     <script data-goatcounter="https://jbd.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
