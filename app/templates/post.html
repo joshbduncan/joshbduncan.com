@@ -14,20 +14,7 @@
             {{ post.html|safe }}
         </div>
     </section>
-    <div id="post-details">
-        {% if post.meta["category"] %}
-        <p>
-            <b>Category: </b><a href="{{ url_for('category', category=post.category) }}">{{ post.category }}</a>
-            {% endif %}
-            {% if post.meta["tags"] %}
-            <br>
-            <b>Tags:</b>
-            {% for tag in post.meta["tags"].split(", ") | sort %}
-            <a href="{{ url_for('tag', tag=tag) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}
-            {% endfor %}
-        </p>
-        {% endif %}
-    </div>
+    {% include "post-details.html" %}
 </article>
 {% include "scroll-to-top-button.html" %}
 <script src="{{ url_for('static', filename='js/copy-button.js') }}"></script>

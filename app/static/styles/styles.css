@@ -77,16 +77,16 @@ article.post-details {
     border-bottom: 2px solid;
     border-image: linear-gradient(
             to right,
-            var(--pico-color-pink-450) 0%,
-            var(--pico-color-pink-450) 20%,
-            var(--pico-color-jade-450) 20%,
-            var(--pico-color-jade-450) 40%,
-            var(--pico-color-azure-450) 40%,
-            var(--pico-color-azure-450) 60%,
-            var(--pico-color-orange-450) 60%,
-            var(--pico-color-orange-450) 80%,
-            var(--pico-color-purple-450) 80%,
-            var(--pico-color-purple-450) 100%
+            var(--pico-color-purple-300) 0%,
+            var(--pico-color-purple-300) 20%,
+            var(--pico-color-jade-300) 20%,
+            var(--pico-color-jade-300) 40%,
+            var(--pico-color-pink-300) 40%,
+            var(--pico-color-pink-300) 60%,
+            var(--pico-color-azure-300) 60%,
+            var(--pico-color-azure-300) 80%,
+            var(--pico-color-orange-300) 80%,
+            var(--pico-color-orange-300) 100%
         )
         1;
     border-image-slice: 1;
