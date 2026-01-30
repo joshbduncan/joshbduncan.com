@@ -7,6 +7,7 @@
 /* ########## RESETS AND DEFAULTS ########## */
 
 html {
+    scroll-behavior: smooth;
     scrollbar-gutter: stable;
 }
 
@@ -102,7 +103,7 @@ article.post-details {
 
     a:hover svg,
     a:focus-visible svg {
-        transform: translate(0px, -2px);
+        transform: translateY(-2px);
     }
 }
 
@@ -252,11 +253,44 @@ ul.tags {
 
     a:hover svg,
     a:focus-visible svg {
-        transform: translate(0px, -2px);
+        transform: translateY(-2px);
     }
 }
 
 /* ########## CUSTOM ELEMENTS ########## */
+
+/* SCROLL TO TOP BUTTON */
+
+#scroll-to-top {
+    --offset: 2rem;
+    --width: 2rem;
+
+    border: none !important;
+    bottom: var(--offset);
+    position: fixed;
+    right: var(--offset);
+    transform: scale(0);
+    transition: transform var(--pico-transition);
+    will-change: transform;
+    z-index: 1;
+
+    @media (max-width: 768px) {
+        --offset: 0.75rem;
+    }
+
+    svg {
+        width: var(--width);
+    }
+
+    &.show {
+        transform: scale(1);
+    }
+
+    a:hover svg,
+    a:focus-visible svg {
+        transform: translateY(-2px);
+    }
+}
 
 /* CUSTOM CALLOUTS */
 
@@ -344,7 +378,7 @@ ul.tags {
 
     .copy-to-clipboard:hover svg,
     .copy-to-clipboard:focus-visible svg {
-        transform: translate(0, -1px);
+        transform: translateY(-1px);
     }
 
     svg.check {

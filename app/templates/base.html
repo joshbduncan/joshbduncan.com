@@ -50,7 +50,7 @@
       <header class="container page-header">
             {% include "logo.html" %}
             {% include "nav.html" %}
-            {% include "javascript/theme-toggle.html" %}
+            <script src="{{ url_for('static', filename='js/theme-toggle.js') }}"></script>
       </header>
       <main class="container">
             {% block content %}{% endblock %}
