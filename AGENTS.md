@@ -179,9 +179,7 @@ blog/
 │   └── routes.py              # All routes (499 lines)
 ├── content/                   # Markdown content
 │   ├── posts/                 # Published posts
-│   ├── drafts/                # Draft posts (gitignored)
-│   ├── pages/                 # Static pages (about, software)
-│   └── playground/            # Experimental HTML files
+│   └── pages/                 # Static pages (about, software)
 ├── blog.py                    # Entry point
 ├── Makefile                   # Development commands
 ├── pyproject.toml             # Project config (uv)
@@ -193,7 +191,6 @@ blog/
 
 1. **No Tests:** This project has no test suite. Validate changes by running dev server.
 2. **Build Process:** Changes to routes/templates require rebuild (`make build`) to test frozen output.
-3. **Draft Posts:** Located in `content/drafts/` (gitignored). Only visible at `/drafts/` in dev mode.
 4. **Custom Freezer:** Uses custom `flask_frozen` implementation, not the PyPI package.
 5. **RSS/Sitemap:** Auto-generated from live posts. Ensure all links are absolute URLs.
 6. **Environment:** Always use `uv run` prefix for commands to ensure correct venv.

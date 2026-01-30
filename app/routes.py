@@ -26,9 +26,7 @@ from flask_flatpages import Page  # type: ignore
 from app import app, flatpages, freezer
 
 POST_DIR: str = app.config.get("POST_DIR")
-DRAFT_DIR: str = app.config.get("DRAFT_DIR")
 PAGE_DIR: str = app.config.get("PAGE_DIR")
-PLAYGROUND_DIR: str = app.config.get("PLAYGROUND_DIR")
 
 
 @app.errorhandler(404)
@@ -40,14 +38,6 @@ def page_not_found(e) -> str:
 def error_handlers():
     yield "/404.html"
 
-
-@freezer.register_generator
-def playground_pages():
-    for p in Path().rglob(f"content/{PLAYGROUND_DIR}/**/*"):
-        path: str = str(p).removeprefix("content")
-        if p.is_dir():
-            path += "/"
-        yield path
 
 
 ROOT_IMAGE_FILES: dict[str, str] = {
@@ -111,52 +101,6 @@ def root_static(filename: str) -> Response:
     return send_from_directory(directory, ROOT_IMAGE_FILES[filename])
 
 
-################################
-# PLAYGROUND STATIC HTML PAGES #
-################################
-
-
-def playground_path(path: str | Path) -> Path:
-    return Path(str(path).removeprefix(f"content/{PLAYGROUND_DIR}/"))
-
-
-def playground_path_mtime(path: str | Path) -> str:
-    return time.ctime(os.path.getmtime(path))
-
-
-def playground_path_size(path: str | Path) -> str:
-    if not isinstance(path, Path):
-        path: Path = Path(path)
-    return "-" if path.is_dir() else str(os.path.getsize(path))
-
-
-app.add_template_filter(playground_path)
-app.add_template_filter(playground_path_mtime)
-app.add_template_filter(playground_path_size)
-
-
-@app.route("/playground/")
-def playground() -> str:
-    path: Path = Path(f"content/{PLAYGROUND_DIR}")
-    paths: list[Path] = sorted(path.iterdir())
-    return render_template("paths.html", base_dir=path, paths=paths)
-
-
-@app.route("/playground/<path:path>")
-def playground_page(path: str) -> str | Response:
-    _path: Path = Path(f"content/{PLAYGROUND_DIR}/{path}")
-    if not _path.exists():
-        abort(404)
-    if _path.is_dir():
-        return render_template(
-            "paths.html",
-            base_dir=_path,
-            parent_dir=_path.parent.name,
-            paths=sorted(_path.iterdir()),
-        )
-    return send_file(f"../{_path}")
-
-
 #########
 # PAGES #
 #########
@@ -188,25 +132,6 @@ def search() -> str:
     posts: list[Page] = get_live_posts()
     posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template("search.html", posts=posts, title="Search")
-
-
-###############
-# DRAFT POSTS #
-###############
-
-
-@app.route("/drafts/")
-def drafts() -> str:
-    posts: list[Page] = [post for post in flatpages if post.path.startswith(DRAFT_DIR)]
-    posts.sort(key=lambda item: item["date"], reverse=True)
-    return render_template("posts.html", posts=posts, filter="drafts")
-
-
-@app.route("/drafts/<name>.html")
-def draft(name: str) -> str:
-    path: str = f"{DRAFT_DIR}/{name}"
-    post = flatpages.get_or_404(path)
-    return render_template("post.html", post=post, draft=True)
 
 
 ##############
@@ -480,10 +405,6 @@ def get_pages() -> list[Page]:
 
 def get_live_posts() -> list[Page]:
     return [post for post in flatpages if post.path.startswith(POST_DIR)]
-
-
-def get_draft_posts() -> list[Page]:
-    return [post for post in flatpages if post.path.startswith(DRAFT_DIR)]
 
 
 def get_all_categories() -> list[str]:

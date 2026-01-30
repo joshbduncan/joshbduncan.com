@@ -25,9 +25,7 @@ class Config(object):
     FLATPAGES_EXTENSION_CONFIGS = {"codehilite": {"guess_lang": False}}
 
     POST_DIR = "posts"
-    DRAFT_DIR = "drafts"
     PAGE_DIR = "pages"
-    PLAYGROUND_DIR = "playground"
 
     # freezer static files destination
     FREEZER_DESTINATION = "../build"
@@ -35,5 +33,3 @@ class Config(object):
 
     # Ignore MIME warning for type application/xml (sitemap, rss)
     FREEZER_IGNORE_MIMETYPE_WARNINGS = True
-
-    FREEZER_BLOCKLIST = ["draft", "drafts"]

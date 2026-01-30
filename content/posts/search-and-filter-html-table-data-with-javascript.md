@@ -150,7 +150,7 @@ rows.forEach((row) => {
 
 As is, this script works great for a simple page. Just embed the script at the bottom of a webpage and go on about your day.
 
-[Try it out.](/playground/javascript_table_search_filter/javascript_table_search_filter.html)
+[Try it out.](https://codepen.io/joshbduncan/pen/wvPYRJb)
 
 But I needed a little more control...
 
@@ -224,7 +224,7 @@ row.classList.toggle("hide", !colsText.includes(q));
 
 ### Putting It All Together
 
-I setup a [full working example](/playground/javascript_table_search_filter/advanced/javascript_table_search_filter_advanced.html) if you want to check it out.
+I setup a [full working example](https://codepen.io/joshbduncan/pen/ZEaqeBp) if you want to check it out.
 
 ```javascript
 const searchInput = document.getElementById("search-input");
