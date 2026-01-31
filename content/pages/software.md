@@ -10,7 +10,7 @@ I'm a designer by trade but started to learn development in 2020 and I'm current
 Most of the things I make are free to download but if you would like to support me that would be awesome and greatly appreciated! 🙏
 >>>
 
-<div class="container support-buttons">
+<div class="grid support-buttons">
     <a role="button" href="https://buy.stripe.com/4gw2c70oq6kBgHS6oo" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/></svg>
         Support on Stripe

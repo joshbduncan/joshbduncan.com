@@ -12,6 +12,7 @@ Hi there, my name is Josh! I'm a designer by trade but love tinkering with all s
 
 <figure class="polaroid" data-caption="The Duncans">
   <img alt="The Duncans" width="1500" height="1200" src="/static/images/the-duncans.jpg">
+  <figcaption>The Duncans</figcaption>
 </figure>
 
 ## Some Current Interests:
@@ -25,7 +26,7 @@ Hi there, my name is Josh! I'm a designer by trade but love tinkering with all s
 
 You can find me on [Twitter](https://twitter.com/joshbduncan), or head over to [GitHub](https://github.com/joshbduncan) to see some of my recent work.
 
-<nav class="social-icons">
+<nav class="grid social-icons">
   <ul>
     <li data-tooltip="GitHub">
       <a href="https://github.com/joshbduncan" target="_blank" aria-label="GitHub">
