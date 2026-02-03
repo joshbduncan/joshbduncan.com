@@ -24,7 +24,6 @@ build: ## freeze the blog for deployment
 	esbuild build/static/styles/styles.css --target=chrome90 --outfile=build/static/styles/styles.css --allow-overwrite
 
 render: ## freeze the blog for deployment on render
-	pip install -r requirements-build.txt
+	uv run python blog.py --build
 	npm install esbuild
-	python blog.py --build
 	esbuild build/static/styles/styles.css --target=chrome90 --outfile=build/static/styles/styles.css --allow-overwrite

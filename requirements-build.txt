@@ -1,7 +1,0 @@
-beautifulsoup4==4.13.3
-Flask==3.0.3
-Flask-FlatPages==0.8.2
-Markdown==3.6
-Pygments==2.18.0
-python-dotenv==1.0.1
-Werkzeug==3.0.3
