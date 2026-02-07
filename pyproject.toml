@@ -1,7 +1,7 @@
 [project]
 name = "joshbduncan-blog"
 version = "0.1.0"
-requires-python = ">=3.13"
+requires-python = ">=3.13.0"
 dependencies = [
     "beautifulsoup4>=4.13.3",
     "flask>=3.1.0",
