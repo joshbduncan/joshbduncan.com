@@ -232,6 +232,39 @@ ul.tags {
     svg {
         height: 60px;
     }
+
+    svg.unsplash {
+        height: 51px;
+    }
+}
+
+/* ########## PHOTOS PAGE ########## */
+
+.photography {
+    h1 {
+        padding-block-end: 1rem;
+        text-align: center;
+        font-size: 4rem;
+    }
+}
+
+.full-bleed {
+    width: 80vw;
+    margin-left: calc(50% - 40vw);
+}
+
+.masonry {
+    columns: 3;
+    column-gap: 1em;
+    column-fill: balance;
+
+    img {
+        display: block;
+        max-width: 100%;
+        margin-bottom: 1em;
+        object-fit: cover;
+        break-inside: avoid;
+    }
 }
 
 /* ########## SEARCH PAGE ########## */

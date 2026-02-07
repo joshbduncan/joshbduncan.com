@@ -1,7 +1,4 @@
-import os
-import time
 from datetime import datetime
-from pathlib import Path
 import re
 
 import html
@@ -17,16 +14,15 @@ from flask import (
     abort,
     render_template,
     request,
-    send_file,
     url_for,
     send_from_directory,
 )
-from flask_flatpages import Page  # type: ignore
+from flask_flatpages import Page
 
 from app import app, flatpages, freezer
 
-POST_DIR: str = app.config.get("POST_DIR")
-PAGE_DIR: str = app.config.get("PAGE_DIR")
+POST_DIR: str = app.config.get("POST_DIR", "posts")
+PAGE_DIR: str = app.config.get("PAGE_DIR", "pages")
 
 
 @app.errorhandler(404)
@@ -37,7 +33,6 @@ def page_not_found(e) -> str:
 @freezer.register_generator
 def error_handlers():
     yield "/404.html"
-
 
 
 ROOT_IMAGE_FILES: dict[str, str] = {
@@ -120,11 +115,9 @@ def about() -> str:
     return render_template("page.html", page=page, og_type="profile")
 
 
-@app.route("/software.html")
-def software() -> str:
-    path: str = f"{PAGE_DIR}/software"
-    page = flatpages.get_or_404(path)
-    return render_template("page.html", page=page)
+@app.route("/photography.html")
+def photography() -> str:
+    return render_template("photography.html", title="Photography")
 
 
 @app.route("/search.html")
@@ -132,6 +125,13 @@ def search() -> str:
     posts: list[Page] = get_live_posts()
     posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template("search.html", posts=posts, title="Search")
+
+
+@app.route("/software.html")
+def software() -> str:
+    path: str = f"{PAGE_DIR}/software"
+    page = flatpages.get_or_404(path)
+    return render_template("page.html", page=page)
 
 
 ##############
@@ -250,9 +250,9 @@ def rss() -> Response:
         zone = ZoneInfo("America/New_York")
 
         if date is None:
-            date: datetime = datetime.now(zone)
+            date = datetime.now(zone)
         elif date.tzinfo is None:
-            date: datetime = date.replace(tzinfo=zone)  # localize if naive
+            date = date.replace(tzinfo=zone)  # localize if naive
 
         return date.strftime("%a, %d %b %Y %H:%M:%S %z")
 
@@ -267,11 +267,15 @@ def rss() -> Response:
 
         # convert relative <a href=""> links
         for a in soup.find_all("a", href=True):
-            a["href"] = urljoin(base_url, a["href"])
+            href = a["href"]
+            assert isinstance(href, str)  # for type checker
+            a["href"] = urljoin(base_url, href)
 
         # convert relative <img src=""> links
         for img in soup.find_all("img", src=True):
-            img["src"] = urljoin(base_url, img["src"])
+            src = img["src"]
+            assert isinstance(src, str)  # for type checker
+            img["src"] = urljoin(base_url, src)
 
         return str(soup)
 

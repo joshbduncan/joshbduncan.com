@@ -7,6 +7,9 @@
             <a class="secondary" href="{{ url_for('about') }}" {% if request.path==url_for("about") %}aria-current="page" {% endif %}>About</a>
         </li>
         <li>
+            <a class="secondary" href="{{ url_for('photography') }}" {% if request.path==url_for("photography") %}aria-current="page" {% endif %}>Photography</a>
+        </li>
+        <li>
             <a class="secondary" href="{{ url_for('software') }}" {% if request.path==url_for("software") %}aria-current="page" {% endif %}>Software</a>
         </li>
         <li>
