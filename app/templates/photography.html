@@ -1,24 +1,113 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <article class="page photography">
     <h1>{{ title }}</h1>
     <div class="masonry full-bleed">
-        <a href="https://unsplash.com/photos/newborn-baby-girl-with-blue-eyes-and-floral-headband-SeZAtQpoeqI" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-SeZAtQpoeqI-unsplash.jpg') }}" alt="newborn baby lying on a white blanket wearing a pink floral headband"></a>
-        <a href="https://unsplash.com/photos/four-wine-glasses-filled-with-liquid-on-wooden-tray-selective-focus-photography-6Sa26Lsjtok" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-6Sa26Lsjtok-unsplash.jpg') }}" alt="flight of craft beer samples in small glasses on a wooden tasting board outdoors"></a>
-        <a href="https://unsplash.com/photos/grayscale-photo-of-long-coated-small-dog-6eVipoxyDEo" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-6eVipoxyDEo-unsplash.jpg') }}" alt="black and white portrait of a small dog sitting on grass outdoors"></a>
-        <a href="https://unsplash.com/photos/a-little-girl-with-a-face-mask-iRHHahk88hk" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-iRHHahk88hk-unsplash.jpg') }}" alt="smiling toddler indoors with sunlight stripes across their face and colorful shirt"></a>
-        <a href="https://unsplash.com/photos/young-girl-holding-a-green-toy-with-stuffed-animals-r9FqPSoaaQI" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-r9FqPSoaaQI-unsplash.jpg') }}" alt="toddler looking up at the camera while holding a small toy, with another child and stuffed animals in the background"></a>
-        <a href="https://unsplash.com/photos/a-little-girl-sitting-in-a-pink-chair-Y8NKO9TjdxU" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-Y8NKO9TjdxU-unsplash.jpg') }}" alt="toddler sitting in a pink polka dot armchair holding a toy indoors"></a>
-        <a href="https://unsplash.com/photos/young-girl-with-pink-stain-on-white-dress-AjaIvMULjq4" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-AjaIvMULjq4-unsplash.jpg') }}" alt="toddler standing in tall grass wearing a white dress with pink stains and a patterned headband"></a>
-        <a href="https://unsplash.com/photos/big-sister-gently-kisses-newborn-baby-sister-9t-D05i1WLU" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-9t-D05i1WLU-unsplash.jpg') }}" alt="young child touching noses with a newborn baby surrounded by flowers and blankets"></a>
-        <a href="https://unsplash.com/photos/newborn-baby-girl-in-a-woven-basket-with-flowers-4C8E8wj-ub8" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-4C8E8wj-ub8-unsplash.jpg') }}" alt="newborn baby lying in a woven basket with floral decorations and soft blankets"></a>
-        <a href="https://unsplash.com/photos/vk7z6gJtxo0" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-vk7z6gJtxo0-unsplash.jpg') }}" alt="mountain bike leaning against a tree on a wooded trail in autumn"></a>
-        <a href="https://unsplash.com/photos/child-holds-green-and-pink-blocks-over-eyes-QCeo535Zd2M" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-QCeo535Zd2M-unsplash.jpg') }}" alt="toddler holding translucent green and pink toy blocks up to their eyes"></a>
-        <a href="https://unsplash.com/photos/a-baby-lies-on-its-stomach-holding-a-toy-oiFNf2Dkrro" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-oiFNf2Dkrro-unsplash.jpg') }}" alt="black and white close-up portrait of a baby lying on their stomach and looking at the camera"></a>
-        <a href="https://unsplash.com/photos/0xF5rGS7uw0" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-0xF5rGS7uw0-unsplash.jpg') }}" alt="close-up of pale spring blossoms clustered on tree branches with soft background blur"></a>
-        <a href="https://unsplash.com/photos/closeup-photo-of-brown-dog-on-sand-YgnEt0BVsOk" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-YgnEt0BVsOk-unsplash.jpg') }}" alt="dog standing on sandy beach looking toward the bright ocean horizon"></a>
-        <a href="https://unsplash.com/photos/brown-boat-on-water-twU-8psHdeE" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-twU-8psHdeE-unsplash.jpg') }}" alt="view from a kayak bow gliding across sunlit water"></a>
-        <a href="https://unsplash.com/photos/DfKm_ZHyilM" target="_blank"><img src="{{ url_for('static', filename='images/photography/josh-duncan-DfKm_ZHyilM-unsplash.jpg') }}" alt="rocky cliff edge with trees on top against a clear blue sky"></a>
+        <a
+           href="https://unsplash.com/photos/newborn-baby-girl-with-blue-eyes-and-floral-headband-SeZAtQpoeqI"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-SeZAtQpoeqI-unsplash.jpg') }}"
+                 alt="newborn baby lying on a white blanket wearing a pink floral headband"
+                 width="640"
+                 height="960" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/four-wine-glasses-filled-with-liquid-on-wooden-tray-selective-focus-photography-6Sa26Lsjtok"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-6Sa26Lsjtok-unsplash.jpg') }}"
+                 alt="flight of craft beer samples in small glasses on a wooden tasting board outdoors"
+                 width="640"
+                 height="512" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/grayscale-photo-of-long-coated-small-dog-6eVipoxyDEo"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-6eVipoxyDEo-unsplash.jpg') }}"
+                 alt="black and white portrait of a small dog sitting on grass outdoors"
+                 width="640"
+                 height="800" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/a-little-girl-with-a-face-mask-iRHHahk88hk"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-iRHHahk88hk-unsplash.jpg') }}"
+                 alt="smiling toddler indoors with sunlight stripes across their face and colorful shirt"
+                 width="640"
+                 height="960" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/young-girl-holding-a-green-toy-with-stuffed-animals-r9FqPSoaaQI"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-r9FqPSoaaQI-unsplash.jpg') }}"
+                 alt="toddler looking up at the camera while holding a small toy, with another child and stuffed animals in the background"
+                 width="640"
+                 height="427" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/a-little-girl-sitting-in-a-pink-chair-Y8NKO9TjdxU"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-Y8NKO9TjdxU-unsplash.jpg') }}"
+                 alt="toddler sitting in a pink polka dot armchair holding a toy indoors"
+                 width="640"
+                 height="640" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/young-girl-with-pink-stain-on-white-dress-AjaIvMULjq4"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-AjaIvMULjq4-unsplash.jpg') }}"
+                 alt="toddler standing in tall grass wearing a white dress with pink stains and a patterned headband"
+                 width="640"
+                 height="800" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/big-sister-gently-kisses-newborn-baby-sister-9t-D05i1WLU"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-9t-D05i1WLU-unsplash.jpg') }}"
+                 alt="young child touching noses with a newborn baby surrounded by flowers and blankets"
+                 width="640"
+                 height="800" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/newborn-baby-girl-in-a-woven-basket-with-flowers-4C8E8wj-ub8"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-4C8E8wj-ub8-unsplash.jpg') }}"
+                 alt="newborn baby lying in a woven basket with floral decorations and soft blankets"
+                 width="640"
+                 height="427" loading="lazy" /></a>
+        <a href="https://unsplash.com/photos/vk7z6gJtxo0" target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-vk7z6gJtxo0-unsplash.jpg') }}"
+                 alt="mountain bike leaning against a tree on a wooded trail in autumn"
+                 width="640"
+                 height="800" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/child-holds-green-and-pink-blocks-over-eyes-QCeo535Zd2M"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-QCeo535Zd2M-unsplash.jpg') }}"
+                 alt="toddler holding translucent green and pink toy blocks up to their eyes"
+                 width="640"
+                 height="960" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/a-baby-lies-on-its-stomach-holding-a-toy-oiFNf2Dkrro"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-oiFNf2Dkrro-unsplash.jpg') }}"
+                 alt="black and white close-up portrait of a baby lying on their stomach and looking at the camera"
+                 width="640"
+                 height="857" loading="lazy" /></a>
+        <a href="https://unsplash.com/photos/0xF5rGS7uw0" target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-0xF5rGS7uw0-unsplash.jpg') }}"
+                 alt="close-up of pale spring blossoms clustered on tree branches with soft background blur"
+                 width="640"
+                 height="512" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/closeup-photo-of-brown-dog-on-sand-YgnEt0BVsOk"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-YgnEt0BVsOk-unsplash.jpg') }}"
+                 alt="dog standing on sandy beach looking toward the bright ocean horizon"
+                 width="640"
+                 height="480" loading="lazy" /></a>
+        <a
+           href="https://unsplash.com/photos/brown-boat-on-water-twU-8psHdeE"
+           target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-twU-8psHdeE-unsplash.jpg') }}"
+                 alt="view from a kayak bow gliding across sunlit water"
+                 width="640"
+                 height="396" loading="lazy" /></a>
+        <a href="https://unsplash.com/photos/DfKm_ZHyilM" target="_blank"><img
+                 src="{{ url_for('static', filename='images/photography/josh-duncan-DfKm_ZHyilM-unsplash.jpg') }}"
+                 alt="rocky cliff edge with trees on top against a clear blue sky"
+                 width="640"
+                 height="360" loading="lazy" /></a>
     </div>
 </article>
 {% endblock content %}
